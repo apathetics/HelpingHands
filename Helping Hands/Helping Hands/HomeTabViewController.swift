@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  HomeTabViewController.swift
 //  Helping Hands
 //
 //  Created by Tracy Nguyen on 2/28/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class HomeTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
