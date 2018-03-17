@@ -23,8 +23,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         super.viewDidLoad()
         
     
-        // Get the back-facing camera for capturing videos
-//        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back)
+        // Get the back-facing camera for capturing videos by using discovery
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.back)
         
         guard let captureDevice = deviceDiscoverySession.devices.first else {
@@ -51,6 +50,15 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             videoPreviewLayer?.frame = view.layer.bounds
             view.layer.addSublayer(videoPreviewLayer!)
             
+            // Initialize QR Code Frame to highlight the QR code
+            qrCodeFrameView = UIView()
+            
+            if let qrCodeFrameView = qrCodeFrameView {
+                qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
+                qrCodeFrameView.layer.borderWidth = 2
+                view.addSubview(qrCodeFrameView)
+                view.bringSubview(toFront: qrCodeFrameView)
+            }
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
             print(error)
@@ -63,6 +71,28 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Move the message label and top bar to the front
         view.bringSubview(toFront: messageLabel)
         view.bringSubview(toFront: topbar)
+    }
+    
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        // Check if the metadataObjects array is not nil and it contains at least one object.
+        if metadataObjects.count == 0 {
+            qrCodeFrameView?.frame = CGRect.zero
+            messageLabel.text = "No QR code is detected"
+            return
+        }
+        
+        // Get the metadata object.
+        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        
+        if metadataObj.type == AVMetadataObject.ObjectType.qr {
+            // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
+            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
+            qrCodeFrameView?.frame = barCodeObject!.bounds
+            
+            if metadataObj.stringValue != nil {
+                messageLabel.text = metadataObj.stringValue
+            }
+        }
     }
 
 }
