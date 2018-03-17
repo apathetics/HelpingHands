@@ -13,16 +13,14 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     var imgChosen = false
     var masterView:CommunityTabViewController?
     
-//    @IBOutlet weak var imgView: UIImageView!
-//    @IBOutlet weak var titleFld: UITextField!
-//    @IBOutlet weak var descriptionFld: UITextView!
-//    @IBOutlet weak var paymentFld: UITextField!
-//    @IBOutlet weak var paymentTypeSeg: UISegmentedControl!
-//    @IBOutlet weak var addressFld: UITextView!
-//    @IBOutlet weak var helpersCountFld: UITextField!
-//    @IBOutlet weak var datePicker: UIDatePicker!
-//    @IBOutlet weak var redLbl: UILabel!
-//    @IBOutlet weak var locImg: UIImageView!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var titleFld: UITextField!
+    @IBOutlet weak var descriptionFld: UITextView!
+    @IBOutlet weak var addressFld: UITextView!
+    @IBOutlet weak var helpersCountFld: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var redLbl: UILabel!
+    @IBOutlet weak var locImg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,14 +117,11 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     @IBAction func finishBtn(_ sender: Any) {
-        if titleFld.text == "" || descriptionFld.text == DESCR_PLACEHOLDER || paymentFld.text == "" {
+        if titleFld.text == "" || descriptionFld.text == DESCR_PLACEHOLDER {
             redLbl.text = "All fields are required."
             redLbl.isHidden = false
         } else if (datePicker.date < Date()) {
             redLbl.text = "That time is in the past!"
-            redLbl.isHidden = false
-        } else if (getDoubleFromString(str: paymentFld.text!)) < 0 {
-            redLbl.text = "Not a valid amount."
             redLbl.isHidden = false
         } else if (imgChosen == false) {
             redLbl.text = "You must choose an image."
@@ -139,17 +134,14 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
             event.eventDescription = descriptionFld.text
             event.date = datePicker.date
             event.distance = 0.0 // TODO
-            event.payment = Double(paymentFld.text!)!
             event.numHelpers = Int(helpersCountFld.text!)!
             event.address = addressFld.text // TODO
-            // TODO: store the image!!
             event.image = imgView.image
             masterView!.eventToAdd = event
             redLbl.isHidden = true
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
-    
     //----------------------------------------------------------------//
     
     // This method is called when the user touches the Return key on the

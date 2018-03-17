@@ -16,6 +16,12 @@ class EventTableViewCell: UITableViewCell {
 //    @IBOutlet weak var eventDescriptionLbl: UITextView!
 //    @IBOutlet weak var paymentLbl: UILabel!
     
+    @IBOutlet weak var eventImg: UIImageView!
+    @IBOutlet weak var eventTitleLbl: UILabel!
+    @IBOutlet weak var distanceLbl: UILabel!
+    @IBOutlet weak var eventDescriptionLbl: UITextView!
+    @IBOutlet weak var helpersLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
