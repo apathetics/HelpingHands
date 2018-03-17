@@ -22,6 +22,7 @@
 		AB5F4B81205DC2990085A11D /* HiredPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B80205DC2990085A11D /* HiredPaymentController.swift */; };
 		AB5F4B83205DC7E40085A11D /* ratingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B82205DC7E40085A11D /* ratingControl.swift */; };
 		AB5F4B85205DCD310085A11D /* HiringPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B84205DCD310085A11D /* HiringPaymentController.swift */; };
+		AB5F4B88205DDEA30085A11D /* globalCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B86205DDEA30085A11D /* globalCoreData.xcdatamodeld */; };
 		AB7743012047853A00799F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743002047853A00799F84 /* AppDelegate.swift */; };
 		AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743022047853A00799F84 /* HomeTabViewController.swift */; };
 		AB7743082047853A00799F84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7743062047853A00799F84 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		AB5F4B80205DC2990085A11D /* HiredPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiredPaymentController.swift; sourceTree = "<group>"; };
 		AB5F4B82205DC7E40085A11D /* ratingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingControl.swift; sourceTree = "<group>"; };
 		AB5F4B84205DCD310085A11D /* HiringPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiringPaymentController.swift; sourceTree = "<group>"; };
+		AB5F4B87205DDEA30085A11D /* globalCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = globalCoreData.xcdatamodel; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7743002047853A00799F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7743022047853A00799F84 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				AB7743092047853A00799F84 /* Assets.xcassets */,
 				AB77430B2047853A00799F84 /* LaunchScreen.storyboard */,
 				AB77430E2047853A00799F84 /* Info.plist */,
+				AB5F4B86205DDEA30085A11D /* globalCoreData.xcdatamodeld */,
 			);
 			path = "Helping Hands";
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				04FD0640205CAF25000825DF /* Event.swift in Sources */,
 				AB5F4B83205DC7E40085A11D /* ratingControl.swift in Sources */,
 				047367DE20490EC600029D0C /* SearchTabViewController.swift in Sources */,
+				AB5F4B88205DDEA30085A11D /* globalCoreData.xcdatamodeld in Sources */,
 				AB7743012047853A00799F84 /* AppDelegate.swift in Sources */,
 				045A66C3205CC37200465DE9 /* CommunityTabViewController.swift in Sources */,
 				AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */,
@@ -424,6 +428,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AB5F4B86205DDEA30085A11D /* globalCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB5F4B87205DDEA30085A11D /* globalCoreData.xcdatamodel */,
+			);
+			currentVersion = AB5F4B87205DDEA30085A11D /* globalCoreData.xcdatamodel */;
+			path = globalCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AB7742F52047853A00799F84 /* Project object */;
 }
