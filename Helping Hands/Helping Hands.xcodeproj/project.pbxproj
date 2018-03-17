@@ -21,6 +21,7 @@
 		AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */; };
 		AB5F4B81205DC2990085A11D /* HiredPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B80205DC2990085A11D /* HiredPaymentController.swift */; };
 		AB5F4B83205DC7E40085A11D /* ratingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B82205DC7E40085A11D /* ratingControl.swift */; };
+		AB5F4B85205DCD310085A11D /* HiringPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B84205DCD310085A11D /* HiringPaymentController.swift */; };
 		AB7743012047853A00799F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743002047853A00799F84 /* AppDelegate.swift */; };
 		AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743022047853A00799F84 /* HomeTabViewController.swift */; };
 		AB7743082047853A00799F84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7743062047853A00799F84 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		AB5F4B80205DC2990085A11D /* HiredPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiredPaymentController.swift; sourceTree = "<group>"; };
 		AB5F4B82205DC7E40085A11D /* ratingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingControl.swift; sourceTree = "<group>"; };
+		AB5F4B84205DCD310085A11D /* HiringPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiringPaymentController.swift; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7743002047853A00799F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7743022047853A00799F84 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				AB5F4B80205DC2990085A11D /* HiredPaymentController.swift */,
 				AB5F4B82205DC7E40085A11D /* ratingControl.swift */,
+				AB5F4B84205DCD310085A11D /* HiringPaymentController.swift */,
 			);
 			path = paymentReview;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5F4B85205DCD310085A11D /* HiringPaymentController.swift in Sources */,
 				04FC21EC2058CEBA0029959C /* AddJobViewController.swift in Sources */,
 				04FD0644205CB5F6000825DF /* EventTableViewCell.swift in Sources */,
 				04FD0642205CB50A000825DF /* AddEventViewController.swift in Sources */,
