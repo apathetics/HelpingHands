@@ -17,6 +17,7 @@
 		04FD0642205CB50A000825DF /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD0641205CB50A000825DF /* AddEventViewController.swift */; };
 		04FD0644205CB5F6000825DF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD0643205CB5F6000825DF /* EventTableViewCell.swift */; };
 		AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */; };
+		AB5F4B7C205DA37F0085A11D /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7B205DA37F0085A11D /* QRViewController.swift */; };
 		AB7743012047853A00799F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743002047853A00799F84 /* AppDelegate.swift */; };
 		AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743022047853A00799F84 /* HomeTabViewController.swift */; };
 		AB7743082047853A00799F84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7743062047853A00799F84 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		04FD0641205CB50A000825DF /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		04FD0643205CB5F6000825DF /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
+		AB5F4B7B205DA37F0085A11D /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7743002047853A00799F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7743022047853A00799F84 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 			path = searchTab;
 			sourceTree = "<group>";
 		};
+		AB5F4B7A205DA3520085A11D /* confirmationQR */ = {
+			isa = PBXGroup;
+			children = (
+				AB5F4B7B205DA37F0085A11D /* QRViewController.swift */,
+			);
+			path = confirmationQR;
+			sourceTree = "<group>";
+		};
 		AB7742F42047853A00799F84 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +115,7 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				AB5F4B7A205DA3520085A11D /* confirmationQR */,
 				AB5F4B77205D8E970085A11D /* searchTab */,
 				AB7743002047853A00799F84 /* AppDelegate.swift */,
 				04FD0647205CB74C000825DF /* homeTab */,
@@ -198,6 +209,7 @@
 				AB7743012047853A00799F84 /* AppDelegate.swift in Sources */,
 				045A66C3205CC37200465DE9 /* CommunityTabViewController.swift in Sources */,
 				AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */,
+				AB5F4B7C205DA37F0085A11D /* QRViewController.swift in Sources */,
 				04FC21E82058C5A90029959C /* JobTableViewCell.swift in Sources */,
 				047367E020490EDC00029D0C /* ExploreTabViewController.swift in Sources */,
 				AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */,
