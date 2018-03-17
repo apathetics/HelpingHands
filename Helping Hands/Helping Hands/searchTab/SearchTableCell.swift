@@ -8,7 +8,12 @@
 
 import UIKit
 
-class searchTableCell: UITableViewCell {
+class SearchTableCell: UITableViewCell {
+    
+    @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var jobTitleLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

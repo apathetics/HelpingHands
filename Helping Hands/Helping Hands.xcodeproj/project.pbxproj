@@ -16,6 +16,7 @@
 		04FD0640205CAF25000825DF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD063F205CAF25000825DF /* Event.swift */; };
 		04FD0642205CB50A000825DF /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD0641205CB50A000825DF /* AddEventViewController.swift */; };
 		04FD0644205CB5F6000825DF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD0643205CB5F6000825DF /* EventTableViewCell.swift */; };
+		AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */; };
 		AB7743012047853A00799F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743002047853A00799F84 /* AppDelegate.swift */; };
 		AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743022047853A00799F84 /* HomeTabViewController.swift */; };
 		AB7743082047853A00799F84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7743062047853A00799F84 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		04FD063F205CAF25000825DF /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04FD0641205CB50A000825DF /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		04FD0643205CB5F6000825DF /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7743002047853A00799F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7743022047853A00799F84 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,15 @@
 			path = communityTab;
 			sourceTree = "<group>";
 		};
+		AB5F4B77205D8E970085A11D /* searchTab */ = {
+			isa = PBXGroup;
+			children = (
+				047367DD20490EC600029D0C /* SearchTabViewController.swift */,
+				AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */,
+			);
+			path = searchTab;
+			sourceTree = "<group>";
+		};
 		AB7742F42047853A00799F84 = {
 			isa = PBXGroup;
 			children = (
@@ -94,10 +105,10 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				AB5F4B77205D8E970085A11D /* searchTab */,
 				AB7743002047853A00799F84 /* AppDelegate.swift */,
 				04FD0647205CB74C000825DF /* homeTab */,
 				04FD0648205CB75D000825DF /* communityTab */,
-				047367DD20490EC600029D0C /* SearchTabViewController.swift */,
 				047367DF20490EDC00029D0C /* ExploreTabViewController.swift */,
 				AB7743062047853A00799F84 /* Main.storyboard */,
 				AB7743092047853A00799F84 /* Assets.xcassets */,
@@ -189,6 +200,7 @@
 				AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */,
 				04FC21E82058C5A90029959C /* JobTableViewCell.swift in Sources */,
 				047367E020490EDC00029D0C /* ExploreTabViewController.swift in Sources */,
+				AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */,
 				04FC21EA2058C7FD0029959C /* Job.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
