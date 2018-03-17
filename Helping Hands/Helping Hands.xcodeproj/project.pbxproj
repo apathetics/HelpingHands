@@ -7,19 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045A66C3205CC37200465DE9 /* CommunityTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A66C2205CC37200465DE9 /* CommunityTabViewController.swift */; };
+		047367DE20490EC600029D0C /* SearchTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047367DD20490EC600029D0C /* SearchTabViewController.swift */; };
+		047367E020490EDC00029D0C /* ExploreTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047367DF20490EDC00029D0C /* ExploreTabViewController.swift */; };
+		04FC21E82058C5A90029959C /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC21E72058C5A90029959C /* JobTableViewCell.swift */; };
+		04FC21EA2058C7FD0029959C /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC21E92058C7FD0029959C /* Job.swift */; };
+		04FC21EC2058CEBA0029959C /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC21EB2058CEBA0029959C /* AddJobViewController.swift */; };
+		04FD0640205CAF25000825DF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD063F205CAF25000825DF /* Event.swift */; };
+		04FD0642205CB50A000825DF /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD0641205CB50A000825DF /* AddEventViewController.swift */; };
+		04FD0644205CB5F6000825DF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD0643205CB5F6000825DF /* EventTableViewCell.swift */; };
 		AB7743012047853A00799F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743002047853A00799F84 /* AppDelegate.swift */; };
-		AB7743032047853A00799F84 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743022047853A00799F84 /* FirstViewController.swift */; };
-		AB7743052047853A00799F84 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743042047853A00799F84 /* SecondViewController.swift */; };
+		AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743022047853A00799F84 /* HomeTabViewController.swift */; };
 		AB7743082047853A00799F84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7743062047853A00799F84 /* Main.storyboard */; };
 		AB77430A2047853A00799F84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7743092047853A00799F84 /* Assets.xcassets */; };
 		AB77430D2047853A00799F84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB77430B2047853A00799F84 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		045A66C2205CC37200465DE9 /* CommunityTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTabViewController.swift; sourceTree = "<group>"; };
+		047367DD20490EC600029D0C /* SearchTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabViewController.swift; sourceTree = "<group>"; };
+		047367DF20490EDC00029D0C /* ExploreTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTabViewController.swift; sourceTree = "<group>"; };
+		04FC21E72058C5A90029959C /* JobTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
+		04FC21E92058C7FD0029959C /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		04FC21EB2058CEBA0029959C /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
+		04FD063F205CAF25000825DF /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		04FD0641205CB50A000825DF /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		04FD0643205CB5F6000825DF /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7743002047853A00799F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB7743022047853A00799F84 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		AB7743042047853A00799F84 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		AB7743022047853A00799F84 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		AB7743072047853A00799F84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB7743092047853A00799F84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB77430C2047853A00799F84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +53,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04FD0647205CB74C000825DF /* homeTab */ = {
+			isa = PBXGroup;
+			children = (
+				04FC21E92058C7FD0029959C /* Job.swift */,
+				AB7743022047853A00799F84 /* HomeTabViewController.swift */,
+				04FC21E72058C5A90029959C /* JobTableViewCell.swift */,
+				04FC21EB2058CEBA0029959C /* AddJobViewController.swift */,
+			);
+			path = homeTab;
+			sourceTree = "<group>";
+		};
+		04FD0648205CB75D000825DF /* communityTab */ = {
+			isa = PBXGroup;
+			children = (
+				04FD063F205CAF25000825DF /* Event.swift */,
+				04FD0641205CB50A000825DF /* AddEventViewController.swift */,
+				04FD0643205CB5F6000825DF /* EventTableViewCell.swift */,
+				045A66C2205CC37200465DE9 /* CommunityTabViewController.swift */,
+			);
+			path = communityTab;
+			sourceTree = "<group>";
+		};
 		AB7742F42047853A00799F84 = {
 			isa = PBXGroup;
 			children = (
@@ -57,8 +95,10 @@
 			isa = PBXGroup;
 			children = (
 				AB7743002047853A00799F84 /* AppDelegate.swift */,
-				AB7743022047853A00799F84 /* FirstViewController.swift */,
-				AB7743042047853A00799F84 /* SecondViewController.swift */,
+				04FD0647205CB74C000825DF /* homeTab */,
+				04FD0648205CB75D000825DF /* communityTab */,
+				047367DD20490EC600029D0C /* SearchTabViewController.swift */,
+				047367DF20490EDC00029D0C /* ExploreTabViewController.swift */,
 				AB7743062047853A00799F84 /* Main.storyboard */,
 				AB7743092047853A00799F84 /* Assets.xcassets */,
 				AB77430B2047853A00799F84 /* LaunchScreen.storyboard */,
@@ -139,9 +179,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB7743052047853A00799F84 /* SecondViewController.swift in Sources */,
+				04FC21EC2058CEBA0029959C /* AddJobViewController.swift in Sources */,
+				04FD0644205CB5F6000825DF /* EventTableViewCell.swift in Sources */,
+				04FD0642205CB50A000825DF /* AddEventViewController.swift in Sources */,
+				04FD0640205CAF25000825DF /* Event.swift in Sources */,
+				047367DE20490EC600029D0C /* SearchTabViewController.swift in Sources */,
 				AB7743012047853A00799F84 /* AppDelegate.swift in Sources */,
-				AB7743032047853A00799F84 /* FirstViewController.swift in Sources */,
+				045A66C3205CC37200465DE9 /* CommunityTabViewController.swift in Sources */,
+				AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */,
+				04FC21E82058C5A90029959C /* JobTableViewCell.swift in Sources */,
+				047367E020490EDC00029D0C /* ExploreTabViewController.swift in Sources */,
+				04FC21EA2058C7FD0029959C /* Job.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
