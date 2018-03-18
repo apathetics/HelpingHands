@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="L6n-pI-L6f">
             <objects>
-                <viewController id="KoS-3V-Nvn" sceneMemberID="viewController">
+                <viewController id="KoS-3V-Nvn" customClass="LoginVC" customModule="Helping_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J2c-Rb-iFK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +63,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="dLk-et-Agf">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="280" id="o7D-CJ-c4G"/>
+                                    <constraint firstAttribute="height" constant="280" id="o7D-CJ-c4G" userLabel="height = 260"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cun-v2-spd">
@@ -105,6 +105,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="KoS-3V-Nvn" eventType="touchUpInside" id="93g-wu-IST"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
@@ -118,6 +121,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="APL-ui-g2R"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTF" destination="bWz-ND-3mY" id="woS-Gx-de4"/>
+                        <outlet property="passwordTF" destination="JH5-5y-tDb" id="6Rw-cE-RIs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sz6-1d-H80" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,6 +184,9 @@
                                 <state key="normal" title="Upload Image">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="UploadImagePressed:" destination="Ozn-sJ-mYE" eventType="touchUpInside" id="YsB-ij-6pb"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QXH-gA-CoO">
                                 <rect key="frame" x="160" y="147" width="169" height="30"/>
@@ -234,13 +244,22 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.1058823529" green="0.12941176469999999" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpPressed:" destination="Ozn-sJ-mYE" eventType="touchUpInside" id="UR5-v3-2Ln"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="isl-yM-R3U"/>
                     </view>
                     <connections>
+                        <outlet property="confirmPasswordTF" destination="Sny-hn-JMA" id="UZH-Uc-1zN"/>
+                        <outlet property="emailTF" destination="D3N-wP-TIY" id="gAM-pW-LXh"/>
+                        <outlet property="firstNameTF" destination="QXH-gA-CoO" id="elf-Wj-uM5"/>
+                        <outlet property="lastNameTF" destination="GRy-SI-WAV" id="VFF-9s-hXZ"/>
                         <outlet property="over18CB" destination="7Co-Kj-N8v" id="ObB-CV-Ls7"/>
+                        <outlet property="passwordTF" destination="EDz-Vw-A8z" id="pYP-Sg-jGW"/>
+                        <outlet property="profileImage" destination="NtZ-0P-nL1" id="zzr-2e-U6y"/>
                         <outlet property="termsAgreementsCB" destination="bT7-U8-gBR" id="cYW-gK-tgH"/>
                     </connections>
                 </viewController>
