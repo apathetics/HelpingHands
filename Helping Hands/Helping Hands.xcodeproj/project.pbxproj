@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19FE73B1205E3C96006C97EC /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FE73B0205E3C96006C97EC /* RegistrationVC.swift */; };
+		19FE73C8205E460B006C97EC /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FE73C0205E460A006C97EC /* BEMAnimationManager.m */; };
+		19FE73C9205E460B006C97EC /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FE73C2205E460A006C97EC /* BEMPathManager.m */; };
+		19FE73CA205E460B006C97EC /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FE73C5205E460B006C97EC /* BEMCheckBox.m */; };
+		19FE73CB205E460B006C97EC /* BEMCheckBoxGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FE73C7205E460B006C97EC /* BEMCheckBoxGroup.m */; };
 		AB7743012047853A00799F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743002047853A00799F84 /* AppDelegate.swift */; };
 		AB7743032047853A00799F84 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743022047853A00799F84 /* FirstViewController.swift */; };
 		AB7743052047853A00799F84 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743042047853A00799F84 /* SecondViewController.swift */; };
@@ -16,6 +21,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19FE73B0205E3C96006C97EC /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
+		19FE73BF205E3F17006C97EC /* CheckBoxHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckBoxHeader.h; sourceTree = "<group>"; };
+		19FE73C0205E460A006C97EC /* BEMAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnimationManager.m; sourceTree = "<group>"; };
+		19FE73C1205E460A006C97EC /* BEMPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPathManager.h; sourceTree = "<group>"; };
+		19FE73C2205E460A006C97EC /* BEMPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPathManager.m; sourceTree = "<group>"; };
+		19FE73C3205E460A006C97EC /* BEMCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBox.h; sourceTree = "<group>"; };
+		19FE73C4205E460B006C97EC /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
+		19FE73C5205E460B006C97EC /* BEMCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBox.m; sourceTree = "<group>"; };
+		19FE73C6205E460B006C97EC /* BEMCheckBoxGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBoxGroup.h; sourceTree = "<group>"; };
+		19FE73C7205E460B006C97EC /* BEMCheckBoxGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBoxGroup.m; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7743002047853A00799F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7743022047853A00799F84 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +52,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19FE73B2205E3E62006C97EC /* CheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				19FE73C4205E460B006C97EC /* BEMAnimationManager.h */,
+				19FE73C0205E460A006C97EC /* BEMAnimationManager.m */,
+				19FE73C3205E460A006C97EC /* BEMCheckBox.h */,
+				19FE73C5205E460B006C97EC /* BEMCheckBox.m */,
+				19FE73C6205E460B006C97EC /* BEMCheckBoxGroup.h */,
+				19FE73C7205E460B006C97EC /* BEMCheckBoxGroup.m */,
+				19FE73C1205E460A006C97EC /* BEMPathManager.h */,
+				19FE73C2205E460A006C97EC /* BEMPathManager.m */,
+			);
+			path = CheckBox;
+			sourceTree = "<group>";
+		};
 		AB7742F42047853A00799F84 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +86,12 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				19FE73B2205E3E62006C97EC /* CheckBox */,
+				19FE73BF205E3F17006C97EC /* CheckBoxHeader.h */,
 				AB7743002047853A00799F84 /* AppDelegate.swift */,
 				AB7743022047853A00799F84 /* FirstViewController.swift */,
 				AB7743042047853A00799F84 /* SecondViewController.swift */,
+				19FE73B0205E3C96006C97EC /* RegistrationVC.swift */,
 				AB7743062047853A00799F84 /* Main.storyboard */,
 				AB7743092047853A00799F84 /* Assets.xcassets */,
 				AB77430B2047853A00799F84 /* LaunchScreen.storyboard */,
@@ -99,6 +132,7 @@
 				TargetAttributes = {
 					AB7742FC2047853A00799F84 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -140,6 +174,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB7743052047853A00799F84 /* SecondViewController.swift in Sources */,
+				19FE73CA205E460B006C97EC /* BEMCheckBox.m in Sources */,
+				19FE73C9205E460B006C97EC /* BEMPathManager.m in Sources */,
+				19FE73C8205E460B006C97EC /* BEMAnimationManager.m in Sources */,
+				19FE73B1205E3C96006C97EC /* RegistrationVC.swift in Sources */,
+				19FE73CB205E460B006C97EC /* BEMCheckBoxGroup.m in Sources */,
 				AB7743012047853A00799F84 /* AppDelegate.swift in Sources */,
 				AB7743032047853A00799F84 /* FirstViewController.swift in Sources */,
 			);
@@ -278,11 +317,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Helping Hands/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -292,11 +334,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Helping Hands/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
