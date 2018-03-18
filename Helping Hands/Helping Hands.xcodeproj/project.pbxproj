@@ -128,6 +128,11 @@
 		AB5F4B8A205DE3FA0085A11D /* main */ = {
 			isa = PBXGroup;
 			children = (
+				AB5F4B86205DDEA30085A11D /* globalCoreData.xcdatamodeld */,
+				AB77430B2047853A00799F84 /* LaunchScreen.storyboard */,
+				AB7743092047853A00799F84 /* Assets.xcassets */,
+				AB7743062047853A00799F84 /* Main.storyboard */,
+				AB7743002047853A00799F84 /* AppDelegate.swift */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -151,17 +156,12 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
-				AB5F4B8A205DE3FA0085A11D /* main */,
-				AB7743062047853A00799F84 /* Main.storyboard */,
-				AB7743092047853A00799F84 /* Assets.xcassets */,
-				AB77430B2047853A00799F84 /* LaunchScreen.storyboard */,
 				AB77430E2047853A00799F84 /* Info.plist */,
-				AB5F4B86205DDEA30085A11D /* globalCoreData.xcdatamodeld */,
+				AB5F4B8A205DE3FA0085A11D /* main */,
 				AB5F4B89205DE3800085A11D /* exploreTab */,
 				AB5F4B7F205DC2690085A11D /* paymentReview */,
 				AB5F4B7A205DA3520085A11D /* confirmationQR */,
 				AB5F4B77205D8E970085A11D /* searchTab */,
-				AB7743002047853A00799F84 /* AppDelegate.swift */,
 				04FD0647205CB74C000825DF /* homeTab */,
 				04FD0648205CB75D000825DF /* communityTab */,
 			);
