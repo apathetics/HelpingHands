@@ -14,7 +14,6 @@ class HiringPaymentController: UIViewController {
     @IBOutlet weak var recipientLabel: UILabel!
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var tipSwich: UISegmentedControl!
-    
     @IBOutlet weak var reviewTextField: UITextField!
     
     

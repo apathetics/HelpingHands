@@ -12,20 +12,22 @@ import AVFoundation
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
+    // IBOutlets
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var topbar: UIView!
     
+    // AV Capture and Preview Layer intialization
     var captureSession:AVCaptureSession? = AVCaptureSession()
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     
-        // Get the back-facing camera for capturing videos by using discovery
+        // Get the BACK-facing camera for capturing videos by using discovery
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.back)
         
+        // If there is no device discovered, then fail
         guard let captureDevice = deviceDiscoverySession.devices.first else {
             print("Failed to get the camera device")
             return
@@ -73,6 +75,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         view.bringSubview(toFront: topbar)
     }
     
+    // QR Code Detection Protocol
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects.count == 0 {
