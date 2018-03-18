@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -23,6 +23,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        //imagePickerController.allowsEditing = true
         
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title:"Camera", style: .default, handler: { (action: UIAlertAction) in
@@ -77,23 +78,40 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                     return
                 }
                 print("Registration Success!")
-                
-                let userReference = self.databaseRef.child("users").child(uid)
-                let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photo": ""]
-                
-                userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                    if error != nil {
-                        print(error!)
-                        return
-                    }
-                    self.dismiss(animated: true, completion: nil)
-                })
+                if let imgUpload = UIImagePNGRepresentation(self.profileImage.image!) {
+                    let imgName = NSUUID().uuidString
+                    let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+                    storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
+                        if error != nil {
+                            print(error)
+                            return
+                        }
+                        if let profileImgUrl = metadata?.downloadURL()?.absoluteString {
+                            let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrl]
+                            self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
+                        }
+                    })
+                }
             })
         }
     }
     
+    func registerUserIntoDatabaseWithUID(uid: String, values: [String: Any]){
+        let userReference = self.databaseRef.child("users").child(uid)
+        userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
+        })
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+        profileImage.clipsToBounds = true
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -102,7 +120,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Dispose of any resources that can be recreated.
     }
     
-    // Delegate Methods
+    // ImagePickerController Delegate Methods
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
