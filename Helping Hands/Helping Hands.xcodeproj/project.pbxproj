@@ -16,8 +16,6 @@
 		19FE73CF205E4FA9006C97EC /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FE73CE205E4FA9006C97EC /* LoginVC.swift */; };
 		81366F9521359B4764A58E79 /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43753F74AA0756485AC3240 /* Pods_Helping_Hands.framework */; };
 		AB7743012047853A00799F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743002047853A00799F84 /* AppDelegate.swift */; };
-		AB7743032047853A00799F84 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743022047853A00799F84 /* FirstViewController.swift */; };
-		AB7743052047853A00799F84 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7743042047853A00799F84 /* SecondViewController.swift */; };
 		AB7743082047853A00799F84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7743062047853A00799F84 /* Main.storyboard */; };
 		AB77430A2047853A00799F84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7743092047853A00799F84 /* Assets.xcassets */; };
 		AB77430D2047853A00799F84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB77430B2047853A00799F84 /* LaunchScreen.storyboard */; };
@@ -40,8 +38,6 @@
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7743002047853A00799F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB7743022047853A00799F84 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		AB7743042047853A00799F84 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		AB7743072047853A00799F84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB7743092047853A00799F84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB77430C2047853A00799F84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,8 +104,6 @@
 				19FE73B2205E3E62006C97EC /* CheckBox */,
 				19FE73BF205E3F17006C97EC /* CheckBoxHeader.h */,
 				AB7743002047853A00799F84 /* AppDelegate.swift */,
-				AB7743022047853A00799F84 /* FirstViewController.swift */,
-				AB7743042047853A00799F84 /* SecondViewController.swift */,
 				19FE73CE205E4FA9006C97EC /* LoginVC.swift */,
 				19FE73B0205E3C96006C97EC /* RegistrationVC.swift */,
 				AB7743062047853A00799F84 /* Main.storyboard */,
@@ -258,7 +252,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB7743052047853A00799F84 /* SecondViewController.swift in Sources */,
 				19FE73CA205E460B006C97EC /* BEMCheckBox.m in Sources */,
 				19FE73C9205E460B006C97EC /* BEMPathManager.m in Sources */,
 				19FE73C8205E460B006C97EC /* BEMAnimationManager.m in Sources */,
@@ -266,7 +259,6 @@
 				19FE73CF205E4FA9006C97EC /* LoginVC.swift in Sources */,
 				19FE73CB205E460B006C97EC /* BEMCheckBoxGroup.m in Sources */,
 				AB7743012047853A00799F84 /* AppDelegate.swift in Sources */,
-				AB7743032047853A00799F84 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
