@@ -15,10 +15,19 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
     
+    // outlets
+    
     @IBOutlet weak var termsAgreementsCB: BEMCheckBox!
     @IBOutlet weak var over18CB: BEMCheckBox!
-    
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var firstNameTF: UITextField!
+    @IBOutlet weak var lastNameTF: UITextField!
+    @IBOutlet weak var emailTF: UITextField!
+    @IBOutlet weak var passwordTF: UITextField!
+    @IBOutlet weak var confirmPasswordTF: UITextField!
+    
+    // actions
+    
     @IBAction func UploadImagePressed(_ sender: Any) {
         
         let imagePickerController = UIImagePickerController()
@@ -41,13 +50,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         actionSheet.addAction(UIAlertAction(title:"Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
-    @IBOutlet weak var firstNameTF: UITextField!
-    @IBOutlet weak var lastNameTF: UITextField!
-    @IBOutlet weak var emailTF: UITextField!
-    @IBOutlet weak var passwordTF: UITextField!
-    @IBOutlet weak var confirmPasswordTF: UITextField!
-    
+
     
     @IBAction func signUpPressed(_ sender: Any) {
         // Make sure none of the fields are empty
@@ -79,7 +82,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
                 print("Registration Success!")
                 if let imgUpload = UIImagePNGRepresentation(self.profileImage.image!) {
-                    let imgName = NSUUID().uuidString
+                    let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
                     let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
                     storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
                         if error != nil {
@@ -95,6 +98,8 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
             })
         }
     }
+    
+    // methods
     
     func registerUserIntoDatabaseWithUID(uid: String, values: [String: Any]){
         let userReference = self.databaseRef.child("users").child(uid)
