@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // If need to clear event core, then set this flag to true.
+    let clearCore: Bool = false
+    
     var eventToAdd:Event?
-    var events = [Event]()
+    var events = [NSManagedObject]()
     
     
     @IBOutlet weak var table: UITableView!
@@ -24,13 +28,13 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         let cell:EventTableViewCell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
         
         let row = indexPath.row
-        let e:Event = events[row]
+        let e:NSManagedObject = events[row]
         
-        cell.eventTitleLbl.text = e.eventTitle
-        cell.eventDescriptionLbl.text = e.eventDescription
-        cell.distanceLbl.text = String(e.distance!) + " mi"
-        cell.eventImg.image = e.image
-        cell.helpersLbl.text = String(e.numHelpers) + " Helpers"
+        cell.eventTitleLbl.text = e.value(forKey: "eventTitle") as? String
+        cell.eventDescriptionLbl.text = e.value(forKey: "eventDescription") as! String
+        cell.distanceLbl.text = String(e.value(forKey: "eventDistance") as! Double) + " mi"
+        cell.eventImg.image = UIImage(data: e.value(forKey: "eventImage") as! Data)
+        cell.helpersLbl.text = String(e.value(forKey: "eventNumHelpers") as! Int64) + " Helpers"
         
         return cell
     }
@@ -38,6 +42,12 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // CLEAR CORE HERE IF FLAG
+        if clearCore {
+        clearCoreEvent()
+        }
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,11 +61,65 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if (eventToAdd != nil) {
-            events.insert(eventToAdd!, at: 0)
-            eventToAdd = nil
-            table.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
-            table.selectRow(at: IndexPath.init(row: 0, section: 0), animated: true, scrollPosition: .none)
+        events = [NSManagedObject]()
+        
+        for event in retrieveEvents() {
+            events.append(event)
+        }
+        table.reloadData()
+        
+    }
+    
+    func retrieveEvents() -> [NSManagedObject] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"EventEntity")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        // Examples of filtering using predicates
+        // let predicate = NSPredicate(format: "age = 35")
+        // let predicate = NSPredicate(format: "name CONTAINS[c] 'ake'")
+        // request.predicate = predicate
+        
+        do {
+            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        return(fetchedResults)!
+        
+    }
+    
+    func clearCoreEvent() {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "EventEntity")
+        var fetchedResults:[NSManagedObject]
+        
+        do {
+            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+            
+            if fetchedResults.count > 0 {
+                
+                for result:AnyObject in fetchedResults {
+                    context.delete(result as! NSManagedObject)
+                    print("\(result.value(forKey: "eventTitle")!) has been Deleted")
+                }
+            }
+            try context.save()
+            
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
         }
         
     }
