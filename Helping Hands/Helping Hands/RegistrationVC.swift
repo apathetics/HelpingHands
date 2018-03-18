@@ -53,7 +53,7 @@ class RegistrationVC: UIViewController {
                     print(firebaseError.localizedDescription)
                     return
                 }
-                print("success!")
+                print("Registration Success!")
                 guard let uid = user?.uid else {
                     return
                 }

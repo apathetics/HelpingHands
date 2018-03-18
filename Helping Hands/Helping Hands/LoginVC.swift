@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class LoginVC: UIViewController {
 
@@ -14,6 +15,15 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     
     @IBAction func loginButtonPressed(_ sender: Any) {
+        if let email = emailTF.text, let pass = passwordTF.text {
+            FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
+                if let firebaseError = error {
+                    print(firebaseError.localizedDescription)
+                    return
+                }
+                print("Login Success!")
+            })
+        }
     }
     
     override func viewDidLoad() {
