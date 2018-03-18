@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var clearCore: Bool = false
+    
     var jobToAdd:Job?
-    var jobs = [Job]()
+    var jobs = [NSManagedObject]()
     
     @IBOutlet weak var table: UITableView!
     
@@ -23,14 +26,15 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell:JobTableViewCell = tableView.dequeueReusableCell(withIdentifier: "jobCell", for: indexPath) as! JobTableViewCell
         
         let row = indexPath.row
-        let j:Job = jobs[row]
+        let j:NSManagedObject = jobs[row]
         
-        cell.jobTitleLbl.text = j.jobTitle
-        cell.jobDescriptionLbl.text = j.jobDescription
-        cell.distanceLbl.text = String(j.distance!) + " mi"
-        let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(Int(j.payment)) : String(j.payment))
-        cell.paymentLbl.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-        cell.jobImg.image = j.image
+        cell.jobTitleLbl.text = j.value(forKey: "jobTitle") as? String
+        cell.jobDescriptionLbl.text = j.value(forKey: "jobDescription") as? String
+        cell.distanceLbl.text = String(j.value(forKey: "jobDistance") as! Double) + " mi"
+        let ftmPayment = "$" + ((j.value(forKey: "jobPayment") as! Double).truncatingRemainder(dividingBy: 1) == 0 ? String(j.value(forKey: "jobPayment") as! Int64) : String(j.value(forKey: "jobPayment") as! Double))
+        print("PAYMENT IS:", ftmPayment)
+        cell.paymentLbl.text = j.value(forKey: "jobIsHourlyPaid") as! Bool == true ? ftmPayment + "/hr" : ftmPayment
+        cell.jobImg.image = UIImage(data: j.value(forKey: "jobImage") as! Data)
         
         return cell
     }
@@ -38,6 +42,10 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if clearCore {
+            clearCoreJob()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,11 +59,65 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if (jobToAdd != nil) {
-            jobs.insert(jobToAdd!, at: 0)
-            jobToAdd = nil
-            table.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
-            table.selectRow(at: IndexPath.init(row: 0, section: 0), animated: true, scrollPosition: .none)
+        jobs = [NSManagedObject]()
+        
+        for job in retrieveJobs() {
+            jobs.append(job)
+        }
+        
+        table.reloadData()
+    }
+    
+    func retrieveJobs() -> [NSManagedObject] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JobEntity")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        // Examples of filtering using predicates
+        // let predicate = NSPredicate(format: "age = 35")
+        // let predicate = NSPredicate(format: "name CONTAINS[c] 'ake'")
+        // request.predicate = predicate
+        
+        do {
+            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        return(fetchedResults)!
+        
+    }
+    
+    func clearCoreJob() {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "JobEntity")
+        var fetchedResults:[NSManagedObject]
+        
+        do {
+            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+            
+            if fetchedResults.count > 0 {
+                
+                for result:AnyObject in fetchedResults {
+                    context.delete(result as! NSManagedObject)
+                    print("\(result.value(forKey: "jobTitle")!) has been Deleted")
+                }
+            }
+            try context.save()
+            
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
         }
         
     }

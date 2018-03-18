@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 let LOC_DEFAULT_TEXT = "Using your current location by default. You can use the toggle to the right to change this."
 let DESCR_PLACEHOLDER = "What will Helpers be doing at this job? Add as much or little detail as you'd like, but make sure to be clear. You'll be more likely to attract Helpers that way!"
@@ -150,8 +151,44 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             job.image = imgView.image
             masterView!.jobToAdd = job
             redLbl.isHidden = true
+            
+            // Add job to CoreData
+            storeJob(j: job)
+            
             self.navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    func storeJob(j: Job) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let event = NSEntityDescription.insertNewObject(
+            forEntityName: "JobEntity", into: context)
+        
+        // Set the attribute values
+        event.setValue(j.jobTitle, forKey: "jobTitle")
+        event.setValue(0, forKey: "jobPayment")
+        event.setValue(j.numHelpers, forKey: "jobNumHelpers")
+        event.setValue(UIImagePNGRepresentation(j.image!)!, forKey: "jobImage")
+        event.setValue(j.distance, forKey: "jobDistance")
+        event.setValue(j.jobDescription, forKey: "jobDescription")
+        event.setValue(j.date, forKey: "jobDate")
+        event.setValue(j.currentLocation, forKey: "jobCurrentLocation")
+        event.setValue(j.address, forKey: "jobAddress")
+        event.setValue(j.isHourlyPaid, forKey: "jobIsHourlyPaid")
+        event.setValue(j.payment, forKey: "jobPayment")
+        // Commit the changes
+        do {
+            try context.save()
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
     }
     
     //----------------------------------------------------------------//
