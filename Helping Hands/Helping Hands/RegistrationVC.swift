@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class RegistrationVC: UIViewController {
+class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
     
@@ -19,6 +20,25 @@ class RegistrationVC: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBAction func UploadImagePressed(_ sender: Any) {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title:"Camera", style: .default, handler: { (action: UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            } else {
+                print("Camera Not Available")
+            }
+        }))
+        actionSheet.addAction(UIAlertAction(title:"Photo Library", style: .default, handler: { (action: UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        actionSheet.addAction(UIAlertAction(title:"Cancel", style: .cancel, handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
     @IBOutlet weak var firstNameTF: UITextField!
@@ -53,10 +73,11 @@ class RegistrationVC: UIViewController {
                     print(firebaseError.localizedDescription)
                     return
                 }
-                print("Registration Success!")
                 guard let uid = user?.uid else {
                     return
                 }
+                print("Registration Success!")
+                
                 let userReference = self.databaseRef.child("users").child(uid)
                 let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photo": ""]
                 
@@ -79,6 +100,18 @@ class RegistrationVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Delegate Methods
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        profileImage.image = image
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
     
