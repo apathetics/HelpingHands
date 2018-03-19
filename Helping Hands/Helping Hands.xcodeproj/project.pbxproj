@@ -20,6 +20,7 @@
 		3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* EventViewController.swift */; };
 		3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB4205F3CB500DBFA64 /* JobViewController.swift */; };
 		3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */; };
+		39873256205FC55F00A29D39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39873255205FC55F00A29D39 /* User.swift */; };
 		AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */; };
 		AB5F4B7C205DA37F0085A11D /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7B205DA37F0085A11D /* QRViewController.swift */; };
 		AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */; };
@@ -48,6 +49,7 @@
 		3970FEB2205F3CA300DBFA64 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		3970FEB4205F3CB500DBFA64 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
 		3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		39873255205FC55F00A29D39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		AB5F4B7B205DA37F0085A11D /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				3970FEB2205F3CA300DBFA64 /* EventViewController.swift */,
 				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
 				3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */,
+				39873255205FC55F00A29D39 /* User.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */,
 				04FC21EA2058C7FD0029959C /* Job.swift in Sources */,
 				3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */,
+				39873256205FC55F00A29D39 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -67,19 +67,19 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KkH-lV-IDB" userLabel="jobInquiries">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="42" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="KkH-lV-IDB" userLabel="table">
                                 <rect key="frame" x="0.0" y="389" width="375" height="230"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="h6i-oP-igS" customClass="UserTableViewCell" customModule="Helping_Hands" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" rowHeight="100" id="h6i-oP-igS" customClass="UserTableViewCell" customModule="Helping_Hands" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="42" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h6i-oP-igS" id="hWR-C9-VLq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIE-54-ELB" userLabel="userName">
-                                                    <rect key="frame" x="97" y="11" width="129" height="38"/>
+                                                    <rect key="frame" x="97" y="10.5" width="129" height="78.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="129" id="VE3-OT-G6g"/>
                                                     </constraints>
@@ -88,23 +88,17 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O0y-aG-1fp">
-                                                    <rect key="frame" x="14" y="6" width="43" height="43"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="43" id="G7L-1c-Kgl"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="13" y="-3" width="70" height="70"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bIE-54-ELB" firstAttribute="bottom" secondItem="hWR-C9-VLq" secondAttribute="bottomMargin" id="3D9-9A-8UY"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="leading" secondItem="hWR-C9-VLq" secondAttribute="leadingMargin" constant="-1" id="7lH-SP-zjG"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="bottom" secondItem="bIE-54-ELB" secondAttribute="bottom" id="AWi-DE-3dU"/>
-                                                <constraint firstItem="bIE-54-ELB" firstAttribute="top" secondItem="hWR-C9-VLq" secondAttribute="top" constant="11" id="HhZ-vj-lgo"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="leading" secondItem="hWR-C9-VLq" secondAttribute="leadingMargin" constant="-1" id="HxZ-tU-Exk"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="leading" secondItem="hWR-C9-VLq" secondAttribute="leadingMargin" constant="-2" id="SlA-gt-Sye"/>
-                                                <constraint firstItem="bIE-54-ELB" firstAttribute="leading" secondItem="O0y-aG-1fp" secondAttribute="trailing" constant="40" id="TAh-8I-gh8"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="leading" secondItem="hWR-C9-VLq" secondAttribute="leadingMargin" constant="-1" id="YGF-NP-2cB"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="top" secondItem="hWR-C9-VLq" secondAttribute="topMargin" constant="-5" id="mda-1S-mxX"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="centerY" secondItem="bIE-54-ELB" secondAttribute="centerY" constant="-2.5" id="tMK-RB-742"/>
+                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="top" secondItem="hWR-C9-VLq" secondAttribute="topMargin" constant="-14" id="NiG-yd-2Nj"/>
+                                                <constraint firstItem="bIE-54-ELB" firstAttribute="centerY" secondItem="hWR-C9-VLq" secondAttribute="centerY" id="PjG-sF-3wC"/>
+                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="leading" secondItem="hWR-C9-VLq" secondAttribute="leadingMargin" constant="-2" id="afz-WI-lkk"/>
+                                                <constraint firstItem="bIE-54-ELB" firstAttribute="bottom" secondItem="hWR-C9-VLq" secondAttribute="bottomMargin" id="br4-yP-JQL"/>
+                                                <constraint firstItem="bIE-54-ELB" firstAttribute="leading" secondItem="O0y-aG-1fp" secondAttribute="trailing" constant="14" id="fQW-Vy-kv5"/>
+                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="bottom" secondItem="bIE-54-ELB" secondAttribute="bottom" constant="-22" id="mSO-z4-qgM"/>
+                                                <constraint firstItem="bIE-54-ELB" firstAttribute="leading" secondItem="hWR-C9-VLq" secondAttribute="leading" constant="97" id="oaj-oW-X6t"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -172,18 +166,21 @@
                         <viewLayoutGuide key="safeArea" id="LzX-P4-CYN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Job" id="45s-uJ-nMd" userLabel="Job">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Up" id="PKe-Ms-SQq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sign Up" id="PKe-Ms-SQq">
+                            <connections>
+                                <action selector="addUser:" destination="TTE-Re-l7J" id="woo-NZ-hBI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="jobDate" destination="sKL-HY-bMB" id="1cS-9L-sBT"/>
                         <outlet property="jobDescription" destination="x0N-LJ-hOD" id="Dca-mz-Nu8"/>
                         <outlet property="jobDistance" destination="kTu-QE-bOH" id="IR7-pE-EJs"/>
-                        <outlet property="jobInquiries" destination="KkH-lV-IDB" id="auU-Rd-dsu"/>
                         <outlet property="jobLocation" destination="xP7-fT-jSM" id="Qpq-eR-Q20"/>
                         <outlet property="jobPhoto" destination="3BY-ba-lgG" id="654-aq-tFn"/>
                         <outlet property="jobPrice" destination="JWc-VW-GAJ" id="wCA-cr-X9n"/>
                         <outlet property="jobTitle" destination="c0M-C2-ZWZ" id="WI0-ng-2VF"/>
-                        <outlet property="table" destination="KkH-lV-IDB" id="2qh-Bv-M6e"/>
+                        <outlet property="table" destination="KkH-lV-IDB" id="35F-My-ozP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXN-r7-AjE" userLabel="First Responder" sceneMemberID="firstResponder"/>

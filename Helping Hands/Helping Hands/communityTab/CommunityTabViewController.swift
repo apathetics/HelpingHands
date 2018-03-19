@@ -34,7 +34,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         cell.eventDescriptionLbl.text = e.value(forKey: "eventDescription") as! String
         cell.distanceLbl.text = String(e.value(forKey: "eventDistance") as! Double) + " mi"
         cell.eventImg.image = UIImage(data: e.value(forKey: "eventImage") as! Data)
-        cell.helpersLbl.text = String(e.value(forKey: "eventNumHelpers") as! Int64) + " Helpers"
+        cell.helpersLbl.text = String(e.value(forKey: "eventNumHelpers") as! Int64) + " Helper"
         
         return cell
     }

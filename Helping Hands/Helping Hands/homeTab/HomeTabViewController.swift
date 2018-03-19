@@ -33,7 +33,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.jobDescriptionLbl.text = j.value(forKey: "jobDescription") as? String
         cell.distanceLbl.text = String(j.value(forKey: "jobDistance") as! Double) + " mi"
         let ftmPayment = "$" + ((j.value(forKey: "jobPayment") as! Double).truncatingRemainder(dividingBy: 1) == 0 ? String(j.value(forKey: "jobPayment") as! Int64) : String(j.value(forKey: "jobPayment") as! Double))
-        print("PAYMENT IS:", ftmPayment)
         cell.paymentLbl.text = j.value(forKey: "jobIsHourlyPaid") as! Bool == true ? ftmPayment + "/hr" : ftmPayment
         cell.jobImg.image = UIImage(data: j.value(forKey: "jobImage") as! Data)
         
