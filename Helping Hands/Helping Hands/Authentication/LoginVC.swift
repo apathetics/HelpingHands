@@ -23,9 +23,10 @@ class LoginVC: UIViewController {
                 }
                 print("Login Success!")
                 // Take user to the Home Page
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "HomeTabVC")
-                self.present(vc, animated: true, completion: nil)
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let home: UITabBarController = storyboard.instantiateViewController(withIdentifier: "HomeTabBar") as! UITabBarController
+                appDelegate.window?.rootViewController = home
             })
         }
     }

@@ -36,7 +36,6 @@
 		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
-		81366F9521359B4764A58E79 /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43753F74AA0756485AC3240 /* Pods_Helping_Hands.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +76,6 @@
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F43753F74AA0756485AC3240 /* Pods_Helping_Hands.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Helping_Hands.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81366F9521359B4764A58E79 /* Pods_Helping_Hands.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +186,6 @@
 		3708DC6BA8FE859D671CF9A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F43753F74AA0756485AC3240 /* Pods_Helping_Hands.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
