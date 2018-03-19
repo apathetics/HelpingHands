@@ -1,24 +1,42 @@
 //
-//  HomeTabViewController.swift
+//  JobViewController.swift
 //  Helping Hands
 //
-//  Created by Tracy Nguyen on 2/28/18.
+//  Created by Bryan Bernal on 3/18/18.
 //  Copyright © 2018 Tracy Nguyen. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var job:NSManagedObject?
+    
+    @IBOutlet weak var jobPhoto: UIImageView!
+    @IBOutlet weak var jobTitle: UILabel!
+    @IBOutlet weak var jobDescription: UITextView!
+    @IBOutlet weak var jobInquiries: UITableView!
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
+        return cell
+    }
+    
+    var masterView:HomeTabViewController?
     
     var clearCore: Bool = false
     
     var jobToAdd:Job?
     var jobs = [NSManagedObject]()
-    var chosen:Int?
     
     @IBOutlet weak var table: UITableView!
-    
+    /*
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
     }
@@ -38,42 +56,31 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.jobImg.image = UIImage(data: j.value(forKey: "jobImage") as! Data)
         
         return cell
-    }
-
+    }*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        jobPhoto.image = UIImage(data: job?.value(forKey: "jobImage") as! Data)
+        jobTitle.text = job?.value(forKey: "jobTitle") as? String
+        jobDescription.text = job?.value(forKey: "jobDescription") as? String
         // Do any additional setup after loading the view, typically from a nib.
-        
+        /*
         if clearCore {
             clearCoreJob()
-        }
+        }*/
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosen = (indexPath.row)
-        self.performSegue(withIdentifier: "showJob", sender: self)
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "addJob")
-        {
-            let addJobVC:AddJobViewController = segue.destination as! AddJobViewController
-            addJobVC.masterView = self
-        }
-        if(segue.identifier == "showJob")
-        {
-            let j:NSManagedObject = jobs[chosen!]
-            let jobVC:JobViewController = segue.destination as! JobViewController
-            jobVC.masterView = self
-            jobVC.job = j
-        }
+        
     }
     
+    /*
     override func viewWillAppear(_ animated: Bool) {
         jobs = [NSManagedObject]()
         
@@ -81,9 +88,9 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             jobs.append(job)
         }
         
-        table.reloadData()
-    }
-    
+        //table.reloadData()
+    }*/
+/*
     func retrieveJobs() -> [NSManagedObject] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -137,6 +144,5 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
-
+  */
 }
-

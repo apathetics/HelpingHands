@@ -16,6 +16,10 @@
 		04FD0640205CAF25000825DF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD063F205CAF25000825DF /* Event.swift */; };
 		04FD0642205CB50A000825DF /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD0641205CB50A000825DF /* AddEventViewController.swift */; };
 		04FD0644205CB5F6000825DF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD0643205CB5F6000825DF /* EventTableViewCell.swift */; };
+		3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB0205F350700DBFA64 /* UserViewController.swift */; };
+		3970FEB3205F3CA300DBFA64 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* CommunityViewController.swift */; };
+		3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB4205F3CB500DBFA64 /* JobViewController.swift */; };
+		3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */; };
 		AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */; };
 		AB5F4B7C205DA37F0085A11D /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7B205DA37F0085A11D /* QRViewController.swift */; };
 		AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */; };
@@ -40,6 +44,10 @@
 		04FD063F205CAF25000825DF /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04FD0641205CB50A000825DF /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		04FD0643205CB5F6000825DF /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		3970FEB0205F350700DBFA64 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		3970FEB2205F3CA300DBFA64 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		3970FEB4205F3CB500DBFA64 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
+		3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		AB5F4B7B205DA37F0085A11D /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +78,7 @@
 		04FD0647205CB74C000825DF /* homeTab */ = {
 			isa = PBXGroup;
 			children = (
+				04FD0648205CB75D000825DF /* communityTab */,
 				04FC21E92058C7FD0029959C /* Job.swift */,
 				AB7743022047853A00799F84 /* HomeTabViewController.swift */,
 				04FC21E72058C5A90029959C /* JobTableViewCell.swift */,
@@ -87,6 +96,17 @@
 				045A66C2205CC37200465DE9 /* CommunityTabViewController.swift */,
 			);
 			path = communityTab;
+			sourceTree = "<group>";
+		};
+		3970FEAF205F34A900DBFA64 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3970FEB0205F350700DBFA64 /* UserViewController.swift */,
+				3970FEB2205F3CA300DBFA64 /* CommunityViewController.swift */,
+				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
+				3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		AB5F4B77205D8E970085A11D /* searchTab */ = {
@@ -163,7 +183,7 @@
 				AB5F4B7A205DA3520085A11D /* confirmationQR */,
 				AB5F4B77205D8E970085A11D /* searchTab */,
 				04FD0647205CB74C000825DF /* homeTab */,
-				04FD0648205CB75D000825DF /* communityTab */,
+				3970FEAF205F34A900DBFA64 /* models */,
 			);
 			path = "Helping Hands";
 			sourceTree = "<group>";
@@ -242,12 +262,15 @@
 			files = (
 				AB5F4B85205DCD310085A11D /* HiringPaymentController.swift in Sources */,
 				04FC21EC2058CEBA0029959C /* AddJobViewController.swift in Sources */,
+				3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */,
 				04FD0644205CB5F6000825DF /* EventTableViewCell.swift in Sources */,
 				04FD0642205CB50A000825DF /* AddEventViewController.swift in Sources */,
 				04FD0640205CAF25000825DF /* Event.swift in Sources */,
 				AB5F4B83205DC7E40085A11D /* ratingControl.swift in Sources */,
 				047367DE20490EC600029D0C /* SearchTabViewController.swift in Sources */,
 				AB5F4B88205DDEA30085A11D /* globalCoreData.xcdatamodeld in Sources */,
+				3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */,
+				3970FEB3205F3CA300DBFA64 /* CommunityViewController.swift in Sources */,
 				AB7743012047853A00799F84 /* AppDelegate.swift in Sources */,
 				045A66C3205CC37200465DE9 /* CommunityTabViewController.swift in Sources */,
 				AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */,
@@ -258,6 +281,7 @@
 				047367E020490EDC00029D0C /* ExploreTabViewController.swift in Sources */,
 				AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */,
 				04FC21EA2058C7FD0029959C /* Job.swift in Sources */,
+				3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
