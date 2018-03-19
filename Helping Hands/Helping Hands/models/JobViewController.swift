@@ -30,7 +30,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var table: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("number of Rows")
         return inquiries.count
     }
     
@@ -54,6 +53,21 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
          */
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosen = (indexPath.row)
+        self.performSegue(withIdentifier: "showInquiry", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showInquiry")
+        {
+            let j:User = inquiries[chosen!]
+            let userVC:UserViewController = segue.destination as! UserViewController
+            userVC.masterView = self
+            userVC.user = j
+        }
     }
     
     override func viewDidLoad() {
@@ -91,10 +105,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
     
     func getDate(date: NSDate) -> String {
