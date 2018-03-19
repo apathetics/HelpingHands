@@ -11,10 +11,16 @@ import CoreData
 
 class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var masterView:HomeTabViewController?
+    var clearCore: Bool = false
     var job:NSManagedObject?
     
     @IBOutlet weak var jobPhoto: UIImageView!
     @IBOutlet weak var jobTitle: UILabel!
+    @IBOutlet weak var jobDate: UILabel!
+    @IBOutlet weak var jobPrice: UILabel!
+    @IBOutlet weak var jobLocation: UILabel!
+    @IBOutlet weak var jobDistance: UILabel!
     @IBOutlet weak var jobDescription: UITextView!
     @IBOutlet weak var jobInquiries: UITableView!
     
@@ -28,24 +34,17 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         return cell
     }
     
-    var masterView:HomeTabViewController?
-    
-    var clearCore: Bool = false
-    
-    var jobToAdd:Job?
-    var jobs = [NSManagedObject]()
-    
     @IBOutlet weak var table: UITableView!
     /*
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return jobs.count
+        return inquiries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:JobTableViewCell = tableView.dequeueReusableCell(withIdentifier: "jobCell", for: indexPath) as! JobTableViewCell
         
         let row = indexPath.row
-        let j:NSManagedObject = jobs[row]
+        let j:NSManagedObject = inquiries[row]
         
         cell.jobTitleLbl.text = j.value(forKey: "jobTitle") as? String
         cell.jobDescriptionLbl.text = j.value(forKey: "jobDescription") as? String
@@ -60,9 +59,26 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         jobPhoto.image = UIImage(data: job?.value(forKey: "jobImage") as! Data)
         jobTitle.text = job?.value(forKey: "jobTitle") as? String
+        let ftmPayment = "$" + ((job?.value(forKey: "jobPayment") as! Double).truncatingRemainder(dividingBy: 1) == 0 ? String(job?.value(forKey: "jobPayment") as! Int64) : String(job?.value(forKey: "jobPayment") as! Double))
+        jobPrice.text = job?.value(forKey: "jobIsHourlyPaid") as! Bool == true ? ftmPayment + "/hr" : ftmPayment
+        jobDate.text = getDate(date: job?.value(forKey:"jobDate") as! NSDate)
+        jobDistance.text = String(job?.value(forKey: "jobDistance") as! Double) + " mi"
+        
+        // To be done when location is more than an illusion
+        //if(job?.value(forKey: "currentLocation") as! Bool) {
+        jobLocation.text = "curLocation"
+        //}
+        /*
+        else {
+            jobLocation.text = job?.value(forKey: "jobLocation") as? String
+        }
+        */
+        
         jobDescription.text = job?.value(forKey: "jobDescription") as? String
+        
         // Do any additional setup after loading the view, typically from a nib.
         /*
         if clearCore {
@@ -80,18 +96,29 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
     }
     
+    func getDate(date: NSDate) -> String {
+        let dateFormate = DateFormatter()
+        dateFormate.dateFormat = "MM/dd/yyyy"
+        return dateFormate.string(from: date as Date)
+    }
+    func getTime(date: NSDate) -> String {
+        let dateFormate = DateFormatter()
+        dateFormate.dateFormat = "HH:mm"
+        return dateFormate.string(from: date as Date)
+    }
+    
     /*
     override func viewWillAppear(_ animated: Bool) {
-        jobs = [NSManagedObject]()
+        inquiries = [NSManagedObject]()
         
-        for job in retrieveJobs() {
-            jobs.append(job)
+        for job in retrieveinquiries() {
+            inquiries.append(job)
         }
         
         //table.reloadData()
     }*/
 /*
-    func retrieveJobs() -> [NSManagedObject] {
+    func retrieveinquiries() -> [NSManagedObject] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         

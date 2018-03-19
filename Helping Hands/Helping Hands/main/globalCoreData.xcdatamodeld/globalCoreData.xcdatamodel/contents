@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="EventEntity" representedClassName="EventEntity" syncable="YES" codeGenerationType="class">
         <attribute name="eventAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventCurrentLocation" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -22,6 +22,7 @@
         <attribute name="jobNumHelpers" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jobPayment" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jobTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="jobInquiries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="userJobsInquired" inverseEntity="UserEntity" syncable="YES"/>
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
         <attribute name="userBio" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,10 +34,11 @@
         <attribute name="userNumJobsCompleted" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userNumJobsPosted" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="userJobsInquired" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JobEntity" inverseName="jobInquiries" inverseEntity="JobEntity" syncable="YES"/>
     </entity>
     <elements>
         <element name="EventEntity" positionX="-63" positionY="-18" width="128" height="180"/>
-        <element name="JobEntity" positionX="-54" positionY="0" width="128" height="195"/>
-        <element name="UserEntity" positionX="-36" positionY="9" width="128" height="180"/>
+        <element name="JobEntity" positionX="-675" positionY="-90" width="128" height="210"/>
+        <element name="UserEntity" positionX="-369" positionY="-45" width="128" height="195"/>
     </elements>
 </model>

@@ -16,7 +16,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     
     var eventToAdd:Event?
     var events = [NSManagedObject]()
-    
+    var chosen:Int?
     
     @IBOutlet weak var table: UITableView!
     
@@ -55,9 +55,24 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosen = (indexPath.row)
+        self.performSegue(withIdentifier: "showEvent", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let addEventVC:AddEventViewController = segue.destination as! AddEventViewController
-        addEventVC.masterView = self
+        if(segue.identifier == "addEvent")
+        {
+            let addEventVC:AddEventViewController = segue.destination as! AddEventViewController
+            addEventVC.masterView = self
+        }
+        if(segue.identifier == "showEvent")
+        {
+            let e:NSManagedObject = events[chosen!]
+            let eventVC:EventViewController = segue.destination as! EventViewController
+            eventVC.masterView = self
+            eventVC.event = e
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,8 +81,8 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         for event in retrieveEvents() {
             events.append(event)
         }
-        table.reloadData()
         
+        table.reloadData()
     }
     
     func retrieveEvents() -> [NSManagedObject] {
