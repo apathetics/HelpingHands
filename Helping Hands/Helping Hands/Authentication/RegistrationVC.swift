@@ -95,6 +95,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                         }
                     })
                 }
+                self.dismiss(animated: true, completion: nil)
             })
         }
     }
