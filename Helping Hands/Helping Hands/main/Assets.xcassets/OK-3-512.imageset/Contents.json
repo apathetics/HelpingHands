@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "second.pdf"
+      "filename" : "OK-3-512.png",
+      "scale" : "1x"
     }
   ],
   "info" : {

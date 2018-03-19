@@ -6,5 +6,5 @@
 //  Copyright © 2018 Tracy Nguyen. All rights reserved.
 //
 
-#import "BEMCheckBox.h"
+#import "CheckBox/BEMCheckBox.h"
 
