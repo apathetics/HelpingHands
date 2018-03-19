@@ -7,43 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1927A5BA205F38E100628A1C /* searchTab in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5AC205F38E000628A1C /* searchTab */; };
-		1927A5BB205F38E100628A1C /* confirmationQR in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5AD205F38E000628A1C /* confirmationQR */; };
-		1927A5BC205F38E100628A1C /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5AE205F38E000628A1C /* RegistrationVC.swift */; };
-		1927A5BE205F38E100628A1C /* communityTab in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5B0205F38E000628A1C /* communityTab */; };
-		1927A5BF205F38E100628A1C /* homeTab in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5B1205F38E000628A1C /* homeTab */; };
-		1927A5C0205F38E100628A1C /* exploreTab in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5B2205F38E000628A1C /* exploreTab */; };
-		1927A5C1205F38E100628A1C /* paymentReview in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5B4205F38E100628A1C /* paymentReview */; };
-		1927A5C2205F38E100628A1C /* main in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5B5205F38E100628A1C /* main */; };
-		1927A5C3205F38E100628A1C /* CheckBox in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5B6205F38E100628A1C /* CheckBox */; };
-		1927A5C4205F38E100628A1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5B7205F38E100628A1C /* GoogleService-Info.plist */; };
-		1927A5C5205F38E100628A1C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5B8205F38E100628A1C /* LoginVC.swift */; };
-		1927A5C6205F38E100628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5B9205F38E100628A1C /* Info.plist */; };
-		1927A5D0205F3D4A00628A1C /* main in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5B5205F38E100628A1C /* main */; };
-		1927A5D1205F3D5900628A1C /* CheckBox in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5B6205F38E100628A1C /* CheckBox */; };
-		1927A5D2205F3D5900628A1C /* communityTab in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5B0205F38E000628A1C /* communityTab */; };
-		1927A5D3205F3D5900628A1C /* confirmationQR in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5AD205F38E000628A1C /* confirmationQR */; };
-		1927A5D4205F3D5900628A1C /* exploreTab in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5B2205F38E000628A1C /* exploreTab */; };
-		1927A5D5205F3D5900628A1C /* homeTab in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5B1205F38E000628A1C /* homeTab */; };
-		1927A5D6205F3D5900628A1C /* paymentReview in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5B4205F38E100628A1C /* paymentReview */; };
-		1927A5D7205F3D5900628A1C /* searchTab in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5AC205F38E000628A1C /* searchTab */; };
+		1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DA205F3FFA00628A1C /* AppDelegate.swift */; };
+		1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DB205F3FFA00628A1C /* globalCoreData.xcdatamodeld */; };
+		1927A5E0205F404600628A1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5DF205F404600628A1C /* Assets.xcassets */; };
+		1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5E4205F40A200628A1C /* LoginVC.swift */; };
+		1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5E5205F40A200628A1C /* RegistrationVC.swift */; };
+		1927A5F3205F40F300628A1C /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5EB205F40F200628A1C /* BEMAnimationManager.m */; };
+		1927A5F4205F40F300628A1C /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5ED205F40F200628A1C /* BEMPathManager.m */; };
+		1927A5F5205F40F300628A1C /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5F0205F40F300628A1C /* BEMCheckBox.m */; };
+		1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5F2205F40F300628A1C /* BEMCheckBoxGroup.m */; };
+		1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5F8205F413300628A1C /* AddJobViewController.swift */; };
+		1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5F9205F413300628A1C /* HomeTabViewController.swift */; };
+		1927A5FE205F413300628A1C /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5FA205F413300628A1C /* Job.swift */; };
+		1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5FB205F413300628A1C /* JobTableViewCell.swift */; };
+		1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A601205F415C00628A1C /* ExploreTabViewController.swift */; };
+		1927A608205F418100628A1C /* CommunityTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A604205F418000628A1C /* CommunityTabViewController.swift */; };
+		1927A609205F418100628A1C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A605205F418000628A1C /* Event.swift */; };
+		1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A606205F418100628A1C /* AddEventViewController.swift */; };
+		1927A60B205F418100628A1C /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A607205F418100628A1C /* EventTableViewCell.swift */; };
+		1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A60D205F419F00628A1C /* SearchTabViewController.swift */; };
+		1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A60E205F419F00628A1C /* SearchTableCell.swift */; };
+		1927A615205F41C900628A1C /* HiringPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A612205F41C900628A1C /* HiringPaymentController.swift */; };
+		1927A616205F41C900628A1C /* ratingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A613205F41C900628A1C /* ratingControl.swift */; };
+		1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A614205F41C900628A1C /* HiredPaymentController.swift */; };
+		1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A619205F41F000628A1C /* ScannerViewController.swift */; };
+		1927A61C205F41F100628A1C /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A61A205F41F000628A1C /* QRViewController.swift */; };
+		1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61E205F430C00628A1C /* GoogleService-Info.plist */; };
+		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
+		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
+		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
 		81366F9521359B4764A58E79 /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43753F74AA0756485AC3240 /* Pods_Helping_Hands.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1927A5AC205F38E000628A1C /* searchTab */ = {isa = PBXFileReference; lastKnownFileType = folder; path = searchTab; sourceTree = "<group>"; };
-		1927A5AD205F38E000628A1C /* confirmationQR */ = {isa = PBXFileReference; lastKnownFileType = folder; path = confirmationQR; sourceTree = "<group>"; };
-		1927A5AE205F38E000628A1C /* RegistrationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
-		1927A5B0205F38E000628A1C /* communityTab */ = {isa = PBXFileReference; lastKnownFileType = folder; path = communityTab; sourceTree = "<group>"; };
-		1927A5B1205F38E000628A1C /* homeTab */ = {isa = PBXFileReference; lastKnownFileType = folder; path = homeTab; sourceTree = "<group>"; };
-		1927A5B2205F38E000628A1C /* exploreTab */ = {isa = PBXFileReference; lastKnownFileType = folder; path = exploreTab; sourceTree = "<group>"; };
-		1927A5B3205F38E100628A1C /* CheckBoxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBoxHeader.h; sourceTree = "<group>"; };
-		1927A5B4205F38E100628A1C /* paymentReview */ = {isa = PBXFileReference; lastKnownFileType = folder; path = paymentReview; sourceTree = "<group>"; };
-		1927A5B5205F38E100628A1C /* main */ = {isa = PBXFileReference; lastKnownFileType = folder; path = main; sourceTree = "<group>"; };
-		1927A5B6205F38E100628A1C /* CheckBox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CheckBox; sourceTree = "<group>"; };
-		1927A5B7205F38E100628A1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1927A5B8205F38E100628A1C /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		1927A5B9205F38E100628A1C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1927A5DA205F3FFA00628A1C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1927A5DC205F3FFA00628A1C /* globalCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = globalCoreData.xcdatamodel; sourceTree = "<group>"; };
+		1927A5DF205F404600628A1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1927A5E4205F40A200628A1C /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		1927A5E5205F40A200628A1C /* RegistrationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
+		1927A5EB205F40F200628A1C /* BEMAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnimationManager.m; sourceTree = "<group>"; };
+		1927A5EC205F40F200628A1C /* BEMPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPathManager.h; sourceTree = "<group>"; };
+		1927A5ED205F40F200628A1C /* BEMPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPathManager.m; sourceTree = "<group>"; };
+		1927A5EE205F40F200628A1C /* BEMCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBox.h; sourceTree = "<group>"; };
+		1927A5EF205F40F200628A1C /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
+		1927A5F0205F40F300628A1C /* BEMCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBox.m; sourceTree = "<group>"; };
+		1927A5F1205F40F300628A1C /* BEMCheckBoxGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBoxGroup.h; sourceTree = "<group>"; };
+		1927A5F2205F40F300628A1C /* BEMCheckBoxGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBoxGroup.m; sourceTree = "<group>"; };
+		1927A5F8205F413300628A1C /* AddJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
+		1927A5F9205F413300628A1C /* HomeTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
+		1927A5FA205F413300628A1C /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		1927A5FB205F413300628A1C /* JobTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
+		1927A601205F415C00628A1C /* ExploreTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreTabViewController.swift; sourceTree = "<group>"; };
+		1927A604205F418000628A1C /* CommunityTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityTabViewController.swift; sourceTree = "<group>"; };
+		1927A605205F418000628A1C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		1927A606205F418100628A1C /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		1927A607205F418100628A1C /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		1927A60D205F419F00628A1C /* SearchTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTabViewController.swift; sourceTree = "<group>"; };
+		1927A60E205F419F00628A1C /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
+		1927A612205F41C900628A1C /* HiringPaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiringPaymentController.swift; sourceTree = "<group>"; };
+		1927A613205F41C900628A1C /* ratingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ratingControl.swift; sourceTree = "<group>"; };
+		1927A614205F41C900628A1C /* HiredPaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiredPaymentController.swift; sourceTree = "<group>"; };
+		1927A619205F41F000628A1C /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		1927A61A205F41F000628A1C /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		1927A61D205F430400628A1C /* CheckBoxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBoxHeader.h; sourceTree = "<group>"; };
+		1927A61E205F430C00628A1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1927A61F205F430C00628A1C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +92,100 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1927A5D9205F3FD500628A1C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1927A624205F439000628A1C /* LaunchScreen.storyboard */,
+				1927A622205F439000628A1C /* Main.storyboard */,
+				1927A5DF205F404600628A1C /* Assets.xcassets */,
+				1927A5DA205F3FFA00628A1C /* AppDelegate.swift */,
+				1927A5DB205F3FFA00628A1C /* globalCoreData.xcdatamodeld */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		1927A5E3205F406B00628A1C /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				1927A5E4205F40A200628A1C /* LoginVC.swift */,
+				1927A5E5205F40A200628A1C /* RegistrationVC.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		1927A5EA205F40DA00628A1C /* CheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				1927A5EF205F40F200628A1C /* BEMAnimationManager.h */,
+				1927A5EB205F40F200628A1C /* BEMAnimationManager.m */,
+				1927A5EE205F40F200628A1C /* BEMCheckBox.h */,
+				1927A5F0205F40F300628A1C /* BEMCheckBox.m */,
+				1927A5F1205F40F300628A1C /* BEMCheckBoxGroup.h */,
+				1927A5F2205F40F300628A1C /* BEMCheckBoxGroup.m */,
+				1927A5EC205F40F200628A1C /* BEMPathManager.h */,
+				1927A5ED205F40F200628A1C /* BEMPathManager.m */,
+			);
+			path = CheckBox;
+			sourceTree = "<group>";
+		};
+		1927A5F7205F411C00628A1C /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				1927A5F8205F413300628A1C /* AddJobViewController.swift */,
+				1927A5F9205F413300628A1C /* HomeTabViewController.swift */,
+				1927A5FA205F413300628A1C /* Job.swift */,
+				1927A5FB205F413300628A1C /* JobTableViewCell.swift */,
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		1927A600205F414300628A1C /* ExploreTab */ = {
+			isa = PBXGroup;
+			children = (
+				1927A601205F415C00628A1C /* ExploreTabViewController.swift */,
+			);
+			path = ExploreTab;
+			sourceTree = "<group>";
+		};
+		1927A603205F416900628A1C /* CommunityTab */ = {
+			isa = PBXGroup;
+			children = (
+				1927A606205F418100628A1C /* AddEventViewController.swift */,
+				1927A604205F418000628A1C /* CommunityTabViewController.swift */,
+				1927A605205F418000628A1C /* Event.swift */,
+				1927A607205F418100628A1C /* EventTableViewCell.swift */,
+			);
+			path = CommunityTab;
+			sourceTree = "<group>";
+		};
+		1927A60C205F418E00628A1C /* SearchTab */ = {
+			isa = PBXGroup;
+			children = (
+				1927A60E205F419F00628A1C /* SearchTableCell.swift */,
+				1927A60D205F419F00628A1C /* SearchTabViewController.swift */,
+			);
+			path = SearchTab;
+			sourceTree = "<group>";
+		};
+		1927A611205F41B100628A1C /* PaymentReview */ = {
+			isa = PBXGroup;
+			children = (
+				1927A614205F41C900628A1C /* HiredPaymentController.swift */,
+				1927A612205F41C900628A1C /* HiringPaymentController.swift */,
+				1927A613205F41C900628A1C /* ratingControl.swift */,
+			);
+			path = PaymentReview;
+			sourceTree = "<group>";
+		};
+		1927A618205F41D200628A1C /* ConfirmationQR */ = {
+			isa = PBXGroup;
+			children = (
+				1927A61A205F41F000628A1C /* QRViewController.swift */,
+				1927A619205F41F000628A1C /* ScannerViewController.swift */,
+			);
+			path = ConfirmationQR;
+			sourceTree = "<group>";
+		};
 		3708DC6BA8FE859D671CF9A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,19 +215,18 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
-				1927A5B6205F38E100628A1C /* CheckBox */,
-				1927A5B3205F38E100628A1C /* CheckBoxHeader.h */,
-				1927A5B0205F38E000628A1C /* communityTab */,
-				1927A5AD205F38E000628A1C /* confirmationQR */,
-				1927A5B2205F38E000628A1C /* exploreTab */,
-				1927A5B7205F38E100628A1C /* GoogleService-Info.plist */,
-				1927A5B1205F38E000628A1C /* homeTab */,
-				1927A5B9205F38E100628A1C /* Info.plist */,
-				1927A5B8205F38E100628A1C /* LoginVC.swift */,
-				1927A5B5205F38E100628A1C /* main */,
-				1927A5B4205F38E100628A1C /* paymentReview */,
-				1927A5AE205F38E000628A1C /* RegistrationVC.swift */,
-				1927A5AC205F38E000628A1C /* searchTab */,
+				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
+				1927A61F205F430C00628A1C /* Info.plist */,
+				1927A61D205F430400628A1C /* CheckBoxHeader.h */,
+				1927A618205F41D200628A1C /* ConfirmationQR */,
+				1927A611205F41B100628A1C /* PaymentReview */,
+				1927A60C205F418E00628A1C /* SearchTab */,
+				1927A603205F416900628A1C /* CommunityTab */,
+				1927A600205F414300628A1C /* ExploreTab */,
+				1927A5F7205F411C00628A1C /* HomeTab */,
+				1927A5EA205F40DA00628A1C /* CheckBox */,
+				1927A5E3205F406B00628A1C /* Authentication */,
+				1927A5D9205F3FD500628A1C /* Main */,
 			);
 			path = "Helping Hands";
 			sourceTree = "<group>";
@@ -180,16 +303,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1927A5BB205F38E100628A1C /* confirmationQR in Resources */,
-				1927A5C0205F38E100628A1C /* exploreTab in Resources */,
-				1927A5C4205F38E100628A1C /* GoogleService-Info.plist in Resources */,
-				1927A5C2205F38E100628A1C /* main in Resources */,
-				1927A5BE205F38E100628A1C /* communityTab in Resources */,
-				1927A5BA205F38E100628A1C /* searchTab in Resources */,
-				1927A5BF205F38E100628A1C /* homeTab in Resources */,
-				1927A5C1205F38E100628A1C /* paymentReview in Resources */,
-				1927A5C6205F38E100628A1C /* Info.plist in Resources */,
-				1927A5C3205F38E100628A1C /* CheckBox in Resources */,
+				1927A621205F430C00628A1C /* Info.plist in Resources */,
+				1927A5E0205F404600628A1C /* Assets.xcassets in Resources */,
+				1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */,
+				1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */,
+				1927A626205F439000628A1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,20 +369,53 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1927A5D1205F3D5900628A1C /* CheckBox in Sources */,
-				1927A5D2205F3D5900628A1C /* communityTab in Sources */,
-				1927A5D3205F3D5900628A1C /* confirmationQR in Sources */,
-				1927A5D4205F3D5900628A1C /* exploreTab in Sources */,
-				1927A5D5205F3D5900628A1C /* homeTab in Sources */,
-				1927A5D6205F3D5900628A1C /* paymentReview in Sources */,
-				1927A5D7205F3D5900628A1C /* searchTab in Sources */,
-				1927A5D0205F3D4A00628A1C /* main in Sources */,
-				1927A5BC205F38E100628A1C /* RegistrationVC.swift in Sources */,
-				1927A5C5205F38E100628A1C /* LoginVC.swift in Sources */,
+				1927A616205F41C900628A1C /* ratingControl.swift in Sources */,
+				1927A608205F418100628A1C /* CommunityTabViewController.swift in Sources */,
+				1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */,
+				1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */,
+				1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */,
+				1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */,
+				1927A5F5205F40F300628A1C /* BEMCheckBox.m in Sources */,
+				1927A609205F418100628A1C /* Event.swift in Sources */,
+				1927A615205F41C900628A1C /* HiringPaymentController.swift in Sources */,
+				1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */,
+				1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */,
+				1927A61C205F41F100628A1C /* QRViewController.swift in Sources */,
+				1927A5F4205F40F300628A1C /* BEMPathManager.m in Sources */,
+				1927A5F3205F40F300628A1C /* BEMAnimationManager.m in Sources */,
+				1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */,
+				1927A60B205F418100628A1C /* EventTableViewCell.swift in Sources */,
+				1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */,
+				1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */,
+				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
+				1927A5FE205F413300628A1C /* Job.swift in Sources */,
+				1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */,
+				1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */,
+				1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */,
+				1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1927A622205F439000628A1C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1927A623205F439000628A1C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1927A624205F439000628A1C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1927A625205F439000628A1C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AB77430F2047853A00799F84 /* Debug */ = {
@@ -435,6 +586,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1927A5DB205F3FFA00628A1C /* globalCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1927A5DC205F3FFA00628A1C /* globalCoreData.xcdatamodel */,
+			);
+			currentVersion = 1927A5DC205F3FFA00628A1C /* globalCoreData.xcdatamodel */;
+			path = globalCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AB7742F52047853A00799F84 /* Project object */;
 }

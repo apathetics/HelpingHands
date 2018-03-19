@@ -5,7 +5,6 @@
 //  Created by Tracy Nguyen on 2/28/18.
 //  Copyright © 2018 Tracy Nguyen. All rights reserved.
 //
-@UIApplicationMain
 import UIKit
 import CoreData
 import Firebase

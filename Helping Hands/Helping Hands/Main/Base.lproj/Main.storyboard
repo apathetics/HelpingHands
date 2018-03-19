@@ -1292,7 +1292,4 @@
         <image name="search" width="30" height="30"/>
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="PT2-Y6-7fM"/>
-    </inferredMetricsTieBreakers>
 </document>
