@@ -10,9 +10,36 @@ import UIKit
 
 class SideMenuController: UIViewController {
     
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    
+    @IBOutlet weak var userNumJobsCompleted: UILabel!
+    @IBOutlet weak var userNumJobsPosted: UILabel!
+    @IBOutlet weak var userMoneyEarned: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let profileTap = UITapGestureRecognizer(target: self, action: #selector(tapGesture1))
+        profileImage.addGestureRecognizer(profileTap)
+        profileImage.isUserInteractionEnabled = true
+    }
+    
+    // Dummy for connecting to PROFILE screen
+    @objc func tapGesture1() {
+        print("Image Tapped")
+    }
+    
+    @IBAction func settingsButtonClicked(_ sender: Any) {
+        print("Clicked settings")
+    }
+    
+    @IBAction func contactUsButtonClicked(_ sender: Any) {
+        print("Clicked contact us")
+    }
+    
+    @IBAction func nightModeButtonClicked(_ sender: Any) {
+        print("Clicked night mode")
     }
     
     // Blurring option works but there's a weird line at the top that doesn't fully conform.
@@ -30,4 +57,5 @@ class SideMenuController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }
