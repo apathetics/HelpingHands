@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+import FirebaseStorage
 
 let LOC_DEFAULT_TEXT = "Using your current location by default. You can use the toggle to the right to change this."
 let DESCR_PLACEHOLDER = "What will Helpers be doing at this job? Add as much or little detail as you'd like, but make sure to be clear. You'll be more likely to attract Helpers that way!"
@@ -160,6 +162,25 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     func storeJob(j: Job) {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let postRef = databaseRef.child("jobs")
+        let newPost = postRef.childByAutoId()
+        if let imgUpload = UIImagePNGRepresentation(j.image!) {
+            let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
+            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
+                    let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.date, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, ] 
+                    newPost.setValue(values)
+                }
+            })
+        }
+        
+        // Core Data Version -------------------------------------------------------------
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
