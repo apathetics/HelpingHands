@@ -67,7 +67,12 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             let userVC:UserViewController = segue.destination as! UserViewController
             userVC.masterView = self
             userVC.user = j
+            userVC.userIndexPath = chosen!
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        table.reloadData()
     }
     
     override func viewDidLoad() {
@@ -99,7 +104,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         if clearCore {
             clearCoreJob()
         }*/
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -129,6 +133,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         inquiry.userNumJobsPosted = 1
         inquiry.userNumJobsPending = 2
         inquiry.userJobsCompleted = 4
+        inquiry.userID = inquiries.count
         
         inquiries.append(inquiry)
         self.table.reloadData()

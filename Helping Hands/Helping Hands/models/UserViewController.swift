@@ -9,11 +9,15 @@
 import UIKit
 import CoreData
 
-class UserViewController: UIViewController{
+class UserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
     
+    var imgChosen = false
     var masterView:JobViewController?
     var clearCore: Bool = false
+    
+    // TODO - Pass using database
     var user:User?
+    var userIndexPath:Int?
     
 
     @IBOutlet weak var userPhoto: UIImageView!
@@ -24,7 +28,15 @@ class UserViewController: UIViewController{
     @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var userDistance: UILabel!
     @IBOutlet weak var userDescription: UITextView!
- 
+    @IBOutlet weak var editFirstName: UITextField!
+    @IBOutlet weak var editLastName: UITextField!
+    @IBOutlet weak var editEmail: UITextField!
+    @IBOutlet weak var editLocation: UITextField!
+    @IBOutlet weak var chooseImgButton: UIButton!
+    @IBOutlet weak var jobBar: UISegmentedControl!
+    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var saveEditButton: UIButton!
+    
     /*
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
      return inquiries.count
@@ -49,6 +61,10 @@ class UserViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if(user?.userID != 1) {
+            self.navigationItem.rightBarButtonItem =  nil;
+        }
         
         userPhoto.image = user?.userPhoto
         userFirstName.text = user?.userFirstName
@@ -76,6 +92,87 @@ class UserViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+    }
+    
+    @IBAction func editPress(_ sender: Any) {
+        //userPhoto: UIImageView!
+        userFirstName.isHidden = true
+        userLastName.isHidden = true
+        userEmail.isHidden = true
+        userLocation.isHidden = true
+        userDescription.isUserInteractionEnabled = true
+        userDescription.isEditable = true
+        jobBar.isHidden = true
+        table.isHidden = true
+        
+        chooseImgButton.isHidden = false
+        editFirstName.isHidden = false
+        editLastName.isHidden = false
+        editEmail.isHidden = false
+        editLocation.isHidden = false
+        saveEditButton.isHidden = false
+        editFirstName.text = userFirstName.text
+        editLastName.text = userLastName.text
+        editEmail.text = userEmail.text
+        editLocation.text = userLocation.text
+        
+    }
+    
+    @IBAction func chooseImgBtn(_ sender: Any) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true) {
+            // after completion
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            userPhoto.image = image
+            self.imgChosen = true
+        } else {
+            //error
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveChanges(_ sender: Any) {
+        userFirstName.isHidden = false
+        userLastName.isHidden = false
+        userEmail.isHidden = false
+        userLocation.isHidden = false
+        userDescription.isUserInteractionEnabled = false
+        userDescription.isEditable = false
+        jobBar.isHidden = false
+        table.isHidden = false
+        
+        chooseImgButton.isHidden = true
+        editFirstName.isHidden = true
+        editLastName.isHidden = true
+        editEmail.isHidden = true
+        editLocation.isHidden = true
+        saveEditButton.isHidden = true
+        
+        user?.userFirstName = editFirstName.text
+        user?.userLastName = editLastName.text
+        user?.userEmail = editEmail.text
+        // TODO
+        //user?.userLocationRadius = Double(editLocation.text)
+        user?.userBio = userDescription.text
+        // TODO
+        // Might cause problems if user decides not to save - Watch out
+        user?.userPhoto = userPhoto.image
+        
+        userPhoto.image = user?.userPhoto
+        userFirstName.text = user?.userFirstName
+        userLastName.text = user?.userLastName
+        userEmail.text = user?.userEmail
+        userLocation.text = String(describing: user?.userLocationRadius)
+        userDescription.text = user?.userBio
+        
+        masterView?.inquiries[userIndexPath!] = user!
     }
     
     /*

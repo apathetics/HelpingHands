@@ -18,4 +18,5 @@ class User {
     var userNumJobsPosted:Int!
     var userNumJobsPending:Int!
     var userJobsCompleted:Int!
+    var userID:Int!
 }
