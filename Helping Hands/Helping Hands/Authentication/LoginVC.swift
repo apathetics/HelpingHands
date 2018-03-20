@@ -25,8 +25,8 @@ class LoginVC: UIViewController {
                 // Take user to the Home Page
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let home: UITabBarController = storyboard.instantiateViewController(withIdentifier: "HomeTabBar") as! UITabBarController
-                appDelegate.window?.rootViewController = home
+                let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
+                appDelegate.window?.rootViewController = SWRController
             })
         }
     }
