@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KoS-3V-Nvn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YQV-Sy-nIg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -238,6 +238,49 @@
             </objects>
             <point key="canvasLocation" x="-250" y="-683"/>
         </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="DBb-LA-hcH">
+            <objects>
+                <viewController id="YQV-Sy-nIg" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y3T-Fx-UwO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sv8-BH-eKx"/>
+                    </view>
+                    <connections>
+                        <segue destination="tzi-9H-qhS" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="jFX-z5-dOR"/>
+                        <segue destination="Sxi-ZV-7nj" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Kyg-zy-rls"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fJn-In-lVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="686" y="-1499"/>
+        </scene>
+        <!--Side Menu Controller-->
+        <scene sceneID="kbH-yK-GUs">
+            <objects>
+                <viewController id="tzi-9H-qhS" customClass="SideMenuController" customModule="Helping_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W6D-GP-QzL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Side Menu " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CST-hk-Lsq">
+                                <rect key="frame" x="144" y="20" width="86" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="nUU-Z8-eJl"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Igy-z1-HVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1543" y="-1499"/>
+        </scene>
         <!--Nearby Jobs-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -312,6 +355,7 @@
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <navigationItem key="navigationItem" title="Nearby Jobs" id="j7B-5x-Z0b">
+                        <barButtonItem key="leftBarButtonItem" title="menu" image="hamburger" id="NLv-5e-Xle"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="TBa-yj-dar">
                             <connections>
                                 <segue destination="P0r-QS-fMH" kind="show" id="5dw-2g-ub0"/>
@@ -319,6 +363,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="sideMenuButton" destination="NLv-5e-Xle" id="tIN-kM-KC4"/>
                         <outlet property="table" destination="cIz-sk-32M" id="X3g-un-63U"/>
                     </connections>
                 </viewController>
@@ -1285,6 +1330,7 @@
     <resources>
         <image name="LoginScreenLogo" width="2667" height="1438"/>
         <image name="OK-3-512" width="512" height="512"/>
+        <image name="hamburger" width="24" height="24"/>
         <image name="home" width="30" height="30"/>
         <image name="loc_blue" width="48" height="48"/>
         <image name="loc_gray" width="48" height="48"/>
@@ -1293,4 +1339,8 @@
         <image name="search" width="30" height="30"/>
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Abw-ag-5UO"/>
+        <segue reference="Kyg-zy-rls"/>
+    </inferredMetricsTieBreakers>
 </document>

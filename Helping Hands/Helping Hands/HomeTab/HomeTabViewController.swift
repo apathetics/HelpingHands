@@ -6,6 +6,7 @@
 //  Copyright © 2018 Tracy Nguyen. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreData
 
@@ -17,6 +18,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     var jobs = [NSManagedObject]()
     
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
@@ -42,6 +44,13 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        if self.revealViewController() != nil {
+            sideMenuButton.target = self.revealViewController()
+            sideMenuButton.action = Selector("revealToggle:")
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
         if clearCore {
             clearCoreJob()

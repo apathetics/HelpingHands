@@ -36,6 +36,9 @@
 		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
+		ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */; };
+		ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */; };
+		ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E52060E4B700E26814 /* SideMenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,11 @@
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWRevealViewController.podspec; sourceTree = "<group>"; };
+		ABA3A2E0206067CF00E26814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		ABA3A2E4206068CA00E26814 /* SideBarHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SideBarHeader.h; sourceTree = "<group>"; };
+		ABA3A2E52060E4B700E26814 /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,9 +219,11 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				ABA3A2DD2060678300E26814 /* SideBarMenu */,
 				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
 				1927A61F205F430C00628A1C /* Info.plist */,
 				1927A61D205F430400628A1C /* CheckBoxHeader.h */,
+				ABA3A2E4206068CA00E26814 /* SideBarHeader.h */,
 				1927A618205F41D200628A1C /* ConfirmationQR */,
 				1927A611205F41B100628A1C /* PaymentReview */,
 				1927A60C205F418E00628A1C /* SearchTab */,
@@ -225,6 +235,25 @@
 				1927A5D9205F3FD500628A1C /* Main */,
 			);
 			path = "Helping Hands";
+			sourceTree = "<group>";
+		};
+		ABA3A2DD2060678300E26814 /* SideBarMenu */ = {
+			isa = PBXGroup;
+			children = (
+				ABA3A2DF206067CF00E26814 /* SWRevealViewController */,
+				ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */,
+				ABA3A2E52060E4B700E26814 /* SideMenuController.swift */,
+			);
+			path = SideBarMenu;
+			sourceTree = "<group>";
+		};
+		ABA3A2DF206067CF00E26814 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ABA3A2E0206067CF00E26814 /* SWRevealViewController.h */,
+				ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		ED57142D81884C4109A7DE21 /* Pods */ = {
@@ -299,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */,
 				1927A621205F430C00628A1C /* Info.plist in Resources */,
 				1927A5E0205F404600628A1C /* Assets.xcassets in Resources */,
 				1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */,
@@ -368,6 +398,7 @@
 				1927A616205F41C900628A1C /* ratingControl.swift in Sources */,
 				1927A608205F418100628A1C /* CommunityTabViewController.swift in Sources */,
 				1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */,
+				ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */,
 				1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */,
 				1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */,
 				1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */,
@@ -377,6 +408,7 @@
 				1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */,
 				1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */,
 				1927A61C205F41F100628A1C /* QRViewController.swift in Sources */,
+				ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */,
 				1927A5F4205F40F300628A1C /* BEMPathManager.m in Sources */,
 				1927A5F3205F40F300628A1C /* BEMAnimationManager.m in Sources */,
 				1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */,
@@ -530,7 +562,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BJLQZPP9P3;
 				INFOPLIST_FILE = "Helping Hands/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -550,7 +582,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BJLQZPP9P3;
 				INFOPLIST_FILE = "Helping Hands/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
 				PRODUCT_NAME = "$(TARGET_NAME)";
