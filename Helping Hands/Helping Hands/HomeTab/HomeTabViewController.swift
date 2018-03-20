@@ -48,7 +48,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
-            sideMenuButton.action = Selector("revealToggle:")
+            sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         

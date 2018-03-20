@@ -13,12 +13,18 @@ class SideMenuController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    // Blurring option works but there's a weird line at the top that doesn't fully conform.
+    //    override func viewWillAppear(_ animated: Bool) {
+    //
+    //        self.revealViewController().frontViewController.view.alpha = 0.5
+    //    }
+    //
+    //    override func viewWillDisappear(_ animated: Bool) {
+    //
+    //        self.revealViewController().frontViewController.view.alpha = 1
+    //    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
