@@ -250,10 +250,6 @@
                     </view>
                     <connections>
                         <segue destination="tzi-9H-qhS" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="jFX-z5-dOR"/>
-                        <segue destination="Sxi-ZV-7nj" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Kyg-zy-rls"/>
-                        <segue destination="5ZT-sC-tDG" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="mkl-0f-IzL"/>
-                        <segue destination="lqR-sM-A5F" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="X4P-IG-t0C"/>
-                        <segue destination="2F7-nd-Bwc" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Kv3-98-bDy"/>
                         <segue destination="49e-Tb-3d3" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Wg3-pU-Uwd"/>
                     </connections>
                 </viewController>
@@ -741,6 +737,7 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Nearby Events" id="y8p-QI-H0u">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger" id="K3q-dU-zT2"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="ygJ-4E-6GY">
                             <connections>
                                 <segue destination="w6g-sF-EwQ" kind="show" id="tX1-KU-QCo"/>
@@ -748,6 +745,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="sideMenuButton" destination="K3q-dU-zT2" id="aIh-Qi-XUl"/>
                         <outlet property="table" destination="UhC-0C-HKU" id="265-GQ-QPY"/>
                     </connections>
                 </viewController>
@@ -829,8 +827,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jAc-nj-lHb"/>
                     </view>
-                    <navigationItem key="navigationItem" id="F1V-cL-WGH"/>
+                    <navigationItem key="navigationItem" id="F1V-cL-WGH">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger" id="kaX-v8-BzV"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sideMenuButton" destination="kaX-v8-BzV" id="Pvz-59-VNi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XJY-LW-Imc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1218,7 +1221,12 @@
                             <outlet property="delegate" destination="9Nf-tm-BfC" id="gAe-ye-2uh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Search" id="xI0-DD-sX2"/>
+                    <navigationItem key="navigationItem" title="Search" id="xI0-DD-sX2">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger" id="dPY-LO-SPX"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideMenuButton" destination="dPY-LO-SPX" id="Vnn-3W-P40"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hE-bq-2aX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1421,10 +1429,4 @@
         <image name="search" width="30" height="30"/>
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Kv3-98-bDy"/>
-        <segue reference="X4P-IG-t0C"/>
-        <segue reference="mkl-0f-IzL"/>
-        <segue reference="Kyg-zy-rls"/>
-    </inferredMetricsTieBreakers>
 </document>

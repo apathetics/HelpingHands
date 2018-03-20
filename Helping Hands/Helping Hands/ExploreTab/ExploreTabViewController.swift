@@ -10,9 +10,16 @@ import UIKit
 
 class ExploreTabViewController: UIViewController {
 
+    @IBOutlet weak var sideMenuButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if self.revealViewController() != nil {
+            sideMenuButton.target = self.revealViewController()
+            sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         // Do any additional setup after loading the view.
     }
 

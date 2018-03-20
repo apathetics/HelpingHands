@@ -11,6 +11,8 @@ import CoreData
 
 class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
     
+    @IBOutlet weak var sideMenuButton: UIBarButtonItem!
+    
     // Currently only searching through jobs and not events
     var unfilteredJobs = [NSManagedObject]()
     var filteredJobs: [NSManagedObject]?
@@ -33,6 +35,12 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
         tableView.tableHeaderView = searchController.searchBar
         
         super.viewDidLoad()
+        
+        if self.revealViewController() != nil {
+            sideMenuButton.target = self.revealViewController()
+            sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     // Basic Table Functions

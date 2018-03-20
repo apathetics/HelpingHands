@@ -17,6 +17,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     var eventToAdd:Event?
     var events = [NSManagedObject]()
     
+    @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     
     @IBOutlet weak var table: UITableView!
     
@@ -42,6 +43,12 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if self.revealViewController() != nil {
+            sideMenuButton.target = self.revealViewController()
+            sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
         // CLEAR CORE HERE IF FLAG
         if clearCore {
