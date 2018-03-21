@@ -36,6 +36,7 @@
 		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
+		AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164520626A1C0063A232 /* DatabaseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB9E164520626A1C0063A232 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				1927A5EA205F40DA00628A1C /* CheckBox */,
 				1927A5E3205F406B00628A1C /* Authentication */,
 				1927A5D9205F3FD500628A1C /* Main */,
+				AB9E164520626A1C0063A232 /* DatabaseHelper.swift */,
 			);
 			path = "Helping Hands";
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,
 				1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */,
+				AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */,
 				1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */,
 				1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */,
 				1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */,

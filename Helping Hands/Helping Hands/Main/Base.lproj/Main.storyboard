@@ -1092,6 +1092,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="xI0-DD-sX2"/>
+                    <connections>
+                        <outlet property="table" destination="Bwc-z1-QuT" id="75r-Ef-9XE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hE-bq-2aX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
