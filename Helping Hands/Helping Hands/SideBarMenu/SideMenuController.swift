@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class SideMenuController: UIViewController {
     
@@ -17,12 +19,16 @@ class SideMenuController: UIViewController {
     @IBOutlet weak var userNumJobsPosted: UILabel!
     @IBOutlet weak var userMoneyEarned: UILabel!
     
+    var user: FIRUser!
+    let userRef = FIRDatabase.database().reference().child("users")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let profileTap = UITapGestureRecognizer(target: self, action: #selector(tapGesture1))
         profileImage.addGestureRecognizer(profileTap)
         profileImage.isUserInteractionEnabled = true
+        populateSideMenu()
     }
     
     // Dummy for connecting to PROFILE screen
@@ -40,6 +46,25 @@ class SideMenuController: UIViewController {
     
     @IBAction func nightModeButtonClicked(_ sender: Any) {
         print("Clicked night mode")
+    }
+    
+    func populateSideMenu() {
+
+        if let userID:String = (FIRAuth.auth()?.currentUser?.uid)! {
+            userRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let fName = value?["firstName"] as? String ?? ""
+                let lName = value?["lastName"] as? String ?? ""
+                
+                // Populate sidebar
+                self.userNameLabel.text = "\(fName) \(lName)"
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        } else {
+            print("User ID is nil")
+        }
     }
     
     // Blurring option works but there's a weird line at the top that doesn't fully conform.
