@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-//import FirebaseStorageUI
+import FirebaseStorageUI
 
 class SideMenuController: UIViewController {
     
@@ -65,8 +65,8 @@ class SideMenuController: UIViewController {
                 // Placeholder image
                 let placeholderImage = UIImage(named: "profilePlaceholderImg.png")
                 // Load the image using SDWebImage
-//                self.profileImage.sd_setImage(with: URL(string: value?["photoUrl"] as! String), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-//                })
+                self.profileImage.sd_setImage(with: URL(string: value?["photoUrl"] as! String), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+                })
                 // Populate sidebar
                 self.userNameLabel.text = "\(fName) \(lName)"
                 self.userNumJobsCompleted.text = jobsDone
