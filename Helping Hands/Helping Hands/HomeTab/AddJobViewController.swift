@@ -140,6 +140,8 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         } else {
             // everything else should be fine...
             // make a Job object and return to previous screen
+            
+            // Format the date before saving as a string (database won't take NSDate)
             let df = DateFormatter()
             df.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let datePicked = df.string(from: datePicker.date)
@@ -157,7 +159,6 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             job.payment = Double(paymentFld.text!)!
             job.numHelpers = Int(helpersCountFld.text!)!
             job.address = addressFld.text // TODO
-            // TODO: store the image!!
             
             // TODO: Give actual address and current location!
             job.address = "address"
@@ -166,7 +167,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             job.image = imgView.image
             redLbl.isHidden = true
             
-            // Add job to CoreData
+            // Add job to database
             storeJob(j: job)
             
             self.navigationController?.popToRootViewController(animated: true)
@@ -174,6 +175,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     
+    // Database
     func storeJob(j: Job) {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
         let postRef = databaseRef.child("jobs")

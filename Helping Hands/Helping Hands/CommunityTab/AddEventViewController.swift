@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+import FirebaseStorage
 
 class AddEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
     
@@ -130,26 +132,61 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
         } else {
             // everything else should be fine...
             // make a Event object and return to previous screen
+            
+            // Format the date before saving as a string (database won't take NSDate)
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let datePicked = df.string(from: datePicker.date)
+            let dateFromString = df.date(from: datePicked)
+            df.dateFormat = "dd-MMM-yyyy"
+            let eventDateAsString = df.string(from: dateFromString!)
+            
             let event:Event = Event()
             event.eventTitle = titleFld.text
             event.eventDescription = descriptionFld.text
             event.date = datePicker.date
+            event.eventDateString = eventDateAsString
             event.distance = 0.0 // TODO
             event.numHelpers = Int(helpersCountFld.text!)!
             event.address = addressFld.text // TODO
             event.image = imgView.image
-            masterView!.eventToAdd = event
             redLbl.isHidden = true
             
-            // Add event to CoreData
+            // TODO: Give actual address and current location!
+            event.address = "address"
+            event.currentLocation = true
+            
+            // Add event to database
             storeEvent(e: event)
             
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
+    // Database
     func storeEvent(e: Event) {
         
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let postRef = databaseRef.child("events")
+        let newPost = postRef.childByAutoId()
+        if let imgUpload = UIImagePNGRepresentation(e.image!) {
+            let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
+            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                if let eventImgUrl = metadata?.downloadURL()?.absoluteString {
+                    let values = ["eventTitle": e.eventTitle, "eventImageUrl": eventImgUrl, "eventDistance": e.distance, "eventDescription": e.eventDescription, "eventDate": e.eventDateString, "eventCurrentLocation": e.currentLocation, "eventAddress": e.address, "eventNumHelpers": e.numHelpers] as [String : Any]
+                    newPost.setValue(values)
+                }
+            })
+        }
+        
+        
+        // CORE DATA
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         

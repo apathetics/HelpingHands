@@ -8,15 +8,12 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+
 
 class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // If need to clear event core, then set this flag to true.
-    let clearCore: Bool = false
-    
-    var eventToAdd:Event?
-    var events = [NSManagedObject]()
-    
+    var events = [Event]()
     
     @IBOutlet weak var table: UITableView!
     
@@ -28,13 +25,13 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         let cell:EventTableViewCell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
         
         let row = indexPath.row
-        let e:NSManagedObject = events[row]
+        let e:Event = events[row]
         
-        cell.eventTitleLbl.text = e.value(forKey: "eventTitle") as? String
-        cell.eventDescriptionLbl.text = e.value(forKey: "eventDescription") as! String
-        cell.distanceLbl.text = String(e.value(forKey: "eventDistance") as! Double) + " mi"
-        cell.eventImg.image = UIImage(data: e.value(forKey: "eventImage") as! Data)
-        cell.helpersLbl.text = String(e.value(forKey: "eventNumHelpers") as! Int64) + " Helpers"
+        cell.eventTitleLbl.text = e.eventTitle
+        cell.eventDescriptionLbl.text = e.eventDescription
+        cell.distanceLbl.text = String(e.distance) + " mi"
+        cell.eventImg.image = e.image
+        cell.helpersLbl.text = String(e.numHelpers) + " Helpers"
         
         return cell
     }
@@ -42,12 +39,6 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        // CLEAR CORE HERE IF FLAG
-        if clearCore {
-        clearCoreEvent()
-        }
-    
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,67 +52,47 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        events = [NSManagedObject]()
-        
-        for event in retrieveEvents() {
-            events.append(event)
-        }
-        table.reloadData()
-        
+        retrieveEvents()
     }
     
-    func retrieveEvents() -> [NSManagedObject] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
+    // DATABASE RETRIEVAL
+    func retrieveEvents() {
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"EventEntity")
-        var fetchedResults:[NSManagedObject]? = nil
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let eventsRef = databaseRef.child("events")
         
-        // Examples of filtering using predicates
-        // let predicate = NSPredicate(format: "age = 35")
-        // let predicate = NSPredicate(format: "name CONTAINS[c] 'ake'")
-        // request.predicate = predicate
-        
-        do {
-            try fetchedResults = context.fetch(request) as? [NSManagedObject]
-        } catch {
-            // If an error occurs
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
-        return(fetchedResults)!
-        
-    }
-    
-    func clearCoreEvent() {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "EventEntity")
-        var fetchedResults:[NSManagedObject]
-        
-        do {
-            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+        eventsRef.observe(FIRDataEventType.value, with: {(snapshot) in
             
-            if fetchedResults.count > 0 {
+            // make sure there are events
+            if snapshot.childrenCount > 0 {
                 
-                for result:AnyObject in fetchedResults {
-                    context.delete(result as! NSManagedObject)
-                    print("\(result.value(forKey: "eventTitle")!) has been Deleted")
+                // clear event list before appending again
+                self.events.removeAll()
+                
+                // for each snapshot (entity present under events child)
+                for eventSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    
+                    let eventObject = eventSnapshot.value as! [String: AnyObject]
+                    let event = Event()
+                    
+                    event.address = eventObject["eventAddress"] as! String
+                    event.currentLocation = eventObject["eventCurrentLocation"] as! Bool
+                    event.eventDateString = eventObject["eventDate"] as! String
+                    event.eventDescription = eventObject["eventDescription"] as! String
+                    event.distance = eventObject["eventDistance"] as! Double
+                    
+                    // TODO: Image from URL?
+                    event.image = UIImage(named: "meeting")
+                    
+                    event.numHelpers = eventObject["eventNumHelpers"] as! Int
+                    event.eventTitle = eventObject["eventTitle"] as! String
+                    
+                    
+                    self.events.append(event)
+                    self.table.reloadData()
+                    
                 }
             }
-            try context.save()
-            
-        } catch {
-            // If an error occurs
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
+        })
     }
-    
 }
