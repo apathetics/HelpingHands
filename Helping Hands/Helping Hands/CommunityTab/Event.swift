@@ -13,6 +13,7 @@ class Event {
     var eventDescription:String!
     var distance:Double!
     var image:UIImage!
+    var imageAsString: String!
     var payment:Double!
     var date:Date!
     var address:String!

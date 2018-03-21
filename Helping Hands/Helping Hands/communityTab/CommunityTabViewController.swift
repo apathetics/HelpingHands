@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import FirebaseDatabase
-
+import FirebaseStorageUI
 
 class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -32,8 +32,13 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         cell.eventTitleLbl.text = e.eventTitle
         cell.eventDescriptionLbl.text = e.eventDescription
         cell.distanceLbl.text = String(e.distance) + " mi"
-        cell.eventImg.image = e.image
         cell.helpersLbl.text = String(e.numHelpers) + " Helpers"
+        
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        cell.eventImg.sd_setImage(with: URL(string: e.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
         
         return cell
     }
@@ -90,7 +95,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                     event.distance = eventObject["eventDistance"] as! Double
                     
                     // TODO: Image from URL?
-                    event.image = UIImage(named: "meeting")
+                    event.imageAsString = eventObject["eventImageUrl"] as! String
                     
                     event.numHelpers = eventObject["eventNumHelpers"] as! Int
                     event.eventTitle = eventObject["eventTitle"] as! String
