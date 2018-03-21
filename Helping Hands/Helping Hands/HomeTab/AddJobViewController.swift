@@ -164,7 +164,6 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             job.currentLocation = true
             
             job.image = imgView.image
-            masterView!.jobToAdd = job
             redLbl.isHidden = true
             
             // Add job to CoreData
@@ -173,6 +172,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
+    
     
     func storeJob(j: Job) {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
