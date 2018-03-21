@@ -18,27 +18,22 @@ class LoginVC: UIViewController {
         if let email = emailTF.text, let pass = passwordTF.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
                 if error != nil {
-                    
+                    // error handler
                     if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                         var title: String = ""
                         var message: String = ""
                         var log: String = ""
-                        // error handler
+                        
                         switch errCode {
-                            case .errorCodeInvalidEmail:
-                                title = "Incorrect Email"
-                                message = "The email you entered doesn't appear to belong to an account. Please check your email address and try again."
-                                log = "Incorrect Email Alert"
                             case .errorCodeWrongPassword:
                                 title = "Incorrect Password"
                                 message = "The password you entered is incorrect. Please try again."
-                                log = "Incorrect Password Alert"
+                                log = "Incorrect Password Alert Displayed"
                             default:
-                                title = "Invalid Credentials"
+                                title = "Incorrect Credentials"
                                 message = "The credentials you entered are incorrect. Please try again."
-                                log = "Other error"
+                                log = "Other error Alert Displayed"
                         }
-                        
                         //display alert
                         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in

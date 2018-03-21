@@ -62,7 +62,6 @@ class SideMenuController: UIViewController {
                 let jobsDone = value?["jobsCompleted"] as? String ?? ""
                 let jobsPosted = value?["jobsPosted"] as? String ?? ""
                 let moneyEarned = value?["moneyEarned"] as? String ?? ""
-                print(value?["photoUrl"] as! String)
                 // Placeholder image
                 let placeholderImage = UIImage(named: "profilePlaceholderImg.png")
                 // Load the image using SDWebImage

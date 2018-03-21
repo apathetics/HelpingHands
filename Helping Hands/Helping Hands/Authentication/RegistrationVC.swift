@@ -68,34 +68,65 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         if passwordTF.text != confirmPasswordTF.text {
             passwordTF.text = ""
             confirmPasswordTF.text = ""
+            let alert = UIAlertController(title: "Password Mismatch",
+                                          message: "The passwords you entered did not match. Please try again.",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
             return
         }
         
         if let email = emailTF.text, let pass = passwordTF.text {
             FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { user, error in
-                if let firebaseError = error {
-                    print(firebaseError.localizedDescription)
-                    return
-                }
-                guard let uid = user?.uid else {
-                    return
-                }
-                print("Registration Success!")
-                if let imgUpload = UIImagePNGRepresentation(self.profileImage.image!) {
-                    let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
-                    let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
-                    storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
-                        if error != nil {
-                            print(error)
-                            return
+                if error != nil {
+                    // error handler
+                    if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                        var title: String = ""
+                        var message: String = ""
+                        var log: String = ""
+                        
+                        switch errCode {
+                        case .errorCodeWeakPassword:
+                            title = "Weak Password"
+                            message = "The password you entered doesn't appear to be strong enough. Please enter a new one and try again."
+                            log = "Weak Password Alert Displayed"
+                        case .errorCodeInvalidEmail:
+                            title = "Invalid Email"
+                            message = "The email you entered doesn't appear to be a valid email address. Please enter a new one and try again."
+                            log = "Invalid Email Alert Displayed"
+                        default:
+                            title = "Invalid Credentials"
+                            message = "The credentials you entered are invalid. Please try again."
+                            log = "Other error Alert Displayed"
                         }
-                        if let profileImgUrl = metadata?.downloadURL()?.absoluteString {
-                            let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrl, "jobsCompleted": 0, "jobsPosted": 0, "moneyEarned": 0] as [String : Any]
-                            self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
-                        }
-                    })
+                        //display alert
+                        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                            NSLog(log)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                } else {
+                    guard let uid = user?.uid else {
+                        return
+                    }
+                    print("Registration Success!")
+                    if let imgUpload = UIImagePNGRepresentation(self.profileImage.image!) {
+                        let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
+                        let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+                        storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
+                            if error != nil {
+                                print(error)
+                                return
+                            }
+                            if let profileImgUrl = metadata?.downloadURL()?.absoluteString {
+                                let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrl, "jobsCompleted": 0, "jobsPosted": 0, "moneyEarned": 0] as [String : Any]
+                                self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
+                            }
+                        })
+                    }
+                    self.dismiss(animated: true, completion: nil)
                 }
-                self.dismiss(animated: true, completion: nil)
             })
         }
     }

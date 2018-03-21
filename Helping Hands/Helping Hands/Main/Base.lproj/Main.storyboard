@@ -273,7 +273,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OK-3-512" translatesAutoresizingMaskIntoConstraints="NO" id="wuY-nk-sJn">
-                                <rect key="frame" x="16" y="31" width="102" height="111"/>
+                                <rect key="frame" x="16" y="31" width="111" height="111"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                             </imageView>
