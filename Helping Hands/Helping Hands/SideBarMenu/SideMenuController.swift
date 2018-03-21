@@ -53,15 +53,15 @@ class SideMenuController: UIViewController {
     
     func populateSideMenu() {
 
-        if let userID:String = (FIRAuth.auth()?.currentUser?.uid)! {
+        if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {
             userRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user values
                 let value = snapshot.value as? NSDictionary
                 let fName = value?["firstName"] as? String ?? ""
                 let lName = value?["lastName"] as? String ?? ""
-                let jobsDone = value?["jobsCompleted"] as? String ?? ""
-                let jobsPosted = value?["jobsPosted"] as? String ?? ""
-                let moneyEarned = value?["moneyEarned"] as? String ?? ""
+                let jobsDone = String(value?["jobsCompleted"] as! Int64)
+                let jobsPosted = String(value?["jobsPosted"] as! Int64)
+                let moneyEarned = String(value?["moneyEarned"] as! Int64)
                 // Placeholder image
                 let placeholderImage = UIImage(named: "profilePlaceholderImg.png")
                 // Load the image using SDWebImage
