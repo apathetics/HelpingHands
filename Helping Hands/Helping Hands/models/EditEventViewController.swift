@@ -18,7 +18,6 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var editEventDate: UITextField!
     @IBOutlet weak var editLocation: UITextField!
     @IBOutlet weak var chooseImgButton: UIButton!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var imgChosen = false
     // TODO - Pass using database
@@ -70,28 +69,6 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         return dateFormate.string(from: date as Date)
     }
     
-    /*
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     return inquiries.count
-     }
-     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell:eventTableViewCell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! eventTableViewCell
-     
-     let row = indexPath.row
-     let j:NSManagedObject = inquiries[row]
-     
-     cell.eventTitleLbl.text = j.value(forKey: "eventTitle") as? String
-     cell.eventDescriptionLbl.text = j.value(forKey: "eventDescription") as? String
-     cell.distanceLbl.text = String(j.value(forKey: "eventDistance") as! Double) + " mi"
-     let ftmPayment = "$" + ((j.value(forKey: "eventPayment") as! Double).truncatingRemainder(dividingBy: 1) == 0 ? String(j.value(forKey: "eventPayment") as! Int64) : String(j.value(forKey: "eventPayment") as! Double))
-     print("PAYMENT IS:", ftmPayment)
-     cell.paymentLbl.text = j.value(forKey: "eventIsHourlyPaid") as! Bool == true ? ftmPayment + "/hr" : ftmPayment
-     cell.eventImg.image = UIImage(data: j.value(forKey: "eventImage") as! Data)
-     
-     return cell
-     }*/
-    
     @IBAction func chooseImgBtn(_ sender: Any) {
         let image = UIImagePickerController()
         image.delegate = self
@@ -111,5 +88,20 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func saveChanges(_ sender: Any) {
+        event.image = eventPhoto.image
+        event.eventTitle = editEventTitle.text
+        event.numHelpers = Int(editEventHelpers.text!)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        event.date = dateFormatter.date (from: editEventDate.text!)
+        event.eventDescription = eventDescription.text
+        
+        masterView?.e = self.event
+        self.performSegueToReturnBack()
+    }
+    
+    
 }
 

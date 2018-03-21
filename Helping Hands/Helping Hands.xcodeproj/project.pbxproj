@@ -109,13 +109,13 @@
 			children = (
 				3970FEB0205F350700DBFA64 /* UserViewController.swift */,
 				398732862062A83300A29D39 /* EditUserViewController.swift */,
+				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
+				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
 				3970FEB2205F3CA300DBFA64 /* EventViewController.swift */,
 				398732882062B43200A29D39 /* EditEventViewController.swift */,
-				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
 				3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */,
 				04FD063F205CAF25000825DF /* Event.swift */,
 				39873255205FC55F00A29D39 /* User.swift */,
-				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";

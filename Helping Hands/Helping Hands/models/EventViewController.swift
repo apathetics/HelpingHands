@@ -48,6 +48,18 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        eventPhoto.image = e.image
+        eventTitle.text = e.eventTitle
+        eventHelpers.text = String(e.numHelpers) + " Helpers"
+        eventDate.text = getDate(date: e.date as NSDate)
+        eventDistance.text = String(e.distance) + " mi"
+        
+        // TODO when location is more than an illusion
+        eventLocation.text = "curLocation"
+        eventDescription.text = e.eventDescription
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
