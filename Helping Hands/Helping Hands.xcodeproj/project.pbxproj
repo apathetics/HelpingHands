@@ -38,6 +38,9 @@
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
 		AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164520626A1C0063A232 /* DatabaseHelper.swift */; };
+		AB9E164B20630BCE0063A232 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164A20630BCE0063A232 /* UserViewController.swift */; };
+		AB9E164D20630BE80063A232 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164C20630BE70063A232 /* User.swift */; };
+		AB9E164F20630BF60063A232 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164E20630BF60063A232 /* UserTableViewCell.swift */; };
 		ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */; };
 		ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */; };
 		ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E52060E4B700E26814 /* SideMenuController.swift */; };
@@ -83,6 +86,9 @@
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9E164520626A1C0063A232 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
+		AB9E164A20630BCE0063A232 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		AB9E164C20630BE70063A232 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AB9E164E20630BF60063A232 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWRevealViewController.podspec; sourceTree = "<group>"; };
 		ABA3A2E0206067CF00E26814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 		1927A5D9205F3FD500628A1C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				AB9E164520626A1C0063A232 /* DatabaseHelper.swift */,
 				1927A624205F439000628A1C /* LaunchScreen.storyboard */,
 				1927A622205F439000628A1C /* Main.storyboard */,
 				1927A5DF205F404600628A1C /* Assets.xcassets */,
@@ -224,6 +231,7 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				AB9E164920630BC00063A232 /* User */,
 				ABA3A2DD2060678300E26814 /* SideBarMenu */,
 				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
 				1927A61F205F430C00628A1C /* Info.plist */,
@@ -237,9 +245,18 @@
 				1927A5EA205F40DA00628A1C /* CheckBox */,
 				1927A5E3205F406B00628A1C /* Authentication */,
 				1927A5D9205F3FD500628A1C /* Main */,
-				AB9E164520626A1C0063A232 /* DatabaseHelper.swift */,
 			);
 			path = "Helping Hands";
+			sourceTree = "<group>";
+		};
+		AB9E164920630BC00063A232 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				AB9E164E20630BF60063A232 /* UserTableViewCell.swift */,
+				AB9E164A20630BCE0063A232 /* UserViewController.swift */,
+				AB9E164C20630BE70063A232 /* User.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		ABA3A2DD2060678300E26814 /* SideBarMenu */ = {
@@ -407,10 +424,12 @@
 				1927A608205F418100628A1C /* CommunityTabViewController.swift in Sources */,
 				1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */,
 				ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */,
+				AB9E164F20630BF60063A232 /* UserTableViewCell.swift in Sources */,
 				1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */,
 				1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */,
 				1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */,
 				1927A5F5205F40F300628A1C /* BEMCheckBox.m in Sources */,
+				AB9E164D20630BE80063A232 /* User.swift in Sources */,
 				1927A609205F418100628A1C /* Event.swift in Sources */,
 				1927A615205F41C900628A1C /* HiringPaymentController.swift in Sources */,
 				1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */,
@@ -424,6 +443,7 @@
 				1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */,
 				1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */,
 				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
+				AB9E164B20630BCE0063A232 /* UserViewController.swift in Sources */,
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,
 				1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */,
 				AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */,

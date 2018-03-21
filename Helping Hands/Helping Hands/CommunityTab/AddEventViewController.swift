@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import FirebaseDatabase
 import FirebaseStorage
 
@@ -184,35 +183,6 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
                 }
             })
         }
-        
-        
-        // CORE DATA
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let event = NSEntityDescription.insertNewObject(
-            forEntityName: "EventEntity", into: context)
-        
-        // Set the attribute values
-        event.setValue(e.eventTitle, forKey: "eventTitle")
-        event.setValue(0, forKey: "eventPayment")
-        event.setValue(e.numHelpers, forKey: "eventNumHelpers")
-        event.setValue(UIImagePNGRepresentation(e.image!)!, forKey: "eventImage")
-        event.setValue(e.distance, forKey: "eventDistance")
-        event.setValue(e.eventDescription, forKey: "eventDescription")
-        event.setValue(e.date, forKey: "eventDate")
-        event.setValue(e.currentLocation, forKey: "eventCurrentLocation")
-        event.setValue(e.address, forKey: "eventAddress")
-        // Commit the changes
-        do {
-            try context.save()
-        } catch {
-            // If an error occurs
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
     }
     //----------------------------------------------------------------//
     

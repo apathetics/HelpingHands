@@ -14,6 +14,7 @@ class Job {
     var jobDescription:String!
     var distance:Double!
     var image:UIImage!
+    var imageAsString: String!
     var payment:Double!
     var isHourlyPaid:Bool! // could be total, hourly, etc.
     var date:Date!

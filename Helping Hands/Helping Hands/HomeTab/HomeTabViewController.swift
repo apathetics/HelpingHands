@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
-import CoreData
 import CoreLocation
 import FirebaseDatabase
+import FirebaseStorageUI
 
 class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
@@ -36,8 +36,11 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         let ftmPayment = "$" + ((j.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         cell.paymentLbl.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
         
-        // TODO: get an actual image from data from URL
-        cell.jobImg.image = j.image
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        cell.jobImg.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
         
         return cell
     }
@@ -78,13 +81,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         retrieveJobs()
     }
     
-    // POSSIBLE SOLUTION FOR URL TO DATA RETRIEVAL (not sure how @escaping works tbh)
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
-    }
-    
     // FIREBASE RETRIEVAL
     func retrieveJobs() {
         
@@ -112,7 +108,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                     job.distance = jobObject["jobDistance"] as! Double
                     
                     // TODO: Image from URL?
-                    job.image = UIImage(named: "meeting")
+                    job.imageAsString = jobObject["jobImageUrl"] as! String
                     
                     job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
                     job.numHelpers = jobObject["jobNumHelpers"] as! Int
