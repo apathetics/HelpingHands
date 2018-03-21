@@ -22,6 +22,8 @@
 		3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */; };
 		39873256205FC55F00A29D39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39873255205FC55F00A29D39 /* User.swift */; };
 		398732872062A83300A29D39 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732862062A83300A29D39 /* EditUserViewController.swift */; };
+		398732892062B43200A29D39 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732882062B43200A29D39 /* EditEventViewController.swift */; };
+		3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328A2062C8DB00A29D39 /* EditJobViewController.swift */; };
 		AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */; };
 		AB5F4B7C205DA37F0085A11D /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7B205DA37F0085A11D /* QRViewController.swift */; };
 		AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */; };
@@ -52,6 +54,8 @@
 		3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		39873255205FC55F00A29D39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		398732862062A83300A29D39 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
+		398732882062B43200A29D39 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
+		3987328A2062C8DB00A29D39 /* EditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJobViewController.swift; sourceTree = "<group>"; };
 		AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		AB5F4B7B205DA37F0085A11D /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -93,7 +97,6 @@
 		04FD0648205CB75D000825DF /* communityTab */ = {
 			isa = PBXGroup;
 			children = (
-				04FD063F205CAF25000825DF /* Event.swift */,
 				04FD0641205CB50A000825DF /* AddEventViewController.swift */,
 				04FD0643205CB5F6000825DF /* EventTableViewCell.swift */,
 				045A66C2205CC37200465DE9 /* CommunityTabViewController.swift */,
@@ -107,9 +110,12 @@
 				3970FEB0205F350700DBFA64 /* UserViewController.swift */,
 				398732862062A83300A29D39 /* EditUserViewController.swift */,
 				3970FEB2205F3CA300DBFA64 /* EventViewController.swift */,
+				398732882062B43200A29D39 /* EditEventViewController.swift */,
 				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
 				3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */,
+				04FD063F205CAF25000825DF /* Event.swift */,
 				39873255205FC55F00A29D39 /* User.swift */,
+				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -278,9 +284,11 @@
 				AB5F4B88205DDEA30085A11D /* globalCoreData.xcdatamodeld in Sources */,
 				3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */,
 				3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */,
+				3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */,
 				AB7743012047853A00799F84 /* AppDelegate.swift in Sources */,
 				045A66C3205CC37200465DE9 /* CommunityTabViewController.swift in Sources */,
 				AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */,
+				398732892062B43200A29D39 /* EditEventViewController.swift in Sources */,
 				AB7743032047853A00799F84 /* HomeTabViewController.swift in Sources */,
 				AB5F4B81205DC2990085A11D /* HiredPaymentController.swift in Sources */,
 				AB5F4B7C205DA37F0085A11D /* QRViewController.swift in Sources */,

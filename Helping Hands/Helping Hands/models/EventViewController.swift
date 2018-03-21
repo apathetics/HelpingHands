@@ -24,20 +24,21 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     var masterView:CommunityTabViewController?
     var clearCore: Bool = false
     var event:NSManagedObject?
+    var e:Event!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        eventPhoto.image = UIImage(data: event?.value(forKey: "eventImage") as! Data)
-        eventTitle.text = event?.value(forKey: "eventTitle") as? String
-        eventHelpers.text = String(event?.value(forKey: "eventNumHelpers") as! Int64) + " Helpers"
-        eventDate.text = getDate(date: event?.value(forKey:"eventDate") as! NSDate)
-        eventDistance.text = String(event?.value(forKey: "eventDistance") as! Double) + " mi"
+        e = convertEvent()
+        eventPhoto.image = e.image
+        eventTitle.text = e.eventTitle
+        eventHelpers.text = String(e.numHelpers) + " Helpers"
+        eventDate.text = getDate(date: e.date as NSDate)
+        eventDistance.text = String(e.distance) + " mi"
         
         // TODO when location is more than an illusion
         eventLocation.text = "curLocation"
         
-        eventDescription.text = event?.value(forKey: "eventDescription") as? String
+        eventDescription.text = e.eventDescription
         
         // Do any additional setup after loading the view, typically from a nib.
         /*
@@ -61,15 +62,30 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showEditEvent")
+        {
+            let editorVC:EditEventViewController = segue.destination as! EditEventViewController
+            editorVC.masterView = self
+            editorVC.event = e
+        }
+    }
+    
     func getDate(date: NSDate) -> String {
         let dateFormate = DateFormatter()
         dateFormate.dateFormat = "MM/dd/yyyy"
         return dateFormate.string(from: date as Date)
     }
-    func getTime(date: NSDate) -> String {
-        let dateFormate = DateFormatter()
-        dateFormate.dateFormat = "HH:mm"
-        return dateFormate.string(from: date as Date)
+    
+    func convertEvent() -> Event {
+        let e = Event()
+        e.image = UIImage(data: event?.value(forKey: "eventImage") as! Data)
+        e.eventTitle = event?.value(forKey: "eventTitle") as? String
+        e.numHelpers = event?.value(forKey: "eventNumHelpers") as! Int
+        e.date = event?.value(forKey:"eventDate") as! Date
+        e.distance = event?.value(forKey: "eventDistance") as! Double
+        e.eventDescription = event?.value(forKey: "eventDescription") as? String
+        return e
     }
     
 }

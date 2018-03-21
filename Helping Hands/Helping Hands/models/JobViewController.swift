@@ -19,15 +19,19 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var jobDistance: UILabel!
     @IBOutlet weak var jobDescription: UITextView!
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var navButton: UIBarButtonItem!
     
     var masterView:HomeTabViewController?
+    var jobID:Int?
     var clearCore: Bool = false
     var job:NSManagedObject?
-    var userToAdd:User?
     var inquiries = [User]()
     var chosen:Int?
     
     override func viewDidAppear(_ animated: Bool) {
+        if(jobID == 0) {
+            self.navigationItem.rightBarButtonItem?.title = "Edit"
+        }
         table.reloadData()
     }
     
@@ -79,6 +83,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosen = (indexPath.row)
+        
         self.performSegue(withIdentifier: "showInquiry", sender: self)
     }
     
@@ -105,20 +110,26 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @IBAction func addUser(_ sender: Any) {
-        let inquiry:User = User()
-        inquiry.userFirstName = "Emiliano"
-        inquiry.userLastName = "Zapata"
-        inquiry.userPhoto = UIImage()
-        inquiry.userBio = "I like being a revolutionary, it's fun."
-        inquiry.userEmail = "porfirioHater1912@mexico.com"
-        inquiry.userLocationRadius = 0.0
-        inquiry.userNumJobsPosted = 1
-        inquiry.userNumJobsPending = 2
-        inquiry.userJobsCompleted = 4
-        inquiry.userID = inquiries.count
-        
-        inquiries.append(inquiry)
-        self.table.reloadData()
+        if(jobID == 0)
+        {
+            self.performSegue(withIdentifier: "showJobEditor", sender: self)
+        }
+        else {
+            let inquiry:User = User()
+            inquiry.userFirstName = "Emiliano"
+            inquiry.userLastName = "Zapata"
+            inquiry.userPhoto = UIImage()
+            inquiry.userBio = "I like being a revolutionary, it's fun."
+            inquiry.userEmail = "porfirioHater1912@mexico.com"
+            inquiry.userLocationRadius = 0.0
+            inquiry.userNumJobsPosted = 1
+            inquiry.userNumJobsPending = 2
+            inquiry.userJobsCompleted = 4
+            inquiry.userID = inquiries.count
+            
+            inquiries.append(inquiry)
+            self.table.reloadData()
+        }
     }
     
 }

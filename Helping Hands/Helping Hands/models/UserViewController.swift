@@ -71,7 +71,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showEditor")
+        if(segue.identifier == "showEditUser")
         {
             let editorVC:EditUserViewController = segue.destination as! EditUserViewController
             editorVC.masterView = self

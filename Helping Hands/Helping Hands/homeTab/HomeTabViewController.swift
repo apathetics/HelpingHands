@@ -79,6 +79,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             let jobVC:JobViewController = segue.destination as! JobViewController
             jobVC.masterView = self
             jobVC.job = j
+            jobVC.jobID = chosen!
         }
     }
     
