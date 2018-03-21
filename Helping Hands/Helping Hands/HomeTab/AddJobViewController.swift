@@ -15,9 +15,6 @@ let LOC_DEFAULT_TEXT = "Using your current location by default. You can use the 
 let DESCR_PLACEHOLDER = "What will Helpers be doing at this job? Add as much or little detail as you'd like, but make sure to be clear. You'll be more likely to attract Helpers that way!"
 
 class AddJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
-    
-    var imgChosen = false
-    var masterView:HomeTabViewController?
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleFld: UITextField!
@@ -29,6 +26,9 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var redLbl: UILabel!
     @IBOutlet weak var locImg: UIImageView!
+    
+    var imgChosen = false
+    var masterView:HomeTabViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()

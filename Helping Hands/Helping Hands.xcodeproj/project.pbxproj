@@ -23,7 +23,6 @@
 		1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5FB205F413300628A1C /* JobTableViewCell.swift */; };
 		1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A601205F415C00628A1C /* ExploreTabViewController.swift */; };
 		1927A608205F418100628A1C /* CommunityTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A604205F418000628A1C /* CommunityTabViewController.swift */; };
-		1927A609205F418100628A1C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A605205F418000628A1C /* Event.swift */; };
 		1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A606205F418100628A1C /* AddEventViewController.swift */; };
 		1927A60B205F418100628A1C /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A607205F418100628A1C /* EventTableViewCell.swift */; };
 		1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A60D205F419F00628A1C /* SearchTabViewController.swift */; };
@@ -37,10 +36,19 @@
 		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
-		AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164520626A1C0063A232 /* DatabaseHelper.swift */; };
-		AB9E164B20630BCE0063A232 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164A20630BCE0063A232 /* UserViewController.swift */; };
-		AB9E164D20630BE80063A232 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164C20630BE70063A232 /* User.swift */; };
-		AB9E164F20630BF60063A232 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164E20630BF60063A232 /* UserTableViewCell.swift */; };
+		192D63B020630578006189CA /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192D63AF20630578006189CA /* ThemeVC.swift */; };
+		3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB0205F350700DBFA64 /* UserViewController.swift */; };
+		3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* EventViewController.swift */; };
+		3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB4205F3CB500DBFA64 /* JobViewController.swift */; };
+		3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */; };
+		39873256205FC55F00A29D39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39873255205FC55F00A29D39 /* User.swift */; };
+		398732872062A83300A29D39 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732862062A83300A29D39 /* EditUserViewController.swift */; };
+		398732892062B43200A29D39 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732882062B43200A29D39 /* EditEventViewController.swift */; };
+		3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328A2062C8DB00A29D39 /* EditJobViewController.swift */; };
+		AB5F4B88205DDEA30085A11D /* (null) in Sources */ = {isa = PBXBuildFile; };
+		AB7743012047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		AB7743032047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		AB9E1651206318A60063A232 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E1650206318A60063A232 /* Event.swift */; };
 		ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */; };
 		ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */; };
 		ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E52060E4B700E26814 /* SideMenuController.swift */; };
@@ -66,7 +74,6 @@
 		1927A5FB205F413300628A1C /* JobTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
 		1927A601205F415C00628A1C /* ExploreTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreTabViewController.swift; sourceTree = "<group>"; };
 		1927A604205F418000628A1C /* CommunityTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityTabViewController.swift; sourceTree = "<group>"; };
-		1927A605205F418000628A1C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1927A606205F418100628A1C /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		1927A607205F418100628A1C /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		1927A60D205F419F00628A1C /* SearchTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTabViewController.swift; sourceTree = "<group>"; };
@@ -81,14 +88,20 @@
 		1927A61F205F430C00628A1C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		192D63AF20630578006189CA /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
+		3970FEB0205F350700DBFA64 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		3970FEB2205F3CA300DBFA64 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		3970FEB4205F3CB500DBFA64 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
+		3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		39873255205FC55F00A29D39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		398732862062A83300A29D39 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
+		398732882062B43200A29D39 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
+		3987328A2062C8DB00A29D39 /* EditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJobViewController.swift; sourceTree = "<group>"; };
 		7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Helping_Hands.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB9E164520626A1C0063A232 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
-		AB9E164A20630BCE0063A232 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
-		AB9E164C20630BE70063A232 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		AB9E164E20630BF60063A232 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		AB9E1650206318A60063A232 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWRevealViewController.podspec; sourceTree = "<group>"; };
 		ABA3A2E0206067CF00E26814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -110,7 +123,6 @@
 		1927A5D9205F3FD500628A1C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				AB9E164520626A1C0063A232 /* DatabaseHelper.swift */,
 				1927A624205F439000628A1C /* LaunchScreen.storyboard */,
 				1927A622205F439000628A1C /* Main.storyboard */,
 				1927A5DF205F404600628A1C /* Assets.xcassets */,
@@ -168,8 +180,8 @@
 			children = (
 				1927A606205F418100628A1C /* AddEventViewController.swift */,
 				1927A604205F418000628A1C /* CommunityTabViewController.swift */,
-				1927A605205F418000628A1C /* Event.swift */,
 				1927A607205F418100628A1C /* EventTableViewCell.swift */,
+				AB9E1650206318A60063A232 /* Event.swift */,
 			);
 			path = CommunityTab;
 			sourceTree = "<group>";
@@ -210,6 +222,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3970FEAF205F34A900DBFA64 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3970FEB0205F350700DBFA64 /* UserViewController.swift */,
+				398732862062A83300A29D39 /* EditUserViewController.swift */,
+				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
+				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
+				3970FEB2205F3CA300DBFA64 /* EventViewController.swift */,
+				398732882062B43200A29D39 /* EditEventViewController.swift */,
+				3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */,
+				39873255205FC55F00A29D39 /* User.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		AB7742F42047853A00799F84 = {
 			isa = PBXGroup;
 			children = (
@@ -231,7 +258,6 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
-				AB9E164920630BC00063A232 /* User */,
 				ABA3A2DD2060678300E26814 /* SideBarMenu */,
 				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
 				1927A61F205F430C00628A1C /* Info.plist */,
@@ -245,18 +271,10 @@
 				1927A5EA205F40DA00628A1C /* CheckBox */,
 				1927A5E3205F406B00628A1C /* Authentication */,
 				1927A5D9205F3FD500628A1C /* Main */,
+				192D63AF20630578006189CA /* ThemeVC.swift */,
+				3970FEAF205F34A900DBFA64 /* models */,
 			);
 			path = "Helping Hands";
-			sourceTree = "<group>";
-		};
-		AB9E164920630BC00063A232 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				AB9E164E20630BF60063A232 /* UserTableViewCell.swift */,
-				AB9E164A20630BCE0063A232 /* UserViewController.swift */,
-				AB9E164C20630BE70063A232 /* User.swift */,
-			);
-			path = User;
 			sourceTree = "<group>";
 		};
 		ABA3A2DD2060678300E26814 /* SideBarMenu */ = {
@@ -424,16 +442,15 @@
 				1927A608205F418100628A1C /* CommunityTabViewController.swift in Sources */,
 				1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */,
 				ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */,
-				AB9E164F20630BF60063A232 /* UserTableViewCell.swift in Sources */,
 				1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */,
 				1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */,
+				AB9E1651206318A60063A232 /* Event.swift in Sources */,
 				1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */,
 				1927A5F5205F40F300628A1C /* BEMCheckBox.m in Sources */,
-				AB9E164D20630BE80063A232 /* User.swift in Sources */,
-				1927A609205F418100628A1C /* Event.swift in Sources */,
 				1927A615205F41C900628A1C /* HiringPaymentController.swift in Sources */,
 				1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */,
 				1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */,
+				192D63B020630578006189CA /* ThemeVC.swift in Sources */,
 				1927A61C205F41F100628A1C /* QRViewController.swift in Sources */,
 				ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */,
 				1927A5F4205F40F300628A1C /* BEMPathManager.m in Sources */,
@@ -443,13 +460,22 @@
 				1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */,
 				1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */,
 				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
-				AB9E164B20630BCE0063A232 /* UserViewController.swift in Sources */,
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,
 				1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */,
-				AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */,
 				1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */,
 				1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */,
 				1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */,
+				3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */,
+				398732872062A83300A29D39 /* EditUserViewController.swift in Sources */,
+				AB5F4B88205DDEA30085A11D /* (null) in Sources */,
+				3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */,
+				3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */,
+				3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */,
+				AB7743012047853A00799F84 /* (null) in Sources */,
+				398732892062B43200A29D39 /* EditEventViewController.swift in Sources */,
+				AB7743032047853A00799F84 /* (null) in Sources */,
+				3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */,
+				39873256205FC55F00A29D39 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

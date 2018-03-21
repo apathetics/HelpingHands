@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Helping Hands/homeTab/JobTableViewCell.swift"
+            timestampString = "543139549.225859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "JobTableViewCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Helping_Hands.JobTableViewCell.jobImg.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIImageView&gt;"
+                  moduleName = "Helping Hands"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bryanbernal/Documents/CS371L/HelpingHands/Helping%20Hands/Helping%20Hands/homeTab/JobTableViewCell.swift"
+                  timestampString = "543142141.18601"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Helping_Hands.JobTableViewCell.jobImg.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIImageView&gt;"
+                  moduleName = "Helping Hands"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bryanbernal/Documents/CS371L/HelpingHands/Helping%20Hands/Helping%20Hands/homeTab/JobTableViewCell.swift"
+                  timestampString = "543142141.189571"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Helping_Hands.JobTableViewCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; Helping_Hands.JobTableViewCell"
+                  moduleName = "Helping Hands"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bryanbernal/Documents/CS371L/HelpingHands/Helping%20Hands/Helping%20Hands/homeTab/JobTableViewCell.swift"
+                  timestampString = "543142141.19258"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Helping_Hands.JobTableViewCell.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;Helping_Hands.JobTableViewCell&gt;"
+                  moduleName = "Helping Hands"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bryanbernal/Documents/CS371L/HelpingHands/Helping%20Hands/Helping%20Hands/homeTab/JobTableViewCell.swift"
+                  timestampString = "543142141.195802"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
