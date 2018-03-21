@@ -17,16 +17,43 @@ class LoginVC: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
         if let email = emailTF.text, let pass = passwordTF.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
-                if let firebaseError = error {
-                    print(firebaseError.localizedDescription)
-                    return
+                if error != nil {
+                    
+                    if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                        var title: String = ""
+                        var message: String = ""
+                        var log: String = ""
+                        // error handler
+                        switch errCode {
+                            case .errorCodeInvalidEmail:
+                                title = "Incorrect Email"
+                                message = "The email you entered doesn't appear to belong to an account. Please check your email address and try again."
+                                log = "Incorrect Email Alert"
+                            case .errorCodeWrongPassword:
+                                title = "Incorrect Password"
+                                message = "The password you entered is incorrect. Please try again."
+                                log = "Incorrect Password Alert"
+                            default:
+                                title = "Invalid Credentials"
+                                message = "The credentials you entered are incorrect. Please try again."
+                                log = "Other error"
+                        }
+                        
+                        //display alert
+                        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                            NSLog(log)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                } else {
+                    print("Login Success!")
+                    // Take user to the Home Page
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
+                    appDelegate.window?.rootViewController = SWRController
                 }
-                print("Login Success!")
-                // Take user to the Home Page
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
-                appDelegate.window?.rootViewController = SWRController
             })
         }
     }
