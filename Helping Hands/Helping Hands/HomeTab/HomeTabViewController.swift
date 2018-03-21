@@ -8,8 +8,11 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
-class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+    
+    let manager = CLLocationManager()
     
     var clearCore: Bool = false
     
@@ -42,6 +45,14 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // Location pemissions
+        manager.requestWhenInUseAuthorization()
+
+        if CLLocationManager.locationServicesEnabled() {
+            manager.delegate = self
+            manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+            manager.startUpdatingLocation()
+        }
         
         if clearCore {
             clearCoreJob()
@@ -121,6 +132,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
+    
 
 }
 
