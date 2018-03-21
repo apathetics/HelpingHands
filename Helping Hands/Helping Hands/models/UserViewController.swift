@@ -10,19 +10,9 @@ import UIKit
 import CoreData
 
 class UserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
-    
-    var imgChosen = false
-    var masterView:JobViewController?
-    var clearCore: Bool = false
-    
-    // TODO - Pass using database
-    var user:User?
-    var userIndexPath:Int?
-    
 
     @IBOutlet weak var userPhoto: UIImageView!
-    @IBOutlet weak var userFirstName: UILabel!
-    @IBOutlet weak var userLastName: UILabel!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userRating: UILabel!
     @IBOutlet weak var userLocation: UILabel!
@@ -36,6 +26,45 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var jobBar: UISegmentedControl!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var saveEditButton: UIButton!
+    @IBOutlet weak var navBar: UINavigationItem!
+    
+    var imgChosen = false
+    // TODO - Pass using database
+    var masterView:JobViewController?
+    var clearCore: Bool = false
+    var user:User?
+    // TODO - Pass using database
+    var userIndexPath:Int?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if(user?.userID != 0) {
+            self.navigationItem.rightBarButtonItem =  nil;
+        }
+        
+        userPhoto.image = user?.userPhoto
+        userName.text = (user?.userFirstName)! + " " + (user?.userLastName)!
+        userEmail.text = user?.userEmail
+        userDescription.text = user?.userBio
+        // Change the ones below
+        userRating.text = String(describing: user?.userNumJobsPosted!)
+        userLocation.text = String(describing: user?.userLocationRadius!)
+        userDistance.text = String(describing: user?.userJobsCompleted!)
+        
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        /*
+         if clearCore {
+         clearCoreuser()
+         }*/
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     /*
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,45 +88,10 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
      return cell
      }*/
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if(user?.userID != 1) {
-            self.navigationItem.rightBarButtonItem =  nil;
-        }
-        
-        userPhoto.image = user?.userPhoto
-        userFirstName.text = user?.userFirstName
-        userLastName.text = user?.userLastName
-        userEmail.text = user?.userEmail
-        userDescription.text = user?.userBio
-        // Change the ones below
-        userRating.text = String(describing: user?.userNumJobsPosted)
-        userLocation.text = String(describing: user?.userLocationRadius)
-        userDistance.text = String(describing: user?.userJobsCompleted)
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-         if clearCore {
-         clearCoreuser()
-         }*/
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-    
     @IBAction func editPress(_ sender: Any) {
-        //userPhoto: UIImageView!
-        userFirstName.isHidden = true
-        userLastName.isHidden = true
+        self.title = "Edit User"
+        userName.isHidden = true
+        userRating.isHidden = true
         userEmail.isHidden = true
         userLocation.isHidden = true
         userDescription.isUserInteractionEnabled = true
@@ -111,8 +105,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         editEmail.isHidden = false
         editLocation.isHidden = false
         saveEditButton.isHidden = false
-        editFirstName.text = userFirstName.text
-        editLastName.text = userLastName.text
+        editFirstName.text = (user?.userFirstName)!
+        editLastName.text = (user?.userLastName)!
         editEmail.text = userEmail.text
         editLocation.text = userLocation.text
         
@@ -139,8 +133,9 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     @IBAction func saveChanges(_ sender: Any) {
-        userFirstName.isHidden = false
-        userLastName.isHidden = false
+        self.title = "User"
+        userName.isHidden = false
+        userRating.isHidden = false
         userEmail.isHidden = false
         userLocation.isHidden = false
         userDescription.isUserInteractionEnabled = false
@@ -161,83 +156,19 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         // TODO
         //user?.userLocationRadius = Double(editLocation.text)
         user?.userBio = userDescription.text
-        // TODO
-        // Might cause problems if user decides not to save - Watch out
         user?.userPhoto = userPhoto.image
         
         userPhoto.image = user?.userPhoto
-        userFirstName.text = user?.userFirstName
-        userLastName.text = user?.userLastName
+        userName.text = user?.userFirstName!
         userEmail.text = user?.userEmail
         userLocation.text = String(describing: user?.userLocationRadius)
         userDescription.text = user?.userBio
         
+        // Comment this out if you're not dealing with job->user transition
+        // This should be made redundant when users are better defined in the app
+        // in core data (or database) and the inquiries array in JobViewController
+        // grabs from one of those rather than just being a static array
+        // Thus, the line below will be changed to something like updateDBUserEntity
         masterView?.inquiries[userIndexPath!] = user!
     }
-    
-    /*
-     override func viewWillAppear(_ animated: Bool) {
-     inquiries = [NSManagedObject]()
-     
-     for user in retrieveinquiries() {
-     inquiries.append(user)
-     }
-     
-     //table.reloadData()
-     }*/
-    /*
-     func retrieveinquiries() -> [NSManagedObject] {
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     let context = appDelegate.persistentContainer.viewContext
-     
-     let request = NSFetchRequest<NSFetchRequestResult>(entityName:"userEntity")
-     var fetchedResults:[NSManagedObject]? = nil
-     
-     // Examples of filtering using predicates
-     // let predicate = NSPredicate(format: "age = 35")
-     // let predicate = NSPredicate(format: "name CONTAINS[c] 'ake'")
-     // request.predicate = predicate
-     
-     do {
-     try fetchedResults = context.fetch(request) as? [NSManagedObject]
-     } catch {
-     // If an error occurs
-     let nserror = error as NSError
-     NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-     abort()
-     }
-     
-     return(fetchedResults)!
-     
-     }
-     
-     func clearCoreuser() {
-     
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     let context = appDelegate.persistentContainer.viewContext
-     
-     let request = NSFetchRequest<NSFetchRequestResult>(entityName: "userEntity")
-     var fetchedResults:[NSManagedObject]
-     
-     do {
-     try fetchedResults = context.fetch(request) as! [NSManagedObject]
-     
-     if fetchedResults.count > 0 {
-     
-     for result:AnyObject in fetchedResults {
-     context.delete(result as! NSManagedObject)
-     print("\(result.value(forKey: "userTitle")!) has been Deleted")
-     }
-     }
-     try context.save()
-     
-     } catch {
-     // If an error occurs
-     let nserror = error as NSError
-     NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-     abort()
-     }
-     
-     }
-     */
 }

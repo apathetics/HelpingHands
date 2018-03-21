@@ -11,9 +11,6 @@ import CoreData
 
 class AddEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
     
-    var imgChosen = false
-    var masterView:CommunityTabViewController?
-    
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleFld: UITextField!
     @IBOutlet weak var descriptionFld: UITextView!
@@ -22,6 +19,9 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var redLbl: UILabel!
     @IBOutlet weak var locImg: UIImageView!
+    
+    var imgChosen = false
+    var masterView:CommunityTabViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()

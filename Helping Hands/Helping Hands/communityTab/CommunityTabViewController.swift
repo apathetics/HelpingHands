@@ -11,14 +11,39 @@ import CoreData
 
 class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var table: UITableView!
+    
     // If need to clear event core, then set this flag to true.
     let clearCore: Bool = false
-    
     var eventToAdd:Event?
     var events = [NSManagedObject]()
     var chosen:Int?
     
-    @IBOutlet weak var table: UITableView!
+    override func viewWillAppear(_ animated: Bool) {
+        events = [NSManagedObject]()
+        
+        for event in retrieveEvents() {
+            events.append(event)
+        }
+        
+        table.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        // CLEAR CORE HERE IF FLAG
+        if clearCore {
+        clearCoreEvent()
+        }
+    
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -39,22 +64,6 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         return cell
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        // CLEAR CORE HERE IF FLAG
-        if clearCore {
-        clearCoreEvent()
-        }
-    
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosen = (indexPath.row)
         self.performSegue(withIdentifier: "showEvent", sender: self)
@@ -73,16 +82,6 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
             eventVC.masterView = self
             eventVC.event = e
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        events = [NSManagedObject]()
-        
-        for event in retrieveEvents() {
-            events.append(event)
-        }
-        
-        table.reloadData()
     }
     
     func retrieveEvents() -> [NSManagedObject] {

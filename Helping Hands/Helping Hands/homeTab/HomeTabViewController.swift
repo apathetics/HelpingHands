@@ -11,13 +11,36 @@ import CoreData
 
 class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var clearCore: Bool = false
+    @IBOutlet weak var table: UITableView!
     
+    var clearCore: Bool = false
     var jobToAdd:Job?
     var jobs = [NSManagedObject]()
     var chosen:Int?
     
-    @IBOutlet weak var table: UITableView!
+    override func viewWillAppear(_ animated: Bool) {
+        jobs = [NSManagedObject]()
+        
+        for job in retrieveJobs() {
+            jobs.append(job)
+        }
+        
+        table.reloadData()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        if clearCore {
+            clearCoreJob()
+        }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
@@ -38,20 +61,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         
         return cell
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        if clearCore {
-            clearCoreJob()
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosen = (indexPath.row)
@@ -71,16 +80,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             jobVC.masterView = self
             jobVC.job = j
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        jobs = [NSManagedObject]()
-        
-        for job in retrieveJobs() {
-            jobs.append(job)
-        }
-        
-        table.reloadData()
     }
     
     func retrieveJobs() -> [NSManagedObject] {
