@@ -90,7 +90,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                             return
                         }
                         if let profileImgUrl = metadata?.downloadURL()?.absoluteString {
-                            let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrl]
+                            let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrl, "jobsCompleted": 0, "jobsPosted": 0, "moneyEarned": 0] as [String : Any]
                             self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
                         }
                     })

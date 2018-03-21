@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */; };
 		1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DA205F3FFA00628A1C /* AppDelegate.swift */; };
 		1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DB205F3FFA00628A1C /* globalCoreData.xcdatamodeld */; };
 		1927A5E0205F404600628A1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5DF205F404600628A1C /* Assets.xcassets */; };
@@ -36,10 +37,10 @@
 		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
+		AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164520626A1C0063A232 /* DatabaseHelper.swift */; };
 		ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */; };
 		ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */; };
 		ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E52060E4B700E26814 /* SideMenuController.swift */; };
-		AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164520626A1C0063A232 /* DatabaseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,14 +78,15 @@
 		1927A61F205F430C00628A1C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Helping_Hands.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB9E164520626A1C0063A232 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWRevealViewController.podspec; sourceTree = "<group>"; };
 		ABA3A2E0206067CF00E26814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		ABA3A2E52060E4B700E26814 /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
-		AB9E164520626A1C0063A232 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +198,7 @@
 		3708DC6BA8FE859D671CF9A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -380,9 +384,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

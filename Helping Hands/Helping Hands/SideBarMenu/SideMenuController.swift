@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorageUI
 
 class SideMenuController: UIViewController {
     
@@ -24,7 +25,9 @@ class SideMenuController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Display profile image as a cirle
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+        profileImage.clipsToBounds = true
         let profileTap = UITapGestureRecognizer(target: self, action: #selector(tapGesture1))
         profileImage.addGestureRecognizer(profileTap)
         profileImage.isUserInteractionEnabled = true
@@ -52,13 +55,24 @@ class SideMenuController: UIViewController {
 
         if let userID:String = (FIRAuth.auth()?.currentUser?.uid)! {
             userRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
+                // Get user values
                 let value = snapshot.value as? NSDictionary
                 let fName = value?["firstName"] as? String ?? ""
                 let lName = value?["lastName"] as? String ?? ""
-                
+                let jobsDone = value?["jobsCompleted"] as? String ?? ""
+                let jobsPosted = value?["jobsPosted"] as? String ?? ""
+                let moneyEarned = value?["moneyEarned"] as? String ?? ""
+                print(value?["photoUrl"] as! String)
+                // Placeholder image
+                let placeholderImage = UIImage(named: "profilePlaceholderImg.png")
+                // Load the image using SDWebImage
+                self.profileImage.sd_setImage(with: URL(string: value?["photoUrl"] as! String), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+                })
                 // Populate sidebar
                 self.userNameLabel.text = "\(fName) \(lName)"
+                self.userNumJobsCompleted.text = jobsDone
+                self.userNumJobsPosted.text = jobsPosted
+                self.userMoneyEarned.text = "$ \(moneyEarned)"
             }) { (error) in
                 print(error.localizedDescription)
             }
