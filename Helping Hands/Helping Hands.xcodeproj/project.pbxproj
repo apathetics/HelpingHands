@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047367DE20490EC600029D0C /* SearchTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047367DD20490EC600029D0C /* SearchTabViewController.swift */; };
+		047367E020490EDC00029D0C /* ExploreTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047367DF20490EDC00029D0C /* ExploreTabViewController.swift */; };
 		0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */; };
 		1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DA205F3FFA00628A1C /* AppDelegate.swift */; };
 		1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DB205F3FFA00628A1C /* globalCoreData.xcdatamodeld */; };
@@ -23,7 +25,6 @@
 		1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5FB205F413300628A1C /* JobTableViewCell.swift */; };
 		1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A601205F415C00628A1C /* ExploreTabViewController.swift */; };
 		1927A608205F418100628A1C /* CommunityTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A604205F418000628A1C /* CommunityTabViewController.swift */; };
-		1927A609205F418100628A1C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A605205F418000628A1C /* Event.swift */; };
 		1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A606205F418100628A1C /* AddEventViewController.swift */; };
 		1927A60B205F418100628A1C /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A607205F418100628A1C /* EventTableViewCell.swift */; };
 		1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A60D205F419F00628A1C /* SearchTabViewController.swift */; };
@@ -38,6 +39,24 @@
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
 		192D63B020630578006189CA /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192D63AF20630578006189CA /* ThemeVC.swift */; };
+		192D63B3206315B9006189CA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192D63B2206315B9006189CA /* Event.swift */; };
+		3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB0205F350700DBFA64 /* UserViewController.swift */; };
+		3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* EventViewController.swift */; };
+		3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB4205F3CB500DBFA64 /* JobViewController.swift */; };
+		3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */; };
+		39873256205FC55F00A29D39 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39873255205FC55F00A29D39 /* User.swift */; };
+		398732872062A83300A29D39 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732862062A83300A29D39 /* EditUserViewController.swift */; };
+		398732892062B43200A29D39 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732882062B43200A29D39 /* EditEventViewController.swift */; };
+		3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328A2062C8DB00A29D39 /* EditJobViewController.swift */; };
+		AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */; };
+		AB5F4B7C205DA37F0085A11D /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7B205DA37F0085A11D /* QRViewController.swift */; };
+		AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */; };
+		AB5F4B81205DC2990085A11D /* HiredPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B80205DC2990085A11D /* HiredPaymentController.swift */; };
+		AB5F4B83205DC7E40085A11D /* ratingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B82205DC7E40085A11D /* ratingControl.swift */; };
+		AB5F4B85205DCD310085A11D /* HiringPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F4B84205DCD310085A11D /* HiringPaymentController.swift */; };
+		AB5F4B88205DDEA30085A11D /* (null) in Sources */ = {isa = PBXBuildFile; };
+		AB7743012047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		AB7743032047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164520626A1C0063A232 /* DatabaseHelper.swift */; };
 		ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */; };
 		ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */; };
@@ -45,6 +64,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		047367DD20490EC600029D0C /* SearchTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabViewController.swift; sourceTree = "<group>"; };
+		047367DF20490EDC00029D0C /* ExploreTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTabViewController.swift; sourceTree = "<group>"; };
 		1927A5DA205F3FFA00628A1C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1927A5DC205F3FFA00628A1C /* globalCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = globalCoreData.xcdatamodel; sourceTree = "<group>"; };
 		1927A5DF205F404600628A1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,7 +85,6 @@
 		1927A5FB205F413300628A1C /* JobTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
 		1927A601205F415C00628A1C /* ExploreTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreTabViewController.swift; sourceTree = "<group>"; };
 		1927A604205F418000628A1C /* CommunityTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityTabViewController.swift; sourceTree = "<group>"; };
-		1927A605205F418000628A1C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1927A606205F418100628A1C /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		1927A607205F418100628A1C /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		1927A60D205F419F00628A1C /* SearchTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTabViewController.swift; sourceTree = "<group>"; };
@@ -80,9 +100,24 @@
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		192D63AF20630578006189CA /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
+		192D63B2206315B9006189CA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3970FEB0205F350700DBFA64 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		3970FEB2205F3CA300DBFA64 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		3970FEB4205F3CB500DBFA64 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
+		3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		39873255205FC55F00A29D39 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		398732862062A83300A29D39 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
+		398732882062B43200A29D39 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
+		3987328A2062C8DB00A29D39 /* EditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJobViewController.swift; sourceTree = "<group>"; };
 		7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Helping_Hands.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
+		AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
+		AB5F4B7B205DA37F0085A11D /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		AB5F4B80205DC2990085A11D /* HiredPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiredPaymentController.swift; sourceTree = "<group>"; };
+		AB5F4B82205DC7E40085A11D /* ratingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingControl.swift; sourceTree = "<group>"; };
+		AB5F4B84205DCD310085A11D /* HiringPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiringPaymentController.swift; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9E164520626A1C0063A232 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWRevealViewController.podspec; sourceTree = "<group>"; };
@@ -163,7 +198,6 @@
 			children = (
 				1927A606205F418100628A1C /* AddEventViewController.swift */,
 				1927A604205F418000628A1C /* CommunityTabViewController.swift */,
-				1927A605205F418000628A1C /* Event.swift */,
 				1927A607205F418100628A1C /* EventTableViewCell.swift */,
 			);
 			path = CommunityTab;
@@ -197,12 +231,43 @@
 			path = ConfirmationQR;
 			sourceTree = "<group>";
 		};
+		192D63B120630E41006189CA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				AB5F4B84205DCD310085A11D /* HiringPaymentController.swift */,
+				AB5F4B82205DC7E40085A11D /* ratingControl.swift */,
+				047367DD20490EC600029D0C /* SearchTabViewController.swift */,
+				AB5F4B7D205DA88D0085A11D /* ScannerViewController.swift */,
+				AB5F4B80205DC2990085A11D /* HiredPaymentController.swift */,
+				AB5F4B7B205DA37F0085A11D /* QRViewController.swift */,
+				047367DF20490EDC00029D0C /* ExploreTabViewController.swift */,
+				AB5F4B78205D8EB60085A11D /* SearchTableCell.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		3708DC6BA8FE859D671CF9A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3970FEAF205F34A900DBFA64 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				192D63B2206315B9006189CA /* Event.swift */,
+				3970FEB0205F350700DBFA64 /* UserViewController.swift */,
+				398732862062A83300A29D39 /* EditUserViewController.swift */,
+				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
+				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
+				3970FEB2205F3CA300DBFA64 /* EventViewController.swift */,
+				398732882062B43200A29D39 /* EditEventViewController.swift */,
+				3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */,
+				39873255205FC55F00A29D39 /* User.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		AB7742F42047853A00799F84 = {
@@ -212,6 +277,7 @@
 				AB7742FE2047853A00799F84 /* Products */,
 				ED57142D81884C4109A7DE21 /* Pods */,
 				3708DC6BA8FE859D671CF9A5 /* Frameworks */,
+				192D63B120630E41006189CA /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,6 +307,7 @@
 				1927A5D9205F3FD500628A1C /* Main */,
 				AB9E164520626A1C0063A232 /* DatabaseHelper.swift */,
 				192D63AF20630578006189CA /* ThemeVC.swift */,
+				3970FEAF205F34A900DBFA64 /* models */,
 			);
 			path = "Helping Hands";
 			sourceTree = "<group>";
@@ -414,7 +481,6 @@
 				1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */,
 				1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */,
 				1927A5F5205F40F300628A1C /* BEMCheckBox.m in Sources */,
-				1927A609205F418100628A1C /* Event.swift in Sources */,
 				1927A615205F41C900628A1C /* HiringPaymentController.swift in Sources */,
 				1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */,
 				1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */,
@@ -433,7 +499,27 @@
 				AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */,
 				1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */,
 				1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */,
+				192D63B3206315B9006189CA /* Event.swift in Sources */,
 				1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */,
+				AB5F4B85205DCD310085A11D /* HiringPaymentController.swift in Sources */,
+				3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */,
+				398732872062A83300A29D39 /* EditUserViewController.swift in Sources */,
+				AB5F4B83205DC7E40085A11D /* ratingControl.swift in Sources */,
+				047367DE20490EC600029D0C /* SearchTabViewController.swift in Sources */,
+				AB5F4B88205DDEA30085A11D /* (null) in Sources */,
+				3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */,
+				3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */,
+				3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */,
+				AB7743012047853A00799F84 /* (null) in Sources */,
+				AB5F4B7E205DA88D0085A11D /* ScannerViewController.swift in Sources */,
+				398732892062B43200A29D39 /* EditEventViewController.swift in Sources */,
+				AB7743032047853A00799F84 /* (null) in Sources */,
+				AB5F4B81205DC2990085A11D /* HiredPaymentController.swift in Sources */,
+				AB5F4B7C205DA37F0085A11D /* QRViewController.swift in Sources */,
+				047367E020490EDC00029D0C /* ExploreTabViewController.swift in Sources */,
+				AB5F4B79205D8EB60085A11D /* SearchTableCell.swift in Sources */,
+				3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */,
+				39873256205FC55F00A29D39 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

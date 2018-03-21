@@ -21,5 +21,4 @@ class Event {
     var numHelpers:Int!
     var eventDateString: String!
     
-    
 }

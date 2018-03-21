@@ -1,20 +1,17 @@
 //
-//  EventTableViewCell.swift
+//  UserTableViewCell.swift
 //  Helping Hands
 //
-//  Created by Ozone Kafley on 3/13/18.
+//  Created by Bryan Bernal on 3/18/18.
 //  Copyright © 2018 Tracy Nguyen. All rights reserved.
 //
 
 import UIKit
 
-class EventTableViewCell: UITableViewCell {
+class UserTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var eventImg: UIImageView!
-    @IBOutlet weak var eventTitleLbl: UILabel!
-    @IBOutlet weak var distanceLbl: UILabel!
-    @IBOutlet weak var eventDescriptionLbl: UITextView!
-    @IBOutlet weak var helpersLbl: UILabel!
+    @IBOutlet weak var userImg: UIImageView!
+    @IBOutlet weak var userName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
