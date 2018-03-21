@@ -140,16 +140,29 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         } else {
             // everything else should be fine...
             // make a Job object and return to previous screen
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let datePicked = df.string(from: datePicker.date)
+            let dateFromString = df.date(from: datePicked)
+            df.dateFormat = "dd-MMM-yyyy"
+            let jobDateAsString = df.string(from: dateFromString!)
+            
             let job:Job = Job()
             job.jobTitle = titleFld.text
             job.jobDescription = descriptionFld.text
             job.date = datePicker.date
+            job.jobDateString = jobDateAsString
             job.isHourlyPaid = paymentTypeSeg.selectedSegmentIndex == 0 ? true : false
             job.distance = 0.0 // TODO
             job.payment = Double(paymentFld.text!)!
             job.numHelpers = Int(helpersCountFld.text!)!
             job.address = addressFld.text // TODO
             // TODO: store the image!!
+            
+            // TODO: Give actual address and current location!
+            job.address = "address"
+            job.currentLocation = true
+            
             job.image = imgView.image
             masterView!.jobToAdd = job
             redLbl.isHidden = true
@@ -174,7 +187,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
                     return
                 }
                 if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
-                    let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.date, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, ] 
+                    let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid] as [String : Any]
                     newPost.setValue(values)
                 }
             })
