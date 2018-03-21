@@ -52,6 +52,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     
+    
     @IBAction func signUpPressed(_ sender: Any) {
         // Make sure none of the fields are empty
         // (image is optional, placeholder will be used if none specified)
@@ -75,6 +76,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
             present(alert, animated: true, completion: nil)
             return
         }
+        
         
         if let email = emailTF.text, let pass = passwordTF.text {
             FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { user, error in
