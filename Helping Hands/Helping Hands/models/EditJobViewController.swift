@@ -99,7 +99,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         job.jobDescription = jobDescription.text
         
         // TODO when location is more than an illusion
-        editLocation.text = "curLocation"
+        job.address = editLocation.text
         
         masterView?.j = self.job
         self.performSegueToReturnBack()

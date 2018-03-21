@@ -1296,12 +1296,35 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="A83-UG-SP4">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" rowHeight="100" id="MHe-g2-IcO" customClass="UserTableViewCell" customModule="Helping_Hands" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A83-UG-SP4" id="c1H-F7-hiS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MHe-g2-IcO" id="ijq-kU-oNy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1p5-He-vu6" userLabel="userName">
+                                                    <rect key="frame" x="97" y="15" width="129" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="129" id="79Z-go-Shn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oYI-Bm-mfE">
+                                                    <rect key="frame" x="15" y="15" width="70" height="70"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oYI-Bm-mfE" firstAttribute="top" secondItem="ijq-kU-oNy" secondAttribute="topMargin" constant="4" id="5Kt-i5-kFk"/>
+                                                <constraint firstItem="oYI-Bm-mfE" firstAttribute="leading" secondItem="ijq-kU-oNy" secondAttribute="leadingMargin" id="78k-py-4il"/>
+                                                <constraint firstItem="1p5-He-vu6" firstAttribute="leading" secondItem="oYI-Bm-mfE" secondAttribute="trailing" constant="12" id="PC6-hA-aZQ"/>
+                                                <constraint firstItem="oYI-Bm-mfE" firstAttribute="bottom" secondItem="1p5-He-vu6" secondAttribute="bottom" id="TVl-sZ-n2t"/>
+                                                <constraint firstItem="1p5-He-vu6" firstAttribute="centerY" secondItem="ijq-kU-oNy" secondAttribute="centerY" id="VZL-ww-j58"/>
+                                                <constraint firstItem="1p5-He-vu6" firstAttribute="leading" secondItem="ijq-kU-oNy" secondAttribute="leading" constant="97" id="lCD-DN-BTh"/>
+                                                <constraint firstItem="1p5-He-vu6" firstAttribute="bottom" secondItem="ijq-kU-oNy" secondAttribute="bottomMargin" constant="-4" id="tUI-BG-GeN"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -1325,9 +1348,9 @@
                         <viewLayoutGuide key="safeArea" id="b6w-5q-q36"/>
                     </view>
                     <navigationItem key="navigationItem" title="Event" id="B6j-Ic-J0S">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="5ji-Bi-JVF">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Up" id="5ji-Bi-JVF">
                             <connections>
-                                <segue destination="u2y-Gl-ZTE" kind="show" identifier="showEditEvent" id="fAH-sQ-fs7"/>
+                                <action selector="rightButtonPress:" destination="KFG-L9-i1b" id="qnb-7n-xT4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1341,11 +1364,12 @@
                         <outlet property="eventPhoto" destination="hJu-qb-1fm" id="uDp-LW-viO"/>
                         <outlet property="eventTitle" destination="jTi-ei-d1b" id="k4g-yi-sVS"/>
                         <outlet property="table" destination="eFh-r3-f9K" id="Xo7-7V-dTC"/>
+                        <segue destination="u2y-Gl-ZTE" kind="show" identifier="showEventEditor" id="YOZ-Hu-tbU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6p2-Sv-ZZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2348" y="-263"/>
+            <point key="canvasLocation" x="2316" y="-263"/>
         </scene>
         <!--User-->
         <scene sceneID="Mp1-Mc-Dvt">
@@ -1644,10 +1668,10 @@
             </objects>
             <point key="canvasLocation" x="3052" y="-263.11844077961024"/>
         </scene>
-        <!--Edit Event-->
+        <!--Edit Job-->
         <scene sceneID="h0E-rX-i5q">
             <objects>
-                <viewController title="Edit Job" id="goc-cL-bG9" userLabel="Edit Event" customClass="EditJobViewController" customModule="Helping_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Edit Job" id="goc-cL-bG9" userLabel="Edit Job" customClass="EditJobViewController" customModule="Helping_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1iX-Zl-3vW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

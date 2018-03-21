@@ -22,12 +22,26 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var table: UITableView!
     
     var masterView:CommunityTabViewController?
+    var eventID:Int?
     var clearCore: Bool = false
     var event:NSManagedObject?
+    var attendees = [User]()
+    var chosen:Int?
     var e:Event!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(eventID == 0) {
+            self.navigationItem.rightBarButtonItem?.title = "Edit"
+        }
+        table.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(eventID == 0) {
+            self.navigationItem.rightBarButtonItem?.title = "Edit"
+        }
+        
         e = convertEvent()
         eventPhoto.image = e.image
         eventTitle.text = e.eventTitle
@@ -36,7 +50,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         eventDistance.text = String(e.distance) + " mi"
         
         // TODO when location is more than an illusion
-        eventLocation.text = "curLocation"
+        eventLocation.text = e.address
         
         eventDescription.text = e.eventDescription
         
@@ -66,16 +80,67 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return attendees.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell:UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
+        
+        let row = indexPath.row
+        let u:User = attendees[row]
+        
+        
+        cell.userImg.image = u.userPhoto
+        cell.userName.text = u.userFirstName + " " + u.userLastName
+        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosen = (indexPath.row)
+        
+        /*
+        self.performSegue(withIdentifier: "showAttendee", sender: self)
+        */
+    }
+    
+    @IBAction func rightButtonPress(_ sender: Any) {
+        if(eventID == 0)
+        {
+            self.performSegue(withIdentifier: "showEventEditor", sender: self)
+        }
+        else {
+            let attendee:User = User()
+            attendee.userFirstName = "Emiliano"
+            attendee.userLastName = "Zapata"
+            attendee.userPhoto = UIImage()
+            attendee.userBio = "I like being a revolutionary, it's fun."
+            attendee.userEmail = "porfirioHater1912@mexico.com"
+            attendee.userLocationRadius = 0.0
+            attendee.userNumJobsPosted = 1
+            attendee.userNumJobsPending = 2
+            attendee.userJobsCompleted = 4
+            attendee.userID = attendees.count
+            
+            attendees.append(attendee)
+            self.table.reloadData()
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showEditEvent")
+        if(segue.identifier == "showAttendee")
+        {
+            /*
+            let j:User = attendees[chosen!]
+            let userVC:UserViewController = segue.destination as! UserViewController
+            userVC.masterView = self
+            userVC.user = j
+            userVC.userIndexPath = chosen!
+            */
+ 
+        }
+        if(segue.identifier == "showEventEditor")
         {
             let editorVC:EditEventViewController = segue.destination as! EditEventViewController
             editorVC.masterView = self

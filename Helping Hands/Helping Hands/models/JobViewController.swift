@@ -52,7 +52,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
         jobDate.text = getDate(date:j.date! as NSDate)
         jobDistance.text = String(j.distance) + " mi"
-        jobLocation.text = "curLocation"
+        jobLocation.text = j.address
         jobDescription.text = j.jobDescription
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -69,7 +69,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
         jobDate.text = getDate(date:j.date! as NSDate)
         jobDistance.text = String(j.distance) + " mi"
-        jobLocation.text = "curLocation"
+        jobLocation.text = j.address
         jobDescription.text = j.jobDescription
     }
     
