@@ -8,25 +8,23 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
 
 class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
+    
+    @IBOutlet var table: UITableView!
     
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     
     // Currently only searching through jobs and not events
-    var unfilteredJobs = [NSManagedObject]()
-    var filteredJobs: [NSManagedObject]?
+    var unfilteredJobs = [Job]()
+    var filteredJobs: [Job]?
     
     // Search controller responsible for doing real-time text search
     let searchController = UISearchController(searchResultsController: nil)
     
     // Create unfiltered job list from Job CoreData
     override func viewDidLoad() {
-        
-        for job in retrieveJobs() {
-            unfilteredJobs.append(job)
-        }
-        filteredJobs = unfilteredJobs
         
         // Search bar settings
         searchController.searchResultsUpdater = self
@@ -41,6 +39,11 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        retrieveJobs()
+        filteredJobs = unfilteredJobs
     }
     
     // Basic Table Functions
@@ -61,11 +64,11 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
     
         // Fill cells with jobs from filteredJobs
         if let returnedResults = filteredJobs {
-            let result = returnedResults[indexPath.row]
-            cell.jobTitleLabel.text = result.value(forKey: "jobTitle") as? String
-            cell.picture.image = UIImage(data: result.value(forKey: "jobImage") as! Data)
-            cell.distanceLabel.text = String(result.value(forKey: "jobDistance") as! Double)
-            cell.descriptionLabel.text = result.value(forKey: "jobDescription") as? String
+            let result: Job = returnedResults[indexPath.row]
+            cell.jobTitleLabel.text = result.jobTitle
+            cell.picture.image = result.image
+            cell.distanceLabel.text = String(result.distance)
+            cell.descriptionLabel.text = result.jobDescription
         }
         
         return cell
@@ -75,7 +78,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             filteredJobs = unfilteredJobs.filter {
-                job in return ((job.value(forKey: "jobTitle") as? String)?.lowercased().contains(searchText.lowercased()))!
+                job in return (job.jobTitle.lowercased().contains(searchText.lowercased()))
             }
         } else {
             filteredJobs = unfilteredJobs
@@ -83,29 +86,46 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
         tableView.reloadData()
     }
     
-    // Retrieve Jobs from CoreData
-    // @TODO: Put this in a Util class.
-    func retrieveJobs() -> [NSManagedObject] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
+    // FIREBASE RETRIEVAL
+    func retrieveJobs() {
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"JobEntity")
-        var fetchedResults:[NSManagedObject]? = nil
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let jobsRef = databaseRef.child("jobs")
         
-        // Examples of filtering using predicates
-        // let predicate = NSPredicate(format: "age = 35")
-        // let predicate = NSPredicate(format: "name CONTAINS[c] 'ake'")
-        // request.predicate = predicate
-        
-        do {
-            try fetchedResults = context.fetch(request) as? [NSManagedObject]
-        } catch {
-            // If an error occurs
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        return(fetchedResults)!
+        jobsRef.observe(FIRDataEventType.value, with: {(snapshot) in
+            
+            // make sure there are jobs
+            if snapshot.childrenCount > 0 {
+                
+                // clear job list before appending again
+                self.unfilteredJobs.removeAll()
+                
+                // for each snapshot (entity present under jobs child)
+                for jobSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    
+                    let jobObject = jobSnapshot.value as! [String: AnyObject]
+                    let job = Job()
+                    
+                    job.address = jobObject["jobAddress"] as! String
+                    job.currentLocation = jobObject["jobCurrentLocation"] as! Bool
+                    job.jobDateString = jobObject["jobDate"] as! String
+                    job.jobDescription = jobObject["jobDescription"] as! String
+                    job.distance = jobObject["jobDistance"] as! Double
+                    
+                    // TODO: Image from URL?
+                    job.image = UIImage(named: "meeting")
+                    
+                    job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
+                    job.numHelpers = jobObject["jobNumHelpers"] as! Int
+                    job.payment = jobObject["jobPayment"] as! Double
+                    job.jobTitle = jobObject["jobTitle"] as! String
+                    
+                    self.unfilteredJobs.append(job)
+                    self.table.reloadData()
+                    
+                }
+            }
+        })
     }
     
     // Retrieve Events from CoreData

@@ -20,4 +20,5 @@ class Job {
     var address:String!
     var currentLocation:Bool!
     var numHelpers:Int!
+    var jobDateString: String!
 }

@@ -39,6 +39,7 @@
 		ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */; };
 		ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */; };
 		ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E52060E4B700E26814 /* SideMenuController.swift */; };
+		AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E164520626A1C0063A232 /* DatabaseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		ABA3A2E0206067CF00E26814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		ABA3A2E52060E4B700E26814 /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		AB9E164520626A1C0063A232 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				1927A5EA205F40DA00628A1C /* CheckBox */,
 				1927A5E3205F406B00628A1C /* Authentication */,
 				1927A5D9205F3FD500628A1C /* Main */,
+				AB9E164520626A1C0063A232 /* DatabaseHelper.swift */,
 			);
 			path = "Helping Hands";
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,
 				1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */,
+				AB9E164620626A1C0063A232 /* DatabaseHelper.swift in Sources */,
 				1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */,
 				1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */,
 				1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */,

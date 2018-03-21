@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+import FirebaseStorage
 
 let LOC_DEFAULT_TEXT = "Using your current location by default. You can use the toggle to the right to change this."
 let DESCR_PLACEHOLDER = "What will Helpers be doing at this job? Add as much or little detail as you'd like, but make sure to be clear. You'll be more likely to attract Helpers that way!"
@@ -138,57 +140,60 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         } else {
             // everything else should be fine...
             // make a Job object and return to previous screen
+            
+            // Format the date before saving as a string (database won't take NSDate)
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let datePicked = df.string(from: datePicker.date)
+            let dateFromString = df.date(from: datePicked)
+            df.dateFormat = "dd-MMM-yyyy"
+            let jobDateAsString = df.string(from: dateFromString!)
+            
             let job:Job = Job()
             job.jobTitle = titleFld.text
             job.jobDescription = descriptionFld.text
             job.date = datePicker.date
+            job.jobDateString = jobDateAsString
             job.isHourlyPaid = paymentTypeSeg.selectedSegmentIndex == 0 ? true : false
             job.distance = 0.0 // TODO
             job.payment = Double(paymentFld.text!)!
             job.numHelpers = Int(helpersCountFld.text!)!
             job.address = addressFld.text // TODO
-            // TODO: store the image!!
+            
+            // TODO: Give actual address and current location!
+            job.address = "address"
+            job.currentLocation = true
+            
             job.image = imgView.image
-            masterView!.jobToAdd = job
             redLbl.isHidden = true
             
-            // Add job to CoreData
+            // Add job to database
             storeJob(j: job)
             
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
+    
+    // Database
     func storeJob(j: Job) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let event = NSEntityDescription.insertNewObject(
-            forEntityName: "JobEntity", into: context)
-        
-        // Set the attribute values
-        event.setValue(j.jobTitle, forKey: "jobTitle")
-        event.setValue(0, forKey: "jobPayment")
-        event.setValue(j.numHelpers, forKey: "jobNumHelpers")
-        event.setValue(UIImagePNGRepresentation(j.image!)!, forKey: "jobImage")
-        event.setValue(j.distance, forKey: "jobDistance")
-        event.setValue(j.jobDescription, forKey: "jobDescription")
-        event.setValue(j.date, forKey: "jobDate")
-        event.setValue(j.currentLocation, forKey: "jobCurrentLocation")
-        event.setValue(j.address, forKey: "jobAddress")
-        event.setValue(j.isHourlyPaid, forKey: "jobIsHourlyPaid")
-        event.setValue(j.payment, forKey: "jobPayment")
-        // Commit the changes
-        do {
-            try context.save()
-        } catch {
-            // If an error occurs
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let postRef = databaseRef.child("jobs")
+        let newPost = postRef.childByAutoId()
+        if let imgUpload = UIImagePNGRepresentation(j.image!) {
+            let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
+            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
+                    let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid] as [String : Any]
+                    newPost.setValue(values)
+                }
+            })
         }
-        
     }
     
     //----------------------------------------------------------------//
