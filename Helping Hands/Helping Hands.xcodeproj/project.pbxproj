@@ -38,6 +38,7 @@
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
 		192D63B020630578006189CA /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192D63AF20630578006189CA /* ThemeVC.swift */; };
 		194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194FC6A3206419B800D6E439 /* Gidole-Regular.otf */; };
+		194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */; };
 		3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB0205F350700DBFA64 /* UserViewController.swift */; };
 		3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* EventViewController.swift */; };
 		3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB4205F3CB500DBFA64 /* JobViewController.swift */; };
@@ -47,9 +48,9 @@
 		398732892062B43200A29D39 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732882062B43200A29D39 /* EditEventViewController.swift */; };
 		3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328A2062C8DB00A29D39 /* EditJobViewController.swift */; };
 		3987328D206349C100A29D39 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328C206349C100A29D39 /* ContactUsViewController.swift */; };
-		AB5F4B88205DDEA30085A11D /* (null) in Sources */ = {isa = PBXBuildFile; };
-		AB7743012047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		AB7743032047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		AB5F4B88205DDEA30085A11D /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		AB7743012047853A00799F84 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		AB7743032047853A00799F84 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		AB9E1651206318A60063A232 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E1650206318A60063A232 /* Event.swift */; };
 		ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */; };
 		ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */; };
@@ -92,6 +93,7 @@
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		192D63AF20630578006189CA /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
 		194FC6A3206419B800D6E439 /* Gidole-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gidole-Regular.otf"; path = "gidole/Gidole-Regular.otf"; sourceTree = "<group>"; };
+		194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGradientExtension.swift; sourceTree = "<group>"; };
 		3970FEB0205F350700DBFA64 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		3970FEB2205F3CA300DBFA64 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		3970FEB4205F3CB500DBFA64 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,8 @@
 		1927A5D9205F3FD500628A1C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
+				1927A61F205F430C00628A1C /* Info.plist */,
 				1927A624205F439000628A1C /* LaunchScreen.storyboard */,
 				1927A622205F439000628A1C /* Main.storyboard */,
 				1927A5DF205F404600628A1C /* Assets.xcassets */,
@@ -226,6 +230,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		194FC6A5206429E900D6E439 /* UI Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				192D63AF20630578006189CA /* ThemeVC.swift */,
+				194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */,
+			);
+			path = "UI Stuff";
+			sourceTree = "<group>";
+		};
 		3708DC6BA8FE859D671CF9A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,10 +283,9 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				194FC6A5206429E900D6E439 /* UI Stuff */,
 				194FC6A22064194E00D6E439 /* Fonts */,
 				ABA3A2DD2060678300E26814 /* SideBarMenu */,
-				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
-				1927A61F205F430C00628A1C /* Info.plist */,
 				1927A61D205F430400628A1C /* CheckBoxHeader.h */,
 				1927A618205F41D200628A1C /* ConfirmationQR */,
 				1927A611205F41B100628A1C /* PaymentReview */,
@@ -284,7 +296,6 @@
 				1927A5EA205F40DA00628A1C /* CheckBox */,
 				1927A5E3205F406B00628A1C /* Authentication */,
 				1927A5D9205F3FD500628A1C /* Main */,
-				192D63AF20630578006189CA /* ThemeVC.swift */,
 				3970FEAF205F34A900DBFA64 /* models */,
 			);
 			path = "Helping Hands";
@@ -436,10 +447,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageColors/UIImageColors.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageColors.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -458,6 +471,7 @@
 				1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */,
 				ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */,
 				1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */,
+				194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */,
 				1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */,
 				AB9E1651206318A60063A232 /* Event.swift in Sources */,
 				1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */,
@@ -483,13 +497,13 @@
 				1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */,
 				3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */,
 				398732872062A83300A29D39 /* EditUserViewController.swift in Sources */,
-				AB5F4B88205DDEA30085A11D /* (null) in Sources */,
+				AB5F4B88205DDEA30085A11D /* BuildFile in Sources */,
 				3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */,
 				3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */,
 				3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */,
-				AB7743012047853A00799F84 /* (null) in Sources */,
+				AB7743012047853A00799F84 /* BuildFile in Sources */,
 				398732892062B43200A29D39 /* EditEventViewController.swift in Sources */,
-				AB7743032047853A00799F84 /* (null) in Sources */,
+				AB7743032047853A00799F84 /* BuildFile in Sources */,
 				3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */,
 				39873256205FC55F00A29D39 /* User.swift in Sources */,
 			);
@@ -632,7 +646,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BJLQZPP9P3;
-				INFOPLIST_FILE = "Helping Hands/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
@@ -652,7 +666,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BJLQZPP9P3;
-				INFOPLIST_FILE = "Helping Hands/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";

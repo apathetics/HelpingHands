@@ -18,7 +18,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var jobPrice: UILabel!
     @IBOutlet weak var jobLocation: UILabel!
     @IBOutlet weak var jobDistance: UILabel!
-    @IBOutlet weak var jobDescription: UITextView!
+    @IBOutlet weak var jobDescription: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var navButton: UIBarButtonItem!
     

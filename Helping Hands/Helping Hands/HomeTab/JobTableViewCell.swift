@@ -13,7 +13,7 @@ class JobTableViewCell: UITableViewCell {
     @IBOutlet weak var jobImg: UIImageView!
     @IBOutlet weak var jobTitleLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
-    @IBOutlet weak var jobDescriptionLbl: UITextView!
+    @IBOutlet weak var jobDescriptionLbl: UILabel!
     @IBOutlet weak var paymentLbl: UILabel!
     
     override func awakeFromNib() {
