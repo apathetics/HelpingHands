@@ -45,6 +45,7 @@
 		398732872062A83300A29D39 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732862062A83300A29D39 /* EditUserViewController.swift */; };
 		398732892062B43200A29D39 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732882062B43200A29D39 /* EditEventViewController.swift */; };
 		3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328A2062C8DB00A29D39 /* EditJobViewController.swift */; };
+		3987328D206349C100A29D39 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328C206349C100A29D39 /* ContactUsViewController.swift */; };
 		AB5F4B88205DDEA30085A11D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB7743012047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB7743032047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -97,6 +98,7 @@
 		398732862062A83300A29D39 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
 		398732882062B43200A29D39 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		3987328A2062C8DB00A29D39 /* EditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJobViewController.swift; sourceTree = "<group>"; };
+		3987328C206349C100A29D39 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Helping_Hands.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				ABA3A2DF206067CF00E26814 /* SWRevealViewController */,
 				ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */,
 				ABA3A2E52060E4B700E26814 /* SideMenuController.swift */,
+				3987328C206349C100A29D39 /* ContactUsViewController.swift */,
 			);
 			path = SideBarMenu;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */,
 				1927A60B205F418100628A1C /* EventTableViewCell.swift in Sources */,
 				1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */,
+				3987328D206349C100A29D39 /* ContactUsViewController.swift in Sources */,
 				1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */,
 				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,
