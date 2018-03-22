@@ -20,6 +20,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     var jobs = [Job]()
+    var chosen: Int?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
@@ -46,6 +47,10 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosen = (indexPath.row)
+        self.performSegue(withIdentifier: "showJob", sender: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,19 +79,23 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let addJobVC:AddJobViewController = segue.destination as! AddJobViewController
-        addJobVC.masterView = self
+        if(segue.identifier == "addJob")
+        {
+            let addJobVC:AddJobViewController = segue.destination as! AddJobViewController
+            addJobVC.masterView = self
+        }
+        if(segue.identifier == "showJob")
+        {
+            let j:Job = jobs[chosen!]
+            let jobVC:JobViewController = segue.destination as! JobViewController
+            jobVC.masterView = self
+            jobVC.job = j
+            jobVC.jobID = chosen!
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         retrieveJobs()
-    }
-    
-    // POSSIBLE SOLUTION FOR URL TO DATA RETRIEVAL (not sure how @escaping works tbh)
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
     }
     
     // FIREBASE RETRIEVAL

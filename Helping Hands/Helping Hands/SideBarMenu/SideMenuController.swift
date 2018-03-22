@@ -28,14 +28,14 @@ class SideMenuController: UIViewController {
         // Display profile image as a cirle
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         profileImage.clipsToBounds = true
-        let profileTap = UITapGestureRecognizer(target: self, action: #selector(tapGesture1))
+        let profileTap = UITapGestureRecognizer(target: self, action: #selector(profileTapGesture))
         profileImage.addGestureRecognizer(profileTap)
         profileImage.isUserInteractionEnabled = true
         populateSideMenu()
     }
     
     // Dummy for connecting to PROFILE screen
-    @objc func tapGesture1() {
+    @objc func profileTapGesture() {
         print("Image Tapped")
     }
     
