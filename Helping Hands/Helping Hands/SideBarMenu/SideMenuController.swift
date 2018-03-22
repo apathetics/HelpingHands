@@ -53,14 +53,14 @@ class SideMenuController: UIViewController {
     
     func grabProfile() -> User {
         let user:User = User()
-        user.userFirstName = "Profiley"
-        user.userLastName = "Profiler"
-        user.userEmail = "hmu@yahoo.com"
-        user.userBio = "This is a profile fam"
+        user.userFirstName = "FirstName"
+        user.userLastName = "LastName"
+        user.userEmail = "user@email.com"
+        user.userBio = "This is a user bio. Forgive the dummy! :)"
         user.userJobsCompleted = 4
         user.userLocationRadius = 0.0
         user.userNumJobsPosted = 10
-        
+        user.userPhoto = UIImage(named: "meeting")
         // Change the ones below
         return user
     }
