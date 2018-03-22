@@ -109,7 +109,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         {
             let j:User = inquiries[chosen!]
             let userVC:UserViewController = segue.destination as! UserViewController
-            userVC.masterView = self
             userVC.user = j
             userVC.userIndexPath = chosen!
         }
@@ -124,11 +123,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     func getDate(date: NSDate) -> String {
         let dateFormate = DateFormatter()
         dateFormate.dateFormat = "MM/dd/yyyy"
-        return dateFormate.string(from: date as Date)
-    }
-    func getTime(date: NSDate) -> String {
-        let dateFormate = DateFormatter()
-        dateFormate.dateFormat = "HH:mm"
         return dateFormate.string(from: date as Date)
     }
     

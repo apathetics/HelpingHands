@@ -31,7 +31,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         eventPhoto.image = event.image
         editEventTitle.text = event.eventTitle
         editEventHelpers.text = String(event.numHelpers)
-        editEventDate.text = getDate(date: event.date as NSDate)
+        editEventDate.text = event.eventDateString
         eventDescription.text = event.eventDescription
         
         // TODO when location is more than an illusion

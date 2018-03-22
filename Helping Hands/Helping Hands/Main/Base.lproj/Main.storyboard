@@ -353,11 +353,12 @@
                         <outlet property="userNameLabel" destination="CST-hk-Lsq" id="VMG-es-eJo"/>
                         <outlet property="userNumJobsCompleted" destination="1FK-76-m47" id="jAC-3g-lCs"/>
                         <outlet property="userNumJobsPosted" destination="Dfk-aV-fNN" id="I5w-yr-s4A"/>
+                        <segue destination="tu9-qX-puX" kind="show" identifier="showProfile" id="0ez-DH-srq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Igy-z1-HVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1500" y="-2556"/>
+            <point key="canvasLocation" x="1986" y="-2556"/>
         </scene>
         <!--Job-->
         <scene sceneID="05I-9Y-JOG">
@@ -970,7 +971,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfN-gR-cmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="441" y="-861"/>
+            <point key="canvasLocation" x="441" y="-862"/>
         </scene>
         <!--Community-->
         <scene sceneID="n1V-i5-YoU">
@@ -2135,4 +2136,7 @@
         <image name="search" width="30" height="30"/>
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0Vl-gT-Hp2"/>
+    </inferredMetricsTieBreakers>
 </document>

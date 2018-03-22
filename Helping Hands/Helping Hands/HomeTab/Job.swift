@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseStorage
 
 class Job {
     var jobTitle:String!

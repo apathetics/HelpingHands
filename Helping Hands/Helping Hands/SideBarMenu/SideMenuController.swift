@@ -37,6 +37,30 @@ class SideMenuController: UIViewController {
     // Dummy for connecting to PROFILE screen
     @objc func profileTapGesture() {
         print("Image Tapped")
+        self.performSegue(withIdentifier: "showProfile", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showProfile")
+        {
+            let u:User = grabProfile()
+            let userVC:UserViewController = segue.destination as! UserViewController
+            userVC.user = u
+        }
+    }
+    
+    func grabProfile() -> User {
+        let user:User = User()
+        user.userFirstName = "Profiley"
+        user.userLastName = "Profiler"
+        user.userEmail = "hmu@yahoo.com"
+        user.userBio = "This is a profile fam"
+        user.userJobsCompleted = 4
+        user.userLocationRadius = 0.0
+        user.userNumJobsPosted = 10
+        
+        // Change the ones below
+        return user
     }
     
     @IBAction func settingsButtonClicked(_ sender: Any) {

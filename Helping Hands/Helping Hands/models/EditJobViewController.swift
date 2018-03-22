@@ -31,7 +31,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         jobPhoto.image = job.image
         editJobTitle.text = job.jobTitle
         editJobPrice.text = String(job.payment)
-        editJobDate.text = getDate(date: job.date as NSDate)
+        editJobDate.text = job.jobDateString
         jobDescription.text = job.jobDescription
         
         // TODO when location is more than an illusion
@@ -62,12 +62,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
             jobDescription.textColor = UIColor.lightGray
         }
     }
-    
-    func getDate(date: NSDate) -> String {
-        let dateFormate = DateFormatter()
-        dateFormate.dateFormat = "MM/dd/yyyy"
-        return dateFormate.string(from: date as Date)
-    }
+
     
     @IBAction func chooseImgBtn(_ sender: Any) {
         let image = UIImagePickerController()

@@ -29,7 +29,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     var imgChosen = false
     // TODO - Pass using database
-    var masterView:JobViewController?
     var clearCore: Bool = false
     var user:User!
     // TODO - Pass using database
