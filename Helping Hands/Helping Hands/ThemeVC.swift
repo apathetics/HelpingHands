@@ -23,6 +23,8 @@ class ThemeVC: UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : darkBlue]
         self.navigationController?.navigationBar.tintColor = darkBlue
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Gidole-Regular", size: 20)!]
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -37,6 +37,7 @@
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
 		192D63B020630578006189CA /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192D63AF20630578006189CA /* ThemeVC.swift */; };
+		194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194FC6A3206419B800D6E439 /* Gidole-Regular.otf */; };
 		3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB0205F350700DBFA64 /* UserViewController.swift */; };
 		3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* EventViewController.swift */; };
 		3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB4205F3CB500DBFA64 /* JobViewController.swift */; };
@@ -90,6 +91,7 @@
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		192D63AF20630578006189CA /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
+		194FC6A3206419B800D6E439 /* Gidole-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gidole-Regular.otf"; path = "gidole/Gidole-Regular.otf"; sourceTree = "<group>"; };
 		3970FEB0205F350700DBFA64 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		3970FEB2205F3CA300DBFA64 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		3970FEB4205F3CB500DBFA64 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,14 @@
 			path = ConfirmationQR;
 			sourceTree = "<group>";
 		};
+		194FC6A22064194E00D6E439 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				194FC6A3206419B800D6E439 /* Gidole-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		3708DC6BA8FE859D671CF9A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +270,7 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				194FC6A22064194E00D6E439 /* Fonts */,
 				ABA3A2DD2060678300E26814 /* SideBarMenu */,
 				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
 				1927A61F205F430C00628A1C /* Info.plist */,
@@ -372,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */,
+				194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */,
 				1927A621205F430C00628A1C /* Info.plist in Resources */,
 				1927A5E0205F404600628A1C /* Assets.xcassets in Resources */,
 				1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */,
