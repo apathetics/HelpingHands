@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorageUI
 
 class UserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
 
@@ -21,6 +24,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var jobBar: UISegmentedControl!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var navBar: UINavigationItem!
+    
+    let userRef = FIRDatabase.database().reference().child("users")
     
     var imgChosen = false
     // TODO - Pass using database
@@ -36,21 +41,15 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         if(user.userID != 0) {
             self.navigationItem.rightBarButtonItem =  nil;
         }
-        userPhoto.image = user.userPhoto
-        userName.text = (user.userFirstName)! + " " + (user?.userLastName)!
-        userEmail.text = user.userEmail
-        userDescription.text = user.userBio
-        // Change the ones below
-        userRating.text = String(describing: user.userNumJobsPosted!)
-        userLocation.text = String(describing: user.userLocationRadius!)
-        userDistance.text = String(describing: user.userJobsCompleted!)
+//        userPhoto.image = user.userPhoto
+//        userName.text = (user.userFirstName)! + " " + (user?.userLastName)!
+//        userEmail.text = user.userEmail
+//        userDescription.text = user.userBio
+//        // Change the ones below
+//        userRating.text = String(describing: user.userNumJobsPosted!)
+//        userLocation.text = String(describing: user.userLocationRadius!)
+//        userDistance.text = String(describing: user.userJobsCompleted!)
         
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-         if clearCore {
-         clearCoreuser()
-         }*/
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +76,41 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             editorVC.masterView = self
             print(user.userFirstName)
             editorVC.user = user
+        }
+    }
+    
+    func populateProfile() {
+        
+        if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {
+            userRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user values
+                let value = snapshot.value as? NSDictionary
+                let fName = value?["firstName"] as? String ?? ""
+                let lName = value?["lastName"] as? String ?? ""
+                let email = value?["email"] as? String ?? ""
+                let bio = value?["bio"] as? String ?? ""
+                let rating = value?["rating"] as? String ?? ""
+//                let jobsDone = String(value?["jobsCompleted"] as! Int64)
+//                let jobsPosted = String(value?["jobsPosted"] as! Int64)
+//                let moneyEarned = String(value?["moneyEarned"] as! Int64)
+                // Placeholder image
+                let placeholderImage = UIImage(named: "meeting")
+                // Load the image using SDWebImage
+                self.userPhoto.sd_setImage(with: URL(string: value?["photoUrl"] as! String), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+                })
+                // Populate Profile Info
+                self.userName.text = fName + " " + lName
+                self.userEmail.text = email
+                self.userDescription.text = bio
+                self.userRating.text = String(rating)
+                self.userLocation.text = "RADIUS PLACEHOLDER"
+                self.userDistance.text = "0 DISTANCE PLACEHOLDER"
+                
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        } else {
+            print("User ID is nil")
         }
     }
     

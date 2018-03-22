@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import FirebaseStorageUI
 
 class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -24,7 +25,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var masterView:HomeTabViewController?
     var jobID:Int?
     var clearCore: Bool = false
-    var job:NSManagedObject?
+    var job:Job?
     var inquiries = [User]()
     var chosen:Int?
     var j:Job!
@@ -45,29 +46,30 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         table.dataSource = self
         table.delegate = self
         
-        j = convertJob()
-        jobPhoto.image = j.image
+        j = job
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
         jobTitle.text = j.jobTitle
         let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-        jobDate.text = getDate(date:j.date! as NSDate)
+        jobDate.text = j.jobDateString
         jobDistance.text = String(j.distance) + " mi"
         jobLocation.text = j.address
         jobDescription.text = j.jobDescription
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-        if clearCore {
-            clearCoreJob()
-        }*/
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        jobPhoto.image = j.image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
         jobTitle.text = j.jobTitle
         let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-        jobDate.text = getDate(date:j.date! as NSDate)
+        jobDate.text = j.jobDateString
         jobDistance.text = String(j.distance) + " mi"
         jobLocation.text = j.address
         jobDescription.text = j.jobDescription
@@ -151,19 +153,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             inquiries.append(inquiry)
             self.table.reloadData()
         }
-    }
-    
-    func convertJob() -> Job {
-        let j = Job()
-        j.image = UIImage(data: job?.value(forKey: "jobImage") as! Data)
-        j.jobTitle = job?.value(forKey: "jobTitle") as? String
-        j.payment = job?.value(forKey: "jobPayment") as! Double
-        j.date = job?.value(forKey:"jobDate") as! Date
-        j.distance = job?.value(forKey: "jobDistance") as! Double
-        j.jobDescription = job?.value(forKey: "jobDescription") as? String
-        j.isHourlyPaid = job?.value(forKey: "jobIsHourlyPaid") as? Bool
-        j.address = "curLocation"
-        return j
     }
     
 }
