@@ -41,11 +41,13 @@ class SideMenuController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showProfile")
-        {
+        if(segue.identifier == "showProfile") {
             let u:User = grabProfile()
             let userVC:UserViewController = segue.destination as! UserViewController
             userVC.user = u
+        }
+        if(segue.identifier == "showContactUs") {
+            
         }
     }
     
@@ -69,12 +71,29 @@ class SideMenuController: UIViewController {
     
     @IBAction func contactUsButtonClicked(_ sender: Any) {
         print("Clicked contact us")
+        self.performSegue(withIdentifier: "showContactUs", sender: self)
     }
     
     @IBAction func nightModeButtonClicked(_ sender: Any) {
         print("Clicked night mode")
     }
     
+    // TEMPORARY PLACEMENT TO SHOW SCREENS
+    @IBAction func confirmHiredButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "showConfirmationHired", sender: self)
+    }
+    
+    @IBAction func confirmHireeButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "showConfirmationHiree", sender: self)
+    }
+    
+    @IBAction func paymentHireeButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "showPaymentHiree", sender: self)
+    }
+    
+    @IBAction func paymentHiredButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "showPaymentHired", sender: self)
+    }
     func populateSideMenu() {
 
         if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {

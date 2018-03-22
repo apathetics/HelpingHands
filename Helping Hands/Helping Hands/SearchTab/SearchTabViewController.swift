@@ -44,6 +44,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
     override func viewWillAppear(_ animated: Bool) {
         retrieveJobs()
         filteredJobs = unfilteredJobs
+        table.reloadData()
     }
     
     // Basic Table Functions
