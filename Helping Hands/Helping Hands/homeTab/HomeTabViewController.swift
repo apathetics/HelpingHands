@@ -13,7 +13,7 @@ import CoreLocation
 import FirebaseDatabase
 import FirebaseStorageUI
 
-class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class HomeTabViewController: ThemeVC, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     let manager = CLLocationManager()
     
