@@ -61,6 +61,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
+    // EDIT WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
         eventPhoto.image = e.image
         eventTitle.text = e.eventTitle

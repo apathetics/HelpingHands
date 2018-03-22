@@ -20,7 +20,8 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var chooseImgButton: UIButton!
     
     var imgChosen = false
-    // TODO - Pass using database
+    // TODO - Pass using database, DELETE MASTERVIEW WHEN SAVECHANGES
+    // REFERS TO FIREBASE
     var masterView:EventViewController?
     var clearCore: Bool = false
     var event:Event!
@@ -89,6 +90,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         self.dismiss(animated: true, completion: nil)
     }
     
+    // UPDATE FIREBASE REFERENCE VALUES INSTEAD OF event
     @IBAction func saveChanges(_ sender: Any) {
         event.image = eventPhoto.image
         event.eventTitle = editEventTitle.text

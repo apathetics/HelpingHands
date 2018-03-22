@@ -61,6 +61,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobDescription.text = j.jobDescription
     }
     
+    // UPDATE WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
@@ -107,9 +108,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showInquiry")
         {
-            let j:User = inquiries[chosen!]
+            let u:User = inquiries[chosen!]
             let userVC:UserViewController = segue.destination as! UserViewController
-            userVC.user = j
+            userVC.user = u
             userVC.userIndexPath = chosen!
         }
         if(segue.identifier == "showJobEditor")

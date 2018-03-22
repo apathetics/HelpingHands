@@ -1896,7 +1896,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Choose an image..."/>
                                 <connections>
-                                    <action selector="chooseImgBtn:" destination="7Kz-pK-AGX" eventType="touchUpInside" id="BWJ-D1-AUi"/>
+                                    <action selector="chooseImgBtn:" destination="7Kz-pK-AGX" eventType="touchUpInside" id="OSS-bR-IcY"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s5w-rE-ze9" userLabel="editEmail">
@@ -1925,7 +1925,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="chooseImgButton" destination="Fff-hS-DD3" id="m5k-YT-gZb"/>
+                        <outlet property="chooseImgButton" destination="Fff-hS-DD3" id="MbD-24-erq"/>
                         <outlet property="editEmail" destination="s5w-rE-ze9" id="BDM-E9-TmI"/>
                         <outlet property="editFirstName" destination="1UN-WF-uEC" id="Vh7-0N-mcU"/>
                         <outlet property="editLastName" destination="DLl-s8-ocl" id="k3m-t2-WkI"/>
@@ -2002,7 +2002,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Choose an image..."/>
                                 <connections>
-                                    <action selector="chooseImgBtn:" destination="7Kz-pK-AGX" eventType="touchUpInside" id="TZG-EY-7XN"/>
+                                    <action selector="chooseImgBtn:" destination="u2y-Gl-ZTE" eventType="touchUpInside" id="pby-PZ-Ld7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2017,7 +2017,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="chooseImgButton" destination="GqL-J9-TXC" id="wEd-qL-HSk"/>
+                        <outlet property="chooseImgButton" destination="GqL-J9-TXC" id="eB9-qH-iyZ"/>
                         <outlet property="editEventDate" destination="5CX-bC-yoh" id="yuV-ro-d82"/>
                         <outlet property="editEventHelpers" destination="B09-eh-hYv" id="Osy-7J-dTA"/>
                         <outlet property="editEventTitle" destination="mj6-UO-1Jt" id="EwB-D4-f6n"/>
@@ -2093,8 +2093,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Choose an image..."/>
                                 <connections>
-                                    <action selector="chooseImgBtn:" destination="7Kz-pK-AGX" eventType="touchUpInside" id="VT4-d4-J9a"/>
-                                    <action selector="chooseImgBtn:" destination="goc-cL-bG9" eventType="touchUpInside" id="thE-rP-AE8"/>
+                                    <action selector="chooseImgBtn:" destination="goc-cL-bG9" eventType="touchUpInside" id="FJg-kd-gxw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2109,7 +2108,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="chooseImgButton" destination="0qX-mu-BaM" id="y0o-Ox-lwC"/>
+                        <outlet property="chooseImgButton" destination="0qX-mu-BaM" id="N68-Vq-OH9"/>
                         <outlet property="editJobDate" destination="0jO-GI-VuH" id="rl4-z7-tAN"/>
                         <outlet property="editJobPrice" destination="zhX-QT-4tb" id="D3e-ah-Ltt"/>
                         <outlet property="editJobTitle" destination="6qS-FM-ufd" id="WcQ-iQ-7Tf"/>
