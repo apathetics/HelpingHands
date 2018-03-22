@@ -9,16 +9,18 @@
 import UIKit
 import CoreData
 import FirebaseStorageUI
+import UIImageColors
 
 class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var jobPhoto: UIImageView!
+    @IBOutlet weak var imgGradientView: UIView!
     @IBOutlet weak var jobTitle: UILabel!
     @IBOutlet weak var jobDate: UILabel!
     @IBOutlet weak var jobPrice: UILabel!
     @IBOutlet weak var jobLocation: UILabel!
     @IBOutlet weak var jobDistance: UILabel!
-    @IBOutlet weak var jobDescription: UITextView!
+    @IBOutlet weak var jobDescription: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var navButton: UIBarButtonItem!
     
@@ -51,6 +53,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
         self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            //self.imgGradientView.setGradientBackground(colorOne: UIColor.blue, colorTwo: UIColor.white)
         })
         jobTitle.text = j.jobTitle
         let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
@@ -59,6 +62,24 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobDistance.text = String(j.distance) + " mi"
         jobLocation.text = j.address
         jobDescription.text = j.jobDescription
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let colors = jobPhoto.image?.getColors()
+        
+        var color1 = colors?.background
+        var color2 = colors?.primary
+        
+        self.imgGradientView.setGradientBackground(colorOne: color1!, colorTwo: color2!)
+        let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imgGradientView.frame.size.width, height: imgGradientView.frame.size.height))
+        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3)
+        imgGradientView.addSubview(overlay)
+        jobPhoto.layer.shadowColor = UIColor.black.cgColor
+        jobPhoto.layer.shadowOpacity = 0.6
+        jobPhoto.layer.shadowOffset = CGSize.zero
+        jobPhoto.layer.shadowRadius = 8
+        jobPhoto.layer.shouldRasterize = true
+
     }
     
     // UPDATE WITH ALL FIELDS TAKEN FROM DATABASE

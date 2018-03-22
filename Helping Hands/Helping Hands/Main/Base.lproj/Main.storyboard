@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -306,9 +305,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CST-hk-Lsq">
-                                <rect key="frame" x="24" y="164" width="227" height="21"/>
+                                <rect key="frame" x="24" y="161" width="227" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -320,36 +319,42 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jobs Completed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ul8-s9-F1l">
                                 <rect key="frame" x="24" y="210" width="131" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jobs Posted:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bE-Sa-oj1">
                                 <rect key="frame" x="24" y="269" width="100" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$ Earned:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70P-Bc-bzp">
                                 <rect key="frame" x="24" y="322" width="74" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PD7-oX-H9n">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PD7-oX-H9n">
                                 <rect key="frame" x="24" y="537" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Contact Us"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
+                                <state key="normal" title="Contact Us">
+                                    <color key="titleColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="contactUsButtonClicked:" destination="tzi-9H-qhS" eventType="touchUpInside" id="7Nr-VB-qVS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJl-qi-E8W">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJl-qi-E8W">
                                 <rect key="frame" x="24" y="583" width="80" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Night Mode"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
+                                <state key="normal" title="Night Mode">
+                                    <color key="titleColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="nightModeButtonClicked:" destination="tzi-9H-qhS" eventType="touchUpInside" id="IkV-nh-cDK"/>
                                 </connections>
@@ -357,58 +362,73 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FK-76-m47">
                                 <rect key="frame" x="166" y="209" width="37" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfk-aV-fNN">
                                 <rect key="frame" x="166" y="268" width="37" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Num" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jG-yI-Xa3">
                                 <rect key="frame" x="166" y="322" width="37" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnV-9V-ABs">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnV-9V-ABs">
                                 <rect key="frame" x="10" y="364" width="105" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Confirm (hired)"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
+                                <state key="normal" title="Confirm (hired)">
+                                    <color key="titleColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="confirmHiredButton:" destination="tzi-9H-qhS" eventType="touchUpInside" id="NJg-0I-ZLG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnv-2J-0y1">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnv-2J-0y1">
                                 <rect key="frame" x="132" y="364" width="104" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Confirm (hiree)"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
+                                <state key="normal" title="Confirm (hiree)">
+                                    <color key="titleColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="confirmHireeButton:" destination="tzi-9H-qhS" eventType="touchUpInside" id="EYJ-KX-cs0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOv-8m-Cah">
-                                <rect key="frame" x="10" y="402" width="106" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOv-8m-Cah">
+                                <rect key="frame" x="10" y="402" width="114" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Payment(hired)"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
+                                <state key="normal" title="Payment(hired)">
+                                    <color key="titleColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="paymentHiredButton:" destination="tzi-9H-qhS" eventType="touchUpInside" id="961-vV-RNa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cun-7L-6Oc">
-                                <rect key="frame" x="132" y="402" width="105" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cun-7L-6Oc">
+                                <rect key="frame" x="132" y="402" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Payment(hiree)"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
+                                <state key="normal" title="Payment(hiree)">
+                                    <color key="titleColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="paymentHireeButton:" destination="tzi-9H-qhS" eventType="touchUpInside" id="AxR-8k-ovK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ3-F6-oBL">
-                                <rect key="frame" x="24" y="499" width="57" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ3-F6-oBL">
+                                <rect key="frame" x="24" y="499" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="settingsButtonClicked:" destination="tzi-9H-qhS" eventType="touchUpInside" id="M1t-m6-lhq"/>
                                 </connections>
@@ -433,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Igy-z1-HVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1914" y="-2556"/>
+            <point key="canvasLocation" x="1912.8" y="-2556.0719640179914"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="bCs-bU-beG">
@@ -527,58 +547,62 @@
             <objects>
                 <viewController id="TTE-Re-l7J" customClass="JobViewController" customModule="Helping_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yMS-yK-oDb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3BY-ba-lgG">
-                                <rect key="frame" x="16" y="128" width="115" height="115"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0M-C2-ZWZ" userLabel="jobTitle">
-                                <rect key="frame" x="16" y="78" width="343" height="42"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKL-HY-bMB" userLabel="jobDate">
-                                <rect key="frame" x="171" y="128" width="99" height="42"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xP7-fT-jSM" userLabel="jobLocation">
-                                <rect key="frame" x="171" y="201" width="99" height="42"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vKS-LN-xAF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="170"/>
+                                <color key="backgroundColor" red="0.86584617990581514" green="1" blue="0.94066870108088463" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="99" id="7TK-do-12d"/>
-                                    <constraint firstAttribute="height" constant="42" id="INK-Yz-21o"/>
+                                    <constraint firstAttribute="height" constant="170" id="PBn-Z4-cfb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29 March  2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKL-HY-bMB" userLabel="jobDate">
+                                <rect key="frame" x="136" y="309.5" width="102" height="19"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTu-QE-bOH" userLabel="jobDistance">
-                                <rect key="frame" x="278" y="201" width="81" height="42"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Austin, TX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xP7-fT-jSM" userLabel="jobLocation">
+                                <rect key="frame" x="153" y="283" width="68.5" height="18.5"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWc-VW-GAJ" userLabel="jobPrice">
-                                <rect key="frame" x="278" y="128" width="81" height="42"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiries" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5c-Yg-CZK">
+                                <rect key="frame" x="16" y="538" width="343" height="24"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7I-b6-eLz">
+                                <rect key="frame" x="140" y="375" width="95.5" height="24"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3BY-ba-lgG">
+                                <rect key="frame" x="112" y="92" width="151" height="115"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="151" id="Qjn-6U-2HL"/>
+                                    <constraint firstAttribute="height" constant="115" id="VeR-NP-cTq"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.1 m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTu-QE-bOH" userLabel="jobDistance">
+                                <rect key="frame" x="320" y="242" width="39" height="21"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$25.50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWc-VW-GAJ" userLabel="jobPrice">
+                                <rect key="frame" x="158" y="336.5" width="59" height="20.5"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                                 <color key="textColor" red="0.35622584819793701" green="0.62525486946105957" blue="0.11641929298639297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="x0N-LJ-hOD" userLabel="jobDescription">
-                                <rect key="frame" x="16" y="285" width="343" height="51"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="YZV-SX-9hH"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="42" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="KkH-lV-IDB" userLabel="table">
-                                <rect key="frame" x="0.0" y="389" width="375" height="230"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="42" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="KkH-lV-IDB" userLabel="table">
+                                <rect key="frame" x="0.0" y="570" width="375" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" rowHeight="100" id="h6i-oP-igS" customClass="UserTableViewCell" customModule="Helping_Hands" customModuleProvider="target">
@@ -588,28 +612,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIE-54-ELB" userLabel="userName">
-                                                    <rect key="frame" x="97" y="15" width="129" height="70"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="129" id="VE3-OT-G6g"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIE-54-ELB" userLabel="userName">
+                                                    <rect key="frame" x="97" y="15" width="0.0" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O0y-aG-1fp">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O0y-aG-1fp">
                                                     <rect key="frame" x="15" y="15" width="70" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="top" secondItem="hWR-C9-VLq" secondAttribute="topMargin" constant="4" id="NiG-yd-2Nj"/>
-                                                <constraint firstItem="bIE-54-ELB" firstAttribute="centerY" secondItem="hWR-C9-VLq" secondAttribute="centerY" id="PjG-sF-3wC"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="leading" secondItem="hWR-C9-VLq" secondAttribute="leadingMargin" id="afz-WI-lkk"/>
-                                                <constraint firstItem="bIE-54-ELB" firstAttribute="bottom" secondItem="hWR-C9-VLq" secondAttribute="bottomMargin" constant="-4" id="br4-yP-JQL"/>
-                                                <constraint firstItem="bIE-54-ELB" firstAttribute="leading" secondItem="O0y-aG-1fp" secondAttribute="trailing" constant="12" id="fQW-Vy-kv5"/>
-                                                <constraint firstItem="O0y-aG-1fp" firstAttribute="bottom" secondItem="bIE-54-ELB" secondAttribute="bottom" id="mSO-z4-qgM"/>
-                                                <constraint firstItem="bIE-54-ELB" firstAttribute="leading" secondItem="hWR-C9-VLq" secondAttribute="leading" constant="97" id="oaj-oW-X6t"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="userImg" destination="O0y-aG-1fp" id="WQu-1Y-i1I"/>
@@ -618,60 +632,51 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5c-Yg-CZK">
-                                <rect key="frame" x="16" y="344" width="343" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="JKe-IV-fNR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Job Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0M-C2-ZWZ" userLabel="jobTitle">
+                                <rect key="frame" x="59" y="242" width="256" height="26"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7I-b6-eLz">
-                                <rect key="frame" x="16" y="251" width="343" height="37"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOl-xd-HYw">
+                                <rect key="frame" x="16" y="407" width="343" height="116"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xP7-fT-jSM" firstAttribute="top" secondItem="yMS-yK-oDb" secondAttribute="top" constant="201" id="0N0-dw-aL0"/>
-                            <constraint firstItem="xP7-fT-jSM" firstAttribute="top" secondItem="sKL-HY-bMB" secondAttribute="bottom" constant="31" id="1q0-sK-qdB"/>
-                            <constraint firstItem="d5c-Yg-CZK" firstAttribute="leading" secondItem="x0N-LJ-hOD" secondAttribute="leading" id="2Dr-l6-Nm0"/>
-                            <constraint firstItem="d5c-Yg-CZK" firstAttribute="trailing" secondItem="x0N-LJ-hOD" secondAttribute="trailing" id="4lu-On-33S"/>
-                            <constraint firstItem="xP7-fT-jSM" firstAttribute="leading" secondItem="3BY-ba-lgG" secondAttribute="trailing" constant="40" id="6o0-M2-4Qi"/>
-                            <constraint firstItem="u7I-b6-eLz" firstAttribute="top" secondItem="3BY-ba-lgG" secondAttribute="bottom" constant="8" symbolic="YES" id="7VR-Qj-4Z5"/>
-                            <constraint firstItem="sKL-HY-bMB" firstAttribute="top" secondItem="3BY-ba-lgG" secondAttribute="top" id="A33-Oz-FC6"/>
-                            <constraint firstItem="3BY-ba-lgG" firstAttribute="leading" secondItem="yMS-yK-oDb" secondAttribute="leadingMargin" id="BGq-hV-iXF"/>
-                            <constraint firstItem="c0M-C2-ZWZ" firstAttribute="top" secondItem="LzX-P4-CYN" secondAttribute="top" constant="14" id="Ltd-EU-F4n"/>
-                            <constraint firstItem="d5c-Yg-CZK" firstAttribute="trailing" secondItem="yMS-yK-oDb" secondAttribute="trailingMargin" id="MjV-9e-7zX"/>
-                            <constraint firstItem="d5c-Yg-CZK" firstAttribute="top" secondItem="u7I-b6-eLz" secondAttribute="bottom" constant="56" id="Mnz-Ar-DTO"/>
-                            <constraint firstItem="xP7-fT-jSM" firstAttribute="leading" secondItem="sKL-HY-bMB" secondAttribute="leading" id="PIu-Sn-I4T"/>
-                            <constraint firstItem="KkH-lV-IDB" firstAttribute="centerX" secondItem="d5c-Yg-CZK" secondAttribute="centerX" id="PM0-q8-KB1"/>
-                            <constraint firstItem="KkH-lV-IDB" firstAttribute="top" secondItem="d5c-Yg-CZK" secondAttribute="bottom" constant="8" symbolic="YES" id="Qys-uH-p3p"/>
-                            <constraint firstItem="sKL-HY-bMB" firstAttribute="firstBaseline" secondItem="JWc-VW-GAJ" secondAttribute="firstBaseline" id="SIT-AQ-oNB"/>
-                            <constraint firstItem="JWc-VW-GAJ" firstAttribute="trailing" secondItem="kTu-QE-bOH" secondAttribute="trailing" id="SNE-UX-yNQ"/>
-                            <constraint firstItem="JWc-VW-GAJ" firstAttribute="leading" secondItem="sKL-HY-bMB" secondAttribute="trailing" constant="8" symbolic="YES" id="X4s-2s-kPv"/>
-                            <constraint firstItem="sKL-HY-bMB" firstAttribute="leading" secondItem="yMS-yK-oDb" secondAttribute="leading" constant="171" id="Y0i-eL-bNm"/>
-                            <constraint firstItem="x0N-LJ-hOD" firstAttribute="top" secondItem="3BY-ba-lgG" secondAttribute="bottom" constant="42" id="ZMH-et-Vy0"/>
-                            <constraint firstItem="c0M-C2-ZWZ" firstAttribute="trailing" secondItem="JWc-VW-GAJ" secondAttribute="trailing" id="ajV-4O-bv2"/>
-                            <constraint firstItem="xP7-fT-jSM" firstAttribute="bottom" secondItem="3BY-ba-lgG" secondAttribute="bottom" id="eDN-ch-Kse"/>
-                            <constraint firstItem="KkH-lV-IDB" firstAttribute="leading" secondItem="yMS-yK-oDb" secondAttribute="leading" id="eFL-0i-8RI"/>
-                            <constraint firstItem="u7I-b6-eLz" firstAttribute="trailing" secondItem="x0N-LJ-hOD" secondAttribute="trailing" id="gbz-7q-ZJ8"/>
-                            <constraint firstItem="kTu-QE-bOH" firstAttribute="leading" secondItem="xP7-fT-jSM" secondAttribute="trailing" constant="8" symbolic="YES" id="kxx-eA-b0T"/>
-                            <constraint firstItem="3BY-ba-lgG" firstAttribute="top" secondItem="yMS-yK-oDb" secondAttribute="top" constant="128" id="ldr-Lh-wfP"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="KkH-lV-IDB" secondAttribute="bottom" constant="-1" id="ll2-f7-PUG"/>
-                            <constraint firstItem="xP7-fT-jSM" firstAttribute="baseline" secondItem="kTu-QE-bOH" secondAttribute="baseline" id="nWF-Je-Cx1"/>
-                            <constraint firstItem="x0N-LJ-hOD" firstAttribute="leading" secondItem="3BY-ba-lgG" secondAttribute="leading" id="rML-Ax-jhe"/>
-                            <constraint firstItem="sKL-HY-bMB" firstAttribute="baseline" secondItem="JWc-VW-GAJ" secondAttribute="baseline" id="ttM-aa-Keh"/>
-                            <constraint firstItem="xP7-fT-jSM" firstAttribute="firstBaseline" secondItem="kTu-QE-bOH" secondAttribute="firstBaseline" id="ulU-g2-LcF"/>
-                            <constraint firstItem="u7I-b6-eLz" firstAttribute="leading" secondItem="x0N-LJ-hOD" secondAttribute="leading" id="wqb-O1-YHx"/>
-                            <constraint firstItem="c0M-C2-ZWZ" firstAttribute="leading" secondItem="3BY-ba-lgG" secondAttribute="leading" id="xgp-gd-aWb"/>
-                            <constraint firstItem="JWc-VW-GAJ" firstAttribute="leading" secondItem="kTu-QE-bOH" secondAttribute="leading" id="yea-5Q-nVu"/>
-                            <constraint firstItem="d5c-Yg-CZK" firstAttribute="top" secondItem="x0N-LJ-hOD" secondAttribute="bottom" constant="8" symbolic="YES" id="ymT-N7-cN0"/>
-                            <constraint firstItem="c0M-C2-ZWZ" firstAttribute="trailing" secondItem="x0N-LJ-hOD" secondAttribute="trailing" id="z4H-UP-icV"/>
-                            <constraint firstItem="3BY-ba-lgG" firstAttribute="top" secondItem="c0M-C2-ZWZ" secondAttribute="bottom" constant="8" symbolic="YES" id="zS5-hz-C1i"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="sKL-HY-bMB" secondAttribute="trailing" constant="137" id="2rM-hW-bSp"/>
+                            <constraint firstItem="xOl-xd-HYw" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" constant="16" id="ELd-zs-w9b"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="xOl-xd-HYw" secondAttribute="trailing" constant="16" id="Elo-Er-h4T"/>
+                            <constraint firstItem="xP7-fT-jSM" firstAttribute="top" secondItem="c0M-C2-ZWZ" secondAttribute="bottom" constant="15" id="Hwc-c4-8xI"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="xP7-fT-jSM" secondAttribute="trailing" constant="153" id="IQP-w0-P3y"/>
+                            <constraint firstItem="sKL-HY-bMB" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" constant="136" id="J0n-ih-UoD"/>
+                            <constraint firstItem="xOl-xd-HYw" firstAttribute="top" secondItem="u7I-b6-eLz" secondAttribute="bottom" constant="8" id="N14-xJ-vNg"/>
+                            <constraint firstItem="sKL-HY-bMB" firstAttribute="top" secondItem="xP7-fT-jSM" secondAttribute="bottom" constant="8" id="OR2-ku-sXF"/>
+                            <constraint firstItem="d5c-Yg-CZK" firstAttribute="top" secondItem="xOl-xd-HYw" secondAttribute="bottom" constant="15" id="Pma-Ij-H9D"/>
+                            <constraint firstItem="vKS-LN-xAF" firstAttribute="trailing" secondItem="LzX-P4-CYN" secondAttribute="trailing" id="Q2n-5C-sD3"/>
+                            <constraint firstItem="JWc-VW-GAJ" firstAttribute="top" secondItem="sKL-HY-bMB" secondAttribute="bottom" constant="8" id="Rpe-vC-nkd"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="3BY-ba-lgG" secondAttribute="trailing" constant="112" id="SNm-3i-x7c"/>
+                            <constraint firstItem="d5c-Yg-CZK" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" constant="16" id="SdZ-xy-fje"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="JWc-VW-GAJ" secondAttribute="trailing" constant="158" id="TT4-T9-za4"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="kTu-QE-bOH" secondAttribute="trailing" constant="16" id="Tiz-iR-Biu"/>
+                            <constraint firstItem="3BY-ba-lgG" firstAttribute="top" secondItem="LzX-P4-CYN" secondAttribute="top" constant="28" id="YZJ-cy-tk1"/>
+                            <constraint firstItem="u7I-b6-eLz" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" constant="140" id="bR1-5M-zFM"/>
+                            <constraint firstItem="c0M-C2-ZWZ" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" constant="59" id="cOx-Ds-NS5"/>
+                            <constraint firstItem="vKS-LN-xAF" firstAttribute="top" secondItem="LzX-P4-CYN" secondAttribute="top" id="cli-o8-AQK"/>
+                            <constraint firstItem="c0M-C2-ZWZ" firstAttribute="top" secondItem="vKS-LN-xAF" secondAttribute="bottom" constant="8" id="eLJ-l1-kZd"/>
+                            <constraint firstItem="vKS-LN-xAF" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" id="f4d-MK-081"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="d5c-Yg-CZK" secondAttribute="trailing" constant="16" id="gaI-XW-fPU"/>
+                            <constraint firstItem="3BY-ba-lgG" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" constant="112" id="hUm-AO-JBb"/>
+                            <constraint firstItem="u7I-b6-eLz" firstAttribute="top" secondItem="JWc-VW-GAJ" secondAttribute="bottom" constant="18" id="jWa-cv-XGo"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="u7I-b6-eLz" secondAttribute="trailing" constant="139.5" id="lTh-Af-ATi"/>
+                            <constraint firstItem="LzX-P4-CYN" firstAttribute="trailing" secondItem="c0M-C2-ZWZ" secondAttribute="trailing" constant="60" id="qUg-Mj-ahi"/>
+                            <constraint firstItem="xP7-fT-jSM" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" constant="153" id="qzP-Pc-XJh"/>
+                            <constraint firstItem="JWc-VW-GAJ" firstAttribute="leading" secondItem="LzX-P4-CYN" secondAttribute="leading" constant="158" id="wv7-8y-z6n"/>
+                            <constraint firstItem="kTu-QE-bOH" firstAttribute="top" secondItem="vKS-LN-xAF" secondAttribute="bottom" constant="8" id="xIU-hs-9zp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LzX-P4-CYN"/>
                     </view>
@@ -682,9 +687,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="375" height="850"/>
                     <connections>
+                        <outlet property="imgGradientView" destination="vKS-LN-xAF" id="ruG-4A-wDj"/>
                         <outlet property="jobDate" destination="sKL-HY-bMB" id="1cS-9L-sBT"/>
-                        <outlet property="jobDescription" destination="x0N-LJ-hOD" id="Dca-mz-Nu8"/>
+                        <outlet property="jobDescription" destination="xOl-xd-HYw" id="Fd3-po-fxc"/>
                         <outlet property="jobDistance" destination="kTu-QE-bOH" id="IR7-pE-EJs"/>
                         <outlet property="jobLocation" destination="xP7-fT-jSM" id="Qpq-eR-Q20"/>
                         <outlet property="jobPhoto" destination="3BY-ba-lgG" id="654-aq-tFn"/>
@@ -698,7 +705,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXN-r7-AjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4161" y="-861"/>
+            <point key="canvasLocation" x="4160.8000000000002" y="-861.76911544227892"/>
         </scene>
         <!--Nearby Jobs-->
         <scene sceneID="hNz-n2-bh7">
@@ -738,14 +745,6 @@
                                                     <color key="textColor" red="0.046060357693386844" green="0.28126769088639547" blue="0.30606379533678751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4a-2f-gxv">
-                                                    <rect key="frame" x="101" y="32" width="255" height="78"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$30/hr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLP-Ab-4sd">
                                                     <rect key="frame" x="15" y="97" width="78" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -753,11 +752,19 @@
                                                     <color key="textColor" red="0.30337361021157166" green="0.59263681994818651" blue="0.014110400474956838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnh-Vf-Nu5">
+                                                    <rect key="frame" x="105" y="40" width="255" height="62"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="distanceLbl" destination="UsT-Mf-VqD" id="WM1-6a-pJc"/>
-                                            <outlet property="jobDescriptionLbl" destination="s4a-2f-gxv" id="CSI-0f-jxF"/>
+                                            <outlet property="jobDescriptionLbl" destination="lnh-Vf-Nu5" id="Wbt-r5-sJ5"/>
                                             <outlet property="jobImg" destination="IGW-9e-pyG" id="8iW-Vb-5cU"/>
                                             <outlet property="jobTitleLbl" destination="A6p-Ui-C0J" id="9xL-oV-XkF"/>
                                             <outlet property="paymentLbl" destination="LLP-Ab-4sd" id="x6k-da-ufa"/>
@@ -1104,6 +1111,12 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="Sxi-ZV-7nj" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -2316,6 +2329,6 @@
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0ez-DH-srq"/>
+        <segue reference="0Vl-gT-Hp2"/>
     </inferredMetricsTieBreakers>
 </document>
