@@ -60,8 +60,17 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let addEventVC:AddEventViewController = segue.destination as! AddEventViewController
-        addEventVC.masterView = self
+        if segue.identifier == "addEvent" {
+            let addEventVC:AddEventViewController = segue.destination as! AddEventViewController
+            addEventVC.masterView = self
+        } else if segue.identifier == "showEvent" {
+            let eventVC:EventViewController = segue.destination as! EventViewController
+            eventVC.masterView = self
+            let eventID = (table.indexPathForSelectedRow?.row)!
+            let eventSelected = events[eventID]
+            eventVC.e = eventSelected
+            eventVC.eventID = eventID
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

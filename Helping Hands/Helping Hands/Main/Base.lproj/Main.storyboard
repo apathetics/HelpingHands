@@ -903,6 +903,7 @@
                                             <outlet property="eventImg" destination="zeq-SF-WW3" id="bsa-dG-7lL"/>
                                             <outlet property="eventTitleLbl" destination="GmP-pa-sJI" id="LaJ-nZ-NRK"/>
                                             <outlet property="helpersLbl" destination="PdC-oY-ugp" id="9oW-uG-pdD"/>
+                                            <segue destination="KFG-L9-i1b" kind="show" identifier="showEvent" id="AEk-Dk-Lmv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -926,7 +927,6 @@
                     <connections>
                         <outlet property="sideMenuButton" destination="K3q-dU-zT2" id="aIh-Qi-XUl"/>
                         <outlet property="table" destination="UhC-0C-HKU" id="265-GQ-QPY"/>
-                        <segue destination="KFG-L9-i1b" kind="show" identifier="showEvent" id="awS-Ga-pgb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

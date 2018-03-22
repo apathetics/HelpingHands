@@ -42,11 +42,10 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.navigationItem.rightBarButtonItem?.title = "Edit"
         }
         
-        e = convertEvent()
         eventPhoto.image = e.image
         eventTitle.text = e.eventTitle
         eventHelpers.text = String(e.numHelpers) + " Helpers"
-        eventDate.text = getDate(date: e.date as NSDate)
+        eventDate.text = e.eventDateString
         eventDistance.text = String(e.distance) + " mi"
         
         // TODO when location is more than an illusion
@@ -66,7 +65,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         eventPhoto.image = e.image
         eventTitle.text = e.eventTitle
         eventHelpers.text = String(e.numHelpers) + " Helpers"
-        eventDate.text = getDate(date: e.date as NSDate)
+        eventDate.text = e.eventDateString
         eventDistance.text = String(e.distance) + " mi"
         
         // TODO when location is more than an illusion
@@ -152,17 +151,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let dateFormate = DateFormatter()
         dateFormate.dateFormat = "MM/dd/yyyy"
         return dateFormate.string(from: date as Date)
-    }
-    
-    func convertEvent() -> Event {
-        let e = Event()
-        e.image = UIImage(data: event?.value(forKey: "eventImage") as! Data)
-        e.eventTitle = event?.value(forKey: "eventTitle") as? String
-        e.numHelpers = event?.value(forKey: "eventNumHelpers") as! Int
-        e.date = event?.value(forKey:"eventDate") as! Date
-        e.distance = event?.value(forKey: "eventDistance") as! Double
-        e.eventDescription = event?.value(forKey: "eventDescription") as? String
-        return e
     }
     
 }
