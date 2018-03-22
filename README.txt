@@ -5,7 +5,13 @@ Team Members: Tracy Nguyen
 			  Manasa Tipparam
 			  Ozone Kafley
 
-Contribution:
+IMPORTANT NOTES:
+
+* If there are import errors, please make sure to run "pod install" in the project directory.
+
+* Also, please open the project using the .xcworkspace instead of .xcodeproj.
+
+Contributions:
 
 Tracy Nguyen (25%)
 * Search Page - filtering and search implementation
@@ -47,6 +53,7 @@ Deviations:
 * We have decided to finalize the database entities and attributes and fully connect them before deciding on which options/settings are viable and useful for the Settings screen, so that is not yet implemented for alpha and is moved to beta.
 
 * We are also in the process of finalizing a color scheme, so the night mode button will probably be implemented in the beta or final instead of alpha.
+
 
 ### Outside Components ###
 Check Box
