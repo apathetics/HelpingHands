@@ -49,12 +49,18 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         table.delegate = self
         
         j = job
-        // Placeholder image
-        let placeholderImage = UIImage(named: "meeting")
-        // Load the image using SDWebImage
-        self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-            //self.imgGradientView.setGradientBackground(colorOne: UIColor.blue, colorTwo: UIColor.white)
-        })
+        
+        let url = URL(string: j.imageAsString)
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                // Placeholder image
+                self.jobPhoto.image = UIImage(named:"meeting")
+                print("error downloading picture")
+                return
+            }
+            self.jobPhoto.image = UIImage(data: data!)
+        }
+        
         jobTitle.text = j.jobTitle
         let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
