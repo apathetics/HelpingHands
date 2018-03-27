@@ -78,6 +78,11 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         }
     }
     
+    @IBAction func onBackButtonClick(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+    
     func populateProfile() {
         
         if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {
