@@ -1175,12 +1175,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WN-fO-Il3">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WN-fO-Il3">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7WN-fO-Il3" firstAttribute="top" secondItem="jAc-nj-lHb" secondAttribute="top" id="9OK-Vt-7Tz"/>
+                            <constraint firstItem="7WN-fO-Il3" firstAttribute="leading" secondItem="vjm-3v-Fzb" secondAttribute="leading" id="grh-UW-wBI"/>
+                            <constraint firstItem="7WN-fO-Il3" firstAttribute="bottom" secondItem="jAc-nj-lHb" secondAttribute="bottom" id="lLb-fa-VJz"/>
+                            <constraint firstAttribute="trailing" secondItem="7WN-fO-Il3" secondAttribute="trailing" id="rap-xw-0ta"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jAc-nj-lHb"/>
                     </view>
                     <navigationItem key="navigationItem" id="F1V-cL-WGH">
