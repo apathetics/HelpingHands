@@ -1530,39 +1530,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="170" id="9mx-Kk-z5l" customClass="SearchTableCell" customModule="Helping_Hands" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="170"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="90" id="9mx-Kk-z5l" customClass="SearchTableCell" customModule="Helping_Hands" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9mx-Kk-z5l" id="1vz-eb-h7L">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNq-gM-6Ie">
-                                            <rect key="frame" x="16" y="11" width="131" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RNq-gM-6Ie">
+                                            <rect key="frame" x="16" y="11" width="70" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="HQx-fj-mO0"/>
+                                                <constraint firstAttribute="height" constant="70" id="kXy-gJ-MFH"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Job Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UA-cN-cPP">
-                                            <rect key="frame" x="166" y="11" width="66" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UA-cN-cPP">
+                                            <rect key="frame" x="96" y="16" width="64.5" height="21"/>
+                                            <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.1 mi." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3F-bB-smk">
-                                            <rect key="frame" x="310" y="11" width="49" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.1 mi." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3F-bB-smk">
+                                            <rect key="frame" x="320" y="16" width="44" height="19.5"/>
+                                            <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksa-D5-rXB">
-                                            <rect key="frame" x="166" y="117" width="88" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Really long description goes here. Testing long description blah blah blah blah blah" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksa-D5-rXB">
+                                            <rect key="frame" x="96" y="36" width="269" height="37"/>
+                                            <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ksa-D5-rXB" firstAttribute="top" secondItem="S3F-bB-smk" secondAttribute="bottom" constant="0.5" id="0Ms-EW-FmR"/>
+                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="leading" secondItem="1vz-eb-h7L" secondAttribute="leadingMargin" id="2V3-wA-cnc" userLabel="Picture.leading = leadingMargin + 5"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ksa-D5-rXB" secondAttribute="trailing" constant="10" id="8u7-tf-YPU"/>
+                                        <constraint firstItem="1UA-cN-cPP" firstAttribute="top" secondItem="1vz-eb-h7L" secondAttribute="topMargin" constant="5" id="CRT-Vw-V5D"/>
+                                        <constraint firstItem="S3F-bB-smk" firstAttribute="top" secondItem="1vz-eb-h7L" secondAttribute="topMargin" constant="5" id="DbJ-8F-IMN"/>
+                                        <constraint firstItem="Ksa-D5-rXB" firstAttribute="leading" secondItem="RNq-gM-6Ie" secondAttribute="trailing" constant="10" id="JtP-Bg-Lha"/>
+                                        <constraint firstItem="S3F-bB-smk" firstAttribute="trailing" secondItem="1vz-eb-h7L" secondAttribute="trailingMargin" constant="5" id="TMq-F8-gNr"/>
+                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="top" secondItem="1vz-eb-h7L" secondAttribute="topMargin" id="UsV-Fh-xVV" userLabel="Picture.top = topMargin + 5"/>
+                                        <constraint firstItem="1UA-cN-cPP" firstAttribute="leading" secondItem="RNq-gM-6Ie" secondAttribute="trailing" constant="10" id="zFb-3d-13z"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="Ksa-D5-rXB" id="Sdd-yY-aif"/>
@@ -1587,7 +1598,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hE-bq-2aX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1534" y="2642"/>
+            <point key="canvasLocation" x="1533.5999999999999" y="2641.5292353823093"/>
         </scene>
         <!--Add an Event-->
         <scene sceneID="ude-gO-T8T">

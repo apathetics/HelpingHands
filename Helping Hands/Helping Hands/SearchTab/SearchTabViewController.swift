@@ -31,7 +31,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
-        
+        tableView.rowHeight = 90
         super.viewDidLoad()
         
         if self.revealViewController() != nil {
