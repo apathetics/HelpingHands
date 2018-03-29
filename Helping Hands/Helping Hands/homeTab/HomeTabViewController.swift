@@ -79,18 +79,18 @@ class HomeTabViewController: ThemeVC, UITableViewDataSource, UITableViewDelegate
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "addJob")
-        {
+        if(segue.identifier == "addJob") {
             let addJobVC:AddJobViewController = segue.destination as! AddJobViewController
             addJobVC.masterView = self
         }
-        if(segue.identifier == "showJob")
-        {
+        
+        if(segue.identifier == "showJob") {
             let j:Job = jobs[chosen!]
             let jobVC:JobViewController = segue.destination as! JobViewController
             jobVC.masterView = self
             jobVC.job = j
-            jobVC.jobID = chosen!
+            jobVC.jobID = j.jobId
+            print("JOB ID IS: ", jobVC.jobID!)
         }
     }
     
@@ -115,6 +115,7 @@ class HomeTabViewController: ThemeVC, UITableViewDataSource, UITableViewDelegate
                 // for each snapshot (entity present under jobs child)
                 for jobSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
                     
+                    // retrieve jobs and append to job list after creation
                     let jobObject = jobSnapshot.value as! [String: AnyObject]
                     let job = Job()
                     
@@ -123,19 +124,15 @@ class HomeTabViewController: ThemeVC, UITableViewDataSource, UITableViewDelegate
                     job.jobDateString = jobObject["jobDate"] as! String
                     job.jobDescription = jobObject["jobDescription"] as! String
                     job.distance = jobObject["jobDistance"] as! Double
-                    
-                    // TODO: Image from URL?
                     job.imageAsString = jobObject["jobImageUrl"] as! String
-                    
                     job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
                     job.numHelpers = jobObject["jobNumHelpers"] as! Int
                     job.payment = jobObject["jobPayment"] as! Double
                     job.jobTitle = jobObject["jobTitle"] as! String
-                    
+                    job.jobId = jobSnapshot.ref.key
                         
                     self.jobs.append(job)
                     self.table.reloadData()
-                    
                 }
             }
         })

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 let LOC_DEFAULT_TEXT = "Using your current location by default. You can use the toggle to the right to change this."
 let DESCR_PLACEHOLDER = "What will Helpers be doing at this job? Add as much or little detail as you'd like, but make sure to be clear. You'll be more likely to attract Helpers that way!"
@@ -194,6 +195,11 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
                 }
             })
         }
+        
+        // Add job ID to user's jobsPosted
+        let userId:String = (FIRAuth.auth()?.currentUser?.uid)!
+        let jobsPostedChild = databaseRef.child("users").child(userId).child("jobsPostedArray").childByAutoId()
+        jobsPostedChild.setValue([newPost.key: newPost.key])
     }
     
     //----------------------------------------------------------------//

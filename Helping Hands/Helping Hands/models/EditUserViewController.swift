@@ -49,12 +49,6 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
             userDescription.text = "Description..."
             userDescription.textColor = UIColor.lightGray
         }
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-         if clearCore {
-         clearCoreuser()
-         }*/
     }
     
     override func didReceiveMemoryWarning() {

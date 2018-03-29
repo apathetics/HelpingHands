@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import FirebaseStorageUI
+import FirebaseAuth
+import FirebaseDatabase
 import UIImageColors
 
 class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -25,7 +27,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var navButton: UIBarButtonItem!
     
     var masterView:HomeTabViewController?
-    var jobID:Int?
+    var jobID:String?
     var clearCore: Bool = false
     var job:Job?
     var inquiries = [User]()
@@ -33,7 +35,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var j:Job!
     
     override func viewDidAppear(_ animated: Bool) {
-        if(jobID == 0) {
+        if(jobID == "0") {
             self.navigationItem.rightBarButtonItem?.title = "Edit"
         }
         table.reloadData()
@@ -42,7 +44,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(jobID == 0) {
+        if(jobID == "0") {
             self.navigationItem.rightBarButtonItem?.title = "Edit"
         }
         table.dataSource = self
@@ -86,6 +88,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     // UPDATE WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
+        retrieveJobs()
+        
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
         self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
@@ -151,7 +155,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @IBAction func addUser(_ sender: Any) {
-        if(jobID == 0)
+        if(jobID == "0")
         {
             self.performSegue(withIdentifier: "showJobEditor", sender: self)
         }
@@ -171,6 +175,34 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             inquiries.append(inquiry)
             self.table.reloadData()
         }
+    }
+    
+    // FIREBASE RETRIEVAL
+    func retrieveJobs() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let jobRef = databaseRef.child("jobs").child(jobID!)
+        
+        jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            // retrieve jobs and append to job list after creation
+            let jobObject = snapshot.value as! [String: AnyObject]
+            let job = Job()
+    
+            job.address = jobObject["jobAddress"] as! String
+            job.currentLocation = jobObject["jobCurrentLocation"] as! Bool
+            job.jobDateString = jobObject["jobDate"] as! String
+            job.jobDescription = jobObject["jobDescription"] as! String
+            job.distance = jobObject["jobDistance"] as! Double
+            job.imageAsString = jobObject["jobImageUrl"] as! String
+            job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
+            job.numHelpers = jobObject["jobNumHelpers"] as! Int
+            job.payment = jobObject["jobPayment"] as! Double
+            job.jobTitle = jobObject["jobTitle"] as! String
+            job.jobId = snapshot.ref.key
+    
+            self.job = job
+            self.table.reloadData()
+        })
     }
     
 }
