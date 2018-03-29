@@ -34,19 +34,26 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var chosen:Int?
     var j:Job!
     
+    let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+    
     override func viewDidAppear(_ animated: Bool) {
-        if(jobID == "0") {
-            self.navigationItem.rightBarButtonItem?.title = "Edit"
-        }
-        table.reloadData()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(jobID == "0") {
-            self.navigationItem.rightBarButtonItem?.title = "Edit"
-        }
+        let jobRef = databaseRef.child("jobs").child(jobID!)
+        jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            let jobObject = snapshot.value as! [String: Any]
+            
+            if(jobObject["jobCreator"] as! String == self.userId) {
+                self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            self.table.reloadData()
+        })
+        
         table.dataSource = self
         table.delegate = self
         
@@ -90,6 +97,16 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     override func viewWillAppear(_ animated: Bool) {
         retrieveJobs()
         
+        let jobRef = databaseRef.child("jobs").child(jobID!)
+        jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            let jobObject = snapshot.value as! [String: Any]
+            
+            if(jobObject["jobCreator"] as! String == self.userId) {
+                self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            self.table.reloadData()
+        })
+        
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
         self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
@@ -101,6 +118,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobDistance.text = String(j.distance) + " mi"
         jobLocation.text = j.address
         jobDescription.text = j.jobDescription
+        
+        table.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -155,26 +174,32 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @IBAction func addUser(_ sender: Any) {
-        if(jobID == "0")
-        {
-            self.performSegue(withIdentifier: "showJobEditor", sender: self)
-        }
-        else {
-            let inquiry:User = User()
-            inquiry.userFirstName = "Emiliano"
-            inquiry.userLastName = "Zapata"
-            inquiry.userPhoto = UIImage()
-            inquiry.userBio = "I like being a revolutionary, it's fun."
-            inquiry.userEmail = "porfirioHater1912@mexico.com"
-            inquiry.userLocationRadius = 0.0
-            inquiry.userNumJobsPosted = 1
-            inquiry.userNumJobsPending = 2
-            inquiry.userJobsCompleted = 4
-            inquiry.userID = inquiries.count
+        
+        let jobRef = databaseRef.child("jobs").child(jobID!)
+        jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            let jobObject = snapshot.value as! [String: Any]
             
-            inquiries.append(inquiry)
+            if(jobObject["jobCreator"] as! String == self.userId) {
+                self.performSegue(withIdentifier: "showJobEditor", sender: self)
+            }
+            else {
+                let inquiry:User = User()
+                inquiry.userFirstName = "Emiliano"
+                inquiry.userLastName = "Zapata"
+                inquiry.userPhoto = UIImage()
+                inquiry.userBio = "I like being a revolutionary, it's fun."
+                inquiry.userEmail = "porfirioHater1912@mexico.com"
+                inquiry.userLocationRadius = 0.0
+                inquiry.userNumJobsPosted = 1
+                inquiry.userNumJobsPending = 2
+                inquiry.userJobsCompleted = 4
+                inquiry.userID = self.inquiries.count
+                
+                self.inquiries.append(inquiry)
+                self.table.reloadData()
+            }
             self.table.reloadData()
-        }
+        })
     }
     
     // FIREBASE RETRIEVAL
