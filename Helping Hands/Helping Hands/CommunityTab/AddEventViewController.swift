@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 class AddEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
     
@@ -176,13 +177,16 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
                     print(error!)
                     return
                 }
-                
                 if let eventImgUrl = metadata?.downloadURL()?.absoluteString {
-                    let values = ["eventTitle": e.eventTitle, "eventImageUrl": eventImgUrl, "eventDistance": e.distance, "eventDescription": e.eventDescription, "eventDate": e.eventDateString, "eventCurrentLocation": e.currentLocation, "eventAddress": e.address, "eventNumHelpers": e.numHelpers] as [String : Any]
+                    let values = ["eventTitle": e.eventTitle, "eventImageUrl": eventImgUrl, "eventDistance": e.distance, "eventDescription": e.eventDescription, "eventDate": e.eventDateString, "eventCurrentLocation": e.currentLocation, "eventAddress": e.address, "eventNumHelpers": e.numHelpers, "eventCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
                     newPost.setValue(values)
                 }
             })
         }
+        
+        let userId:String = (FIRAuth.auth()?.currentUser?.uid)!
+        let eventPostedChild = databaseRef.child("users").child(userId).child("eventsPostedArray").childByAutoId()
+        eventPostedChild.setValue([newPost.key: newPost.key])
     }
     //----------------------------------------------------------------//
     

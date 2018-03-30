@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
@@ -198,8 +197,8 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         
         // Add job ID to user's jobsPosted
         let userId:String = (FIRAuth.auth()?.currentUser?.uid)!
-        let jobsPostedChild = databaseRef.child("users").child(userId).child("jobsPostedArray").childByAutoId()
-        jobsPostedChild.setValue([newPost.key: newPost.key])
+        let jobPostedChild = databaseRef.child("users").child(userId).child("jobsPostedArray").childByAutoId()
+        jobPostedChild.setValue([newPost.key: newPost.key])
     }
     
     //----------------------------------------------------------------//
