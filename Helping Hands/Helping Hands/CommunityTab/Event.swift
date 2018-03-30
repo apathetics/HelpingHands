@@ -20,5 +20,5 @@ class Event {
     var currentLocation:Bool!
     var numHelpers:Int!
     var eventDateString: String!
-    
+    var eventId: String!
 }

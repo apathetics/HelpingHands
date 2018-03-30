@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import FirebaseStorageUI
+import FirebaseAuth
+import FirebaseDatabase
 
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -22,25 +25,40 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var table: UITableView!
     
     var masterView:CommunityTabViewController?
-    var eventID:Int?
+    var eventID:String?
     var clearCore: Bool = false
-    var event:NSManagedObject?
+    var event:Event?
     var attendees = [User]()
     var chosen:Int?
     var e:Event!
     
+    let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+    
     override func viewDidAppear(_ animated: Bool) {
-        if(eventID == 0) {
-            self.navigationItem.rightBarButtonItem?.title = "Edit"
-        }
+        let eventRef = databaseRef.child("events").child(eventID!)
+        eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            let eventObject = snapshot.value as! [String: Any]
+            if(eventObject["eventCreator"] as! String == self.userId) {
+                self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            self.table.reloadData()
+        })
         table.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(eventID == 0) {
-            self.navigationItem.rightBarButtonItem?.title = "Edit"
-        }
+        
+        let eventRef = databaseRef.child("events").child(eventID!)
+        eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            let eventObject = snapshot.value as! [String: Any]
+            
+            if(eventObject["eventCreator"] as! String == self.userId) {
+                self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            self.table.reloadData()
+        })
         
         eventPhoto.image = e.image
         eventTitle.text = e.eventTitle
@@ -52,18 +70,27 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         eventLocation.text = e.address
         
         eventDescription.text = e.eventDescription
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-         if clearCore {
-         clearCoreevent()
-         }*/
-        
     }
     
     // EDIT WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
-        eventPhoto.image = e.image
+        
+        retrieveEvents()
+        
+        let eventRef = databaseRef.child("events").child(eventID!)
+        eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            let eventObject = snapshot.value as! [String: Any]
+
+            if(eventObject["eventCreator"] as! String == self.userId) {
+                self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            self.table.reloadData()
+        })
+        
+        let placeholderImage = UIImage(named: "meeting")
+        self.eventPhoto.sd_setImage(with: URL(string: e.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
+//        eventPhoto.image = e.image
         eventTitle.text = e.eventTitle
         eventHelpers.text = String(e.numHelpers) + " Helpers"
         eventDate.text = e.eventDateString
@@ -72,6 +99,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // TODO when location is more than an illusion
         eventLocation.text = "curLocation"
         eventDescription.text = e.eventDescription
+        
+        table.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,10 +115,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
-        
         let row = indexPath.row
         let u:User = attendees[row]
-        
         
         cell.userImg.image = u.userPhoto
         cell.userName.text = u.userFirstName + " " + u.userLastName
@@ -106,26 +133,31 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBAction func rightButtonPress(_ sender: Any) {
-        if(eventID == 0)
-        {
-            self.performSegue(withIdentifier: "showEventEditor", sender: self)
-        }
-        else {
-            let attendee:User = User()
-            attendee.userFirstName = "Emiliano"
-            attendee.userLastName = "Zapata"
-            attendee.userPhoto = UIImage()
-            attendee.userBio = "I like being a revolutionary, it's fun."
-            attendee.userEmail = "porfirioHater1912@mexico.com"
-            attendee.userLocationRadius = 0.0
-            attendee.userNumJobsPosted = 1
-            attendee.userNumJobsPending = 2
-            attendee.userJobsCompleted = 4
-            attendee.userID = attendees.count
+        let eventRef = databaseRef.child("events").child(eventID!)
+        eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            let eventObject = snapshot.value as! [String: Any]
             
-            attendees.append(attendee)
+            if(eventObject["eventCreator"] as! String == self.userId) {
+                self.performSegue(withIdentifier: "showEventEditor", sender: self)
+            }
+            else {
+                let attendee:User = User()
+                attendee.userFirstName = "Emiliano"
+                attendee.userLastName = "Zapata"
+                attendee.userPhoto = UIImage()
+                attendee.userBio = "I like being a revolutionary, it's fun."
+                attendee.userEmail = "porfirioHater1912@mexico.com"
+                attendee.userLocationRadius = 0.0
+                attendee.userNumJobsPosted = 1
+                attendee.userNumJobsPending = 2
+                attendee.userJobsCompleted = 4
+                attendee.userID = self.attendees.count
+                
+                self.attendees.append(attendee)
+                self.table.reloadData()
+            }
             self.table.reloadData()
-        }
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -152,6 +184,31 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let dateFormate = DateFormatter()
         dateFormate.dateFormat = "MM/dd/yyyy"
         return dateFormate.string(from: date as Date)
+    }
+    
+    func retrieveEvents() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let eventRef = databaseRef.child("events").child(eventID!)
+        
+        eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            // retrieve jobs and append to job list after creation
+            let eventObject = snapshot.value as! [String: AnyObject]
+            let event = Event()
+            
+            event.address = eventObject["eventAddress"] as! String
+            event.currentLocation = eventObject["eventCurrentLocation"] as! Bool
+            event.eventDateString = eventObject["eventDate"] as! String
+            event.eventDescription = eventObject["eventDescription"] as! String
+            event.distance = eventObject["eventDistance"] as! Double
+            event.imageAsString = eventObject["eventImageUrl"] as! String
+            event.numHelpers = eventObject["eventNumHelpers"] as! Int
+            event.eventTitle = eventObject["eventTitle"] as! String
+            event.eventId = snapshot.ref.key
+            
+            self.event = event
+            self.table.reloadData()
+        })
     }
     
 }
