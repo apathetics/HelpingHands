@@ -189,8 +189,17 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
                     return
                 }
                 if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
+                    
                     let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid, "jobCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
                     newPost.setValue(values)
+                    
+                    // Increment jobs posted in users by 1
+                    let userRef = databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
+                    userRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                        let userObject = snapshot.value as! [String: Any]
+                        let jobsPosted = userObject["jobsPosted"] as! Int
+                        userRef.updateChildValues(["jobsPosted": jobsPosted + 1])
+                    })
                 }
             })
         }
