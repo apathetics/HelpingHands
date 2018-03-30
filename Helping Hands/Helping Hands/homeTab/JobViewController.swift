@@ -37,10 +37,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,6 +75,11 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobDescription.text = j.jobDescription
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     override func viewDidLayoutSubviews() {
         let colors = jobPhoto.image?.getColors()
         
@@ -95,8 +96,11 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     // UPDATE WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
+        
+        // retrieve jobs
         retrieveJobs()
         
+        // check for user permissions to edit
         let jobRef = databaseRef.child("jobs").child(jobID!)
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let jobObject = snapshot.value as! [String: Any]
@@ -107,10 +111,12 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.table.reloadData()
         })
         
+        // load image
         let placeholderImage = UIImage(named: "meeting")
-        // Load the image using SDWebImage
         self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
+        
+        // fill in the information
         jobTitle.text = j.jobTitle
         let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
@@ -119,14 +125,11 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobLocation.text = j.address
         jobDescription.text = j.jobDescription
         
+        // reload data
         table.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    // ** STANDARD TABLE FUNCTIONS ** \\
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return inquiries.count
     }
@@ -134,10 +137,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
-        
         let row = indexPath.row
         let u:User = inquiries[row]
-        
         
         cell.userImg.image = u.userPhoto
         cell.userName.text = u.userFirstName + " " + u.userLastName
@@ -150,7 +151,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         self.performSegue(withIdentifier: "showInquiry", sender: self)
     }
+    // ** END STANDARD TABLE FUNCTIONS ** \\
     
+    // ** SEGUE PREPARATION ** \\
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showInquiry")
         {
@@ -166,22 +169,21 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             editVC.job = j
         }
     }
+    // ** END SEGUE PREPARATION ** \\
     
-    func getDate(date: NSDate) -> String {
-        let dateFormate = DateFormatter()
-        dateFormate.dateFormat = "MM/dd/yyyy"
-        return dateFormate.string(from: date as Date)
-    }
-    
+    // Either show editing screen if permissions check out or "sign-up" the user to table cell (right nav button)
     @IBAction func addUser(_ sender: Any) {
         
+        // Permissions check
         let jobRef = databaseRef.child("jobs").child(jobID!)
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let jobObject = snapshot.value as! [String: Any]
             
+            // Take to editing screen if user is creator
             if(jobObject["jobCreator"] as! String == self.userId) {
                 self.performSegue(withIdentifier: "showJobEditor", sender: self)
             }
+            // Else sign up the user as an inquiry.
             else {
                 let inquiry:User = User()
                 inquiry.userFirstName = "Emiliano"
@@ -200,6 +202,13 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
             self.table.reloadData()
         })
+    }
+    
+    // Auxiliary getDate function
+    func getDate(date: NSDate) -> String {
+        let dateFormate = DateFormatter()
+        dateFormate.dateFormat = "MM/dd/yyyy"
+        return dateFormate.string(from: date as Date)
     }
     
     // FIREBASE RETRIEVAL
@@ -229,5 +238,4 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.table.reloadData()
         })
     }
-    
 }
