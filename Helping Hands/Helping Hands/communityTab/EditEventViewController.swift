@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorageUI
 
 class EditEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
     
@@ -20,12 +23,8 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var chooseImgButton: UIButton!
     
     var imgChosen = false
-    // TODO - Pass using database, DELETE MASTERVIEW WHEN SAVECHANGES
-    // REFERS TO FIREBASE
     var masterView:EventViewController?
-    var clearCore: Bool = false
     var event:Event!
-    // TODO - Pass using database
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +36,6 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         
         // TODO when location is more than an illusion
         editLocation.text = "curLocation"
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-         if clearCore {
-         clearCoreevent()
-         }*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,9 +94,28 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         event.eventDescription = eventDescription.text
         
         masterView?.e = self.event
+        updateEvent(e: self.event)
         self.performSegueToReturnBack()
     }
     
-    
+    // Update the events by replacing values from current e instance
+    func updateEvent(e: Event) {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let eventRef = databaseRef.child("events").child(e.eventId)
+        if let imgUpload = UIImagePNGRepresentation(e.image!) {
+            let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
+            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                if let eventImgUrl = metadata?.downloadURL()?.absoluteString {
+                    let values = ["eventTitle": e.eventTitle, "eventImageUrl": eventImgUrl, "eventDistance": e.distance, "eventDescription": e.eventDescription, "eventDate": e.eventDateString, "eventCurrentLocation": e.currentLocation, "eventAddress": e.address, "eventNumHelpers": e.numHelpers, "eventCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
+                    eventRef.setValue(values)
+                }
+            })
+        }
+    }
 }
 
