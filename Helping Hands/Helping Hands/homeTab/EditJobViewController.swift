@@ -8,6 +8,9 @@
 
 import UIKit
 import Foundation
+import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorageUI
 
 class EditJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
     
@@ -20,11 +23,8 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var chooseImgButton: UIButton!
     
     var imgChosen = false
-    // TODO - Pass using database
     var masterView:JobViewController?
-    var clearCore: Bool = false
     var job:Job!
-    // TODO - Pass using database
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +36,6 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         
         // TODO when location is more than an illusion
         editLocation.text = "curLocation"
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-         if clearCore {
-         clearCorejob()
-         }*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,7 +57,6 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
 
-    
     @IBAction func chooseImgBtn(_ sender: Any) {
         let image = UIImagePickerController()
         image.delegate = self
@@ -84,6 +77,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Save changes to local job instance and then send segue to back
     @IBAction func saveChanges(_ sender: Any) {
         job.image = jobPhoto.image
         job.jobTitle = editJobTitle.text
@@ -97,7 +91,28 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         job.address = editLocation.text
         
         masterView?.j = self.job
+        updateJob(j: self.job)
         self.performSegueToReturnBack()
+    }
+    
+    // Update the jobs by replacing values from current j instance
+    func updateJob(j: Job) {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let jobRef = databaseRef.child("jobs").child(j.jobId)
+        if let imgUpload = UIImagePNGRepresentation(j.image!) {
+            let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
+            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
+                    let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid, "jobCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
+                    jobRef.setValue(values)
+                }
+            })
+        }
     }
 }
 
