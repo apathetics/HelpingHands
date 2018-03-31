@@ -489,6 +489,7 @@
                                 <state key="normal" title="Send"/>
                                 <connections>
                                     <action selector="chooseImgBtn:" destination="P0r-QS-fMH" eventType="touchUpInside" id="5sc-te-gzM"/>
+                                    <action selector="sendEmail:" destination="U0s-cM-8UI" eventType="touchUpInside" id="sNZ-So-24L"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8g-BK-bLO">
@@ -550,7 +551,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lEa-ry-whc"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Contact Us" id="h9L-xH-DzE"/>
+                    <navigationItem key="navigationItem" title="Contact Us" id="h9L-xH-DzE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NUg-V1-F6t">
+                            <connections>
+                                <action selector="exit:" destination="U0s-cM-8UI" id="U75-GZ-h5b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="body" destination="4NM-8T-rQG" id="1Fo-Mf-5LG"/>
+                        <outlet property="subjectFld" destination="KgR-JA-9hH" id="0yT-S1-KQd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIo-Sl-WgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
