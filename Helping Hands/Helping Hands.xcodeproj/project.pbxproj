@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04780DCD206F40A1003029CE /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04780DCC206F40A1003029CE /* ContactUsViewController.swift */; };
 		04780DCF206F48F7003029CE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04780DCE206F48F7003029CE /* MessageUI.framework */; };
 		0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */; };
 		1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DA205F3FFA00628A1C /* AppDelegate.swift */; };
@@ -62,7 +61,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04780DCC206F40A1003029CE /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		04780DCE206F48F7003029CE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1927A5DA205F3FFA00628A1C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1927A5DC205F3FFA00628A1C /* globalCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = globalCoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -135,6 +133,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04780DD1206F557C003029CE /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				3987328C206349C100A29D39 /* ContactUsViewController.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		1927A5D9205F3FD500628A1C /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,7 +257,6 @@
 				192D63AF20630578006189CA /* ThemeVC.swift */,
 				194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */,
 				04780DCE206F48F7003029CE /* MessageUI.framework */,
-				7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */,
 			);
 			path = "UI Stuff";
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				AB7742FE2047853A00799F84 /* Products */,
 				ED57142D81884C4109A7DE21 /* Pods */,
 				3708DC6BA8FE859D671CF9A5 /* Frameworks */,
+				04780DD1206F557C003029CE /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -309,7 +315,6 @@
 				ABA3A2DF206067CF00E26814 /* SWRevealViewController */,
 				ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */,
 				ABA3A2E52060E4B700E26814 /* SideMenuController.swift */,
-				04780DCC206F40A1003029CE /* ContactUsViewController.swift */,
 			);
 			path = SideBarMenu;
 			sourceTree = "<group>";
@@ -502,7 +507,6 @@
 				1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */,
 				39ED45C0206F3EFD00084F9E /* LocationSearchTable.swift in Sources */,
 				3987328D206349C100A29D39 /* ContactUsViewController.swift in Sources */,
-				04780DCD206F40A1003029CE /* ContactUsViewController.swift in Sources */,
 				1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */,
 				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,

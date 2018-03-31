@@ -25,14 +25,12 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
         // Dispose of any resources that can be recreated.
     }
     
-<<<<<<< HEAD
     @IBAction func onBackButtonClick(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
     
-=======
     @IBAction func exit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -79,5 +77,4 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: true, completion: nil)
     }
->>>>>>> ozone
 }
