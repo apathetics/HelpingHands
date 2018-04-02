@@ -20,20 +20,26 @@ class SideMenuController: UIViewController {
     @IBOutlet weak var userNumJobsPosted: UILabel!
     @IBOutlet weak var userMoneyEarned: UILabel!
     
-    var user: FIRUser!
+    var user: User!
     let userRef = FIRDatabase.database().reference().child("users")
+    let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         // Display profile image as a cirle
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         profileImage.clipsToBounds = true
         let profileTap = UITapGestureRecognizer(target: self, action: #selector(profileTapGesture))
         profileImage.addGestureRecognizer(profileTap)
         profileImage.isUserInteractionEnabled = true
+        
+        retrieveUser()
         populateSideMenu()
     }
-    
     // Dummy for connecting to PROFILE screen
     @objc func profileTapGesture() {
         print("Image Tapped")
@@ -42,9 +48,8 @@ class SideMenuController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showProfile") {
-            let u:User = grabProfile()
             let userVC:UserViewController = segue.destination as! UserViewController
-            userVC.user = u
+            userVC.user = self.user
         }
         if(segue.identifier == "showContactUs") {
             
@@ -63,6 +68,37 @@ class SideMenuController: UIViewController {
         user.userPhoto = UIImage(named: "meeting")
         // Change the ones below
         return user
+    }
+    
+    // FIREBASE RETRIEVAL
+    func retrieveUser() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let jobRef = databaseRef.child("users").child(userId)
+        
+        jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            // retrieve jobs and append to job list after creation
+            let userObject = snapshot.value as! [String: AnyObject]
+            let user:User = User()
+            
+            user.userFirstName = userObject["firstName"] as! String
+            user.userLastName = userObject["lastName"] as! String
+            user.userEmail = userObject["email"] as! String
+            user.userJobsCompleted = userObject["jobsCompleted"] as! Int
+            user.userNumJobsPosted = userObject["jobsPosted"] as! Int
+            user.userMoneyEarned = userObject["moneyEarned"] as! Double
+            user.userPhotoAsString = userObject["photoUrl"] as! String
+            
+            //TODO: SETTINGS NOT IN DATABASE YET
+            user.userLocationRadius = 1
+            user.userDistance = 1
+            user.userRating = 5
+            
+            user.userID = self.userId
+            
+            self.user = user
+        })
+        
     }
     
     @IBAction func settingsButtonClicked(_ sender: Any) {

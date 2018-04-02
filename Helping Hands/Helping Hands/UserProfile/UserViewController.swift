@@ -25,42 +25,43 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var navBar: UINavigationItem!
     
-    let userRef = FIRDatabase.database().reference().child("users")
+//    let userRef = FIRDatabase.database().reference().child("users")
+    let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
     
     var imgChosen = false
-    // TODO - Pass using database
-    var clearCore: Bool = false
     var user:User!
-    // TODO - Pass using database
     var userIndexPath:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(user.userID != 0) {
-            self.navigationItem.rightBarButtonItem =  nil;
-        }
-//        userPhoto.image = user.userPhoto
-//        userName.text = (user.userFirstName)! + " " + (user?.userLastName)!
-//        userEmail.text = user.userEmail
-//        userDescription.text = user.userBio
-//        // Change the ones below
-//        userRating.text = String(describing: user.userNumJobsPosted!)
-//        userLocation.text = String(describing: user.userLocationRadius!)
-//        userDistance.text = String(describing: user.userJobsCompleted!)
+        // do verifcation if user = currently logged in
+//        if(user.userID != 0) {
+//            self.navigationItem.rightBarButtonItem =  nil;
+//        }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        userPhoto.image = user.userPhoto
+        retrieveUser()
+    
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        self.userPhoto.sd_setImage(with: URL(string: self.user.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
+
+        
         userName.text = (user.userFirstName)! + " " + (user?.userLastName)!
         userEmail.text = user.userEmail
         userDescription.text = user.userBio
+        
         // Change the ones below
-        userRating.text = String(describing: user.userNumJobsPosted!)
+        userRating.text = String(describing: user.userRating!)
         userLocation.text = String(describing: user.userLocationRadius!)
-        userDistance.text = String(describing: user.userJobsCompleted!)
+        userDistance.text = String(describing: user.userDistance!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,58 +86,61 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     func populateProfile() {
         
-        if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {
-            userRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user values
-                let value = snapshot.value as? NSDictionary
-                let fName = value?["firstName"] as? String ?? ""
-                let lName = value?["lastName"] as? String ?? ""
-                let email = value?["email"] as? String ?? ""
-                let bio = value?["bio"] as? String ?? ""
-                let rating = value?["rating"] as? String ?? ""
-//                let jobsDone = String(value?["jobsCompleted"] as! Int64)
-//                let jobsPosted = String(value?["jobsPosted"] as! Int64)
-//                let moneyEarned = String(value?["moneyEarned"] as! Int64)
-                // Placeholder image
-                let placeholderImage = UIImage(named: "meeting")
-                // Load the image using SDWebImage
-                self.userPhoto.sd_setImage(with: URL(string: value?["photoUrl"] as! String), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-                })
+//        if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {
+//            userRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+//                // Get user values
+//                let value = snapshot.value as? NSDictionary
+//                let fName = value?["firstName"] as? String ?? ""
+//                let lName = value?["lastName"] as? String ?? ""
+//                let email = value?["email"] as? String ?? ""
+//                let bio = value?["bio"] as? String ?? ""
+//                let rating = value?["rating"] as? String ?? ""
+////                let jobsDone = String(value?["jobsCompleted"] as! Int64)
+////                let jobsPosted = String(value?["jobsPosted"] as! Int64)
+////                let moneyEarned = String(value?["moneyEarned"] as! Int64)
+//                // Placeholder image
+//                let placeholderImage = UIImage(named: "meeting")
+//                // Load the image using SDWebImage
+//                self.userPhoto.sd_setImage(with: URL(string: value?["photoUrl"] as! String), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+//                })
                 // Populate Profile Info
-                self.userName.text = fName + " " + lName
-                self.userEmail.text = email
-                self.userDescription.text = bio
-                self.userRating.text = String(rating)
+                self.userName.text = self.user.userFirstName + " " + self.user.userLastName
+                self.userEmail.text = self.user.userEmail
+                self.userDescription.text = self.user.userBio
+                self.userRating.text = "TEMPORARY RATING"
                 self.userLocation.text = "RADIUS PLACEHOLDER"
                 self.userDistance.text = "0 DISTANCE PLACEHOLDER"
-                
-            }) { (error) in
-                print(error.localizedDescription)
-            }
-        } else {
-            print("User ID is nil")
-        }
+    
     }
     
-    /*
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     return inquiries.count
-     }
-     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell:userTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! userTableViewCell
-     
-     let row = indexPath.row
-     let j:NSManagedObject = inquiries[row]
-     
-     cell.userTitleLbl.text = j.value(forKey: "userTitle") as? String
-     cell.userDescriptionLbl.text = j.value(forKey: "userDescription") as? String
-     cell.distanceLbl.text = String(j.value(forKey: "userDistance") as! Double) + " mi"
-     let ftmPayment = "$" + ((j.value(forKey: "userPayment") as! Double).truncatingRemainder(dividingBy: 1) == 0 ? String(j.value(forKey: "userPayment") as! Int64) : String(j.value(forKey: "userPayment") as! Double))
-     print("PAYMENT IS:", ftmPayment)
-     cell.paymentLbl.text = j.value(forKey: "userIsHourlyPaid") as! Bool == true ? ftmPayment + "/hr" : ftmPayment
-     cell.userImg.image = UIImage(data: j.value(forKey: "userImage") as! Data)
-     
-     return cell
-     }*/
+    // FIREBASE RETRIEVAL
+    func retrieveUser() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let userRef = databaseRef.child("users").child(userId)
+        
+        userRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            // retrieve jobs and append to job list after creation
+            let userObject = snapshot.value as! [String: AnyObject]
+            let user = User()
+            
+            user.userFirstName = userObject["firstName"] as! String
+            user.userLastName = userObject["lastName"] as! String
+            user.userEmail = userObject["email"] as! String
+            user.userJobsCompleted = userObject["jobsCompleted"] as! Int
+            user.userNumJobsPosted = userObject["jobsPosted"] as! Int
+            user.userMoneyEarned = userObject["moneyEarned"] as! Double
+            user.userPhotoAsString = userObject["photoUrl"] as! String
+            
+            //TODO: SETTINGS NOT IN DATABASE YET
+            user.userLocationRadius = 1
+            user.userDistance = 1
+            user.userRating = 5
+            
+            user.userID = self.userId
+            
+            self.user = user
+        })
+    }
+    
 }

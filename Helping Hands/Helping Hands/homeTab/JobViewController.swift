@@ -195,7 +195,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 inquiry.userNumJobsPosted = 1
                 inquiry.userNumJobsPending = 2
                 inquiry.userJobsCompleted = 4
-                inquiry.userID = self.inquiries.count
+                
+//                inquiry.userID = self.inquiries.count
                 
                 self.inquiries.append(inquiry)
                 self.table.reloadData()

@@ -151,7 +151,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 attendee.userNumJobsPosted = 1
                 attendee.userNumJobsPending = 2
                 attendee.userJobsCompleted = 4
-                attendee.userID = self.attendees.count
+                
+//                attendee.userID = self.attendees.count
                 
                 self.attendees.append(attendee)
                 self.table.reloadData()
