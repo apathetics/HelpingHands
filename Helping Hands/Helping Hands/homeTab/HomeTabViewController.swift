@@ -13,7 +13,7 @@ import CoreLocation
 import FirebaseDatabase
 import FirebaseStorageUI
 
-class HomeTabViewController: ThemeVC, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
     
     let manager = CLLocationManager()
     
@@ -55,7 +55,7 @@ class HomeTabViewController: ThemeVC, UITableViewDataSource, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        ThemeService.shared.addThemeable(themable: self)
         
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
@@ -137,5 +137,12 @@ class HomeTabViewController: ThemeVC, UITableViewDataSource, UITableViewDelegate
             }
         })
     }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+    }
+
 }
 

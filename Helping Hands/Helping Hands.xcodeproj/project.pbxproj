@@ -40,6 +40,9 @@
 		192D63B020630578006189CA /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192D63AF20630578006189CA /* ThemeVC.swift */; };
 		194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194FC6A3206419B800D6E439 /* Gidole-Regular.otf */; };
 		194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */; };
+		198AC0292072CCE10017C84F /* ThemeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC0282072CCE10017C84F /* ThemeExtension.swift */; };
+		198AC02B2072CDBD0017C84F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC02A2072CDBD0017C84F /* UIColorExtension.swift */; };
+		198AC02D2072D0080017C84F /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC02C2072D0080017C84F /* ThemeService.swift */; };
 		3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB0205F350700DBFA64 /* UserViewController.swift */; };
 		3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* EventViewController.swift */; };
 		3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB4205F3CB500DBFA64 /* JobViewController.swift */; };
@@ -98,6 +101,9 @@
 		192D63AF20630578006189CA /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
 		194FC6A3206419B800D6E439 /* Gidole-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gidole-Regular.otf"; path = "gidole/Gidole-Regular.otf"; sourceTree = "<group>"; };
 		194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGradientExtension.swift; sourceTree = "<group>"; };
+		198AC0282072CCE10017C84F /* ThemeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeExtension.swift; sourceTree = "<group>"; };
+		198AC02A2072CDBD0017C84F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		198AC02C2072D0080017C84F /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
 		3970FEB0205F350700DBFA64 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		3970FEB2205F3CA300DBFA64 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		3970FEB4205F3CB500DBFA64 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +263,9 @@
 				192D63AF20630578006189CA /* ThemeVC.swift */,
 				194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */,
 				04780DCE206F48F7003029CE /* MessageUI.framework */,
+				198AC0282072CCE10017C84F /* ThemeExtension.swift */,
+				198AC02A2072CDBD0017C84F /* UIColorExtension.swift */,
+				198AC02C2072D0080017C84F /* ThemeService.swift */,
 			);
 			path = "UI Stuff";
 			sourceTree = "<group>";
@@ -503,6 +512,8 @@
 				1927A5F4205F40F300628A1C /* BEMPathManager.m in Sources */,
 				1927A5F3205F40F300628A1C /* BEMAnimationManager.m in Sources */,
 				1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */,
+				198AC02B2072CDBD0017C84F /* UIColorExtension.swift in Sources */,
+				198AC02D2072D0080017C84F /* ThemeService.swift in Sources */,
 				1927A60B205F418100628A1C /* EventTableViewCell.swift in Sources */,
 				1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */,
 				39ED45C0206F3EFD00084F9E /* LocationSearchTable.swift in Sources */,
@@ -522,6 +533,7 @@
 				3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */,
 				3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */,
 				AB7743012047853A00799F84 /* (null) in Sources */,
+				198AC0292072CCE10017C84F /* ThemeExtension.swift in Sources */,
 				398732892062B43200A29D39 /* EditEventViewController.swift in Sources */,
 				AB7743032047853A00799F84 /* (null) in Sources */,
 				3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */,

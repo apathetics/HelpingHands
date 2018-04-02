@@ -158,7 +158,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             job.distance = 0.0 // TODO
             job.payment = Double(paymentFld.text!)!
             job.numHelpers = Int(helpersCountFld.text!)!
-            job.address = addressFld.text // TODO
+            //job.address = addressFld.text // TODO
             
             // TODO: Give actual address and current location!
             job.address = "address"

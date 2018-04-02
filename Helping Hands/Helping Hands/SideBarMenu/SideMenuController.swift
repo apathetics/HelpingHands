@@ -20,6 +20,11 @@ class SideMenuController: UIViewController {
     @IBOutlet weak var userNumJobsPosted: UILabel!
     @IBOutlet weak var userMoneyEarned: UILabel!
     
+    @IBOutlet weak var themeButton: UIButton!
+    var selectedTheme: UIImage = UIImage(named: "nightModeIcon")!
+    var otherTheme: UIImage = UIImage(named: "dayModeIcon")!
+
+    
     var user: User!
     let userRef = FIRDatabase.database().reference().child("users")
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
@@ -101,6 +106,23 @@ class SideMenuController: UIViewController {
         
     }
     
+    @IBAction func themeButtonClicked(_ sender: Any) {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+            self.themeButton.alpha = 0.0
+        }, completion: { (bool) in
+            // change image to image B
+            self.themeButton.setImage(self.otherTheme, for: .normal)
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseIn, animations: {
+                self.themeButton.alpha = 1.0
+            }, completion: { (b) in
+                // Swap image A and image B
+                swap(&self.selectedTheme, &self.otherTheme)
+            })
+        })
+        
+        print("Clicked theme button")
+    }
+    
     @IBAction func settingsButtonClicked(_ sender: Any) {
         print("Clicked settings")
     }
@@ -108,10 +130,6 @@ class SideMenuController: UIViewController {
     @IBAction func contactUsButtonClicked(_ sender: Any) {
         print("Clicked contact us")
         self.performSegue(withIdentifier: "showContactUs", sender: self)
-    }
-    
-    @IBAction func nightModeButtonClicked(_ sender: Any) {
-        print("Clicked night mode")
     }
     
     // TEMPORARY PLACEMENT TO SHOW SCREENS
