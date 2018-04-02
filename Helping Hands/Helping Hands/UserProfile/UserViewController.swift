@@ -47,6 +47,15 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         
         retrieveUser()
     
+        // check for user permissions to edit
+        let userRef = databaseRef.child("users").child(userId)
+        userRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            if snapshot.ref.key == self.userId {
+                print("SNAPSHOT KEY", snapshot.ref.key, self.userId)
+                self.navigationItem.rightBarButtonItem?.title =  "Edit";
+            }
+        })
+        
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
@@ -84,35 +93,9 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         dismiss(animated: true, completion: nil)
     }
     
-    func populateProfile() {
-        
-//        if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {
-//            userRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-//                // Get user values
-//                let value = snapshot.value as? NSDictionary
-//                let fName = value?["firstName"] as? String ?? ""
-//                let lName = value?["lastName"] as? String ?? ""
-//                let email = value?["email"] as? String ?? ""
-//                let bio = value?["bio"] as? String ?? ""
-//                let rating = value?["rating"] as? String ?? ""
-////                let jobsDone = String(value?["jobsCompleted"] as! Int64)
-////                let jobsPosted = String(value?["jobsPosted"] as! Int64)
-////                let moneyEarned = String(value?["moneyEarned"] as! Int64)
-//                // Placeholder image
-//                let placeholderImage = UIImage(named: "meeting")
-//                // Load the image using SDWebImage
-//                self.userPhoto.sd_setImage(with: URL(string: value?["photoUrl"] as! String), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-//                })
-                // Populate Profile Info
-                self.userName.text = self.user.userFirstName + " " + self.user.userLastName
-                self.userEmail.text = self.user.userEmail
-                self.userDescription.text = self.user.userBio
-                self.userRating.text = "TEMPORARY RATING"
-                self.userLocation.text = "RADIUS PLACEHOLDER"
-                self.userDistance.text = "0 DISTANCE PLACEHOLDER"
-    
+    @IBAction func onEditButtonClick(_ sender: Any) {
+        self.performSegue(withIdentifier: "showEditUser", sender: self)
     }
-    
     // FIREBASE RETRIEVAL
     func retrieveUser() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")

@@ -2047,6 +2047,11 @@
                                                 <action selector="onBackButtonClick:" destination="tu9-qX-puX" id="FrM-VE-tCv"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="yvW-c1-IH0">
+                                            <connections>
+                                                <action selector="onEditButtonClick:" destination="tu9-qX-puX" id="mXi-zn-hZL"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -2057,7 +2062,7 @@
                     <navigationItem key="navigationItem" title="User" id="03f-hh-FkP" userLabel="User">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="clo-x2-yQo" userLabel="editButton">
                             <connections>
-                                <segue destination="7Kz-pK-AGX" kind="show" identifier="showEditUser" id="UAC-6S-O4N"/>
+                                <segue destination="7Kz-pK-AGX" kind="show" identifier="showEditUser" id="e80-kF-lAR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2168,7 +2173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rDF-IJ-Oa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5164" y="-2595"/>
+            <point key="canvasLocation" x="5258" y="-2595"/>
         </scene>
         <!--Edit Event-->
         <scene sceneID="Kt5-4X-vnu">
@@ -2334,7 +2339,7 @@
                     <navigationItem key="navigationItem" title="Edit Job" id="EdS-SN-MYf">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="3gi-QF-RE9">
                             <connections>
-                                <action selector="saveChanges:" destination="goc-cL-bG9" id="zsS-fB-WAa"/>
+                                <action selector="onEditButtonClick:" destination="2Ri-OO-vHf" id="tkj-V7-Lrf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2349,6 +2354,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5r-tC-KSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2Ri-OO-vHf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5164" y="-861"/>
         </scene>
@@ -2442,6 +2448,6 @@
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0ez-DH-srq"/>
+        <segue reference="0Vl-gT-Hp2"/>
     </inferredMetricsTieBreakers>
 </document>

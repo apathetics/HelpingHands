@@ -44,7 +44,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let jobObject = snapshot.value as! [String: Any]
             
-            if(jobObject["jobCreator"] as! String == self.userId) {
+            if(jobObject["jobCreator"] as! String != self.userId) {
                 self.navigationItem.rightBarButtonItem?.title = "Edit"
             }
             self.table.reloadData()
