@@ -43,8 +43,11 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         // Load the image using SDWebImage
         cell.jobImg.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -142,6 +145,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         theme.applyBackgroundColor(views: [view])
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyTableViewBackgroundColor(tableView: table)
     }
 
 }

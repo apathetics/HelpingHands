@@ -18,6 +18,8 @@ public protocol Theme {
     var navigationTitleFont: UIFont { get }
     var navigationTitleColor: UIColor { get }
     
+    var tableViewBackgroundColor: UIColor { get }
+    
     var headlineFont: UIFont { get }
     var headlineColor: UIColor { get }
     
@@ -37,6 +39,8 @@ extension Theme {
     
     public var navigationTitleFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
     public var navigationTitleColor: UIColor { return UIColor(hex: "#1B212C") }
+    
+    public var tableViewBackgroundColor: UIColor { return UIColor.white }
     
     public var headlineFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
     public var headlineColor: UIColor { return UIColor(hex: "#1B212C") }
@@ -73,6 +77,10 @@ extension Theme {
         }
     }
     
+    public func applyTableViewBackgroundColor(tableView: UITableView) {
+        tableView.backgroundColor = tableViewBackgroundColor
+    }
+    
 }
 
 public struct DefaultTheme: Theme {
@@ -81,6 +89,8 @@ public struct DefaultTheme: Theme {
     public var tintColor: UIColor = UIColor(hex: "#1B212C")
     public var navigationBarTintColor: UIColor? = UIColor.white
     public var navigationBarTranslucent: Bool = false
+    
+    public var tableViewBackgroundColor: UIColor = UIColor.white
     
     public var navigationTitleColor: UIColor = UIColor(hex: "#1B212C")
     public var headlineColor: UIColor { return UIColor(hex: "#1B212C") }
@@ -96,6 +106,8 @@ public struct DarkTheme: Theme {
     public var tintColor: UIColor = UIColor.white
     public var navigationBarTintColor: UIColor? = UIColor(hex: "#1B212C")
     public var navigationBarTranslucent: Bool = false
+    
+    public var tableViewBackgroundColor: UIColor = UIColor(hex: "#1B212C")
     
     public var navigationTitleColor: UIColor = UIColor.white
     public var headlineColor: UIColor { return UIColor.white }

@@ -21,8 +21,10 @@ class SideMenuController: UIViewController {
     @IBOutlet weak var userMoneyEarned: UILabel!
     
     @IBOutlet weak var themeButton: UIButton!
-    var selectedTheme: UIImage = UIImage(named: "nightModeIcon")!
-    var otherTheme: UIImage = UIImage(named: "dayModeIcon")!
+    var selectedThemeIcon: UIImage = UIImage(named: "nightModeIcon")!
+    var otherThemeIcon: UIImage = UIImage(named: "dayModeIcon")!
+    var selectedTheme: Theme = DarkTheme()
+    var otherTheme: Theme = DefaultTheme()
 
     
     var user: User!
@@ -111,15 +113,16 @@ class SideMenuController: UIViewController {
             self.themeButton.alpha = 0.0
         }, completion: { (bool) in
             // change image to image B
-            self.themeButton.setImage(self.otherTheme, for: .normal)
+            self.themeButton.setImage(self.otherThemeIcon, for: .normal)
+            ThemeService.shared.theme = self.selectedTheme
             UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseIn, animations: {
                 self.themeButton.alpha = 1.0
             }, completion: { (b) in
                 // Swap image A and image B
+                swap(&self.selectedThemeIcon, &self.otherThemeIcon)
                 swap(&self.selectedTheme, &self.otherTheme)
             })
         })
-        
         print("Clicked theme button")
     }
     
