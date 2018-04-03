@@ -22,8 +22,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     var jobs = [Job]()
     var chosen: Int?
     
-    var myCell: JobTableViewCell?
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
     }
@@ -45,14 +43,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         // Load the image using SDWebImage
         cell.jobImg.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
-//        if (ThemeService.shared.themeStr == "Default") {
-//            cell.jobDescriptionLbl.textColor = UIColor(hex: "1B212C")
-//            print("Description should be blue")
-//        } else {
-//            cell.jobDescriptionLbl.textColor = UIColor.white
-//            print("Description should be white")
-//        }
-        myCell = cell
         return cell
     }
     

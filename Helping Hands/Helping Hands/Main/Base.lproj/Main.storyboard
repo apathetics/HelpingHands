@@ -444,6 +444,15 @@
                         <viewLayoutGuide key="safeArea" id="nUU-Z8-eJl"/>
                     </view>
                     <connections>
+                        <outlet property="ConfirmHiredBTN" destination="pnV-9V-ABs" id="O1P-jl-aGp"/>
+                        <outlet property="ConfirmHireeBTN" destination="Nnv-2J-0y1" id="cfo-7H-HtK"/>
+                        <outlet property="ContactBTN" destination="PD7-oX-H9n" id="3tI-F5-ZiL"/>
+                        <outlet property="PaymentHiredBTN" destination="eOv-8m-Cah" id="7IU-AV-yGF"/>
+                        <outlet property="PaymentHireeBTN" destination="Cun-7L-6Oc" id="od8-fK-5RF"/>
+                        <outlet property="SettingsBTN" destination="pZ3-F6-oBL" id="GGe-q8-weg"/>
+                        <outlet property="jobsCompletedLBL" destination="Ul8-s9-F1l" id="Jwe-cd-LJr"/>
+                        <outlet property="jobsPostedLBL" destination="2bE-Sa-oj1" id="6Ih-QX-GLA"/>
+                        <outlet property="moneyEarnedLBL" destination="70P-Bc-bzp" id="aS2-xM-Soa"/>
                         <outlet property="profileImage" destination="wuY-nk-sJn" id="6p6-YO-8ci"/>
                         <outlet property="themeButton" destination="uJl-qi-E8W" id="cr8-Cp-vXN"/>
                         <outlet property="userMoneyEarned" destination="0jG-yI-Xa3" id="gee-Um-XAc"/>

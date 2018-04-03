@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorageUI
 
-class SideMenuController: UIViewController {
+class SideMenuController: UIViewController, Themeable {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -19,6 +19,18 @@ class SideMenuController: UIViewController {
     @IBOutlet weak var userNumJobsCompleted: UILabel!
     @IBOutlet weak var userNumJobsPosted: UILabel!
     @IBOutlet weak var userMoneyEarned: UILabel!
+    @IBOutlet weak var jobsCompletedLBL: UILabel!
+    @IBOutlet weak var jobsPostedLBL: UILabel!
+    @IBOutlet weak var moneyEarnedLBL: UILabel!
+    
+    @IBOutlet weak var ConfirmHiredBTN: UIButton!
+    @IBOutlet weak var ConfirmHireeBTN: UIButton!
+    @IBOutlet weak var PaymentHiredBTN: UIButton!
+    @IBOutlet weak var PaymentHireeBTN: UIButton!
+    @IBOutlet weak var SettingsBTN: UIButton!
+    @IBOutlet weak var ContactBTN: UIButton!
+    
+    
     
     @IBOutlet weak var themeButton: UIButton!
     var selectedThemeIcon: UIImage = UIImage(named: "nightModeIcon")!
@@ -33,6 +45,7 @@ class SideMenuController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeService.shared.addThemeable(themable: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -194,6 +207,13 @@ class SideMenuController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyBodyTextStyle(labels: [userNumJobsPosted, userNumJobsCompleted, userMoneyEarned, jobsPostedLBL, moneyEarnedLBL, jobsCompletedLBL])
+        theme.applyHeadlineStyle(labels: [userNameLabel])
+        theme.applyButtonTextStyle(buttons: [ContactBTN, SettingsBTN, PaymentHiredBTN, PaymentHireeBTN, ConfirmHiredBTN, ConfirmHireeBTN])
     }
     
 }

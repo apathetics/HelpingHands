@@ -77,6 +77,14 @@ extension Theme {
         }
     }
     
+    public func applyButtonTextStyle(buttons: [UIButton]) {
+        buttons.forEach {
+            $0.titleLabel?.font = bodyTextFont
+            $0.setTitleColor(bodyTextColor, for: .normal) 
+
+        }
+    }
+    
     public func applyTableViewBackgroundColor(tableView: UITableView) {
         tableView.backgroundColor = tableViewBackgroundColor
     }
