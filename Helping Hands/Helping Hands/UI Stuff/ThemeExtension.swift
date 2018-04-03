@@ -63,6 +63,11 @@ extension Theme {
         navBar.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: navigationTitleColor, NSAttributedStringKey.font: UIFont(name: "Gidole-Regular", size: 23)!]
     }
     
+    public func applyTabBarTintColor(tabBar: UITabBarController) {
+        tabBar.tabBar.barTintColor = navigationBarTintColor
+        tabBar.tabBar.backgroundColor = backgroundColor
+    }
+    
     public func applyHeadlineStyle(labels: [UILabel]) {
         labels.forEach {
             $0.font = headlineFont

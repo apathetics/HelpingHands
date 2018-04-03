@@ -145,6 +145,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
+        theme.applyTabBarTintColor(tabBar: self.tabBarController!)
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
         theme.applyTableViewBackgroundColor(tableView: table)
