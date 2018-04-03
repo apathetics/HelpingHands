@@ -11,7 +11,7 @@ import CoreData
 import FirebaseDatabase
 import FirebaseStorageUI
 
-class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Themeable {
     
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
@@ -21,7 +21,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        ThemeService.shared.addThemeable(themable: self)
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -59,7 +59,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         // Load the image using SDWebImage
         cell.eventImg.sd_setImage(with: URL(string: e.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
-        
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     // ** END TABLE FUCTIONS ** \\
@@ -116,5 +116,16 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                 }
             }
         })
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        for cell in table.visibleCells {
+            theme.applyBodyTextStyle(labels: [ ((cell as! EventTableViewCell).eventDescriptionLbl!) ])
+            theme.applyHeadlineStyle(labels: [ ((cell as! EventTableViewCell).eventTitleLbl!) ])
+        }
+
     }
 }
