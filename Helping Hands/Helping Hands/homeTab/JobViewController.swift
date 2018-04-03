@@ -13,7 +13,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import UIImageColors
 
-class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Themeable {
     
     @IBOutlet weak var jobPhoto: UIImageView!
     @IBOutlet weak var imgGradientView: UIView!
@@ -25,6 +25,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var jobDescription: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var navButton: UIBarButtonItem!
+    
+    @IBOutlet weak var descriptionLBL: UILabel!
+    @IBOutlet weak var inquiriesLBL: UILabel!
     
     var masterView:HomeTabViewController?
     var jobID:String?
@@ -39,7 +42,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ThemeService.shared.addThemeable(themable: self)
         let jobRef = databaseRef.child("jobs").child(jobID!)
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let jobObject = snapshot.value as! [String: Any]
@@ -142,7 +145,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         cell.userImg.image = u.userPhoto
         cell.userName.text = u.userFirstName + " " + u.userLastName
-        
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     
@@ -238,5 +241,12 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.job = job
             self.table.reloadData()
         })
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyHeadlineStyle(labels: [jobTitle, descriptionLBL, inquiriesLBL])
+        theme.applyBodyTextStyle(labels: [jobDate, jobLocation, jobDistance, jobDescription, jobDate])
+        theme.applyTableViewBackgroundColor(tableView: table)
     }
 }

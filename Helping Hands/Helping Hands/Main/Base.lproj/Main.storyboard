@@ -730,7 +730,9 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="850"/>
                     <connections>
+                        <outlet property="descriptionLBL" destination="u7I-b6-eLz" id="xrc-Ay-eAF"/>
                         <outlet property="imgGradientView" destination="vKS-LN-xAF" id="ruG-4A-wDj"/>
+                        <outlet property="inquiriesLBL" destination="d5c-Yg-CZK" id="FSN-Nj-RXp"/>
                         <outlet property="jobDate" destination="sKL-HY-bMB" id="1cS-9L-sBT"/>
                         <outlet property="jobDescription" destination="xOl-xd-HYw" id="Fd3-po-fxc"/>
                         <outlet property="jobDistance" destination="kTu-QE-bOH" id="IR7-pE-EJs"/>
@@ -2465,6 +2467,6 @@
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0ez-DH-srq"/>
+        <segue reference="0Vl-gT-Hp2"/>
     </inferredMetricsTieBreakers>
 </document>
