@@ -20,6 +20,16 @@ public class ThemeService {
             applyTheme()
         }
     }
+    var themeStr: String {
+        get {
+            if (theme.backgroundColor == UIColor.white) {
+                return "Default"
+            } else {
+                return "Dark"
+            }
+        }
+    }
+    
     
     private var listeners = NSHashTable<AnyObject>.weakObjects()
     

@@ -42,7 +42,7 @@ extension Theme {
     
     public var tableViewBackgroundColor: UIColor { return UIColor.white }
     
-    public var headlineFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
+    public var headlineFont: UIFont { return UIFont(name: "Gidole-Regular", size: 19)! }
     public var headlineColor: UIColor { return UIColor(hex: "#1B212C") }
     
     public var bodyTextFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
@@ -95,6 +95,7 @@ public struct DefaultTheme: Theme {
     public var navigationTitleColor: UIColor = UIColor(hex: "#1B212C")
     public var headlineColor: UIColor { return UIColor(hex: "#1B212C") }
     public var bodyTextColor: UIColor { return UIColor(hex: "#1B212C") }
+    public var bodyTextFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
     
     public init() {}
     
@@ -112,6 +113,7 @@ public struct DarkTheme: Theme {
     public var navigationTitleColor: UIColor = UIColor.white
     public var headlineColor: UIColor { return UIColor.white }
     public var bodyTextColor: UIColor { return UIColor.white }
+    public var bodyTextFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
     
     public init() {}
     
