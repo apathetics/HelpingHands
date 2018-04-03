@@ -244,7 +244,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func applyTheme(theme: Theme) {
-        theme.applyBackgroundColor(views: [view])
+        theme.applyBackgroundColor(views: [view, imgGradientView])
         theme.applyHeadlineStyle(labels: [jobTitle, descriptionLBL, inquiriesLBL])
         theme.applyBodyTextStyle(labels: [jobDate, jobLocation, jobDistance, jobDescription, jobDate])
         theme.applyTableViewBackgroundColor(tableView: table)

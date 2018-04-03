@@ -111,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE ACCOUNT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWU-u1-P7p">
-                                <rect key="frame" x="90" y="71" width="195" height="24"/>
+                                <rect key="frame" x="90" y="71" width="195" height="26"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -126,32 +126,32 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D3N-wP-TIY">
-                                <rect key="frame" x="52" y="268" width="271" height="30"/>
+                                <rect key="frame" x="52" y="271" width="271" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDz-Vw-A8z">
-                                <rect key="frame" x="52" y="323" width="271" height="30"/>
+                                <rect key="frame" x="52" y="326" width="271" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Verify Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sny-hn-JMA">
-                                <rect key="frame" x="52" y="378" width="271" height="30"/>
+                                <rect key="frame" x="52" y="381" width="271" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="NtZ-0P-nL1">
-                                <rect key="frame" x="52" y="141" width="81" height="81"/>
+                                <rect key="frame" x="52" y="143" width="81" height="81"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="56V-RI-R10"/>
                                     <constraint firstAttribute="width" constant="81" id="rbs-Tg-kLY"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dv0-au-N6j">
-                                <rect key="frame" x="52" y="220" width="86" height="30"/>
+                                <rect key="frame" x="52" y="222" width="86" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="86" id="KGu-9C-Q01"/>
                                 </constraints>
@@ -164,7 +164,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QXH-gA-CoO">
-                                <rect key="frame" x="160" y="141" width="163" height="30"/>
+                                <rect key="frame" x="160" y="143" width="163" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="163" id="rjd-yV-VyU"/>
                                 </constraints>
@@ -173,7 +173,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GRy-SI-WAV">
-                                <rect key="frame" x="160" y="196" width="163" height="30"/>
+                                <rect key="frame" x="160" y="198" width="163" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="163" id="YNr-3m-A7l"/>
                                 </constraints>
@@ -182,7 +182,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bT7-U8-gBR" customClass="BEMCheckBox">
-                                <rect key="frame" x="52" y="433" width="46" height="30"/>
+                                <rect key="frame" x="52" y="436" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
@@ -191,7 +191,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Co-Kj-N8v" customClass="BEMCheckBox">
-                                <rect key="frame" x="52" y="488" width="48.5" height="30"/>
+                                <rect key="frame" x="52" y="491" width="48.5" height="30"/>
                                 <color key="backgroundColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
@@ -200,19 +200,19 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPt-nU-oUd">
-                                <rect key="frame" x="112" y="436" width="187" height="23"/>
+                                <rect key="frame" x="112" y="439" width="216.5" height="24.5"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="21"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 and over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVF-ou-DTD">
-                                <rect key="frame" x="114.5" y="491" width="93.5" height="23"/>
+                                <rect key="frame" x="114.5" y="495.5" width="111.5" height="24.5"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="21"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUM-Iu-Yki">
-                                <rect key="frame" x="137" y="550" width="101" height="40"/>
+                                <rect key="frame" x="137" y="556" width="101" height="40"/>
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="htR-4m-mty"/>
@@ -1039,13 +1039,26 @@
                     </view>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="addJobView" destination="htH-Df-3IF" id="t2X-2F-ZnG"/>
+                        <outlet property="chooseImgBTN" destination="dNV-m4-RtN" id="KSU-HD-3in"/>
                         <outlet property="datePicker" destination="hr9-dN-Mbm" id="XBt-dG-NjY"/>
+                        <outlet property="datePickerItem" destination="hr9-dN-Mbm" id="4cs-Ji-r9g"/>
                         <outlet property="descriptionFld" destination="btD-sa-0xe" id="qCj-xn-C2O"/>
+                        <outlet property="dollarSignLBL" destination="mhH-YA-evB" id="Mad-Gx-9g8"/>
+                        <outlet property="finishBTN" destination="uOb-X1-JDp" id="ful-4V-B1G"/>
                         <outlet property="helpersCountFld" destination="ZqU-4r-sOs" id="prF-SM-5ki"/>
+                        <outlet property="helpersStepper" destination="1Al-3u-JR3" id="OqQ-9N-4A0"/>
                         <outlet property="imgView" destination="Jrn-NA-Lyp" id="9hX-gF-YN2"/>
+                        <outlet property="jobDateLBL" destination="vyl-SN-u7F" id="3Ac-Os-UhA"/>
+                        <outlet property="jobDescLBL" destination="zAn-8W-GRK" id="L0T-tw-31l"/>
+                        <outlet property="jobLocationLBL" destination="wCH-rD-eM0" id="vfV-3C-Ah7"/>
+                        <outlet property="jobTitleLBL" destination="OQc-nE-gmh" id="dkH-tP-RZY"/>
                         <outlet property="locImg" destination="KM5-iv-3Ku" id="ool-fR-T9u"/>
+                        <outlet property="locSwitch" destination="Trx-8j-KbG" id="WW1-6s-vUs"/>
+                        <outlet property="numHelpersLBL" destination="9YA-3h-2M3" id="cBO-8a-iWE"/>
                         <outlet property="paymentFld" destination="ivQ-cx-igk" id="cWR-s4-lt3"/>
-                        <outlet property="paymentTypeSeg" destination="JK7-8H-Jjq" id="bs6-ek-6V5"/>
+                        <outlet property="paymentLBL" destination="N6W-sZ-AfX" id="0hn-az-XmU"/>
+                        <outlet property="paymentTypeSeg" destination="JK7-8H-Jjq" id="kXQ-9g-u1N"/>
                         <outlet property="redLbl" destination="eYP-dX-GBG" id="t39-5w-g0d"/>
                         <outlet property="titleFld" destination="oHU-Uv-2go" id="bHE-Xs-jkN"/>
                     </connections>

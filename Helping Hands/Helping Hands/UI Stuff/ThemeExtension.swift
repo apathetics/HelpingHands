@@ -77,6 +77,20 @@ extension Theme {
         }
     }
     
+    public func applyTextViewStyle(textViews: [UITextView]) {
+        textViews.forEach {
+            $0.backgroundColor = backgroundColor
+            $0.textColor = bodyTextColor
+        }
+    }
+    
+    public func applyTextFieldStyle(textFields: [UITextField]) {
+        textFields.forEach {
+            $0.backgroundColor = backgroundColor
+            $0.textColor = bodyTextColor
+        }
+    }
+    
     public func applyButtonTextStyle(buttons: [UIButton]) {
         buttons.forEach {
             $0.titleLabel?.font = bodyTextFont
@@ -85,8 +99,43 @@ extension Theme {
         }
     }
     
+    public func applySwitchStyle(switches: [UISwitch]) {
+        switches.forEach {
+            $0.tintColor = tintColor
+            $0.onTintColor = tintColor
+            $0.thumbTintColor = backgroundColor
+        }
+    }
+    
+    public func applyStepperStyle(steppers: [UIStepper]) {
+        steppers.forEach {
+            $0.tintColor = tintColor
+        }
+    }
+    
+    public func applySegmentedControlStyle(controls: [UISegmentedControl]) {
+        controls.forEach {
+            $0.tintColor = tintColor
+        }
+    }
+
+    public func applyFilledButtonStyle(buttons: [UIButton]) {
+        buttons.forEach {
+            $0.backgroundColor = tintColor
+            $0.tintColor = backgroundColor
+            $0.titleLabel?.font = bodyTextFont
+            $0.titleLabel?.textColor = backgroundColor
+        }
+    }
+    
     public func applyTableViewBackgroundColor(tableView: UITableView) {
         tableView.backgroundColor = tableViewBackgroundColor
+    }
+    
+    public func applyDatePickerStyle(pickers: [UIDatePicker]) {
+        pickers.forEach {
+            $0.setValue(bodyTextColor, forKey: "textColor")
+        }
     }
     
 }

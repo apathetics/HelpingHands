@@ -14,7 +14,7 @@ import FirebaseAuth
 let LOC_DEFAULT_TEXT = "Using your current location by default. You can use the toggle to the right to change this."
 let DESCR_PLACEHOLDER = "What will Helpers be doing at this job? Add as much or little detail as you'd like, but make sure to be clear. You'll be more likely to attract Helpers that way!"
 
-class AddJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
+class AddJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleFld: UITextField!
@@ -27,11 +27,27 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var redLbl: UILabel!
     @IBOutlet weak var locImg: UIImageView!
     
+    @IBOutlet weak var addJobView: UIView!
+    @IBOutlet weak var jobTitleLBL: UILabel!
+    @IBOutlet weak var jobDescLBL: UILabel!
+    @IBOutlet weak var paymentLBL: UILabel!
+    @IBOutlet weak var dollarSignLBL: UILabel!
+    @IBOutlet weak var jobLocationLBL: UILabel!
+    @IBOutlet weak var numHelpersLBL: UILabel!
+    @IBOutlet weak var jobDateLBL: UILabel!
+    @IBOutlet weak var helpersStepper: UIStepper!
+    @IBOutlet weak var locSwitch: UISwitch!
+    @IBOutlet weak var finishBTN: UIButton!
+    @IBOutlet weak var chooseImgBTN: UIButton!
+    @IBOutlet weak var datePickerItem: UIDatePicker!
+    
+    
     var imgChosen = false
     var masterView:HomeTabViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeService.shared.addThemeable(themable: self)
         descriptionFld.delegate = self
         descriptionFld.text = DESCR_PLACEHOLDER
         // Do any additional setup after loading the view.
@@ -229,5 +245,17 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     //
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view, addJobView])
+        theme.applyHeadlineStyle(labels: [paymentLBL, jobDateLBL, jobDescLBL, jobTitleLBL, numHelpersLBL, dollarSignLBL, jobLocationLBL])
+        theme.applyStepperStyle(steppers: [helpersStepper])
+        theme.applySegmentedControlStyle(controls: [paymentTypeSeg])
+        theme.applySwitchStyle(switches: [locSwitch])
+        theme.applyFilledButtonStyle(buttons: [finishBTN, chooseImgBTN])
+        theme.applyTextViewStyle(textViews: [descriptionFld])
+        theme.applyTextFieldStyle(textFields: [titleFld, paymentFld, helpersCountFld])
+        theme.applyDatePickerStyle(pickers: [datePickerItem])
     }
 }
