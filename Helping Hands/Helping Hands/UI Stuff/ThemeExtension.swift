@@ -143,6 +143,11 @@ extension Theme {
         }
     }
     
+    public func applySearchControllerStyle(searchBar: UISearchController) {
+        searchBar.searchBar.barTintColor = backgroundColor
+        searchBar.searchBar.tintColor = tintColor
+    }
+    
 }
 
 public struct DefaultTheme: Theme {

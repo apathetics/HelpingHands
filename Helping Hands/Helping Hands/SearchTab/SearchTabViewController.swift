@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import FirebaseDatabase
 
-class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
+class SearchTabViewController: UITableViewController, UISearchResultsUpdating, Themeable {
     
     @IBOutlet var table: UITableView!
     
@@ -25,7 +25,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
     
     // Create unfiltered job list from Job CoreData
     override func viewDidLoad() {
-        
+        ThemeService.shared.addThemeable(themable: self)
         // Search bar settings
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
@@ -71,7 +71,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
             cell.distanceLabel.text = String(result.distance)
             cell.descriptionLabel.text = result.jobDescription
         }
-        
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     
@@ -152,5 +152,16 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating {
             abort()
         }
         return(fetchedResults)!
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        for cell in table.visibleCells {
+            theme.applyHeadlineStyle(labels: [(cell as! SearchTableCell).jobTitleLabel])
+            theme.applyBodyTextStyle(labels: [(cell as! SearchTableCell).descriptionLabel])
+        }
+        theme.applySearchControllerStyle(searchBar: searchController)
     }
 }

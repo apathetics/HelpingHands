@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorageUI
 
-class UserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
+class UserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
 
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -35,7 +35,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ThemeService.shared.addThemeable(themable: self)
         // do verifcation if user = currently logged in
 //        if(user.userID != 0) {
 //            self.navigationItem.rightBarButtonItem =  nil;
@@ -124,6 +124,14 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             
             self.user = user
         })
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyHeadlineStyle(labels: [userName])
+        theme.applyBodyTextStyle(labels: [userEmail, userRating, userLocation, userDistance])
+        theme.applySegmentedControlStyle(controls: [jobBar])
     }
     
 }

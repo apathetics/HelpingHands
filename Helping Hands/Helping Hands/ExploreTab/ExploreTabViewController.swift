@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ExploreTabViewController: UIViewController {
+class ExploreTabViewController: UIViewController, Themeable {
 
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ThemeService.shared.addThemeable(themable: self)
+        self.navigationController?.title = "Explore"
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -39,4 +40,9 @@ class ExploreTabViewController: UIViewController {
     }
     */
 
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+    }
+    
 }
