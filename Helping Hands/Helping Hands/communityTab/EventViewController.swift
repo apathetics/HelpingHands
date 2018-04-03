@@ -12,7 +12,7 @@ import FirebaseStorageUI
 import FirebaseAuth
 import FirebaseDatabase
 
-class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Themeable {
     
     @IBOutlet weak var eventPhoto: UIImageView!
     @IBOutlet weak var eventTitle: UILabel!
@@ -49,7 +49,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ThemeService.shared.addThemeable(themable: self)
         let eventRef = databaseRef.child("events").child(eventID!)
         eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let eventObject = snapshot.value as! [String: Any]
@@ -120,7 +120,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         cell.userImg.image = u.userPhoto
         cell.userName.text = u.userFirstName + " " + u.userLastName
-        
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     
@@ -210,6 +210,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.event = event
             self.table.reloadData()
         })
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyTableViewBackgroundColor(tableView: table)
     }
     
 }

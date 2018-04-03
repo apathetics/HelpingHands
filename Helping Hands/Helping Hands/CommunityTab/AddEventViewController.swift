@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
 
-class AddEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
+class AddEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleFld: UITextField!
@@ -21,11 +21,24 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var redLbl: UILabel!
     @IBOutlet weak var locImg: UIImageView!
+    @IBOutlet weak var addEventView: UIView!
+    
+    @IBOutlet weak var finishBTN: UIButton!
+    @IBOutlet weak var chooseImgBTN: UIButton!
+    @IBOutlet weak var eventTitleLBL: UILabel!
+    @IBOutlet weak var eventDescLBL: UILabel!
+    @IBOutlet weak var eventLocationLBL: UILabel!
+    @IBOutlet weak var helpersGoalLBL: UILabel!
+    @IBOutlet weak var eventDateLBL: UILabel!
+    @IBOutlet weak var locSwitch: UISwitch!
+    @IBOutlet weak var helperStepper: UIStepper!
+    
     
     var imgChosen = false
     var masterView:CommunityTabViewController?
     
     override func viewDidLoad() {
+        ThemeService.shared.addThemeable(themable: self)
         super.viewDidLoad()
         descriptionFld.delegate = self
         descriptionFld.text = DESCR_PLACEHOLDER
@@ -207,6 +220,18 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     //
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view, addEventView])
+        theme.applyDatePickerStyle(pickers: [datePicker])
+        theme.applyFilledButtonStyle(buttons: [finishBTN, chooseImgBTN])
+        theme.applyHeadlineStyle(labels: [eventTitleLBL, eventDescLBL, eventLocationLBL, helpersGoalLBL, eventDateLBL])
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyTextViewStyle(textViews: [descriptionFld, addressFld])
+        theme.applyTextFieldStyle(textFields: [titleFld, helpersCountFld])
+        theme.applyStepperStyle(steppers: [helperStepper])
+        theme.applySwitchStyle(switches: [locSwitch])
     }
 }
 

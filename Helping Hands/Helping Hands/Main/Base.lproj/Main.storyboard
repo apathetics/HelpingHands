@@ -1833,12 +1833,22 @@
                     </view>
                     <size key="freeformSize" width="375" height="950"/>
                     <connections>
+                        <outlet property="addEventView" destination="OEw-lB-unl" id="7gX-Nq-88B"/>
                         <outlet property="addressFld" destination="PTE-dV-ikj" id="byr-sv-gjV"/>
+                        <outlet property="chooseImgBTN" destination="PDH-H0-HV1" id="coh-Zz-uNd"/>
                         <outlet property="datePicker" destination="gw9-pb-8kT" id="A0n-Y4-a4w"/>
                         <outlet property="descriptionFld" destination="imO-Vz-KMe" id="pzh-79-Rvt"/>
+                        <outlet property="eventDateLBL" destination="Nv7-5s-hX6" id="Rsd-4d-26W"/>
+                        <outlet property="eventDescLBL" destination="cEA-dM-yef" id="MRu-UU-6Wz"/>
+                        <outlet property="eventLocationLBL" destination="Edo-n8-MRY" id="NyL-4O-fGm"/>
+                        <outlet property="eventTitleLBL" destination="qJe-zR-R9N" id="6sv-u0-Lhi"/>
+                        <outlet property="finishBTN" destination="E2M-Bt-uyZ" id="SUU-bK-olM"/>
+                        <outlet property="helperStepper" destination="SBr-wa-tG6" id="fe4-yK-op3"/>
                         <outlet property="helpersCountFld" destination="1zb-bz-gqF" id="tiY-5Y-rAp"/>
+                        <outlet property="helpersGoalLBL" destination="A6J-X9-lMI" id="yM2-66-smq"/>
                         <outlet property="imgView" destination="DTx-Qz-Bgj" id="0dg-38-aiN"/>
                         <outlet property="locImg" destination="Iq1-uX-olG" id="R7u-25-cuH"/>
+                        <outlet property="locSwitch" destination="bfS-uk-edM" id="OL8-6Y-YrR"/>
                         <outlet property="redLbl" destination="3ZZ-OL-elm" id="F3x-tG-7AG"/>
                         <outlet property="titleFld" destination="2St-ws-isw" id="ZU8-Lg-l4V"/>
                     </connections>
