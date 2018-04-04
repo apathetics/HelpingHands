@@ -22,39 +22,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     var jobs = [Job]()
     var chosen: Int?
     
-    // ** START VIEW LOADING FUNCTIONS ** \\
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:JobTableViewCell = tableView.dequeueReusableCell(withIdentifier: "jobCell", for: indexPath) as! JobTableViewCell
-        
-        let row = indexPath.row
-        let j:Job = jobs[row]
-        
-        cell.jobTitleLbl.text = j.jobTitle
-        cell.jobDescriptionLbl.text = j.jobDescription
-        cell.distanceLbl.text = String(format: "%.2f", j.distance) + " mi"
-        let ftmPayment = "$" + ((j.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
-        cell.paymentLbl.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-        
-        // Placeholder image
-        let placeholderImage = UIImage(named: "meeting")
-        // Load the image using SDWebImage
-        cell.jobImg.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-        })
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosen = (indexPath.row)
-        self.performSegue(withIdentifier: "showJob", sender: self)
-    }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
