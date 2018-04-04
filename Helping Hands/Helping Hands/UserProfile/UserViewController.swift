@@ -114,6 +114,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             user.userNumJobsPosted = userObject["jobsPosted"] as! Int
             user.userMoneyEarned = userObject["moneyEarned"] as! Double
             user.userPhotoAsString = userObject["photoUrl"] as! String
+            user.userBio = userObject["bio"] as! String
             
             //TODO: SETTINGS NOT IN DATABASE YET
             user.userLocationRadius = 1
