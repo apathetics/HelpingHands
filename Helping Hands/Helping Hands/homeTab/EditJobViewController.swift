@@ -28,6 +28,14 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        jobPhoto.sd_setImage(with: URL(string: self.job.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            self.job.image = image
+        })
+        
         jobPhoto.image = job.image
         editJobTitle.text = job.jobTitle
         editJobPrice.text = String(job.payment)
