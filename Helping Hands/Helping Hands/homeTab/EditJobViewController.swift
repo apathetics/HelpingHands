@@ -44,6 +44,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         editJobPrice.text = String(job.payment)
         editJobDate.text = job.jobDateString
         jobDescription.text = job.jobDescription
+        self.latLong = (job.latitude, job.longitude)
         
         // TODO when location is more than an illusion
         addressLabel.text = job.address
@@ -104,8 +105,10 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         job.date = dateFormatter.date (from: editJobDate.text!)
         job.jobDescription = jobDescription.text
         
-        job.latitude = latLong!.0
-        job.longitude = latLong!.1
+        if(self.latLong != nil) {
+            job.latitude = self.latLong?.0
+            job.longitude = self.latLong?.1
+        }
         
         job.address = addressLabel.text
         

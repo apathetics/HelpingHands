@@ -136,8 +136,14 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         let distance = (locationManager.location?.distance(from: CLLocation(latitude: j.latitude, longitude: j.longitude)) as! Double) * 0.00062137
-        j.distance = distance
-        jobDistance.text! = String(format: "%.2f", distance) + " mi"
+        jobDistance.text = String(format: "%.2f", distance) + " mi"
+        
+        jobTitle.text = j.jobTitle
+        let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
+        jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
+        jobDate.text = j.jobDateString
+        jobLocation.text = j.address
+        jobDescription.text = j.jobDescription
         
         table.reloadData()
     }
