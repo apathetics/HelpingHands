@@ -11,6 +11,7 @@ import CoreData
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
+import FirebaseStorageUI
 
 extension UIViewController {
     func performSegueToReturnBack()  {
@@ -42,6 +43,14 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        userPhoto.sd_setImage(with: URL(string: user.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            self.user.userPhoto = image
+        })
+        
         userPhoto.image = user.userPhoto
         editFirstName.text = user.userFirstName
         editLastName.text = user.userLastName
