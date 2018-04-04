@@ -50,6 +50,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             if(jobObject["jobCreator"] as! String != self.userId) {
                 self.navigationItem.rightBarButtonItem?.title = "Edit"
             }
+            else {
+                self.navigationItem.rightBarButtonItem?.title = "Sign-up"
+            }
             self.table.reloadData()
         })
         
@@ -110,6 +113,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             
             if(jobObject["jobCreator"] as! String == self.userId) {
                 self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            else {
+                self.navigationItem.rightBarButtonItem?.title = "Sign-up"
             }
             self.table.reloadData()
         })
@@ -188,6 +194,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
             // Else sign up the user as an inquiry.
             else {
+                
+                print("HELLO I AM IN SIGN UP")
+                
                 let inquiry:User = User()
                 inquiry.userFirstName = "Emiliano"
                 inquiry.userLastName = "Zapata"
@@ -199,13 +208,15 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 inquiry.userNumJobsPending = 2
                 inquiry.userJobsCompleted = 4
                 
-//                inquiry.userID = self.inquiries.count
-                
+                inquiry.userID = String(self.inquiries.count)
                 self.inquiries.append(inquiry)
                 self.table.reloadData()
             }
             self.table.reloadData()
         })
+        print("I AM OUT OF SIGN UP")
+        print(self.inquiries)
+        self.table.reloadData()
     }
     
     // Auxiliary getDate function
