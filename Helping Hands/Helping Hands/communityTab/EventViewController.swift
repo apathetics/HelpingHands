@@ -20,9 +20,15 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var eventHelpers: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventDistance: UILabel!
-    @IBOutlet weak var eventDescription: UITextView!
+    @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var eventAttendees: UITableView!
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var imgGradientView: UIView!
+    
+    @IBOutlet weak var descLBL: UILabel!
+    @IBOutlet weak var attendeesLBL: UILabel!
+    
+    
     
     var masterView:CommunityTabViewController?
     var eventID:String?
@@ -101,6 +107,20 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         eventDescription.text = e.eventDescription
         
         table.reloadData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let colors = eventPhoto.image?.getColors()
+        
+        let color1 = colors?.background
+        let color2 = colors?.primary
+        
+        self.imgGradientView.setGradientBackground(colorOne: color1!, colorTwo: color2!)
+        eventPhoto.layer.shadowColor = UIColor.black.cgColor
+        eventPhoto.layer.shadowOpacity = 0.6
+        eventPhoto.layer.shadowOffset = CGSize.zero
+        eventPhoto.layer.shadowRadius = 8
+        eventPhoto.layer.shouldRasterize = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -213,8 +233,12 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func applyTheme(theme: Theme) {
-        theme.applyBackgroundColor(views: [view])
+        theme.applyBackgroundColor(views: [view, imgGradientView])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyHeadlineStyle(labels: [eventTitle, attendeesLBL, descLBL])
+        theme.applyBodyTextStyle(labels: [eventDate, eventDistance, eventLocation, eventDescription])
     }
     
 }
