@@ -27,6 +27,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     var masterView:JobViewController?
     var job:Job!
     var address:String?
+    var latLong:(Double, Double)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         editJobPrice.text = String(job.payment)
         editJobDate.text = job.jobDateString
         jobDescription.text = job.jobDescription
+        self.latLong = (job.latitude, job.longitude)
         
         // TODO when location is more than an illusion
         addressLabel.text = job.address
@@ -103,7 +105,11 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         job.date = dateFormatter.date (from: editJobDate.text!)
         job.jobDescription = jobDescription.text
         
-        // TODO when location is more than an illusion
+        if(self.latLong != nil) {
+            job.latitude = self.latLong?.0
+            job.longitude = self.latLong?.1
+        }
+        
         job.address = addressLabel.text
         
         masterView?.j = self.job
@@ -126,13 +132,15 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
                 if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
                     let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid, "jobCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
                     jobRef.setValue(values)
+                    jobRef.updateChildValues(["latitude": self.latLong!.0, "longitude": self.latLong!.1])
                 }
             })
         }
     }
     
-    func sendAddress(address:String) {
+    func sendAddress(address:String, latLong:(Double, Double)) {
         self.address = address
+        self.latLong = latLong
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -46,6 +46,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     var imgChosen = false
     var masterView:HomeTabViewController?
     var address:String?
+    var latLong:(Double, Double)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -213,6 +214,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
                     
                     let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid, "jobCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
                     newPost.setValue(values)
+                    newPost.updateChildValues(["latitude": self.latLong!.0, "longitude": self.latLong!.1])
                     
                     // Increment jobs posted in users by 1
                     let userRef = databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
@@ -263,8 +265,9 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         theme.applyDatePickerStyle(pickers: [datePickerItem])
     }
     
-    func sendAddress(address:String) {
+    func sendAddress(address:String, latLong:(Double, Double)) {
         self.address = address
+        self.latLong = latLong
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
