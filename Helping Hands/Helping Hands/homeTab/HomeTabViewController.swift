@@ -22,6 +22,55 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     var jobs = [Job]()
     var chosen: Int?
     
+    // ** START VIEW LOADING FUNCTIONS ** \\
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        ThemeService.shared.addThemeable(themable: self)
+        
+        if self.revealViewController() != nil {
+            sideMenuButton.target = self.revealViewController()
+            sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
+        // Location pemissions
+        manager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            manager.delegate = self
+            manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+            manager.startUpdatingLocation()
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        retrieveJobs()
+    }
+    
+    //  ** PREPARE SEGUES ** \\
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "addJob") {
+            let addJobVC:AddJobViewController = segue.destination as! AddJobViewController
+            addJobVC.masterView = self
+        }
+        
+        if(segue.identifier == "showJob") {
+            let j:Job = jobs[chosen!]
+            let jobVC:JobViewController = segue.destination as! JobViewController
+            jobVC.masterView = self
+            jobVC.job = j
+            jobVC.jobID = j.jobId
+        }
+    }
+    
+    // ** START TABLE FUNCTIONS ** \\
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
     }
@@ -53,54 +102,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosen = (indexPath.row)
         self.performSegue(withIdentifier: "showJob", sender: self)
-    }
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        ThemeService.shared.addThemeable(themable: self)
-        
-        if self.revealViewController() != nil {
-            sideMenuButton.target = self.revealViewController()
-            sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-        
-        // Location pemissions
-        manager.requestWhenInUseAuthorization()
-
-        if CLLocationManager.locationServicesEnabled() {
-            manager.delegate = self
-            manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-            manager.startUpdatingLocation()
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "addJob") {
-            let addJobVC:AddJobViewController = segue.destination as! AddJobViewController
-            addJobVC.masterView = self
-        }
-        
-        if(segue.identifier == "showJob") {
-            let j:Job = jobs[chosen!]
-            let jobVC:JobViewController = segue.destination as! JobViewController
-            jobVC.masterView = self
-            jobVC.job = j
-            jobVC.jobID = j.jobId
-            print("JOB ID IS: ", jobVC.jobID!)
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        retrieveJobs()
     }
     
     // FIREBASE RETRIEVAL
@@ -142,6 +143,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
     }
+    
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])

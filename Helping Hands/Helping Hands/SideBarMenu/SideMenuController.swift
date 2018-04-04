@@ -109,6 +109,13 @@ class SideMenuController: UIViewController, Themeable {
             user.userMoneyEarned = userObject["moneyEarned"] as! Double
             user.userPhotoAsString = userObject["photoUrl"] as! String
             
+            if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
+                user.userBio = "Description..."
+            }
+            else {
+                user.userBio = userObject["bio"] as! String
+            }
+            
             //TODO: SETTINGS NOT IN DATABASE YET
             user.userLocationRadius = 1
             user.userDistance = 1

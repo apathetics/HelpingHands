@@ -188,15 +188,12 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
             // Else sign up the user as an inquiry.
             else {
-                
-//                print("HELLO I AM IN SIGN UP")
                 self.retrieveUser()
                 
                 // Save job inquiry
                 let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
                 userRef.observeSingleEvent(of: .value, with: {(snapshot) in
                 
-                    
                     let jobInquiredChild = userRef.child("jobsInquiredArray").childByAutoId()
                     jobInquiredChild.updateChildValues(["jobId": jobRef.key])
                 })
@@ -209,8 +206,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
             self.table.reloadData()
         })
-//        print("I AM OUT OF SIGN UP")
-//        print(self.inquiries)
         self.table.reloadData()
     }
     
@@ -325,11 +320,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                     
                 }
                 
-                print(" I AM ARRAY", userInquiryIdArray)
-                
                 for userInquiryId in userInquiryIdArray {
                     
-                    print("I AM IN USER INQUIRY ID ARRAY PER")
                     let userRef = databaseRef.child("users").child(userInquiryId)
                     
                     userRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -360,14 +352,11 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                         user.userRating = 5
                         
                         //                        user.userID = self.userId
-                        print("USER IS", user)
                         
                         self.inquiries.append(user)
                         self.table.reloadData()
                     })
                 }
-                
-                print(" I AM DONE", self.inquiries)
                 self.table.reloadData()
             }
         })

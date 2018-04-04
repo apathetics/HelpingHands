@@ -28,6 +28,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         eventPhoto.image = event.image
         editEventTitle.text = event.eventTitle
         editEventHelpers.text = String(event.numHelpers)
@@ -36,6 +37,18 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         
         // TODO when location is more than an illusion
         editLocation.text = "curLocation"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        if imgChosen == false {
+            eventPhoto.sd_setImage(with: URL(string: self.event.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+                //            self.event.image = image
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,6 +89,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             eventPhoto.image = image
+            
             self.imgChosen = true
         } else {
             //error
