@@ -34,7 +34,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         
         cell.jobTitleLbl.text = j.jobTitle
         cell.jobDescriptionLbl.text = j.jobDescription
-        cell.distanceLbl.text = String(j.distance) + " mi"
+        cell.distanceLbl.text = String(format: "%.2f", j.distance) + " mi"
         let ftmPayment = "$" + ((j.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         cell.paymentLbl.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
         
@@ -135,6 +135,23 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                     job.payment = jobObject["jobPayment"] as! Double
                     job.jobTitle = jobObject["jobTitle"] as! String
                     job.jobId = jobSnapshot.ref.key
+                    if(jobObject["latitude"] == nil)
+                    {
+                        job.latitude = 0
+                        job.longitude = 0
+                    }
+                    else {
+                        job.latitude = jobObject["latitude"] as! Double
+                        job.longitude = jobObject["longitude"] as! Double
+                    }
+                    
+                    let locationManager = CLLocationManager()
+                    locationManager.delegate = self;
+                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    locationManager.requestAlwaysAuthorization()
+                    locationManager.startUpdatingLocation()
+                    let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
+                    job.distance = distance
                         
                     self.jobs.append(job)
                     self.table.reloadData()

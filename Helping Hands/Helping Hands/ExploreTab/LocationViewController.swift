@@ -17,7 +17,7 @@ protocol HandleMapSearch {
 
 protocol AddressDelegate
 {
-    func sendAddress(address:String)
+    func sendAddress(address:String, latLong:(Double, Double))
 }
 
 class LocationViewController : UIViewController, CLLocationManagerDelegate, HandleMapSearch, MKMapViewDelegate{
@@ -29,6 +29,7 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
     let locationManager = CLLocationManager()
     var delegate: AddressDelegate?
     var address:String?
+    var latLong:(Double, Double)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,7 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
             annotation.subtitle = ABCreateStringWithAddressDictionary(placemark.addressDictionary!, false)
         }
         address = annotation.subtitle
+        latLong = (placemark.coordinate.latitude, placemark.coordinate.longitude)
         mapView.addAnnotation(annotation)
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
@@ -113,10 +115,8 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
         return pinView
     }
     
-    
-    
     @objc fileprivate func action(sender: UIButton) {
-        self.delegate?.sendAddress(address: self.address!)
+        self.delegate?.sendAddress(address: self.address!, latLong: self.latLong!)
         self.navigationController?.popViewController(animated: true)
     }
 }

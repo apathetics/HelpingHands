@@ -25,4 +25,6 @@ class Job {
     var numHelpers:Int!
     var jobDateString: String!
     var jobId: String!
+    var latitude: Double!
+    var longitude: Double!
 }

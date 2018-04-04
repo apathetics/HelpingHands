@@ -8,12 +8,13 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 import FirebaseStorageUI
 import FirebaseAuth
 import FirebaseDatabase
 import UIImageColors
 
-class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Themeable {
+class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
     
     @IBOutlet weak var jobPhoto: UIImageView!
     @IBOutlet weak var imgGradientView: UIView!
@@ -37,6 +38,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var chosen:Int?
     var j:Job!
     var inquiry:User!
+    var locationManager = CLLocationManager()
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
@@ -62,11 +64,18 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.jobPhoto.image = UIImage(data: data!)
         }
         
+        // Not sure if this is too much, might not have to update this often
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        let distance = (locationManager.location?.distance(from: CLLocation(latitude: j.latitude, longitude: j.longitude)) as! Double) * 0.00062137
+        jobDistance.text = String(format: "%.2f", distance) + " mi"
+        
         jobTitle.text = j.jobTitle
         let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
         jobDate.text = j.jobDateString
-        jobDistance.text = String(j.distance) + " mi"
         jobLocation.text = j.address
         jobDescription.text = j.jobDescription
         
@@ -122,6 +131,13 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
             self.table.reloadData()
         })
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        let distance = (locationManager.location?.distance(from: CLLocation(latitude: j.latitude, longitude: j.longitude)) as! Double) * 0.00062137
+        j.distance = distance
+        jobDistance.text! = String(format: "%.2f", distance) + " mi"
         
         table.reloadData()
     }
