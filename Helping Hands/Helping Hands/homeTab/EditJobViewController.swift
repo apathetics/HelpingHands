@@ -12,19 +12,21 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorageUI
 
-class EditJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
+class EditJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, AddressDelegate {
     
     @IBOutlet weak var jobPhoto: UIImageView!
     @IBOutlet weak var jobDescription: UITextView!
     @IBOutlet weak var editJobTitle: UITextField!
     @IBOutlet weak var editJobPrice: UITextField!
     @IBOutlet weak var editJobDate: UITextField!
-    @IBOutlet weak var editLocation: UITextField!
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var chooseImgButton: UIButton!
+    @IBOutlet weak var locationEditButton: UIButton!
     
     var imgChosen = false
     var masterView:JobViewController?
     var job:Job!
+    var address:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +45,18 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         jobDescription.text = job.jobDescription
         
         // TODO when location is more than an illusion
-        editLocation.text = "curLocation"
+        addressLabel.text = job.address
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(address != nil) {
+            addressLabel.text = address!
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -96,7 +104,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         job.jobDescription = jobDescription.text
         
         // TODO when location is more than an illusion
-        job.address = editLocation.text
+        job.address = addressLabel.text
         
         masterView?.j = self.job
         updateJob(j: self.job)
@@ -120,6 +128,17 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
                     jobRef.setValue(values)
                 }
             })
+        }
+    }
+    
+    func sendAddress(address:String) {
+        self.address = address
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEditJobLocation" {
+            let goNext:LocationViewController = segue.destination as! LocationViewController
+            goNext.delegate = self
         }
     }
 }

@@ -90,6 +90,7 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
+        mapView.selectAnnotation(annotation, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
@@ -106,11 +107,13 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
         let button = UIButton(frame: CGRect(origin: CGPoint(x:0, y:0), size: smallSquare))
         button.backgroundColor = UIColor.blue
         button.setTitleColor(UIColor.white, for: UIControlState.normal)
-        button.setTitle("Confirm Location", for: UIControlState.normal)
+        button.setTitle("Confirm", for: UIControlState.normal)
         pinView?.rightCalloutAccessoryView = button
         button.addTarget(self, action:#selector(action(sender:)), for: .touchUpInside)
         return pinView
     }
+    
+    
     
     @objc fileprivate func action(sender: UIButton) {
         self.delegate?.sendAddress(address: self.address!)

@@ -1026,7 +1026,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cV7-EW-pbx">
-                                <rect key="frame" x="0.0" y="20" width="375" height="980"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="936"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htH-Df-3IF">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -2639,7 +2639,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IW4-cU-ss0">
-                                <rect key="frame" x="16" y="250" width="343" height="25"/>
+                                <rect key="frame" x="16" y="250" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
@@ -2666,13 +2666,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-kQ-dFe">
-                                <rect key="frame" x="171" y="204" width="188" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qX-mu-BaM">
                                 <rect key="frame" x="16" y="219" width="115" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2684,6 +2677,23 @@
                                     <action selector="chooseImgBtn:" destination="goc-cL-bG9" eventType="touchUpInside" id="FJg-kd-gxw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LyL-M3-8Me">
+                                <rect key="frame" x="288" y="196" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <segue destination="8kk-4a-Cn8" kind="show" identifier="showEditJobLocation" id="R0H-1X-x3l"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcK-Pg-AuQ">
+                                <rect key="frame" x="171" y="196" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BL8-wX-crN"/>
@@ -2696,18 +2706,19 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addressLabel" destination="mcK-Pg-AuQ" id="lox-jV-jNl"/>
                         <outlet property="chooseImgButton" destination="0qX-mu-BaM" id="N68-Vq-OH9"/>
                         <outlet property="editJobDate" destination="0jO-GI-VuH" id="rl4-z7-tAN"/>
                         <outlet property="editJobPrice" destination="zhX-QT-4tb" id="D3e-ah-Ltt"/>
                         <outlet property="editJobTitle" destination="6qS-FM-ufd" id="WcQ-iQ-7Tf"/>
-                        <outlet property="editLocation" destination="dZ6-kQ-dFe" id="VeH-Th-5dh"/>
                         <outlet property="jobDescription" destination="6Tm-8x-qmi" id="mRM-mL-ube"/>
                         <outlet property="jobPhoto" destination="9Q8-Sa-VTb" id="jIr-8M-LDc"/>
+                        <outlet property="locationEditButton" destination="LyL-M3-8Me" id="uSg-50-FWm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5r-tC-KSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5164" y="-861"/>
+            <point key="canvasLocation" x="5164" y="-861.3193403298352"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="AFN-Vl-eVK">
@@ -2718,7 +2729,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68r-C9-dZb">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <connections>
                                     <outlet property="delegate" destination="8kk-4a-Cn8" id="Jcz-W7-mgd"/>
                                 </connections>
@@ -2822,6 +2833,7 @@
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="R0H-1X-x3l"/>
         <segue reference="0Vl-gT-Hp2"/>
         <segue reference="7hC-Tu-DGP"/>
     </inferredMetricsTieBreakers>
