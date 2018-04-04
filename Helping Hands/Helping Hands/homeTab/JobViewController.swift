@@ -43,19 +43,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ThemeService.shared.addThemeable(themable: self)
-        let jobRef = databaseRef.child("jobs").child(jobID!)
-        jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
-            let jobObject = snapshot.value as! [String: Any]
-            
-            if(jobObject["jobCreator"] as! String != self.userId) {
-                self.navigationItem.rightBarButtonItem?.title = "Edit"
-            }
-            else {
-                self.navigationItem.rightBarButtonItem?.title = "Sign-up"
-            }
-            self.table.reloadData()
-        })
         
         table.dataSource = self
         table.delegate = self
@@ -80,6 +69,14 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         jobDistance.text = String(j.distance) + " mi"
         jobLocation.text = j.address
         jobDescription.text = j.jobDescription
+        
+        
+        // load image
+        let placeholderImage = UIImage(named: "meeting")
+        self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
+        
+        table.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -104,13 +101,15 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // UPDATE WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
         
+        // retrieve inquiries
+        retrieveInquiries()
+        
         // retrieve jobs
-        retrieveJobs()
+        retrieveJob()
         
         // retrieve user for inquiry
         retrieveUser()
         
-        // check for user permissions to edit
         let jobRef = databaseRef.child("jobs").child(jobID!)
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let jobObject = snapshot.value as! [String: Any]
@@ -124,21 +123,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.table.reloadData()
         })
         
-        // load image
-        let placeholderImage = UIImage(named: "meeting")
-        self.jobPhoto.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-        })
-        
-        // fill in the information
-        jobTitle.text = j.jobTitle
-        let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
-        jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-        jobDate.text = j.jobDateString
-        jobDistance.text = String(j.distance) + " mi"
-        jobLocation.text = j.address
-        jobDescription.text = j.jobDescription
-        
-        // reload data
         table.reloadData()
     }
     
@@ -153,7 +137,13 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         let row = indexPath.row
         let u:User = inquiries[row]
         
-        cell.userImg.image = u.userPhoto
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        cell.userImg.sd_setImage(with: URL(string: u.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
+        
+//        cell.userImg.image = u.userPhoto
         cell.userName.text = u.userFirstName + " " + u.userLastName
         cell.backgroundColor = UIColor.clear
         return cell
@@ -199,26 +189,28 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             // Else sign up the user as an inquiry.
             else {
                 
-                print("HELLO I AM IN SIGN UP")
+//                print("HELLO I AM IN SIGN UP")
                 self.retrieveUser()
-//                let inquiry:User = User()
-//                inquiry.userFirstName = "Emiliano"
-//                inquiry.userLastName = "Zapata"
-//                inquiry.userPhoto = UIImage()
-//                inquiry.userBio = "I like being a revolutionary, it's fun."
-//                inquiry.userEmail = "porfirioHater1912@mexico.com"
-//                inquiry.userLocationRadius = 0.0
-//                inquiry.userNumJobsPosted = 1
-//                inquiry.userNumJobsPending = 2
-//                inquiry.userJobsCompleted = 4
+                
+                // Save job inquiry
+                let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
+                userRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                
+                    
+                    let jobInquiredChild = userRef.child("jobsInquiredArray").childByAutoId()
+                    jobInquiredChild.updateChildValues(["jobId": jobRef.key])
+                })
+                
+                let userInquiredChild = jobRef.child("usersInquiredArray").childByAutoId()
+                userInquiredChild.updateChildValues(["userId": self.userId])
                 
                 self.inquiries.append(self.inquiry)
                 self.table.reloadData()
             }
             self.table.reloadData()
         })
-        print("I AM OUT OF SIGN UP")
-        print(self.inquiries)
+//        print("I AM OUT OF SIGN UP")
+//        print(self.inquiries)
         self.table.reloadData()
     }
     
@@ -274,12 +266,11 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             user.userID = self.userId
             
             self.inquiry = user
-            
         })
     }
     
     // FIREBASE RETRIEVAL
-    func retrieveJobs() {
+    func retrieveJob() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
         let jobRef = databaseRef.child("jobs").child(jobID!)
         
@@ -305,6 +296,84 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.table.reloadData()
         })
     }
+    
+    func retrieveInquiries() {
+        
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let jobsRef = databaseRef.child("jobs")
+        let usersInquiredRef = jobsRef.child(jobID!).child("usersInquiredArray")
+        
+        var userInquiryIdArray = [String]()
+        
+        usersInquiredRef.observe(FIRDataEventType.value, with: {(snapshot) in
+            
+            // make sure there are jobs
+            if snapshot.childrenCount > 0 {
+                
+                // clear job list before appending again
+                self.inquiries.removeAll()
+                
+                // for each snapshot (entity present under jobs child)
+                for userInquiriesSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    
+                    // retrieve jobs and append to job list after creation
+                    let inquiryObject = userInquiriesSnapshot.value as! [String: AnyObject]
+                    
+                    let inquiryUserId = inquiryObject["userId"] as! String
+                    
+                    userInquiryIdArray.append(inquiryUserId)
+                    
+                }
+                
+                print(" I AM ARRAY", userInquiryIdArray)
+                
+                for userInquiryId in userInquiryIdArray {
+                    
+                    print("I AM IN USER INQUIRY ID ARRAY PER")
+                    let userRef = databaseRef.child("users").child(userInquiryId)
+                    
+                    userRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                        
+                        // retrieve jobs and append to job list after creation
+                        let userObject = snapshot.value as! [String : Any]
+                        let user = User()
+                        
+                        user.userFirstName = userObject["firstName"] as! String
+                        user.userLastName = userObject["lastName"] as! String
+                        user.userEmail = userObject["email"] as! String
+                        user.userJobsCompleted = userObject["jobsCompleted"] as! Int
+                        user.userNumJobsPosted = userObject["jobsPosted"] as! Int
+                        user.userMoneyEarned = userObject["moneyEarned"] as! Double
+                        user.userPhotoAsString = userObject["photoUrl"] as! String
+                        
+                        
+                        if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
+                            user.userBio = "Description..."
+                        }
+                        else {
+                            user.userBio = userObject["bio"] as! String
+                        }
+                        
+                        //TODO: SETTINGS NOT IN DATABASE YET
+                        user.userLocationRadius = 1
+                        user.userDistance = 1
+                        user.userRating = 5
+                        
+                        //                        user.userID = self.userId
+                        print("USER IS", user)
+                        
+                        self.inquiries.append(user)
+                        self.table.reloadData()
+                    })
+                }
+                
+                print(" I AM DONE", self.inquiries)
+                self.table.reloadData()
+            }
+        })
+        
+    }
+    
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, imgGradientView])
