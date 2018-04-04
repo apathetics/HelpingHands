@@ -116,6 +116,10 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             user.userPhotoAsString = userObject["photoUrl"] as! String
             user.userBio = userObject["bio"] as! String
             
+            if(user.userBio == "" || user.userBio == nil) {
+                user.userBio = "Description..."
+            }
+            
             //TODO: SETTINGS NOT IN DATABASE YET
             user.userLocationRadius = 1
             user.userDistance = 1
