@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		04780DCF206F48F7003029CE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04780DCE206F48F7003029CE /* MessageUI.framework */; };
 		0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */; };
+		192776A020755820006451CD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1927769F20755820006451CD /* Settings.bundle */; };
+		192776A52075594C006451CD /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192776A42075594C006451CD /* SettingsVC.swift */; };
+		192776A920755D95006451CD /* MaxDistanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */; };
 		1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DA205F3FFA00628A1C /* AppDelegate.swift */; };
 		1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DB205F3FFA00628A1C /* globalCoreData.xcdatamodeld */; };
 		1927A5E0205F404600628A1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5DF205F404600628A1C /* Assets.xcassets */; };
@@ -64,6 +67,9 @@
 
 /* Begin PBXFileReference section */
 		04780DCE206F48F7003029CE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		1927769F20755820006451CD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		192776A42075594C006451CD /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaxDistanceTableViewCell.swift; sourceTree = "<group>"; };
 		1927A5DA205F3FFA00628A1C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1927A5DC205F3FFA00628A1C /* globalCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = globalCoreData.xcdatamodel; sourceTree = "<group>"; };
 		1927A5DF205F404600628A1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,6 +149,15 @@
 				3987328C206349C100A29D39 /* ContactUsViewController.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		192776A120755886006451CD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */,
+				192776A42075594C006451CD /* SettingsVC.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		1927A5D9205F3FD500628A1C /* Main */ = {
@@ -297,6 +312,7 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				192776A120755886006451CD /* Settings */,
 				ABA4F0FE206DEDE600BACA54 /* UserProfile */,
 				194FC6A5206429E900D6E439 /* UI Stuff */,
 				194FC6A22064194E00D6E439 /* Fonts */,
@@ -311,6 +327,7 @@
 				1927A5EA205F40DA00628A1C /* CheckBox */,
 				1927A5E3205F406B00628A1C /* Authentication */,
 				1927A5D9205F3FD500628A1C /* Main */,
+				1927769F20755820006451CD /* Settings.bundle */,
 			);
 			path = "Helping Hands";
 			sourceTree = "<group>";
@@ -417,6 +434,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192776A020755820006451CD /* Settings.bundle in Resources */,
 				ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */,
 				194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */,
 				1927A621205F430C00628A1C /* Info.plist in Resources */,
@@ -507,6 +525,7 @@
 				ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */,
 				1927A5F4205F40F300628A1C /* BEMPathManager.m in Sources */,
 				1927A5F3205F40F300628A1C /* BEMAnimationManager.m in Sources */,
+				192776A920755D95006451CD /* MaxDistanceTableViewCell.swift in Sources */,
 				1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */,
 				198AC02B2072CDBD0017C84F /* UIColorExtension.swift in Sources */,
 				198AC02D2072D0080017C84F /* ThemeService.swift in Sources */,
@@ -534,6 +553,7 @@
 				AB7743032047853A00799F84 /* (null) in Sources */,
 				3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */,
 				39873256205FC55F00A29D39 /* User.swift in Sources */,
+				192776A52075594C006451CD /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

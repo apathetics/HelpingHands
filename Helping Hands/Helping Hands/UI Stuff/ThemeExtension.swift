@@ -112,6 +112,12 @@ extension Theme {
         }
     }
     
+    public func applySliderStyle(slider: UISlider) {
+        slider.tintColor = tintColor
+        slider.thumbTintColor = backgroundColor
+        slider.backgroundColor = backgroundColor
+    }
+    
     public func applyStepperStyle(steppers: [UIStepper]) {
         steppers.forEach {
             $0.tintColor = tintColor
@@ -133,8 +139,10 @@ extension Theme {
         }
     }
     
-    public func applyTableViewBackgroundColor(tableView: UITableView) {
-        tableView.backgroundColor = tableViewBackgroundColor
+    public func applyTableViewBackgroundColor(tableView: [UITableView]) {
+        tableView.forEach {
+            $0.backgroundColor = tableViewBackgroundColor
+        }
     }
     
     public func applyDatePickerStyle(pickers: [UIDatePicker]) {
