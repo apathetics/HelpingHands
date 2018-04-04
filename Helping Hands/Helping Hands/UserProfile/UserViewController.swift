@@ -96,6 +96,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBAction func onEditButtonClick(_ sender: Any) {
         self.performSegue(withIdentifier: "showEditUser", sender: self)
     }
+    
     // FIREBASE RETRIEVAL
     func retrieveUser() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
@@ -115,6 +116,14 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             user.userMoneyEarned = userObject["moneyEarned"] as! Double
             user.userPhotoAsString = userObject["photoUrl"] as! String
             
+            
+            if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
+                user.userBio = "Description..."
+            }
+            else {
+                user.userBio = userObject["bio"] as! String
+            }
+            
             //TODO: SETTINGS NOT IN DATABASE YET
             user.userLocationRadius = 1
             user.userDistance = 1
@@ -128,7 +137,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
-        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTableViewBackgroundColor(tableView: [table])
         theme.applyHeadlineStyle(labels: [userName])
         theme.applyBodyTextStyle(labels: [userEmail, userRating, userLocation, userDistance])
         theme.applySegmentedControlStyle(controls: [jobBar])

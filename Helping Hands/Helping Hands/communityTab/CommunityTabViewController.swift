@@ -120,7 +120,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
-        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTableViewBackgroundColor(tableView: [table])
         theme.applyTintColor_Font(navBar: self.navigationController!)
         for cell in table.visibleCells {
             theme.applyBodyTextStyle(labels: [ ((cell as! EventTableViewCell).eventDescriptionLbl!) ])

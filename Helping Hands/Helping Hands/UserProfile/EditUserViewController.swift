@@ -8,6 +8,10 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+import FirebaseStorage
+import FirebaseAuth
+import FirebaseStorageUI
 
 extension UIViewController {
     func performSegueToReturnBack()  {
@@ -18,6 +22,7 @@ extension UIViewController {
         }
     }
 }
+
 
 class EditUserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
     
@@ -30,15 +35,22 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var chooseImgButton: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    let userId:String = (FIRAuth.auth()?.currentUser?.uid)!
+    
     var imgChosen = false
-    // TODO - Pass using database
     var masterView:UserViewController?
-    var clearCore: Bool = false
     var user:User!
-    // TODO - Pass using database
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        userPhoto.sd_setImage(with: URL(string: user.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            self.user.userPhoto = image
+        })
+        
         userPhoto.image = user.userPhoto
         editFirstName.text = user.userFirstName
         editLastName.text = user.userLastName
@@ -112,6 +124,22 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func onBackButtonClick(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func onSaveButtonClick(_ sender: Any) {
+        user.userPhoto = userPhoto.image
+        user.userFirstName = editFirstName.text
+        user.userLastName = editLastName.text
+        user.userEmail = editEmail.text
+        user.userBio = userDescription.text
+        masterView?.user = self.user
+        updateJob(u: user)
+        self.performSegueToReturnBack()
+    }
+    
     @IBAction func saveChanges(_ sender: Any) {
         user.userPhoto = userPhoto.image
         user.userFirstName = editFirstName.text
@@ -119,6 +147,25 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         user.userEmail = editEmail.text
         user.userBio = userDescription.text
         masterView?.user = self.user
+        updateJob(u: user)
         self.performSegueToReturnBack()
+    }
+    
+    func updateJob(u: User) {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let jobRef = databaseRef.child("users").child(self.userId)
+        if let imgUpload = UIImagePNGRepresentation(u.userPhoto) {
+            let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
+            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
+                    jobRef.updateChildValues(["photoUrl": jobImgUrl, "firstName": u.userFirstName, "lastName": u.userLastName, "email": u.userEmail, "bio": u.userBio])
+                }
+            })
+        }
     }
 }
