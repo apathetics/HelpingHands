@@ -14,7 +14,7 @@ import FirebaseAuth
 let LOC_DEFAULT_TEXT = "Using your current location by default. You can use the toggle to the right to change this."
 let DESCR_PLACEHOLDER = "What will Helpers be doing at this job? Add as much or little detail as you'd like, but make sure to be clear. You'll be more likely to attract Helpers that way!"
 
-class AddJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
+class AddJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AddressDelegate, UITextViewDelegate, Themeable {
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleFld: UITextField!
@@ -35,15 +35,17 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var jobLocationLBL: UILabel!
     @IBOutlet weak var numHelpersLBL: UILabel!
     @IBOutlet weak var jobDateLBL: UILabel!
+    @IBOutlet weak var addressLBL: UILabel!
     @IBOutlet weak var helpersStepper: UIStepper!
-    @IBOutlet weak var locSwitch: UISwitch!
     @IBOutlet weak var finishBTN: UIButton!
     @IBOutlet weak var chooseImgBTN: UIButton!
     @IBOutlet weak var datePickerItem: UIDatePicker!
+    @IBOutlet weak var chooseLocationBTN: UIButton!
     
     
     var imgChosen = false
     var masterView:HomeTabViewController?
+    var address:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,9 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     override func viewWillAppear(_ animated: Bool) {
         locImg.isHighlighted = true
         // set the date picker's mininum value to now
+        if(address != nil) {
+            addressLBL.text = address!
+        }
         datePicker.minimumDate = Date()
     }
 
@@ -177,7 +182,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             //job.address = addressFld.text // TODO
             
             // TODO: Give actual address and current location!
-            job.address = "address"
+            job.address = self.address
             job.currentLocation = true
             
             job.image = imgView.image
@@ -249,13 +254,23 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, addJobView])
-        theme.applyHeadlineStyle(labels: [paymentLBL, jobDateLBL, jobDescLBL, jobTitleLBL, numHelpersLBL, dollarSignLBL, jobLocationLBL])
+        theme.applyHeadlineStyle(labels: [paymentLBL, jobDateLBL, jobDescLBL, jobTitleLBL, numHelpersLBL, dollarSignLBL, jobLocationLBL, addressLBL])
         theme.applyStepperStyle(steppers: [helpersStepper])
         theme.applySegmentedControlStyle(controls: [paymentTypeSeg])
-        theme.applySwitchStyle(switches: [locSwitch])
-        theme.applyFilledButtonStyle(buttons: [finishBTN, chooseImgBTN])
+        theme.applyFilledButtonStyle(buttons: [finishBTN, chooseImgBTN, chooseLocationBTN])
         theme.applyTextViewStyle(textViews: [descriptionFld])
         theme.applyTextFieldStyle(textFields: [titleFld, paymentFld, helpersCountFld])
         theme.applyDatePickerStyle(pickers: [datePickerItem])
+    }
+    
+    func sendAddress(address:String) {
+        self.address = address
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showLocation" {
+            let goNext:LocationViewController = segue.destination as! LocationViewController
+            goNext.delegate = self
+        }
     }
 }
