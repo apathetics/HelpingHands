@@ -13,6 +13,8 @@ import FirebaseDatabase
 
 class SettingsVC: UITableViewController, Themeable {
     
+    let databaseRef = FIRDatabase.database().reference().child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
+    
     //ThemeableComponents
     @IBOutlet weak var nameLBL: UILabel!
     @IBOutlet weak var emailLBL: UILabel!
@@ -26,11 +28,13 @@ class SettingsVC: UITableViewController, Themeable {
     @IBOutlet weak var distSlider: UISlider!
     @IBOutlet weak var userNameLBL: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        userNameLBL.text = getUserName()
         ThemeService.shared.addThemeable(themable: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        displayUserName()
     }
     
     @IBAction func backPressed(_ sender: Any) {
@@ -43,20 +47,15 @@ class SettingsVC: UITableViewController, Themeable {
         theme.applyTintColor_Font(navBar: self.navigationController!)
     }
     
-    func getUserName() -> String {
+    func displayUserName() {
         var name = ""
-        let userID: String = (FIRAuth.auth()?.currentUser?.uid)!
-        let databaseRef = FIRDatabase.database().reference().child("users").child(userID)
         databaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
             name = "\(value?["firstName"] as? String ?? "") \(value?["lastName"] as? String ?? "")"
-            
-            // ...
+            self.userNameLBL.text = name
         }) { (error) in
             print(error.localizedDescription)
         }
-
-        return name
     }
 }
