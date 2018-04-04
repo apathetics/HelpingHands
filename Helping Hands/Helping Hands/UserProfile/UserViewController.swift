@@ -114,10 +114,13 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             user.userNumJobsPosted = userObject["jobsPosted"] as! Int
             user.userMoneyEarned = userObject["moneyEarned"] as! Double
             user.userPhotoAsString = userObject["photoUrl"] as! String
-            user.userBio = userObject["bio"] as! String
             
-            if(user.userBio == "" || user.userBio == nil) {
+            
+            if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
                 user.userBio = "Description..."
+            }
+            else {
+                user.userBio = userObject["bio"] as! String
             }
             
             //TODO: SETTINGS NOT IN DATABASE YET
