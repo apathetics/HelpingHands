@@ -45,6 +45,7 @@ class SettingsVC: UITableViewController, Themeable {
         theme.applyBackgroundColor(views: [view])
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyBodyTextStyle(labels: [nameLBL, emailLBL, passwordLBL, maxDistLBL, newReviewLBL, newSignUpLBL, userNameLBL])
     }
     
     func displayUserName() {
