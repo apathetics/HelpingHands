@@ -8,19 +8,27 @@
 
 import UIKit
 import MapKit
+import AddressBookUI
+import Contacts
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
 
-class LocationViewController : UIViewController, CLLocationManagerDelegate, HandleMapSearch {
-    
+protocol AddressDelegate
+{
+    func sendAddress(address:String)
+}
+
+class LocationViewController : UIViewController, CLLocationManagerDelegate, HandleMapSearch, MKMapViewDelegate{
     
     @IBOutlet weak var mapView: MKMapView!
     
     var resultSearchController:UISearchController? = nil
     var selectedPin:MKPlacemark? = nil
     let locationManager = CLLocationManager()
+    var delegate: AddressDelegate?
+    var address:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,13 +80,40 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = placemark.name
-        if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-            annotation.subtitle = "(city) (state)"
+        if #available(iOS 11.0, *) {
+            annotation.subtitle = CNPostalAddressFormatter.string(from: placemark.postalAddress!, style: .mailingAddress)
+        } else {
+            annotation.subtitle = ABCreateStringWithAddressDictionary(placemark.addressDictionary!, false)
         }
+        address = annotation.subtitle
         mapView.addAnnotation(annotation)
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        pinView?.pinTintColor = UIColor.orange
+        pinView?.canShowCallout = true
+        let smallSquare = CGSize(width: 100, height: 30)
+        let button = UIButton(frame: CGRect(origin: CGPoint(x:0, y:0), size: smallSquare))
+        button.backgroundColor = UIColor.blue
+        button.setTitleColor(UIColor.white, for: UIControlState.normal)
+        button.setTitle("Confirm Location", for: UIControlState.normal)
+        pinView?.rightCalloutAccessoryView = button
+        button.addTarget(self, action:#selector(action(sender:)), for: .touchUpInside)
+        return pinView
+    }
+    
+    @objc fileprivate func action(sender: UIButton) {
+        self.delegate?.sendAddress(address: self.address!)
+        self.navigationController?.popViewController(animated: true)
     }
 }

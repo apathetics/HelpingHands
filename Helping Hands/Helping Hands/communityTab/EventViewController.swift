@@ -235,7 +235,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, imgGradientView])
         theme.applyNavBarTintColor(navBar: self.navigationController!)
-        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTableViewBackgroundColor(tableView: [table])
         theme.applyTintColor_Font(navBar: self.navigationController!)
         theme.applyHeadlineStyle(labels: [eventTitle, attendeesLBL, descLBL])
         theme.applyBodyTextStyle(labels: [eventDate, eventDistance, eventLocation, eventDescription])

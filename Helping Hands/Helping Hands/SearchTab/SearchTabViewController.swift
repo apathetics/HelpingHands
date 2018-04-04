@@ -156,7 +156,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
-        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTableViewBackgroundColor(tableView: [table])
         theme.applyTintColor_Font(navBar: self.navigationController!)
         for cell in table.visibleCells {
             theme.applyHeadlineStyle(labels: [(cell as! SearchTableCell).jobTitleLabel])

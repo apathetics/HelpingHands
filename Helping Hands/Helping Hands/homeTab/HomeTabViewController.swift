@@ -148,7 +148,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         theme.applyTabBarTintColor(tabBar: self.tabBarController!)
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
-        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTableViewBackgroundColor(tableView: [table])
         for cell in table.visibleCells {
             theme.applyBodyTextStyle(labels: [ ((cell as! JobTableViewCell).jobDescriptionLbl!) ])
             theme.applyHeadlineStyle(labels: [ ((cell as! JobTableViewCell).jobTitleLbl!) ])

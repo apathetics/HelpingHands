@@ -379,6 +379,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         theme.applyBackgroundColor(views: [view, imgGradientView])
         theme.applyHeadlineStyle(labels: [jobTitle, descriptionLBL, inquiriesLBL])
         theme.applyBodyTextStyle(labels: [jobDate, jobLocation, jobDistance, jobDescription, jobDate])
-        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTableViewBackgroundColor(tableView: [table])
     }
 }

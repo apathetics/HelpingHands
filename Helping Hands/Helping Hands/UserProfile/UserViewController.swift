@@ -137,7 +137,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
-        theme.applyTableViewBackgroundColor(tableView: table)
+        theme.applyTableViewBackgroundColor(tableView: [table])
         theme.applyHeadlineStyle(labels: [userName])
         theme.applyBodyTextStyle(labels: [userEmail, userRating, userLocation, userDistance])
         theme.applySegmentedControlStyle(controls: [jobBar])
