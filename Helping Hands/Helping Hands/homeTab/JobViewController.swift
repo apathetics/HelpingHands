@@ -36,6 +36,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var inquiries = [User]()
     var chosen:Int?
     var j:Job!
+    var inquiry:User!
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
@@ -49,6 +50,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             
             if(jobObject["jobCreator"] as! String != self.userId) {
                 self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            else {
+                self.navigationItem.rightBarButtonItem?.title = "Sign-up"
             }
             self.table.reloadData()
         })
@@ -103,6 +107,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // retrieve jobs
         retrieveJobs()
         
+        // retrieve user for inquiry
+        retrieveUser()
+        
         // check for user permissions to edit
         let jobRef = databaseRef.child("jobs").child(jobID!)
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -110,6 +117,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             
             if(jobObject["jobCreator"] as! String == self.userId) {
                 self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            else {
+                self.navigationItem.rightBarButtonItem?.title = "Sign-up"
             }
             self.table.reloadData()
         })
@@ -188,24 +198,28 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
             // Else sign up the user as an inquiry.
             else {
-                let inquiry:User = User()
-                inquiry.userFirstName = "Emiliano"
-                inquiry.userLastName = "Zapata"
-                inquiry.userPhoto = UIImage()
-                inquiry.userBio = "I like being a revolutionary, it's fun."
-                inquiry.userEmail = "porfirioHater1912@mexico.com"
-                inquiry.userLocationRadius = 0.0
-                inquiry.userNumJobsPosted = 1
-                inquiry.userNumJobsPending = 2
-                inquiry.userJobsCompleted = 4
                 
-//                inquiry.userID = self.inquiries.count
+                print("HELLO I AM IN SIGN UP")
+                self.retrieveUser()
+//                let inquiry:User = User()
+//                inquiry.userFirstName = "Emiliano"
+//                inquiry.userLastName = "Zapata"
+//                inquiry.userPhoto = UIImage()
+//                inquiry.userBio = "I like being a revolutionary, it's fun."
+//                inquiry.userEmail = "porfirioHater1912@mexico.com"
+//                inquiry.userLocationRadius = 0.0
+//                inquiry.userNumJobsPosted = 1
+//                inquiry.userNumJobsPending = 2
+//                inquiry.userJobsCompleted = 4
                 
-                self.inquiries.append(inquiry)
+                self.inquiries.append(self.inquiry)
                 self.table.reloadData()
             }
             self.table.reloadData()
         })
+        print("I AM OUT OF SIGN UP")
+        print(self.inquiries)
+        self.table.reloadData()
     }
     
     // Auxiliary getDate function
@@ -213,6 +227,55 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         let dateFormate = DateFormatter()
         dateFormate.dateFormat = "MM/dd/yyyy"
         return dateFormate.string(from: date as Date)
+    }
+    
+    // FIREBASE RETRIEVAL
+    func retrieveUser() {
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let userRef = databaseRef.child("users").child(userId)
+        
+        userRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            let user = User()
+            // retrieve jobs and append to job list after creation
+            let userObject = snapshot.value as! [String: AnyObject]
+            
+            
+            user.userFirstName = userObject["firstName"] as! String
+            user.userLastName = userObject["lastName"] as! String
+            user.userEmail = userObject["email"] as! String
+            user.userJobsCompleted = userObject["jobsCompleted"] as! Int
+            user.userNumJobsPosted = userObject["jobsPosted"] as! Int
+            user.userMoneyEarned = userObject["moneyEarned"] as! Double
+            user.userPhotoAsString = userObject["photoUrl"] as! String
+            
+            let placeholderImageView = UIImageView()
+            
+            // Placeholder image
+            let placeholderImage = UIImage(named: "meeting")
+            // Load the image using SDWebImage
+            placeholderImageView.sd_setImage(with: URL(string: user.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+                user.userPhoto = image
+            })
+            
+            
+            if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
+                user.userBio = "Description..."
+            }
+            else {
+                user.userBio = userObject["bio"] as! String
+            }
+            
+            //TODO: SETTINGS NOT IN DATABASE YET
+            user.userLocationRadius = 1
+            user.userDistance = 1
+            user.userRating = 5
+            
+            user.userID = self.userId
+            
+            self.inquiry = user
+            
+        })
     }
     
     // FIREBASE RETRIEVAL
