@@ -80,8 +80,13 @@ There’s a few minor bugs having to do with race conditions and loading due to 
 
 The camera scanning with the QR code is quite difficult to test because of the lack of a camera on the emulator, but as far as we can tell, it works well on an actual device. For the sake of the submission, we’ve put a confirmation button instead on the confirmation screen instead of having to find another phone, install the app, and scan it that way. 
 
-Huge setback because our database on Firebase was wiped out several hours before submission. Bad query error made Google say it reached quota. We had to waste a lot of time inputting more data and moving the database to a backup one. 
+Huge setback because our database on Firebase was wiped out several hours before submission. Bad query error made Google say it reached quota. We had to waste a lot of time inputting more data and moving the database to a backup one.
 
+A lot of the connections in the profile to job tables are incomplete right because of the lack of completion query. Tracy had this written but couldn't quite test/push it because of the database problem.
+
+Bryan also has the explore pins linked to each other geographically, but the database wipe put him back a lot in redoing calculations and messed up a lot of his work.
+
+Lots of minor setbacks and bugs, but overall, the app is for the most part completely connected. Just need to flesh out a lot of the bugs in the final phase as we do a lot of QA and aesthetic enhancements.
 
 
 ### Outside Components ###
