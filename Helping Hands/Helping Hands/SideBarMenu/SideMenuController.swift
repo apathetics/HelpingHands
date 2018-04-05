@@ -220,7 +220,7 @@ class SideMenuController: UIViewController, Themeable {
         theme.applyBackgroundColor(views: [view])
         theme.applyBodyTextStyle(labels: [userNumJobsPosted, userNumJobsCompleted, userMoneyEarned, jobsPostedLBL, moneyEarnedLBL, jobsCompletedLBL])
         theme.applyHeadlineStyle(labels: [userNameLabel])
-        theme.applyButtonTextStyle(buttons: [ContactBTN, SettingsBTN, PaymentHiredBTN, PaymentHireeBTN, ConfirmHiredBTN, ConfirmHireeBTN])
+//        theme.applyButtonTextStyle(buttons: [ContactBTN, SettingsBTN, PaymentHiredBTN, PaymentHireeBTN, ConfirmHiredBTN, ConfirmHireeBTN])
     }
     
 }

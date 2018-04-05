@@ -20,6 +20,7 @@ class HiredPaymentController: UIViewController {
     }
     
     @IBAction func onConfirm(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

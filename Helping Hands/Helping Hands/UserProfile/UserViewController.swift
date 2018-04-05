@@ -56,7 +56,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         retrieveJobStatuses()
         retrieveUser()
         
-        sleep(2)
+//        sleep(1)
         
         // check for user permissions to edit
         let userRef = databaseRef.child("users").child(userId)
@@ -106,12 +106,15 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
 //            jobVC.job = j
 //            jobVC.jobID = j.jobId
         }
+        if(segue.identifier == "showConfirmationHirer") {
+            
+        }
     }
     
     @IBAction func segmentControlActionChanged(_ sender: Any) {
-        print("I AM CHANGED")
-        print("postedJobs", postedJobs, postedJobs.count)
-        print("selected index", self.jobBar.selectedSegmentIndex)
+//        print("I AM CHANGED")
+//        print("postedJobs", postedJobs, postedJobs.count)
+//        print("selected index", self.jobBar.selectedSegmentIndex)
         self.table.reloadData()
     }
     
@@ -122,7 +125,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         
         switch(self.jobBar.selectedSegmentIndex) {
         case 0:
-            print("HELLO I AM POSTEDJOBS:", postedJobs, postedJobs.count)
+//            print("HELLO I AM POSTEDJOBS:", postedJobs, postedJobs.count)
             selectedJobCount = postedJobs.count
             break
             
@@ -183,12 +186,13 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print("CHOSEN IS: \(String(describing: chosen))")
         switch(jobBar.selectedSegmentIndex) {
         case 0:
+            self.performSegue(withIdentifier: "showConfirmationHirer", sender: self)
             break
-            
         case 1:
+            self.performSegue(withIdentifier: "showConfirmationHired", sender: self)
             break
             
         case 2:
@@ -197,10 +201,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         default:
             break
         }
-        
-        chosen = (indexPath.row)
-        print("CHOSEN IS: \(String(describing: chosen))")
-//        self.performSegue(withIdentifier: "showJob", sender: self)
+
     }
     
     @IBAction func onBackButtonClick(_ sender: Any) {
@@ -339,6 +340,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         job.payment = jobObject["jobPayment"] as! Double
                         job.jobTitle = jobObject["jobTitle"] as! String
                         job.jobId = snapshot.ref.key
+                        job.jobCreator = jobObject["jobCreator"] as! String
                         
                         self.pendingJobs.append(job)
                         self.table.reloadData()

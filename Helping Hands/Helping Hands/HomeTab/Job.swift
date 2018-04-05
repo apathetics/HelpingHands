@@ -27,4 +27,5 @@ class Job {
     var jobId: String!
     var latitude: Double!
     var longitude: Double!
+    var jobCreator: String!
 }

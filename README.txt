@@ -10,49 +10,78 @@ IMPORTANT NOTES:
 * If there are import errors, please make sure to run "pod install" in the project directory.
 
 * Also, please open the project using the .xcworkspace instead of .xcodeproj.
+Contribution:
 
-Contributions:
+Tracy Nguyen: (Beta: 30% | Overall: 25%)
 
-Tracy Nguyen (25%)
-* Search Page - filtering and search implementation
-* QR Code - generation based on jobID string hash
-* Camera QR Scanner - preview layer scanner to decrypt QR Code and verify
-* Payment Screens - rating custom controller (unimplemented credit card SDK)
-* SideBar - creation of interface and connection to navigation
-* Firebase Database - storage and retrieval of entities
+Beta
+Finish connecting database to all entities and process updates/saves.
+Connecting data to inquiry/attend table cells in instances.
+Connecting type table under user profile to track jobs/events.
 
-Manasa Tipparam (25%)
-* Launch splash screen
-* Login screen
-* Registration screen
-* Connection to Firebase Database for Authentication and user data storage
-* User permissions - Camera, Photo Library, Location
-* Merging fixes
+Alpha
+Search Page - filtering and search implementation
+QR Code - generation based on jobID string hash
+Camera QR Scanner - preview layer scanner to decrypt QR Code and verify
+Payment Screens - rating custom controller (unimplemented credit card SDK)
+SideBar - creation of interface and connection to navigation
+Firebase Database - storage and retrieval of entities
 
-Bryan Bernal (25%)
-* User Model Page
-* User Model Edit Page
-* Job Model Page
-* Job Model Edit Page
-* Event Model Page
-* Event Model Edit Page
-* Bug fixes for segues/actions
+Manasa Tipparam: (Beta: 30% | Overall: 25%)
 
-Ozone Kafley (25%)
-* Jobs Near You
-* Events Near You 
-* Add Job
-* Add Event screens 
-* Contact us page
+Beta
+Day and night color scheme switcher.
+Settings page creation.
+Fleshing out permissions and settings bundle.
+Fixing bugs and broken elements such as navbar.
 
-Deviations:
-* We had originally planned on just using the CoreData for alpha, but we decided to use Firebase as our database instead. This complicated a few things and made connecting data at the end a bit rough, so we currently are displaying dummy data for two or three screens.
+Alpha
+Launch splash screen
+Login screen
+Registration screen
+Connection to Firebase Database for Authentication and user data storage
+User permissions - Camera, Photo Library, Location
+Merging fixes
 
-* The BrainTree credit card SDK was a bit more complicated than anticipated to implement, so we are going to implement that in the Beta when the database is fully connected and we create a web server for the credit card processing.
+Bryan Bernal: (Beta: 30% | Overall: 25%)
 
-* We have decided to finalize the database entities and attributes and fully connect them before deciding on which options/settings are viable and useful for the Settings screen, so that is not yet implemented for alpha and is moved to beta.
+Beta
+Set up locations in every edit/add page.
+Connect location data to create a distance variable.
+Constraints and clean-up assistance.
 
-* We are also in the process of finalizing a color scheme, so the night mode button will probably be implemented in the beta or final instead of alpha.
+Alpha
+User Model Page
+User Model Edit Page
+Job Model Page
+Job Model Edit Page
+Event Model Page
+Event Model Edit Page
+Bug fixes for segues/actions
+
+Ozone Kafley:  (Beta: 10% | Overall: 25%)
+
+Beta
+Contact Us - message and email integration.
+Revamped the Contact Us page.
+Clean up and assistance.
+Alpha
+Jobs Near You
+Events Near You 
+Add Job
+Add Event screens 
+Contact us page
+
+Deviations: 
+
+Credit card implementation turned out to be much harder than we anticipated, so seeing as how it’s only a button press, we figured moving it to final release would make sense.
+
+There’s a few minor bugs having to do with race conditions and loading due to the asynchronous nature of the database calls that we haven’t quite had time to account for yet. We expect this will be relatively easy to fix as we wind up functionality and focus on optimization for data passing. However, because of the race conditions, if the internet is slow or a user clicks too quickly before data is loaded, there is a chance of crashing.
+
+The camera scanning with the QR code is quite difficult to test because of the lack of a camera on the emulator, but as far as we can tell, it works well on an actual device. For the sake of the submission, we’ve put a confirmation button instead on the confirmation screen instead of having to find another phone, install the app, and scan it that way. 
+
+Huge setback because our database on Firebase was wiped out several hours before submission. Bad query error made Google say it reached quota. We had to waste a lot of time inputting more data and moving the database to a backup one. 
+
 
 
 ### Outside Components ###

@@ -22,5 +22,6 @@ class HiringPaymentController: UIViewController {
     }
     
     @IBAction func onConfirm(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

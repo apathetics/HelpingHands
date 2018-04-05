@@ -41,4 +41,10 @@ class QRViewController: UIViewController {
         
         return UIImage(ciImage: scaledImage, scale: UIScreen.main.scale, orientation: .up)
     }
+    @IBAction func onClickPayment(_ sender: Any) {
+        self.performSegue(withIdentifier: "showPaymentHiring", sender: self)
+    }
+    @IBAction func onBackClick(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

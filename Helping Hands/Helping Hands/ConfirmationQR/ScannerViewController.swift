@@ -21,6 +21,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
     
+    @IBAction func onPaymentClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "showPaymentHired", sender: self)
+    }
+    @IBAction func onBackClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     
