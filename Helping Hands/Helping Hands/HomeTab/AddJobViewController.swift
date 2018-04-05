@@ -49,6 +49,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         ThemeService.shared.addThemeable(themable: self)
         descriptionFld.delegate = self
         descriptionFld.text = DESCR_PLACEHOLDER

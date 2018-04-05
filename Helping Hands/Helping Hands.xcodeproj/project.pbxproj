@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04780DCF206F48F7003029CE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04780DCE206F48F7003029CE /* MessageUI.framework */; };
 		0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */; };
+		19159EAF2075CA2900A904E9 /* DismissKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19159EAE2075CA2900A904E9 /* DismissKeyboardExtension.swift */; };
 		192776A020755820006451CD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1927769F20755820006451CD /* Settings.bundle */; };
 		192776A52075594C006451CD /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192776A42075594C006451CD /* SettingsVC.swift */; };
 		192776A920755D95006451CD /* MaxDistanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		04780DCE206F48F7003029CE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		19159EAE2075CA2900A904E9 /* DismissKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardExtension.swift; sourceTree = "<group>"; };
 		1927769F20755820006451CD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		192776A42075594C006451CD /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaxDistanceTableViewCell.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				198AC0282072CCE10017C84F /* ThemeExtension.swift */,
 				198AC02A2072CDBD0017C84F /* UIColorExtension.swift */,
 				198AC02C2072D0080017C84F /* ThemeService.swift */,
+				19159EAE2075CA2900A904E9 /* DismissKeyboardExtension.swift */,
 			);
 			path = "UI Stuff";
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,
 				1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */,
 				1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */,
+				19159EAF2075CA2900A904E9 /* DismissKeyboardExtension.swift in Sources */,
 				1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */,
 				1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */,
 				3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */,
@@ -697,11 +701,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BJLQZPP9P3;
+				DEVELOPMENT_TEAM = MSX86K838U;
 				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
+				PRODUCT_BUNDLE_IDENTIFIER = DreamTeamMemeTeam.HelpingHands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -717,11 +721,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BJLQZPP9P3;
+				DEVELOPMENT_TEAM = MSX86K838U;
 				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
+				PRODUCT_BUNDLE_IDENTIFIER = DreamTeamMemeTeam.HelpingHands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
 				SWIFT_VERSION = 4.0;
