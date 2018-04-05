@@ -2210,7 +2210,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eFh-r3-f9K" userLabel="eventAttendees">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eFh-r3-f9K" userLabel="table">
                                 <rect key="frame" x="0.0" y="570" width="375" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2245,6 +2245,10 @@
                                                 <constraint firstItem="1p5-He-vu6" firstAttribute="bottom" secondItem="ijq-kU-oNy" secondAttribute="bottomMargin" constant="-4" id="tUI-BG-GeN"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="userImg" destination="oYI-Bm-mfE" id="2fG-Vt-KUw"/>
+                                            <outlet property="userName" destination="1p5-He-vu6" id="c0W-MS-HfU"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -2344,7 +2348,6 @@
                     <connections>
                         <outlet property="attendeesLBL" destination="1qp-tk-nOl" id="FYF-at-0RD"/>
                         <outlet property="descLBL" destination="2pM-qz-HC0" id="AYO-Lz-CYf"/>
-                        <outlet property="eventAttendees" destination="eFh-r3-f9K" id="Khq-IB-vMy"/>
                         <outlet property="eventDate" destination="dn8-pJ-MqF" id="qh7-8x-a13"/>
                         <outlet property="eventDescription" destination="Pc1-a3-aEH" id="QfB-md-dey"/>
                         <outlet property="eventDistance" destination="8zz-pX-oly" id="POp-FC-Lb3"/>
@@ -2353,7 +2356,7 @@
                         <outlet property="eventPhoto" destination="hJu-qb-1fm" id="uDp-LW-viO"/>
                         <outlet property="eventTitle" destination="jTi-ei-d1b" id="k4g-yi-sVS"/>
                         <outlet property="imgGradientView" destination="XbZ-Je-3Sc" id="2ew-Og-eBu"/>
-                        <outlet property="table" destination="eFh-r3-f9K" id="Xo7-7V-dTC"/>
+                        <outlet property="table" destination="eFh-r3-f9K" id="1Uu-VN-V7p"/>
                         <segue destination="u2y-Gl-ZTE" kind="show" identifier="showEventEditor" id="YOZ-Hu-tbU"/>
                     </connections>
                 </viewController>

@@ -241,7 +241,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // FIREBASE RETRIEVAL
     func retrieveUser() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
-        let userRef = databaseRef.child("users").child(userId)
+        let userRef = databaseRef.child("users").child(self.userId)
         
         userRef.observeSingleEvent(of: .value, with: {(snapshot) in
             
