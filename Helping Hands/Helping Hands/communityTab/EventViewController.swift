@@ -22,7 +22,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventDistance: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
-    @IBOutlet weak var eventAttendees: UITableView!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var imgGradientView: UIView!
     
@@ -62,6 +61,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         table.dataSource = self
         table.delegate = self
+        
+        event = e
         
         let url = URL(string: e.imageAsString)
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
@@ -171,10 +172,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
-        if (attendees.count > 0) {
         cell.userImg.sd_setImage(with: URL(string: u.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
-        }
+    
         cell.userName.text = u.userFirstName + " " + u.userLastName
         cell.backgroundColor = UIColor.clear
         return cell
@@ -203,11 +203,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
                 userRef.observeSingleEvent(of: .value, with: {(snapshot) in
                     
-                    let eventInquiredChild = userRef.child("eventsInquiredArray").childByAutoId()
+                    let eventInquiredChild = userRef.child("eventsAttendedArray").childByAutoId()
                     eventInquiredChild.updateChildValues(["eventId": eventRef.key])
                 })
                 
-                let userInquiredChild = eventRef.child("usersInquiredArray").childByAutoId()
+                let userInquiredChild = eventRef.child("usersAttendedArray").childByAutoId()
                 userInquiredChild.updateChildValues(["userId": self.userId])
                 
                 self.attendees.append(self.attendee)
@@ -246,11 +246,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
         let eventsRef = databaseRef.child("events")
-        let usersInquiredRef = eventsRef.child(eventID!).child("usersAttendedArray")
+        let usersAttendedRef = eventsRef.child(eventID!).child("usersAttendedArray")
         
         var userAttendeeIdArray = [String]()
         
-        usersInquiredRef.observe(FIRDataEventType.value, with: {(snapshot) in
+        usersAttendedRef.observe(FIRDataEventType.value, with: {(snapshot) in
             
             // make sure there are jobs
             if snapshot.childrenCount > 0 {
