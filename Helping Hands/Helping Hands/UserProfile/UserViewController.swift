@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorageUI
 
-class UserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
+class UserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, Themeable {
 
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -44,18 +44,25 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
         
+        table.delegate = self
+        table.dataSource = self
+        
+        self.table.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         retrieveJobStatuses()
         retrieveUser()
-    
+        
+        sleep(2)
+        
         // check for user permissions to edit
         let userRef = databaseRef.child("users").child(userId)
         userRef.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.ref.key == self.userId {
-                print("SNAPSHOT KEY", snapshot.ref.key, self.userId)
+//                print("SNAPSHOT KEY", snapshot.ref.key, self.userId)
                 self.navigationItem.rightBarButtonItem?.title =  "Edit";
             }
         })
@@ -75,6 +82,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         userRating.text = String(describing: user.userRating!)
         userLocation.text = String(describing: user.userLocationRadius!)
         userDistance.text = String(describing: user.userDistance!)
+        
+        self.table.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,6 +109,9 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     @IBAction func segmentControlActionChanged(_ sender: Any) {
+        print("I AM CHANGED")
+        print("postedJobs", postedJobs, postedJobs.count)
+        print("selected index", self.jobBar.selectedSegmentIndex)
         self.table.reloadData()
     }
     
@@ -108,8 +120,9 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         
         var selectedJobCount = 0
         
-        switch(jobBar.selectedSegmentIndex) {
+        switch(self.jobBar.selectedSegmentIndex) {
         case 0:
+            print("HELLO I AM POSTEDJOBS:", postedJobs, postedJobs.count)
             selectedJobCount = postedJobs.count
             break
             
@@ -250,6 +263,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         self.pendingJobs.removeAll()
         self.completedJobs.removeAll()
         
+        // JOBS POSTED ARRAY
         currentUserRef.child("jobsPostedArray").observe(FIRDataEventType.value, with: {(snapshot) in
             if snapshot.childrenCount > 0 {
                 for jobsPostedSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -290,6 +304,49 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                 }
             }
         })
+        
+        //JOBS PENDING
+        currentUserRef.child("jobsInquiredArray").observe(FIRDataEventType.value, with: {(snapshot) in
+            if snapshot.childrenCount > 0 {
+                for jobsPostedSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    
+                    let jobsPostedObject = jobsPostedSnapshot.value as! [String: AnyObject]
+                    
+                    let jobId = jobsPostedObject["jobId"] as! String
+                    pendingJobsId.append(jobId)
+                }
+                print("I AM PENDING JOBS IDS: ", postedJobsId)
+                
+                for jobId in pendingJobsId {
+                    let jobRef = databaseRef.child("jobs").child(jobId)
+                    
+                    jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                        
+                        // retrieve jobs and append to job list after creation
+                        let jobObject = snapshot.value as! [String: AnyObject]
+                        let job = Job()
+                        
+                        job.address = jobObject["jobAddress"] as! String
+                        job.latitude = jobObject["latitude"] as! Double
+                        job.longitude = jobObject["longitude"] as! Double
+                        job.currentLocation = jobObject["jobCurrentLocation"] as! Bool
+                        job.jobDateString = jobObject["jobDate"] as! String
+                        job.jobDescription = jobObject["jobDescription"] as! String
+                        job.distance = jobObject["jobDistance"] as! Double
+                        job.imageAsString = jobObject["jobImageUrl"] as! String
+                        job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
+                        job.numHelpers = jobObject["jobNumHelpers"] as! Int
+                        job.payment = jobObject["jobPayment"] as! Double
+                        job.jobTitle = jobObject["jobTitle"] as! String
+                        job.jobId = snapshot.ref.key
+                        
+                        self.pendingJobs.append(job)
+                        self.table.reloadData()
+                    })
+                }
+            }
+        })
+        
         
         
     }

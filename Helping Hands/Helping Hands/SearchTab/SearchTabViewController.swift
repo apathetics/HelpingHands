@@ -25,6 +25,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     
     // Create unfiltered job list from Job CoreData
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         ThemeService.shared.addThemeable(themable: self)
         // Search bar settings
         searchController.searchResultsUpdater = self
