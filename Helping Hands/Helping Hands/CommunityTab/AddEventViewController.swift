@@ -40,6 +40,7 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     
     override func viewDidLoad() {
         ThemeService.shared.addThemeable(themable: self)
+        self.hideKeyboardWhenTappedAround()
         super.viewDidLoad()
         descriptionFld.delegate = self
         descriptionFld.text = DESCR_PLACEHOLDER

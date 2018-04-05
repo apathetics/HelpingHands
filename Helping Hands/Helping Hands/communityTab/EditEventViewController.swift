@@ -28,7 +28,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         eventPhoto.image = event.image
         editEventTitle.text = event.eventTitle
         editEventHelpers.text = String(event.numHelpers)
