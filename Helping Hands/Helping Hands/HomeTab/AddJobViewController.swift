@@ -21,7 +21,6 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var descriptionFld: UITextView!
     @IBOutlet weak var paymentFld: UITextField!
     @IBOutlet weak var paymentTypeSeg: UISegmentedControl!
-    @IBOutlet weak var addressFld: UITextView!
     @IBOutlet weak var helpersCountFld: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var redLbl: UILabel!
@@ -86,25 +85,6 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
                 textView.text = DESCR_PLACEHOLDER
                 textView.textColor = .lightGray
             }
-        }
-    }
-    
-    // if the location switch is enabled, the user's location will be used
-    // as the job location. If not, the user must enter a valid US address.
-    @IBAction func locationSwitch(_ sender: UISwitch) {
-        if (sender.isOn == false) {
-            addressFld.isEditable = true
-            addressFld.isSelectable = true
-            addressFld.text = ""
-            addressFld.textColor = .black
-            addressFld.becomeFirstResponder()
-            locImg.isHighlighted = false
-        } else {
-            addressFld.text = LOC_DEFAULT_TEXT
-            addressFld.textColor = .lightGray
-            addressFld.isEditable = false
-            addressFld.isSelectable = false
-            locImg.isHighlighted = true
         }
     }
     
@@ -271,7 +251,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showLocation" {
+        if segue.identifier == "showAddJobLocation" {
             let goNext:LocationViewController = segue.destination as! LocationViewController
             goNext.delegate = self
         }

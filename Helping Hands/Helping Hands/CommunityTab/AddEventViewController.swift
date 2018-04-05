@@ -11,12 +11,11 @@ import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
 
-class AddEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
+class AddEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, AddressDelegate, Themeable {
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleFld: UITextField!
     @IBOutlet weak var descriptionFld: UITextView!
-    @IBOutlet weak var addressFld: UITextView!
     @IBOutlet weak var helpersCountFld: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var redLbl: UILabel!
@@ -30,12 +29,14 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var eventLocationLBL: UILabel!
     @IBOutlet weak var helpersGoalLBL: UILabel!
     @IBOutlet weak var eventDateLBL: UILabel!
-    @IBOutlet weak var locSwitch: UISwitch!
     @IBOutlet weak var helperStepper: UIStepper!
-    
+    @IBOutlet weak var addressLBL: UILabel!
+    @IBOutlet weak var chooseLocationBTN: UIButton!
     
     var imgChosen = false
     var masterView:CommunityTabViewController?
+    var address:String?
+    var latLong:(Double, Double)?
     
     override func viewDidLoad() {
         ThemeService.shared.addThemeable(themable: self)
@@ -47,7 +48,9 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         locImg.isHighlighted = true
-        // set the date picker's mininum value to now
+        if(address != nil) {
+            addressLBL.text = address!
+        }
         datePicker.minimumDate = Date()
     }
     
@@ -72,25 +75,6 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
                 textView.text = DESCR_PLACEHOLDER
                 textView.textColor = .lightGray
             }
-        }
-    }
-    
-    // if the location switch is enabled, the user's location will be used
-    // as the event location. If not, the user must enter a valid US address.
-    @IBAction func locationSwitch(_ sender: UISwitch) {
-        if (sender.isOn == false) {
-            addressFld.isEditable = true
-            addressFld.isSelectable = true
-            addressFld.text = ""
-            addressFld.textColor = .black
-            addressFld.becomeFirstResponder()
-            locImg.isHighlighted = false
-        } else {
-            addressFld.text = LOC_DEFAULT_TEXT
-            addressFld.textColor = .lightGray
-            addressFld.isEditable = false
-            addressFld.isSelectable = false
-            locImg.isHighlighted = true
         }
     }
     
@@ -161,12 +145,12 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
             event.eventDateString = eventDateAsString
             event.distance = 0.0 // TODO
             event.numHelpers = Int(helpersCountFld.text!)!
-            event.address = addressFld.text // TODO
+            event.address = self.address // TODO
             event.image = imgView.image
             redLbl.isHidden = true
             
             // TODO: Give actual address and current location!
-            event.address = "address"
+            event.address = self.address
             event.currentLocation = true
             
             // Add event to database
@@ -193,6 +177,7 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
                 if let eventImgUrl = metadata?.downloadURL()?.absoluteString {
                     let values = ["eventTitle": e.eventTitle, "eventImageUrl": eventImgUrl, "eventDistance": e.distance, "eventDescription": e.eventDescription, "eventDate": e.eventDateString, "eventCurrentLocation": e.currentLocation, "eventAddress": e.address, "eventNumHelpers": e.numHelpers, "eventCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
                     newPost.setValue(values)
+                    newPost.updateChildValues(["latitude": self.latLong!.0, "longitude": self.latLong!.1])
                 }
             })
         }
@@ -225,13 +210,24 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, addEventView])
         theme.applyDatePickerStyle(pickers: [datePicker])
-        theme.applyFilledButtonStyle(buttons: [finishBTN, chooseImgBTN])
-        theme.applyHeadlineStyle(labels: [eventTitleLBL, eventDescLBL, eventLocationLBL, helpersGoalLBL, eventDateLBL])
+        theme.applyFilledButtonStyle(buttons: [finishBTN, chooseImgBTN, chooseLocationBTN])
+        theme.applyHeadlineStyle(labels: [eventTitleLBL, eventDescLBL, eventLocationLBL, helpersGoalLBL, eventDateLBL, addressLBL])
         theme.applyTintColor_Font(navBar: self.navigationController!)
-        theme.applyTextViewStyle(textViews: [descriptionFld, addressFld])
+        theme.applyTextViewStyle(textViews: [descriptionFld])
         theme.applyTextFieldStyle(textFields: [titleFld, helpersCountFld])
         theme.applyStepperStyle(steppers: [helperStepper])
-        theme.applySwitchStyle(switches: [locSwitch])
+    }
+    
+    func sendAddress(address:String, latLong:(Double, Double)) {
+        self.address = address
+        self.latLong = latLong
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAddEventLocation" {
+            let goNext:LocationViewController = segue.destination as! LocationViewController
+            goNext.delegate = self
+        }
     }
 }
 

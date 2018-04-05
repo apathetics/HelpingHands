@@ -21,4 +21,6 @@ class Event {
     var numHelpers:Int!
     var eventDateString: String!
     var eventId: String!
+    var latitude: Double!
+    var longitude: Double!
 }

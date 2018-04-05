@@ -8,11 +8,12 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 import FirebaseStorageUI
 import FirebaseAuth
 import FirebaseDatabase
 
-class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Themeable {
+class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
     
     @IBOutlet weak var eventPhoto: UIImageView!
     @IBOutlet weak var eventTitle: UILabel!
@@ -38,6 +39,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     var attendee: User!
     var chosen:Int?
     var e:Event!
+    var locationManager = CLLocationManager()
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
@@ -72,15 +74,18 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.eventPhoto.image = UIImage(data: data!)
         }
         
+        // Not sure if this is too much, might not have to update this often
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        let distance = (locationManager.location?.distance(from: CLLocation(latitude: e.latitude, longitude: e.longitude)) as! Double) * 0.00062137
+        eventDistance.text = String(format: "%.2f", distance) + " mi"
         
-        //        eventPhoto.image = e.image
         eventTitle.text = e.eventTitle
         eventHelpers.text = String(e.numHelpers) + " Helpers"
         eventDate.text = e.eventDateString
-        eventDistance.text = String(e.distance) + " mi"
-        
-        // TODO when location is more than an illusion
-        eventLocation.text = "curLocation"
+        eventLocation.text = e.address
         eventDescription.text = e.eventDescription
         
         table.reloadData()
@@ -114,6 +119,19 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             self.table.reloadData()
         })
+        
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        let distance = (locationManager.location?.distance(from: CLLocation(latitude: e.latitude, longitude: e.longitude)) as! Double) * 0.00062137
+        eventDistance.text = String(format: "%.2f", distance) + " mi"
+        
+        eventTitle.text = e.eventTitle
+        eventHelpers.text = String(e.numHelpers) + " Helpers"
+        eventDate.text = e.eventDateString
+        eventLocation.text = e.address
+        eventDescription.text = e.eventDescription
         
         table.reloadData()
         

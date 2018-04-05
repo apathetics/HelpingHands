@@ -298,6 +298,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             let job = Job()
     
             job.address = jobObject["jobAddress"] as! String
+            job.latitude = jobObject["latitude"] as! Double
+            job.longitude = jobObject["longitude"] as! Double
             job.currentLocation = jobObject["jobCurrentLocation"] as! Bool
             job.jobDateString = jobObject["jobDate"] as! String
             job.jobDescription = jobObject["jobDescription"] as! String

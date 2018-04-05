@@ -33,7 +33,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        // Location pemissions
+        // Location permissions
         manager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -81,7 +81,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         
         cell.jobTitleLbl.text = j.jobTitle
         cell.jobDescriptionLbl.text = j.jobDescription
-        cell.distanceLbl.text = String(j.distance) + " mi"
+        cell.distanceLbl.text = String(format: "%.2f", j.distance) + " mi"
         let ftmPayment = "$" + ((j.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         cell.paymentLbl.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
         

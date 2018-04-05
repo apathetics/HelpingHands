@@ -8,10 +8,13 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 import FirebaseDatabase
 import FirebaseStorageUI
 
-class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Themeable {
+class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
+    
+    let manager = CLLocationManager()
     
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
@@ -26,6 +29,15 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
             sideMenuButton.target = self.revealViewController()
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
+        // Location permissions
+        manager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            manager.delegate = self
+            manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+            manager.startUpdatingLocation()
         }
     }
     
@@ -51,7 +63,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         
         cell.eventTitleLbl.text = e.eventTitle
         cell.eventDescriptionLbl.text = e.eventDescription
-        cell.distanceLbl.text = String(e.distance) + " mi"
+        cell.distanceLbl.text = String(format: "%.2f", e.distance) + " mi"
         cell.helpersLbl.text = String(e.numHelpers) + " Helpers"
         
         // Placeholder image
@@ -109,6 +121,23 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                     event.numHelpers = eventObject["eventNumHelpers"] as! Int
                     event.eventTitle = eventObject["eventTitle"] as! String
                     event.eventId = eventSnapshot.ref.key
+                    if(eventObject["latitude"] == nil)
+                    {
+                        event.latitude = 0
+                        event.longitude = 0
+                    }
+                    else {
+                        event.latitude = eventObject["latitude"] as! Double
+                        event.longitude = eventObject["longitude"] as! Double
+                    }
+                    
+                    let locationManager = CLLocationManager()
+                    locationManager.delegate = self;
+                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    locationManager.requestAlwaysAuthorization()
+                    locationManager.startUpdatingLocation()
+                    let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as! Double) * 0.00062137
+                    event.distance = distance
                     
                     self.events.append(event)
                     self.table.reloadData()
