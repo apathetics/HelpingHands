@@ -13,7 +13,7 @@ import FirebaseAuth
 
 class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
     
     // outlets
     

@@ -25,26 +25,30 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var navBar: UINavigationItem!
     
-//    let userRef = FIRDatabase.database().reference().child("users")
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
-    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
     
     var imgChosen = false
     var user:User!
     var userIndexPath:Int?
     
+//    var jobs = [Job]()
+    
+    var postedJobs = [Job]()
+    var pendingJobs = [Job]()
+    var completedJobs = [Job]()
+    
+    var chosen: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
-        // do verifcation if user = currently logged in
-//        if(user.userID != 0) {
-//            self.navigationItem.rightBarButtonItem =  nil;
-//        }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        retrieveJobStatuses()
         retrieveUser()
     
         // check for user permissions to edit
@@ -86,6 +90,104 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             print(user.userFirstName)
             editorVC.user = user
         }
+        if(segue.identifier == "showJob") {
+//            let j:Job = jobs[chosen!]
+//            let jobVC:JobViewController = segue.destination as! JobViewController
+//            jobVC.masterView = self
+//            jobVC.job = j
+//            jobVC.jobID = j.jobId
+        }
+    }
+    
+    @IBAction func segmentControlActionChanged(_ sender: Any) {
+        self.table.reloadData()
+    }
+    
+    // ** START TABLE FUNCTIONS ** \\
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        var selectedJobCount = 0
+        
+        switch(jobBar.selectedSegmentIndex) {
+        case 0:
+            selectedJobCount = postedJobs.count
+            break
+            
+        case 1:
+            selectedJobCount = pendingJobs.count
+            break
+            
+        case 2:
+            selectedJobCount = completedJobs.count
+            break
+            
+        default:
+            break
+        }
+        
+        return selectedJobCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell:JobTableViewCell = tableView.dequeueReusableCell(withIdentifier: "jobCell", for: indexPath) as! JobTableViewCell
+        let row = indexPath.row
+        var j:Job?
+        
+        switch(jobBar.selectedSegmentIndex) {
+        case 0:
+            j = postedJobs[row]
+            break
+            
+        case 1:
+            j = pendingJobs[row]
+            break
+            
+        case 2:
+            j = completedJobs[row]
+            break
+            
+        default:
+            break
+        }
+        
+        cell.jobTitleLbl.text = j!.jobTitle
+        cell.jobDescriptionLbl.text = j!.jobDescription
+        cell.distanceLbl.text = String(format: "%.2f", j!.distance) + " mi"
+        let ftmPayment = "$" + ((j!.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j!.payment) : String(j!.payment))
+        cell.paymentLbl.text = j!.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
+        
+        // Placeholder image
+        let placeholderImage = UIImage(named: "meeting")
+        // Load the image using SDWebImage
+        cell.jobImg.sd_setImage(with: URL(string: j!.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+        })
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch(jobBar.selectedSegmentIndex) {
+        case 0:
+            break
+            
+        case 1:
+            break
+            
+        case 2:
+            break
+            
+        default:
+            break
+        }
+        
+        chosen = (indexPath.row)
+        print("CHOSEN IS: \(String(describing: chosen))")
+//        self.performSegue(withIdentifier: "showJob", sender: self)
     }
     
     @IBAction func onBackButtonClick(_ sender: Any) {
@@ -99,7 +201,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     // FIREBASE RETRIEVAL
     func retrieveUser() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
         let userRef = databaseRef.child("users").child(userId)
         
         userRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -133,6 +235,63 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             
             self.user = user
         })
+    }
+    
+    func retrieveJobStatuses() {
+        
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
+        let currentUserRef = databaseRef.child("users").child(self.userId)
+        
+        var postedJobsId = [String]()
+        var pendingJobsId = [String]()
+        var completedJobsId = [String]()
+        
+        self.postedJobs.removeAll()
+        self.pendingJobs.removeAll()
+        self.completedJobs.removeAll()
+        
+        currentUserRef.child("jobsPostedArray").observe(FIRDataEventType.value, with: {(snapshot) in
+            if snapshot.childrenCount > 0 {
+                for jobsPostedSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    
+                    let jobsPostedObject = jobsPostedSnapshot.value as! [String: AnyObject]
+                    
+                    let jobId = jobsPostedObject["jobId"] as! String
+                    postedJobsId.append(jobId)
+                }
+                print("I AM POSTED JOBS IDS: ", postedJobsId)
+                
+                for jobId in postedJobsId {
+                    let jobRef = databaseRef.child("jobs").child(jobId)
+                    
+                    jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                        
+                        // retrieve jobs and append to job list after creation
+                        let jobObject = snapshot.value as! [String: AnyObject]
+                        let job = Job()
+                        
+                        job.address = jobObject["jobAddress"] as! String
+                        job.latitude = jobObject["latitude"] as! Double
+                        job.longitude = jobObject["longitude"] as! Double
+                        job.currentLocation = jobObject["jobCurrentLocation"] as! Bool
+                        job.jobDateString = jobObject["jobDate"] as! String
+                        job.jobDescription = jobObject["jobDescription"] as! String
+                        job.distance = jobObject["jobDistance"] as! Double
+                        job.imageAsString = jobObject["jobImageUrl"] as! String
+                        job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
+                        job.numHelpers = jobObject["jobNumHelpers"] as! Int
+                        job.payment = jobObject["jobPayment"] as! Double
+                        job.jobTitle = jobObject["jobTitle"] as! String
+                        job.jobId = snapshot.ref.key
+                        
+                        self.postedJobs.append(job)
+                        self.table.reloadData()
+                    })
+                }
+            }
+        })
+        
+        
     }
     
     func applyTheme(theme: Theme) {

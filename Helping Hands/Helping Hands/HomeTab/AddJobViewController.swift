@@ -179,7 +179,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     
     // Database
     func storeJob(j: Job) {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
         let postRef = databaseRef.child("jobs")
         let newPost = postRef.childByAutoId()
         if let imgUpload = UIImagePNGRepresentation(j.image!) {
@@ -210,7 +210,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         // Add job ID to user's jobsPosted
         let userId:String = (FIRAuth.auth()?.currentUser?.uid)!
         let jobPostedChild = databaseRef.child("users").child(userId).child("jobsPostedArray").childByAutoId()
-        jobPostedChild.setValue([newPost.key: newPost.key])
+        jobPostedChild.setValue(["jobId": newPost.key])
     }
     
     //----------------------------------------------------------------//

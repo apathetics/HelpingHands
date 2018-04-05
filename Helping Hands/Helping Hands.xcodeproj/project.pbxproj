@@ -36,7 +36,7 @@
 		1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A614205F41C900628A1C /* HiredPaymentController.swift */; };
 		1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A619205F41F000628A1C /* ScannerViewController.swift */; };
 		1927A61C205F41F100628A1C /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A61A205F41F000628A1C /* QRViewController.swift */; };
-		1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61E205F430C00628A1C /* GoogleService-Info.plist */; };
+		1927A620205F430C00628A1C /* GoogleService-Info(ORIGINALBACKUP).plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61E205F430C00628A1C /* GoogleService-Info(ORIGINALBACKUP).plist */; };
 		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
@@ -56,6 +56,7 @@
 		3987328D206349C100A29D39 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328C206349C100A29D39 /* ContactUsViewController.swift */; };
 		39ED45BC206F357300084F9E /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED45BB206F357300084F9E /* LocationViewController.swift */; };
 		39ED45C0206F3EFD00084F9E /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED45BF206F3EFD00084F9E /* LocationSearchTable.swift */; };
+		AB155E062075C1AB00A60F39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB155E052075C1AB00A60F39 /* GoogleService-Info.plist */; };
 		AB5F4B88205DDEA30085A11D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB7743012047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB7743032047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -99,7 +100,7 @@
 		1927A619205F41F000628A1C /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		1927A61A205F41F000628A1C /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		1927A61D205F430400628A1C /* CheckBoxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBoxHeader.h; sourceTree = "<group>"; };
-		1927A61E205F430C00628A1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1927A61E205F430C00628A1C /* GoogleService-Info(ORIGINALBACKUP).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info(ORIGINALBACKUP).plist"; sourceTree = "<group>"; };
 		1927A61F205F430C00628A1C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 		7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Helping_Hands.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
+		AB155E052075C1AB00A60F39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9E1650206318A60063A232 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWRevealViewController.podspec; sourceTree = "<group>"; };
@@ -163,7 +165,8 @@
 		1927A5D9205F3FD500628A1C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
+				1927A61E205F430C00628A1C /* GoogleService-Info(ORIGINALBACKUP).plist */,
+				AB155E052075C1AB00A60F39 /* GoogleService-Info.plist */,
 				1927A61F205F430C00628A1C /* Info.plist */,
 				1927A624205F439000628A1C /* LaunchScreen.storyboard */,
 				1927A622205F439000628A1C /* Main.storyboard */,
@@ -436,10 +439,11 @@
 			files = (
 				192776A020755820006451CD /* Settings.bundle in Resources */,
 				ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */,
+				AB155E062075C1AB00A60F39 /* GoogleService-Info.plist in Resources */,
 				194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */,
 				1927A621205F430C00628A1C /* Info.plist in Resources */,
 				1927A5E0205F404600628A1C /* Assets.xcassets in Resources */,
-				1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */,
+				1927A620205F430C00628A1C /* GoogleService-Info(ORIGINALBACKUP).plist in Resources */,
 				1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */,
 				1927A626205F439000628A1C /* Main.storyboard in Resources */,
 			);

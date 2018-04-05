@@ -163,7 +163,7 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     // Database
     func storeEvent(e: Event) {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
         let postRef = databaseRef.child("events")
         let newPost = postRef.childByAutoId()
         if let imgUpload = UIImagePNGRepresentation(e.image!) {
