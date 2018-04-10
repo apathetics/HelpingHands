@@ -15,6 +15,7 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
     @IBOutlet weak var body: UITextView!
     
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
