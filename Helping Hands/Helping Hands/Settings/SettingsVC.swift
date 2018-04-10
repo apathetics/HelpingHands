@@ -41,6 +41,32 @@ class SettingsVC: UITableViewController, Themeable {
         self.dismiss(animated: true, completion: nil)
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.section == 3 && indexPath.row == 0) {
+            print("Log out button clicked")
+            let alert = UIAlertController(title: userNameLBL.text, message: "Are you sure you want to log out of Helping Hands?", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
+                tableView.deselectRow(at: indexPath, animated: true)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Log out", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Handle Log out Logic here")
+                do {
+                    try FIRAuth.auth()?.signOut()
+                } catch let logoutError {
+                    print(logoutError)
+                }
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginVC = storyboard.instantiateInitialViewController()
+                self.present(loginVC!, animated: true, completion: nil)
+            }))
+            present(alert, animated: true, completion: nil)
+
+
+        }
+    }
+    
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
         theme.applyNavBarTintColor(navBar: self.navigationController!)
