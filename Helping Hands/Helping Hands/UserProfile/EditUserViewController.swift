@@ -24,7 +24,7 @@ extension UIViewController {
 }
 
 
-class EditUserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
+class EditUserViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
     
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var userDescription: UITextView!
@@ -34,6 +34,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var editLocation: UITextField!
     @IBOutlet weak var chooseImgButton: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var bioLBL: UILabel!
     
     let userId:String = (FIRAuth.auth()?.currentUser?.uid)!
     
@@ -43,7 +44,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ThemeService.shared.addThemeable(themable: self)
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
@@ -124,10 +125,10 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onBackButtonClick(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func onBackButtonClick(_ sender: Any) {
+//        self.navigationController?.popViewController(animated: true)
+//        dismiss(animated: true, completion: nil)
+//    }
     
     @IBAction func onSaveButtonClick(_ sender: Any) {
         user.userPhoto = userPhoto.image
@@ -140,16 +141,16 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         self.performSegueToReturnBack()
     }
     
-    @IBAction func saveChanges(_ sender: Any) {
-        user.userPhoto = userPhoto.image
-        user.userFirstName = editFirstName.text
-        user.userLastName = editLastName.text
-        user.userEmail = editEmail.text
-        user.userBio = userDescription.text
-        masterView?.user = self.user
-        updateJob(u: user)
-        self.performSegueToReturnBack()
-    }
+//    @IBAction func saveChanges(_ sender: Any) {
+//        user.userPhoto = userPhoto.image
+//        user.userFirstName = editFirstName.text
+//        user.userLastName = editLastName.text
+//        user.userEmail = editEmail.text
+//        user.userBio = userDescription.text
+//        masterView?.user = self.user
+//        updateJob(u: user)
+//        self.performSegueToReturnBack()
+//    }
     
     func updateJob(u: User) {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
@@ -167,5 +168,15 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
                 }
             })
         }
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyTextViewStyle(textViews: [userDescription])
+        theme.applyTextFieldStyle(textFields: [editLastName, editFirstName, editEmail, editLocation])
+        theme.applyFilledButtonStyle(buttons: [chooseImgButton])
+        theme.applyHeadlineStyle(labels: [bioLBL])
     }
 }

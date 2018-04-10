@@ -68,7 +68,8 @@ class SideMenuController: UIViewController, Themeable {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showProfile") {
-            let userVC:UserViewController = segue.destination as! UserViewController
+            let destVC: UINavigationController = segue.destination as! UINavigationController
+            let userVC:UserViewController = destVC.topViewController as! UserViewController
             userVC.user = self.user
         }
         if(segue.identifier == "showContactUs") {

@@ -23,7 +23,10 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var userDescription: UITextView!
     @IBOutlet weak var jobBar: UISegmentedControl!
     @IBOutlet weak var table: UITableView!
-    @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var starIcon: UIImageView!
+    @IBOutlet weak var bioLBL: UILabel!
+    
+    
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
@@ -355,10 +358,14 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
         theme.applyTableViewBackgroundColor(tableView: [table])
-        theme.applyHeadlineStyle(labels: [userName])
+        theme.applyHeadlineStyle(labels: [userName, bioLBL])
         theme.applyBodyTextStyle(labels: [userEmail, userRating, userLocation, userDistance])
         theme.applySegmentedControlStyle(controls: [jobBar])
+        theme.applyIconStyle(icons: [starIcon])
+        theme.applyTextViewStyle(textViews: [userDescription])
     }
     
 }

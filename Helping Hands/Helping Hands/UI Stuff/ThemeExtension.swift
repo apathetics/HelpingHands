@@ -158,6 +158,13 @@ extension Theme {
         searchBar.searchBar.tintColor = tintColor
     }
     
+    public func applyIconStyle(icons: [UIImageView]) {
+        icons.forEach {
+            $0.image = $0.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            $0.tintColor = bodyTextColor
+        }
+    }
+    
 }
 
 public struct DefaultTheme: Theme {
