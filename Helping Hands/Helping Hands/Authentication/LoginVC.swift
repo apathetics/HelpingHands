@@ -56,6 +56,14 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        // If user hasn't logged out
+        if (FIRAuth.auth()?.currentUser != nil) {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
+            appDelegate.window?.rootViewController = SWRController
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
