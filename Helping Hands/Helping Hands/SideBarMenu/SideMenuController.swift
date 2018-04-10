@@ -23,10 +23,10 @@ class SideMenuController: UIViewController, Themeable {
     @IBOutlet weak var jobsPostedLBL: UILabel!
     @IBOutlet weak var moneyEarnedLBL: UILabel!
     
-    @IBOutlet weak var ConfirmHiredBTN: UIButton!
-    @IBOutlet weak var ConfirmHireeBTN: UIButton!
-    @IBOutlet weak var PaymentHiredBTN: UIButton!
-    @IBOutlet weak var PaymentHireeBTN: UIButton!
+//    @IBOutlet weak var ConfirmHiredBTN: UIButton!
+//    @IBOutlet weak var ConfirmHireeBTN: UIButton!
+//    @IBOutlet weak var PaymentHiredBTN: UIButton!
+//    @IBOutlet weak var PaymentHireeBTN: UIButton!
     @IBOutlet weak var SettingsBTN: UIButton!
     @IBOutlet weak var ContactBTN: UIButton!
     
@@ -220,7 +220,7 @@ class SideMenuController: UIViewController, Themeable {
         theme.applyBackgroundColor(views: [view])
         theme.applyBodyTextStyle(labels: [userNumJobsPosted, userNumJobsCompleted, userMoneyEarned, jobsPostedLBL, moneyEarnedLBL, jobsCompletedLBL])
         theme.applyHeadlineStyle(labels: [userNameLabel])
-//        theme.applyButtonTextStyle(buttons: [ContactBTN, SettingsBTN, PaymentHiredBTN, PaymentHireeBTN, ConfirmHiredBTN, ConfirmHireeBTN])
+        theme.applyButtonTextStyle(buttons: [ContactBTN, SettingsBTN])
     }
     
 }

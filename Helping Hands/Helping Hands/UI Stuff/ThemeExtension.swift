@@ -26,6 +26,8 @@ public protocol Theme {
     var bodyTextFont: UIFont { get }
     var bodyTextColor: UIColor { get }
     
+    var textFieldColor: UIColor { get }
+    
     // ...
     
 }
@@ -84,14 +86,14 @@ extension Theme {
     
     public func applyTextViewStyle(textViews: [UITextView]) {
         textViews.forEach {
-            $0.backgroundColor = backgroundColor
+            $0.backgroundColor = textFieldColor
             $0.textColor = bodyTextColor
         }
     }
     
     public func applyTextFieldStyle(textFields: [UITextField]) {
         textFields.forEach {
-            $0.backgroundColor = backgroundColor
+            $0.backgroundColor = textFieldColor
             $0.textColor = bodyTextColor
         }
     }
@@ -171,6 +173,8 @@ public struct DefaultTheme: Theme {
     public var headlineColor: UIColor { return UIColor(hex: "#1B212C") }
     public var bodyTextColor: UIColor { return UIColor(hex: "#1B212C") }
     public var bodyTextFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
+    public var textFieldColor: UIColor { return UIColor(hex: "#fdfdfd") }
+    
     
     public init() {}
     
@@ -189,6 +193,7 @@ public struct DarkTheme: Theme {
     public var headlineColor: UIColor { return UIColor.white }
     public var bodyTextColor: UIColor { return UIColor.white }
     public var bodyTextFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
+    public var textFieldColor: UIColor { return UIColor(hex: "#2b3445") }
     
     public init() {}
     

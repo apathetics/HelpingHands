@@ -9,14 +9,22 @@
 import UIKit
 import MessageUI
 
-class ContactUsViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class ContactUsViewController: UIViewController, MFMailComposeViewControllerDelegate, Themeable {
     
     @IBOutlet weak var subjectFld: UITextField!
     @IBOutlet weak var body: UITextView!
     
+    @IBOutlet weak var header1: UILabel!
+    @IBOutlet weak var header2: UILabel!
+    @IBOutlet weak var subjectLBL: UILabel!
+    @IBOutlet weak var bodyLBL: UILabel!
+    @IBOutlet weak var sendBTN: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        ThemeService.shared.addThemeable(themable: self)
         // Do any additional setup after loading the view.
     }
     
@@ -76,5 +84,16 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyHeadlineStyle(labels: [header1, header2])
+        theme.applyBodyTextStyle(labels: [subjectLBL, bodyLBL])
+        theme.applyFilledButtonStyle(buttons: [sendBTN])
+        theme.applyTextFieldStyle(textFields: [subjectFld])
+        theme.applyTextViewStyle(textViews: [body])
     }
 }
