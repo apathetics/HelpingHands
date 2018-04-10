@@ -90,6 +90,8 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         // Load the image using SDWebImage
         cell.jobImg.sd_setImage(with: URL(string: j.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
+        cell.jobImg.layer.cornerRadius = 6.0
+        cell.jobImg.clipsToBounds = true
         return cell
     }
     

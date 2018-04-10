@@ -69,7 +69,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
             let result: Job = returnedResults[indexPath.row]
             cell.jobTitleLabel.text = result.jobTitle
             cell.picture.image = result.image
-            cell.distanceLabel.text = String(result.distance)
+            cell.distanceLabel.text = String(format: "%.2f", result.distance) + " mi"
             cell.descriptionLabel.text = result.jobDescription
         }
         cell.backgroundColor = UIColor.clear
@@ -159,6 +159,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         theme.applyBackgroundColor(views: [view])
         theme.applyTableViewBackgroundColor(tableView: [table])
         theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
         for cell in table.visibleCells {
             theme.applyHeadlineStyle(labels: [(cell as! SearchTableCell).jobTitleLabel])
             theme.applyBodyTextStyle(labels: [(cell as! SearchTableCell).descriptionLabel])

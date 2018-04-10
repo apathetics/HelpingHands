@@ -135,6 +135,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
         theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
     }
     
     // FIREBASE RETRIEVAL

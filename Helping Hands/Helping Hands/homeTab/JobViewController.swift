@@ -183,7 +183,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         if(segue.identifier == "showInquiry")
         {
             let u:User = inquiries[chosen!]
-            let userVC:UserViewController = segue.destination as! UserViewController
+            let destVC: UINavigationController = segue.destination as! UINavigationController
+            let userVC:UserViewController = destVC.topViewController as! UserViewController
+            
             userVC.user = u
             userVC.userIndexPath = chosen!
         }

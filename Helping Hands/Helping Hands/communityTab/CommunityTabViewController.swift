@@ -72,6 +72,8 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         cell.eventImg.sd_setImage(with: URL(string: e.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
         cell.backgroundColor = UIColor.clear
+        cell.eventImg.layer.cornerRadius = 6.0
+        cell.eventImg.clipsToBounds = true
         return cell
     }
     // ** END TABLE FUCTIONS ** \\
@@ -150,6 +152,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
         theme.applyTableViewBackgroundColor(tableView: [table])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
         for cell in table.visibleCells {
             theme.applyBodyTextStyle(labels: [ ((cell as! EventTableViewCell).eventDescriptionLbl!) ])
