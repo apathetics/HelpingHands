@@ -30,7 +30,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var descriptionLBL: UILabel!
     @IBOutlet weak var inquiriesLBL: UILabel!
     
-    var masterView:HomeTabViewController?
     var jobID:String?
     var clearCore: Bool = false
     var job:Job?

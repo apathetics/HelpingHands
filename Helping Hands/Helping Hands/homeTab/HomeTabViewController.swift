@@ -62,7 +62,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         if(segue.identifier == "showJob") {
             let j:Job = jobs[chosen!]
             let jobVC:JobViewController = segue.destination as! JobViewController
-            jobVC.masterView = self
             jobVC.job = j
             jobVC.jobID = j.jobId
         }

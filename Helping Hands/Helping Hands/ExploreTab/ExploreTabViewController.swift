@@ -72,10 +72,12 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
             //return nil so map view draws "blue dot" for standard user location
             return nil
         }
+        
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-        if let thisAnnotation = annotation as? detailedAnnotation {
+        
+        if let thisAnnotation = annotation as? DetailedAnnotation {
             if(thisAnnotation.kind == "job")
             {
                 pinView?.pinTintColor = UIColor.blue
@@ -91,6 +93,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         else {
             pinView?.pinTintColor = UIColor.orange
         }
+        
         pinView?.canShowCallout = true
         let smallSquare = CGSize(width: 100, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint(x:0, y:0), size: smallSquare))
@@ -98,8 +101,23 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         button.setTitleColor(UIColor.white, for: UIControlState.normal)
         button.setTitle("Checkout", for: UIControlState.normal)
         pinView?.rightCalloutAccessoryView = button
-        //button.addTarget(self, action:#selector(action(sender:)), for: .touchUpInside)
+        button.addTarget(self, action:#selector(action(sender:)), for: .touchUpInside)
         return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("chosen a pin!!!")
+        if let annotation = view.annotation as? DetailedAnnotation {
+            if(annotation.kind == "job")
+            {
+                kindSegue = "showPinJob"
+                chosenJob = annotation.job!
+            }
+            else {
+                kindSegue = "showPinEvent"
+                chosenEvent = annotation.event!
+            }
+        }
     }
     
     @objc fileprivate func action(sender: UIButton) {
@@ -184,7 +202,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
                     let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
                     job.distance = distance
                     
-                    let annotation = detailedAnnotation()
+                    let annotation = DetailedAnnotation()
                     annotation.kind = "job"
                     annotation.coordinate = CLLocationCoordinate2D(latitude: job.latitude, longitude: job.longitude)
                     annotation.title = job.jobTitle
@@ -237,10 +255,10 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
                     locationManager.desiredAccuracy = kCLLocationAccuracyBest
                     locationManager.requestAlwaysAuthorization()
                     locationManager.startUpdatingLocation()
-                    let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as! Double) * 0.00062137
+                    let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as Double?)! * 0.00062137
                     event.distance = distance
                     
-                    let annotation = detailedAnnotation()
+                    let annotation = DetailedAnnotation()
                     annotation.kind = "event"
                     annotation.event = event
                     annotation.coordinate = CLLocationCoordinate2D(latitude: event.latitude, longitude: event.longitude)
@@ -253,7 +271,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
 }
 
-class detailedAnnotation: MKPointAnnotation {
+class DetailedAnnotation: MKPointAnnotation {
     var kind:String = ""
     var job:Job?
     var event:Event?

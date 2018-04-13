@@ -86,7 +86,6 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         }
         else if segue.identifier == "showEvent" {
             let eventVC:EventViewController = segue.destination as! EventViewController
-            eventVC.masterView = self
             let eventID = (table.indexPathForSelectedRow?.row)!
             let eventSelected = events[eventID]
             eventVC.e = eventSelected

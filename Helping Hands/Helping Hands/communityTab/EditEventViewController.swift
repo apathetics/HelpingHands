@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorageUI
 
-class EditEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
+class EditEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
     
     @IBOutlet weak var eventPhoto: UIImageView!
     @IBOutlet weak var eventDescription: UITextView!
@@ -131,5 +131,15 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
             })
         }
     }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyTextViewStyle(textViews: [eventDescription])
+        theme.applyFilledButtonStyle(buttons: [chooseImgButton])
+        theme.applyTextFieldStyle(textFields: [editEventTitle, editEventDate, editEventHelpers, editLocation])
+    }
+    
 }
 

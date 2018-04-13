@@ -30,7 +30,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     
-    var masterView:CommunityTabViewController?
     var eventID:String?
     var clearCore: Bool = false
     var event:Event?
