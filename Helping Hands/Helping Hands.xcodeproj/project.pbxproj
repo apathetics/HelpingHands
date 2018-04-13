@@ -205,12 +205,12 @@
 		1927A5F7205F411C00628A1C /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
-				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
 				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
+				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
 				1927A5F8205F413300628A1C /* AddJobViewController.swift */,
 				1927A5F9205F413300628A1C /* HomeTabViewController.swift */,
-				1927A5FA205F413300628A1C /* Job.swift */,
 				1927A5FB205F413300628A1C /* JobTableViewCell.swift */,
+				1927A5FA205F413300628A1C /* Job.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";

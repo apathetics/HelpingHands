@@ -28,6 +28,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeService.shared.addThemeable(themable: self)
         self.hideKeyboardWhenTappedAround()
         eventPhoto.image = event.image
         editEventTitle.text = event.eventTitle

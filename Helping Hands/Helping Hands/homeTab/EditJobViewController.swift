@@ -12,16 +12,16 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorageUI
 
-class EditJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, AddressDelegate {
+class EditJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, AddressDelegate, Themeable {
     
     @IBOutlet weak var jobPhoto: UIImageView!
     @IBOutlet weak var jobDescription: UITextView!
     @IBOutlet weak var editJobTitle: UITextField!
     @IBOutlet weak var editJobPrice: UITextField!
-    @IBOutlet weak var editJobDate: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var chooseImgButton: UIButton!
     @IBOutlet weak var locationEditButton: UIButton!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     var imgChosen = false
     var masterView:JobViewController?
@@ -31,6 +31,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeService.shared.addThemeable(themable: self)
         self.hideKeyboardWhenTappedAround()
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
@@ -42,7 +43,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         jobPhoto.image = job.image
         editJobTitle.text = job.jobTitle
         editJobPrice.text = String(job.payment)
-        editJobDate.text = job.jobDateString
+
         jobDescription.text = job.jobDescription
         self.latLong = (job.latitude, job.longitude)
         
@@ -100,9 +101,14 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         job.image = jobPhoto.image
         job.jobTitle = editJobTitle.text
         job.payment = (editJobPrice.text! as NSString).doubleValue
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        job.date = dateFormatter.date (from: editJobDate.text!)
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let datePicked = df.string(from: datePicker.date)
+        let dateFromString = df.date(from: datePicked)
+        df.dateFormat = "dd-MMM-yyyy"
+        job.jobDateString = df.string(from: dateFromString!)
+        
         job.jobDescription = jobDescription.text
         
         if(self.latLong != nil) {
@@ -138,6 +144,10 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func sendAddress(address:String, latLong:(Double, Double)) {
         self.address = address
         self.latLong = latLong
@@ -148,6 +158,16 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
             let goNext:LocationViewController = segue.destination as! LocationViewController
             goNext.delegate = self
         }
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyTextViewStyle(textViews: [jobDescription])
+        theme.applyHeadlineStyle(labels: [addressLabel])
+        theme.applyFilledButtonStyle(buttons: [chooseImgButton, locationEditButton])
+        theme.applyTextFieldStyle(textFields: [editJobTitle, editJobPrice])
     }
 }
 

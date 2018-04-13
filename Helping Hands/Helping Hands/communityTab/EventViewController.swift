@@ -63,6 +63,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         event = e
         
+        print(e.eventTitle)
+        
         let url = URL(string: e.imageAsString)
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
