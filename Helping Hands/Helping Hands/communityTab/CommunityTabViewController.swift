@@ -140,7 +140,13 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                     let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as! Double) * 0.00062137
                     event.distance = distance
                     
-                    self.events.append(event)
+                    if(self.events.isEmpty) {
+                        self.events.append(event)
+                    }
+                    else if let index = self.events.index(where: { $0.distance > event.distance }) {
+                        self.events.insert(event, at: index)
+                    }
+                    
                     self.table.reloadData()
                     
                 }
