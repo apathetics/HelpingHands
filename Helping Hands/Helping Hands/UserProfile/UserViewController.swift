@@ -285,6 +285,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                     jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
                         
                         // retrieve jobs and append to job list after creation
+                        // TODO: Bug seems to be happening here? Not sure why, but I can't open up my user profile - Bryan
                         let jobObject = snapshot.value as! [String: AnyObject]
                         let job = Job()
                         

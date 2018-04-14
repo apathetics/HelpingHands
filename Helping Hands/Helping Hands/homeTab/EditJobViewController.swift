@@ -14,6 +14,7 @@ import FirebaseStorageUI
 
 class EditJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, AddressDelegate, Themeable {
     
+    @IBOutlet weak var editJobView: UIView!
     @IBOutlet weak var jobPhoto: UIImageView!
     @IBOutlet weak var jobDescription: UITextView!
     @IBOutlet weak var editJobTitle: UITextField!
@@ -22,6 +23,18 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var chooseImgButton: UIButton!
     @IBOutlet weak var locationEditButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBOutlet weak var jobDescriptionLabel: UILabel!
+    @IBOutlet weak var jobTitleLabel: UILabel!
+    @IBOutlet weak var paymentLabel: UILabel!
+    @IBOutlet weak var cashSymbolLabel: UILabel!
+    @IBOutlet weak var payTypeButtons: UISegmentedControl!
+    @IBOutlet weak var jobLocationLabel: UILabel!
+    @IBOutlet weak var numHelpersButton: UIStepper!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var requiredLabel: UILabel!
+    @IBOutlet weak var numHelpersLabel: UILabel!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var imgChosen = false
     var masterView:JobViewController?
@@ -161,13 +174,14 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func applyTheme(theme: Theme) {
-        theme.applyBackgroundColor(views: [view])
-        theme.applyNavBarTintColor(navBar: self.navigationController!)
-        theme.applyTintColor_Font(navBar: self.navigationController!)
-        theme.applyTextViewStyle(textViews: [jobDescription])
-        theme.applyHeadlineStyle(labels: [addressLabel])
+        theme.applyBackgroundColor(views: [view, editJobView])
+        theme.applyHeadlineStyle(labels: [paymentLabel, dateLabel, jobDescriptionLabel, jobTitleLabel, numHelpersLabel, cashSymbolLabel, jobLocationLabel, addressLabel])
+        theme.applyStepperStyle(steppers: [numHelpersButton])
+        theme.applySegmentedControlStyle(controls: [payTypeButtons])
         theme.applyFilledButtonStyle(buttons: [chooseImgButton, locationEditButton])
-        theme.applyTextFieldStyle(textFields: [editJobTitle, editJobPrice])
+        theme.applyTextViewStyle(textViews: [jobDescription])
+        theme.applyTextFieldStyle(textFields: [editJobPrice, editJobTitle])
+        theme.applyDatePickerStyle(pickers: [datePicker])
     }
 }
 
