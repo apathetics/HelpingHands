@@ -23,6 +23,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var chooseImgButton: UIButton!
     @IBOutlet weak var locationEditButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var numHelpersText: UITextField!
     
     @IBOutlet weak var jobDescriptionLabel: UILabel!
     @IBOutlet weak var jobTitleLabel: UILabel!
@@ -119,7 +120,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         df.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let datePicked = df.string(from: datePicker.date)
         let dateFromString = df.date(from: datePicked)
-        df.dateFormat = "dd-MMM-yyyy"
+        df.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
         job.jobDateString = df.string(from: dateFromString!)
         
         job.jobDescription = jobDescription.text
@@ -130,10 +131,18 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         }
         
         job.address = addressLabel.text
+        job.date = datePicker.date
+        job.isHourlyPaid = payTypeButtons.selectedSegmentIndex == 0 ? true : false
+        job.numHelpers = Int(numHelpersText.text!)!
         
         masterView?.j = self.job
         updateJob(j: self.job)
         self.performSegueToReturnBack()
+    }
+    
+    @IBAction func helperStep(_ sender: UIStepper) {
+        let val:Int = Int(sender.value)
+        numHelpersText.text = String(val)
     }
     
     // Update the jobs by replacing values from current j instance

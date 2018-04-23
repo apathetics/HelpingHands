@@ -149,7 +149,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             df.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let datePicked = df.string(from: datePicker.date)
             let dateFromString = df.date(from: datePicked)
-            df.dateFormat = "dd-MMM-yyyy"
+            df.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
             let jobDateAsString = df.string(from: dateFromString!)
             
             let job:Job = Job()

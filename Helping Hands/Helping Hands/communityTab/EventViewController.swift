@@ -24,8 +24,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var imgGradientView: UIView!
-    
-    @IBOutlet weak var descLBL: UILabel!
+    @IBOutlet weak var eventDescriptionLBL: UILabel!
     @IBOutlet weak var attendeesLBL: UILabel!
     
     
@@ -389,11 +388,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, imgGradientView])
-        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyHeadlineStyle(labels: [eventTitle, eventDescriptionLBL, attendeesLBL])
+        theme.applyBodyTextStyle(labels: [eventDate, eventLocation, eventDistance, eventDescription])
         theme.applyTableViewBackgroundColor(tableView: [table])
-        theme.applyTintColor_Font(navBar: self.navigationController!)
-        theme.applyHeadlineStyle(labels: [eventTitle, attendeesLBL, descLBL])
-        theme.applyBodyTextStyle(labels: [eventDate, eventDistance, eventLocation, eventDescription])
     }
     
 }

@@ -12,43 +12,57 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorageUI
 
-class EditEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, Themeable {
+class EditEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, AddressDelegate, Themeable {
     
+    @IBOutlet weak var editEventView: UIView!
     @IBOutlet weak var eventPhoto: UIImageView!
     @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var editEventTitle: UITextField!
-    @IBOutlet weak var editEventHelpers: UITextField!
-    @IBOutlet weak var editEventDate: UITextField!
-    @IBOutlet weak var editLocation: UITextField!
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var chooseImgButton: UIButton!
+    @IBOutlet weak var locationEditButton: UIButton!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var numHelpersText: UITextField!
+    
+    @IBOutlet weak var eventDescriptionLabel: UILabel!
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var eventLocationLabel: UILabel!
+    @IBOutlet weak var numHelpersButton: UIStepper!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var requiredLabel: UILabel!
+    @IBOutlet weak var numHelpersLabel: UILabel!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var imgChosen = false
     var masterView:EventViewController?
     var event:Event!
+    var address:String?
+    var latLong:(Double, Double)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
         self.hideKeyboardWhenTappedAround()
-        eventPhoto.image = event.image
-        editEventTitle.text = event.eventTitle
-        editEventHelpers.text = String(event.numHelpers)
-        editEventDate.text = event.eventDateString
-        eventDescription.text = event.eventDescription
-        
-        // TODO when location is more than an illusion
-        editLocation.text = "curLocation"
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
-        if imgChosen == false {
-            eventPhoto.sd_setImage(with: URL(string: self.event.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-                //            self.event.image = image
-            })
+        eventPhoto.sd_setImage(with: URL(string: self.event.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            self.event.image = image
+        })
+        
+        eventPhoto.image = event.image
+        editEventTitle.text = event.eventTitle
+        
+        eventDescription.text = event.eventDescription
+        self.latLong = (event.latitude, event.longitude)
+        
+        // TODO when location is more than an illusion
+        addressLabel.text = event.address
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(address != nil) {
+            addressLabel.text = address!
         }
     }
     
@@ -98,15 +112,45 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         self.dismiss(animated: true, completion: nil)
     }
     
+    func sendAddress(address:String, latLong:(Double, Double)) {
+        self.address = address
+        self.latLong = latLong
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEditEventLocation" {
+            let goNext:LocationViewController = segue.destination as! LocationViewController
+            goNext.delegate = self
+        }
+    }
+    
+    @IBAction func helperStep(_ sender: UIStepper) {
+        let val:Int = Int(sender.value)
+        numHelpersText.text = String(val)
+    }
+    
     // UPDATE FIREBASE REFERENCE VALUES INSTEAD OF event
     @IBAction func saveChanges(_ sender: Any) {
         event.image = eventPhoto.image
         event.eventTitle = editEventTitle.text
-        event.numHelpers = Int(editEventHelpers.text!)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        event.date = dateFormatter.date (from: editEventDate.text!)
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let datePicked = df.string(from: datePicker.date)
+        let dateFromString = df.date(from: datePicked)
+        df.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
+        event.eventDateString = df.string(from: dateFromString!)
+        
         event.eventDescription = eventDescription.text
+        
+        if(self.latLong != nil) {
+            event.latitude = self.latLong?.0
+            event.longitude = self.latLong?.1
+        }
+        
+        event.address = addressLabel.text
+        event.date = datePicker.date
+        event.numHelpers = Int(numHelpersText.text!)!
         
         masterView?.e = self.event
         updateEvent(e: self.event)
@@ -134,12 +178,13 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     }
     
     func applyTheme(theme: Theme) {
-        theme.applyBackgroundColor(views: [view])
-        theme.applyNavBarTintColor(navBar: self.navigationController!)
-        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyBackgroundColor(views: [view, editEventView])
+        theme.applyHeadlineStyle(labels: [dateLabel, eventDescriptionLabel, eventTitleLabel, numHelpersLabel, eventLocationLabel, addressLabel])
+        theme.applyStepperStyle(steppers: [numHelpersButton])
+        theme.applyFilledButtonStyle(buttons: [chooseImgButton, locationEditButton])
         theme.applyTextViewStyle(textViews: [eventDescription])
-        theme.applyFilledButtonStyle(buttons: [chooseImgButton])
-        theme.applyTextFieldStyle(textFields: [editEventTitle, editEventDate, editEventHelpers, editLocation])
+        theme.applyTextFieldStyle(textFields: [editEventTitle])
+        theme.applyDatePickerStyle(pickers: [datePicker])
     }
     
 }
