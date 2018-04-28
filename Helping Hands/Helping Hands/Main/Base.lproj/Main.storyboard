@@ -801,7 +801,6 @@
                                         <connections>
                                             <outlet property="userImg" destination="O0y-aG-1fp" id="WQu-1Y-i1I"/>
                                             <outlet property="userName" destination="bIE-54-ELB" id="iW4-B1-JyE"/>
-                                            <segue destination="8W0-FX-gIH" kind="show" identifier="showInquiry" id="wbZ-bX-Omz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -920,6 +919,7 @@
                         <outlet property="navButton" destination="PKe-Ms-SQq" id="PFW-Gg-9Be"/>
                         <outlet property="table" destination="KkH-lV-IDB" id="35F-My-ozP"/>
                         <segue destination="skE-v8-GxT" kind="show" identifier="showJobEditor" id="U7z-FX-yJ4"/>
+                        <segue destination="8W0-FX-gIH" kind="show" identifier="showInquiry" id="Hd3-SE-1ua"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXN-r7-AjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3402,7 +3402,7 @@
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wbZ-bX-Omz"/>
+        <segue reference="Hd3-SE-1ua"/>
         <segue reference="28V-Pi-cTr"/>
         <segue reference="k5o-ug-Gfi"/>
         <segue reference="7hC-Tu-DGP"/>
