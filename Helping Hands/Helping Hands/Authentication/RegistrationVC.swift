@@ -151,7 +151,9 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+        profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -164,7 +166,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        profileImage.image = image
+        profileImage.image = image.fixOrientation()
         picker.dismiss(animated: true, completion: nil)
     }
     

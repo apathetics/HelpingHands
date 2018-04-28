@@ -75,7 +75,9 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         self.userPhoto.sd_setImage(with: URL(string: self.user.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
 
-        
+        userPhoto.contentMode = .scaleAspectFill
+        userPhoto.clipsToBounds = true
+
         userName.text = (user.userFirstName)! + " " + (user?.userLastName)!
         userEmail.text = user.userEmail
         userDescription.text = user.userBio

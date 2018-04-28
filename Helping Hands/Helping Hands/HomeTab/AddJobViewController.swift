@@ -62,6 +62,8 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         if(address != nil) {
             addressLBL.text = address!
         }
+        imgView.clipsToBounds = true
+        imgView.contentMode = .scaleAspectFill
         datePicker.minimumDate = Date()
     }
 
@@ -106,7 +108,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imgView.image = image
+            imgView.image = image.fixOrientation()
             self.imgChosen = true
         } else {
             //error

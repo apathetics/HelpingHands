@@ -163,7 +163,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // Load the image using SDWebImage
         cell.userImg.sd_setImage(with: URL(string: u.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
-        
+        cell.userImg.clipsToBounds = true
+        cell.userImg.contentMode = .scaleAspectFill
 //        cell.userImg.image = u.userPhoto
         cell.userName.text = u.userFirstName + " " + u.userLastName
         cell.backgroundColor = UIColor.clear

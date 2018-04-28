@@ -53,6 +53,7 @@ class SideMenuController: UIViewController, Themeable {
         // Display profile image as a cirle
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         profileImage.clipsToBounds = true
+        profileImage.contentMode = .scaleAspectFill
         let profileTap = UITapGestureRecognizer(target: self, action: #selector(profileTapGesture))
         profileImage.addGestureRecognizer(profileTap)
         profileImage.isUserInteractionEnabled = true
