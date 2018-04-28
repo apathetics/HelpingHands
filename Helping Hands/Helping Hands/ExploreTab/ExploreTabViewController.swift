@@ -38,6 +38,13 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        for _annotation in self.mapView.annotations {
+            if let annotation = _annotation as? MKAnnotation
+            {
+                self.mapView.removeAnnotation(annotation)
+            }
+        }
+        
         retrieveJobs()
         retrieveEvents()
         
@@ -47,6 +54,18 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        for _annotation in self.mapView.annotations {
+            if let annotation = _annotation as? MKAnnotation
+            {
+                self.mapView.removeAnnotation(annotation)
+            }
+        }
+        
+        retrieveJobs()
+        retrieveEvents()
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -77,21 +96,15 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         
-        if let thisAnnotation = annotation as? DetailedAnnotation {
-            if(thisAnnotation.kind == "job")
-            {
-                pinView?.pinTintColor = UIColor.blue
-                chosenJob = thisAnnotation.job!
-                kindSegue = "showPinJob"
-            }
-            else {
-                pinView?.pinTintColor = UIColor.orange
-                chosenEvent = thisAnnotation.event!
-                kindSegue = "showPinEvent"
-            }
+        if let thisAnnotation = annotation as? JobAnnotation {
+            pinView?.pinTintColor = UIColor.blue
+            chosenJob = thisAnnotation.job!
+            kindSegue = "showPinJob"
         }
-        else {
+        else if let thisAnnotation = annotation as? EventAnnotation {
             pinView?.pinTintColor = UIColor.orange
+            chosenEvent = thisAnnotation.event!
+            kindSegue = "showPinEvent"
         }
         
         pinView?.canShowCallout = true
@@ -107,16 +120,13 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("chosen a pin!!!")
-        if let annotation = view.annotation as? DetailedAnnotation {
-            if(annotation.kind == "job")
-            {
-                kindSegue = "showPinJob"
-                chosenJob = annotation.job!
-            }
-            else {
-                kindSegue = "showPinEvent"
-                chosenEvent = annotation.event!
-            }
+        if let annotation = view.annotation as? JobAnnotation {
+            kindSegue = "showPinJob"
+            chosenJob = annotation.job!
+        }
+        else if let annotation = view.annotation as? EventAnnotation {
+            kindSegue = "showPinEvent"
+            chosenEvent = annotation.event!
         }
     }
     
@@ -126,6 +136,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showPinJob") {
+            print(chosenJob!.jobTitle)
             let j:Job = chosenJob!
             let jobVC:JobViewController = segue.destination as! JobViewController
             jobVC.job = j
@@ -133,6 +144,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         }
         
         if(segue.identifier == "showPinEvent") {
+            print(chosenEvent!.eventTitle)
             let e:Event = chosenEvent!
             let eventVC:EventViewController = segue.destination as! EventViewController
             eventVC.event = e
@@ -202,8 +214,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
                     let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
                     job.distance = distance
                     
-                    let annotation = DetailedAnnotation()
-                    annotation.kind = "job"
+                    let annotation = JobAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: job.latitude, longitude: job.longitude)
                     annotation.title = job.jobTitle
                     annotation.job = job
@@ -258,12 +269,15 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
                     let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as Double?)! * 0.00062137
                     event.distance = distance
                     
-                    let annotation = DetailedAnnotation()
-                    annotation.kind = "event"
+                    let annotation = EventAnnotation()
                     annotation.event = event
                     annotation.coordinate = CLLocationCoordinate2D(latitude: event.latitude, longitude: event.longitude)
                     annotation.title = event.eventTitle
-                    annotation.subtitle = "Event in need of " + String(event.numHelpers) + " helper(s)"
+                    annotation.subtitle = "Event in need of " + String(event.numHelpers) + " helper"
+                    if(event.numHelpers > 1) {
+                        annotation.subtitle = annotation.subtitle! + "s"
+                    }
+                    
                     self.mapView.addAnnotation(annotation)
                 }
             }
@@ -271,8 +285,10 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
 }
 
-class DetailedAnnotation: MKPointAnnotation {
-    var kind:String = ""
+class JobAnnotation: MKPointAnnotation {
     var job:Job?
+}
+
+class EventAnnotation: MKPointAnnotation {
     var event:Event?
 }

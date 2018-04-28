@@ -52,6 +52,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         
         eventPhoto.image = event.image
         editEventTitle.text = event.eventTitle
+        numHelpersText.text = String(event.numHelpers)
         
         eventDescription.text = event.eventDescription
         self.latLong = (event.latitude, event.longitude)
@@ -172,6 +173,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
                 if let eventImgUrl = metadata?.downloadURL()?.absoluteString {
                     let values = ["eventTitle": e.eventTitle, "eventImageUrl": eventImgUrl, "eventDistance": e.distance, "eventDescription": e.eventDescription, "eventDate": e.eventDateString, "eventCurrentLocation": e.currentLocation, "eventAddress": e.address, "eventNumHelpers": e.numHelpers, "eventCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
                     eventRef.setValue(values)
+                    eventRef.updateChildValues(["latitude": self.latLong!.0, "longitude": self.latLong!.1])
                 }
             })
         }

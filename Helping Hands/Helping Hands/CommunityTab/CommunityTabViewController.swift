@@ -88,7 +88,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
             let eventVC:EventViewController = segue.destination as! EventViewController
             let eventID = (table.indexPathForSelectedRow?.row)!
             let eventSelected = events[eventID]
-            eventVC.e = eventSelected
+            eventVC.event = eventSelected
             eventVC.eventID = eventSelected.eventId
         }
     }
