@@ -55,7 +55,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         retrieveJobStatuses()
         retrieveUser()
         
@@ -208,8 +207,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     @IBAction func onBackButtonClick(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onEditButtonClick(_ sender: Any) {
@@ -358,6 +356,10 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     func applyTheme(theme: Theme) {
+        if(self.navigationController == nil) {
+            // big fix: UserVC->navigationController is nil after clicking back button
+            UINavigationController(rootViewController: self)
+        }
         theme.applyBackgroundColor(views: [view])
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)

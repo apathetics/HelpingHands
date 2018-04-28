@@ -601,6 +601,13 @@
                                     <action selector="themeButtonClicked:" destination="tzi-9H-qhS" eventType="touchUpInside" id="ndk-tA-7oZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6U-Uo-vMd">
+                                <rect key="frame" x="16" y="31" width="111" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="8W0-FX-gIH" kind="show" identifier="showProfile" id="GjD-RQ-lXZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -621,7 +628,6 @@
                         <outlet property="userNameLabel" destination="CST-hk-Lsq" id="VMG-es-eJo"/>
                         <outlet property="userNumJobsCompleted" destination="1FK-76-m47" id="jAC-3g-lCs"/>
                         <outlet property="userNumJobsPosted" destination="Dfk-aV-fNN" id="I5w-yr-s4A"/>
-                        <segue destination="Vk7-uL-U4A" kind="show" identifier="showProfile" id="0ez-DH-srq"/>
                         <segue destination="Jgn-bS-xdH" kind="show" identifier="showContactUs" id="0ow-JE-5LP"/>
                     </connections>
                 </viewController>
@@ -795,6 +801,7 @@
                                         <connections>
                                             <outlet property="userImg" destination="O0y-aG-1fp" id="WQu-1Y-i1I"/>
                                             <outlet property="userName" destination="bIE-54-ELB" id="iW4-B1-JyE"/>
+                                            <segue destination="8W0-FX-gIH" kind="show" identifier="showInquiry" id="wbZ-bX-Omz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -912,7 +919,6 @@
                         <outlet property="jobTitle" destination="c0M-C2-ZWZ" id="WI0-ng-2VF"/>
                         <outlet property="navButton" destination="PKe-Ms-SQq" id="PFW-Gg-9Be"/>
                         <outlet property="table" destination="KkH-lV-IDB" id="35F-My-ozP"/>
-                        <segue destination="Vk7-uL-U4A" kind="show" identifier="showInquiry" id="0Vl-gT-Hp2"/>
                         <segue destination="skE-v8-GxT" kind="show" identifier="showJobEditor" id="U7z-FX-yJ4"/>
                     </connections>
                 </viewController>
@@ -2255,7 +2261,7 @@
         <!--User-->
         <scene sceneID="Mp1-Mc-Dvt">
             <objects>
-                <viewController id="tu9-qX-puX" userLabel="User" customClass="UserViewController" customModule="Helping_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tu9-qX-puX" userLabel="User" customClass="UserViewController" customModule="Helping_Hands" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jxe-3F-LGn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2434,7 +2440,7 @@
                     <navigationItem key="navigationItem" title="User" id="03f-hh-FkP" userLabel="User">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="e9f-23-sU7">
                             <connections>
-                                <action selector="onBackButtonClick:" destination="tu9-qX-puX" id="suP-kt-jXA"/>
+                                <action selector="onBackButtonClick:" destination="tu9-qX-puX" id="PEq-fj-lcU"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="clo-x2-yQo" userLabel="editButton">
@@ -2462,7 +2468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzx-M5-1hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5071.1999999999998" y="-2594.7526236881563"/>
+            <point key="canvasLocation" x="6010.3999999999996" y="-2594.7526236881563"/>
         </scene>
         <!--Edit User-->
         <scene sceneID="JDR-jz-QEe">
@@ -2585,7 +2591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rDF-IJ-Oa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6196" y="-2595.6521739130435"/>
+            <point key="canvasLocation" x="7135.1999999999998" y="-2595.6521739130435"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="AFN-Vl-eVK">
@@ -2701,24 +2707,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVJ-F0-24w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5316" y="-3451.1244377811099"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="rQj-ba-8rV">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vk7-uL-U4A" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="guN-Oj-CbW">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="tu9-qX-puX" kind="relationship" relationship="rootViewController" id="bQl-jC-wWo"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jKP-bO-1p4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4132" y="-2594.7526236881563"/>
         </scene>
         <!--Edit Job-->
         <scene sceneID="ZCD-qh-wRM">
@@ -3379,6 +3367,24 @@
             </objects>
             <point key="canvasLocation" x="5316" y="422.78860569715147"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P6t-Qa-H9B">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8W0-FX-gIH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WAs-Ml-ybT">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tu9-qX-puX" kind="relationship" relationship="rootViewController" id="RJg-cW-3QU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aF9-Nc-lAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5071.1999999999998" y="-2594.7526236881563"/>
+        </scene>
     </scenes>
     <resources>
         <image name="LoginScreenLogo" width="2667" height="1438"/>
@@ -3396,8 +3402,8 @@
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="wbZ-bX-Omz"/>
         <segue reference="28V-Pi-cTr"/>
-        <segue reference="0Vl-gT-Hp2"/>
         <segue reference="k5o-ug-Gfi"/>
         <segue reference="7hC-Tu-DGP"/>
         <segue reference="9Vo-Yf-zUK"/>

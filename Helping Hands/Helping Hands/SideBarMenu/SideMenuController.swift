@@ -144,6 +144,7 @@ class SideMenuController: UIViewController, Themeable {
                 swap(&self.selectedTheme, &self.otherTheme)
             })
         })
+        
         print("Clicked theme button")
     }
     
