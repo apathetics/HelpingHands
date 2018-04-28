@@ -12,4 +12,5 @@ target 'Helping Hands' do
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage', '~> 4.0'
   pod 'UIImageColors', '~> 2.0'
+  pod 'NVActivityIndicatorView'
 end

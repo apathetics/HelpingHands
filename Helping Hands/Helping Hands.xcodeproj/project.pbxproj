@@ -42,6 +42,7 @@
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
 		193C22E9209480E900311893 /* ImageRotationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C22E8209480E900311893 /* ImageRotationExtension.swift */; };
+		193C22ED2094A5E900311893 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C22EC2094A5E900311893 /* TestVC.swift */; };
 		194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194FC6A3206419B800D6E439 /* Gidole-Regular.otf */; };
 		194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */; };
 		198AC0292072CCE10017C84F /* ThemeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC0282072CCE10017C84F /* ThemeExtension.swift */; };
@@ -108,6 +109,7 @@
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		193C22E8209480E900311893 /* ImageRotationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRotationExtension.swift; sourceTree = "<group>"; };
+		193C22EC2094A5E900311893 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		194FC6A3206419B800D6E439 /* Gidole-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gidole-Regular.otf"; path = "gidole/Gidole-Regular.otf"; sourceTree = "<group>"; };
 		194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGradientExtension.swift; sourceTree = "<group>"; };
 		198AC0282072CCE10017C84F /* ThemeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeExtension.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */,
 				ABA3A2E52060E4B700E26814 /* SideMenuController.swift */,
 				ABAFCAEC207C39DA0053EDD8 /* ContactUsViewController.swift */,
+				193C22EC2094A5E900311893 /* TestVC.swift */,
 			);
 			path = SideBarMenu;
 			sourceTree = "<group>";
@@ -498,11 +501,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageColors/UIImageColors.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageColors.framework",
 			);
@@ -559,6 +564,7 @@
 				3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */,
 				3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */,
 				3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */,
+				193C22ED2094A5E900311893 /* TestVC.swift in Sources */,
 				AB7743012047853A00799F84 /* (null) in Sources */,
 				198AC0292072CCE10017C84F /* ThemeExtension.swift in Sources */,
 				398732892062B43200A29D39 /* EditEventViewController.swift in Sources */,

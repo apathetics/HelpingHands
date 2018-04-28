@@ -12,6 +12,7 @@ import CoreData
 import CoreLocation
 import FirebaseDatabase
 import FirebaseStorageUI
+import NVActivityIndicatorView
 
 class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
     
@@ -21,6 +22,9 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     var jobs = [Job]()
     var chosen: Int?
+    
+    var loadingView: UIView!
+    var activityIndicatorView: NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +45,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
             manager.startUpdatingLocation()
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,6 +54,17 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        table.isHidden = true
+        let screenWidth = UIScreen.main.bounds.size.width
+        let screenHeight = UIScreen.main.bounds.size.height
+        loadingView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        self.view.addSubview(loadingView)
+        let frame = CGRect(x: screenWidth*0.5 - 30, y: screenHeight*0.5 - 30, width: 60, height: 60)
+        activityIndicatorView = NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType(rawValue: NVActivityIndicatorType.circleStrokeSpin.rawValue))
+        activityIndicatorView.color = UIColor(hex:"2b3445")
+        loadingView.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimating()
+
         retrieveJobs()
     }
     
@@ -96,6 +112,12 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
+        if(!table.visibleCells.isEmpty) {
+            activityIndicatorView.stopAnimating()
+            loadingView.isHidden = true
+            table.isHidden = false
+        }
+
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -104,8 +126,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     // FIREBASE RETRIEVAL
-    func retrieveJobs() {
-        
+    @objc func retrieveJobs() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
         let jobsRef = databaseRef.child("jobs")
         
@@ -113,7 +134,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             
             // make sure there are jobs
             if snapshot.childrenCount > 0 {
-                
                 // clear job list before appending again
                 self.jobs.removeAll()
                 

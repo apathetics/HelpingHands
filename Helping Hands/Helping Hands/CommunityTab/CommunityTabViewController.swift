@@ -11,6 +11,7 @@ import CoreData
 import CoreLocation
 import FirebaseDatabase
 import FirebaseStorageUI
+import NVActivityIndicatorView
 
 class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
     
@@ -18,6 +19,9 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
+    
+    var loadingView: UIView!
+    var activityIndicatorView: NVActivityIndicatorView!
     
     var events = [Event]()
     
@@ -47,12 +51,33 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        table.isHidden = true
+        let screenWidth = UIScreen.main.bounds.size.width
+        let screenHeight = UIScreen.main.bounds.size.height
+        loadingView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        self.view.addSubview(loadingView)
+        let frame = CGRect(x: screenWidth*0.5 - 30, y: screenHeight*0.5 - 30, width: 60, height: 60)
+        activityIndicatorView = NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType(rawValue: NVActivityIndicatorType.circleStrokeSpin.rawValue))
+        activityIndicatorView.color = UIColor(hex:"2b3445")
+        loadingView.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimating()
+
         retrieveEvents()
     }
     
     // ** START TABLE FUNCTIONS ** \\
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+        if(!table.visibleCells.isEmpty) {
+            activityIndicatorView.stopAnimating()
+            loadingView.isHidden = true
+            table.isHidden = false
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,7 +96,6 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         // Load the image using SDWebImage
         cell.eventImg.sd_setImage(with: URL(string: e.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
-        cell.backgroundColor = UIColor.clear
         cell.eventImg.layer.cornerRadius = 6.0
         cell.eventImg.clipsToBounds = true
         return cell
