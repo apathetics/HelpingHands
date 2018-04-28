@@ -173,12 +173,9 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                     let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
                     job.distance = distance
                     
-                    if(self.jobs.isEmpty) {
-                        self.jobs.append(job)
-                    }
-                    else if let index = self.jobs.index(where: { $0.distance > job.distance }) {
-                        self.jobs.insert(job, at: index)
-                    }
+                    self.jobs.append(job)
+                    self.jobs = self.jobs.sorted(by: { $0.distance < $1.distance })
+
                     
                     self.table.reloadData()
                 }
