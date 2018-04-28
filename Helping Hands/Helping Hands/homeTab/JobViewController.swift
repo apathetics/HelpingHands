@@ -220,18 +220,15 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 
                     let jobInquiredChild = userRef.child("jobsInquiredArray").childByAutoId()
                     jobInquiredChild.updateChildValues(["jobId": jobRef.key])
+                    
+                    let userInquiredChild = jobRef.child("usersInquiredArray").childByAutoId()
+                    userInquiredChild.updateChildValues(["userId": self.userId])
+                    
+                    self.table.reloadData()
                 })
-                
-                let userInquiredChild = jobRef.child("usersInquiredArray").childByAutoId()
-                userInquiredChild.updateChildValues(["userId": self.userId])
-                
-                self.inquiries.removeAll()
-                self.inquiries.append(self.inquiry)
-                self.table.reloadData()
+            
             }
-            self.table.reloadData()
         })
-        self.table.reloadData()
     }
     
     // Auxiliary getDate function
@@ -334,6 +331,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 
                 // clear job list before appending again
                 self.inquiries.removeAll()
+                userInquiryIdArray.removeAll()
                 
                 // for each snapshot (entity present under jobs child)
                 for userInquiriesSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -348,7 +346,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 }
                 
                 for userInquiryId in userInquiryIdArray {
-                    
+                    self.inquiries.removeAll()
+
                     let userRef = databaseRef.child("users").child(userInquiryId)
                     
                     userRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -377,8 +376,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                         user.userLocationRadius = 1
                         user.userDistance = 1
                         user.userRating = 5
-                        
-                        //                        user.userID = self.userId
                         
                         self.inquiries.append(user)
                         self.table.reloadData()

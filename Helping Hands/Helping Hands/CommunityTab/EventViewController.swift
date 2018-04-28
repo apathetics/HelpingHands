@@ -249,12 +249,12 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         var userAttendeeIdArray = [String]()
         
         usersAttendedRef.observe(FIRDataEventType.value, with: {(snapshot) in
-            
             // make sure there are jobs
             if snapshot.childrenCount > 0 {
                 
                 // clear job list before appending again
                 self.attendees.removeAll()
+                userAttendeeIdArray.removeAll()
                 
                 // for each snapshot (entity present under jobs child)
                 for userAttendeesSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
