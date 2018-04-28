@@ -17,21 +17,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>DreamTeamMemeTeam.Helping-Hands</string>
+	<string>DreamTeamMemeTeam.Helping-Hands123</string>
 	<key>PROJECT_ID</key>
 	<string>helping-hands-2-backup</string>
 	<key>STORAGE_BUCKET</key>
 	<string>helping-hands-2-backup.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:757523527968:ios:e5048e5b7393394e</string>
 	<key>DATABASE_URL</key>
