@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserTableViewCell: UITableViewCell {
+class UserTableViewCell: UITableViewCell, Themeable {
     
     @IBOutlet weak var userImg: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -16,6 +16,7 @@ class UserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        ThemeService.shared.addThemeable(themable: self)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,5 +25,8 @@ class UserTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func applyTheme(theme: Theme) {
+        theme.applyBodyTextStyle(labels: [userName])
+    }
 }
 

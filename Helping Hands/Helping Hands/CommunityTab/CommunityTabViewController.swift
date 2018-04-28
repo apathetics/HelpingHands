@@ -29,6 +29,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         ThemeService.shared.addThemeable(themable: self)
+        
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -180,9 +181,10 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
-        theme.applyTableViewBackgroundColor(tableView: [table])
+        theme.applyTabBarTintColor(tabBar: self.tabBarController!)
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyTableViewBackgroundColor(tableView: [table])
         for cell in table.visibleCells {
             theme.applyBodyTextStyle(labels: [ ((cell as! EventTableViewCell).eventDescriptionLbl!) ])
             theme.applyHeadlineStyle(labels: [ ((cell as! EventTableViewCell).eventTitleLbl!) ])
