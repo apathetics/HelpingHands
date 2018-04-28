@@ -32,6 +32,14 @@ class SettingsVC: UITableViewController, Themeable {
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
         UserDefaults.standard.register(defaults: [String : Any]())
+        
+        if((UserDefaults.standard.value(forKey:"max_radius")) != nil) {
+            distLBL.text = String(UserDefaults.standard.value(forKey:"max_radius") as! Int) + "mi."
+            distSlider.value = UserDefaults.standard.value(forKey:"max_radius") as! Float
+        }
+        else {
+            distSlider.value = 8
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +54,7 @@ class SettingsVC: UITableViewController, Themeable {
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         distLBL.text = "\(Int(sender.value))mi."
         let userDefaults = UserDefaults.standard
-        userDefaults.setValue(sender.value, forKey: "max_radius")
+        userDefaults.setValue(Int(sender.value), forKey: "max_radius")
     }
     
 
