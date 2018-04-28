@@ -304,8 +304,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bob Ross" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bla-fn-wNC">
-                                                    <rect key="frame" x="250" y="14" width="72" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bob Ross" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bla-fn-wNC">
+                                                    <rect key="frame" x="91" y="14" width="231" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -362,10 +362,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NaR-rL-hBL">
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minValue="2" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="NaR-rL-hBL">
                                                     <rect key="frame" x="27" y="45" width="320" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="sliderValueChanged:" destination="lUH-ir-Qb2" eventType="valueChanged" id="FR4-44-Ess"/>
+                                                    </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Maximum Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52E-Aw-rwf">
                                                     <rect key="frame" x="16" y="17" width="146" height="21"/>
@@ -374,8 +377,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15mi." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bze-zf-xIi">
-                                                    <rect key="frame" x="318" y="17" width="41" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8mi." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bze-zf-xIi">
+                                                    <rect key="frame" x="297" y="17" width="55" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.33938577234414607" green="0.41588850290870016" blue="0.5567693559022594" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

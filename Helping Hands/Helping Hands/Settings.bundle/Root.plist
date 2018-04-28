@@ -14,15 +14,99 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Name</string>
+			<key>Key</key>
+			<string>user_name</string>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Email</string>
+			<key>Key</key>
+			<string>user_email</string>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>EmailAddress</string>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Password</string>
+			<key>Key</key>
+			<string>user_password</string>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>IsSecure</key>
+			<true/>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>LOCATION PREFERENCES</string>
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string>max_radius</string>
+			<key>DefaultValue</key>
+			<integer>8</integer>
+			<key>MinimumValue</key>
+			<integer>2</integer>
+			<key>MaximumValue</key>
+			<integer>15</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>NOTIFICATIONS</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>New Sign-Up for Job</string>
+			<key>Key</key>
+			<string>new_job_signup_notif</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>New Review</string>
+			<key>Key</key>
+			<string>new_review_notif</string>
+			<key>DefaultValue</key>
+			<true/>
 		</dict>
 	</array>
 </dict>

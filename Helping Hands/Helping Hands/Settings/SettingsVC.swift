@@ -31,16 +31,25 @@ class SettingsVC: UITableViewController, Themeable {
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
+        UserDefaults.standard.register(defaults: [String : Any]())
     }
     
     override func viewWillAppear(_ animated: Bool) {
         displayUserName()
+        print("Settings:\nName=\(UserDefaults.standard.value(forKey: "user_name"))\nRadius=\(UserDefaults.standard.value(forKey: "max_radius"))")
     }
     
     @IBAction func backPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        distLBL.text = "\(Int(sender.value))mi."
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(sender.value, forKey: "max_radius")
+    }
+    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 3 && indexPath.row == 0) {
             print("Log out button clicked")
@@ -81,6 +90,8 @@ class SettingsVC: UITableViewController, Themeable {
             let value = snapshot.value as? NSDictionary
             name = "\(value?["firstName"] as? String ?? "") \(value?["lastName"] as? String ?? "")"
             self.userNameLBL.text = name
+            let userDefaults = UserDefaults.standard
+            userDefaults.setValue(name, forKey: "user_name")
         }) { (error) in
             print(error.localizedDescription)
         }

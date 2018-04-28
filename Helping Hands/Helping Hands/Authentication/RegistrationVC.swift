@@ -131,6 +131,10 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
             })
         }
+//        let user = FIRAuth.auth()?.currentUser
+//        if let user = user {
+//            let changeRequest = user.profileChangeRequest()
+//        }
     }
     
     // methods

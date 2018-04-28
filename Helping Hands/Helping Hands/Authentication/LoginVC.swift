@@ -48,6 +48,9 @@ class LoginVC: UIViewController {
                     let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
                     appDelegate.window?.rootViewController = SWRController
+                    if(UserDefaults.standard.value(forKey: "max_radius") == nil) {
+                        UserDefaults.standard.set(8, forKey: "max_radius")
+                    }
                 }
             })
         }
@@ -63,6 +66,14 @@ class LoginVC: UIViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
             appDelegate.window?.rootViewController = SWRController
+            if(UserDefaults.standard.value(forKey: "max_radius") == nil) {
+                UserDefaults.standard.set(8, forKey: "max_radius")
+            }
+//            if(UserDefaults.standard.value(forKey: "user_name") == nil) {
+//                UserDefaults.standard.set(FIRAuth.auth()?.currentUser?.uid., forKey: "user_name")
+//            }
+
+
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
