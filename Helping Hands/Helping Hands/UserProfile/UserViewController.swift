@@ -61,13 +61,13 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
 //        sleep(1)
         
         // check for user permissions to edit
-        let userRef = databaseRef.child("users").child(userId)
-        userRef.observeSingleEvent(of: .value, with: {(snapshot) in
-            if snapshot.ref.key == self.userId {
-//                print("SNAPSHOT KEY", snapshot.ref.key, self.userId)
-                self.navigationItem.rightBarButtonItem?.title =  "Edit";
-            }
-        })
+        if(user.userEmail != FIRAuth.auth()?.currentUser?.email) {
+            //print("\nchecking out different user's profile\n")
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+            self.navigationItem.rightBarButtonItem?.title =  "Edit";
+        }
+        
         
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
@@ -246,6 +246,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             user.userDistance = 1
             user.userRating = 5
             
+            //FIX: self.userId is current logged in user's id. This could be different from the userId of the profile we're visiting if that profile is a different person.
             user.userID = self.userId
             
             self.user = user
