@@ -29,14 +29,12 @@ class QRViewController: UIViewController {
         
         jobRef.observe(.value, with: {(snapshot) in
             
-            print("I AM IN OBSERVE")
-            
             let jobObject = snapshot.value as! [String: AnyObject]
             
             let qrFlag = jobObject["QRCodeFlag"] as! Bool
             
             if (jobObject["scannerFlag"] != nil) {
-                print("SCAN IS HERE")
+                self.performSegue(withIdentifier: "showPaymentHiring", sender: self)
             }
             
         })

@@ -21,6 +21,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession:AVCaptureSession? = AVCaptureSession()
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var scannedId: String?
+    var segueDone = false
     
     @IBAction func onPaymentClicked(_ sender: Any) {
         self.performSegue(withIdentifier: "showPaymentHired", sender: self)
@@ -28,9 +30,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     @IBAction func onBackClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         // Get the BACK-facing camera for capturing videos by using discovery
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.back)
         
@@ -80,10 +84,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Move the message label and top bar to the front
         view.bringSubview(toFront: messageLabel)
         view.bringSubview(toFront: topbar)
+        
     }
     
     // QR Code Detection Protocol
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
@@ -112,13 +118,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     
                     let qrFlag = jobObject["QRCodeFlag"] as! Bool
                     
-                    if (qrFlag) {
+                    if (qrFlag && self.segueDone == false) {
                         jobRef.updateChildValues(["scannerFlag" : true])
-                        print("SUCCESSFULLY SCANNED")
-                        //SEGUE TO PAYMENT OF JOB_ID HERE
+                        self.segueDone = true
                         self.performSegue(withIdentifier: "showPaymentHired", sender: self)
                     }
-                    
                 })
                 
             }
