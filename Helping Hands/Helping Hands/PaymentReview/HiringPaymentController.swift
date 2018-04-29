@@ -31,51 +31,49 @@ class HiringPaymentController: UIViewController {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let jobRef = databaseRef.child("jobs").child(chosenJobId)
         
-        // NEED TO DECIDE IF WE WANNA HAVE POSTED INFORMATION (might need two arrays cause it will complicate)
+        jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
         
-                jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
-        
-                    let jobObject = snapshot.value as! [String: AnyObject]
-        
-                    let jobTitle = jobObject["jobTitle"] as! String
-                    let jobDescription = jobObject["jobDescription"] as! String
-                    let jobPayment = jobObject["jobPayment"] as! Double
-                    let jobCompletedBy = jobObject["completedBy"] as! String
-        
-                    let userRef = databaseRef.child("users").child(jobCompletedBy)
-                    userRef.observeSingleEvent(of: .value, with: {(snap) in
-        
-                        let userObject = snap.value as! [String: AnyObject]
-        
-                        let numJobsCompleted = userObject["jobsCompleted"] as! Double
-                        let reviewStar = self.ratingStars.rating
-                        
-                        userRef.updateChildValues(["jobsCompleted" : numJobsCompleted + 1])
-                        
-                        // rating math
-                        var userRating = userObject["userRating"] as? Double
-                        if(userRating == nil) {
-                            userRating = 5.0
-                        }
-                        else {
-                            userRating = userRating! * numJobsCompleted
-                            userRating = (userRating! + Double(reviewStar)) / Double(numJobsCompleted + 1.0)
-                        }
-                        
-                        userRef.updateChildValues(["userRating" : userRating!])
-                        
-                        let newPost = databaseRef.child("completedJobs").childByAutoId()
-        
-                        let values = ["jobTitle": jobTitle, "jobDescription": jobDescription, "jobPayment": jobPayment, "jobRating" : reviewStar, "jobReview": self.reviewTextField.text!] as [String : Any]
-                        newPost.setValue(values)
-        
-                        let jobCompletedChild = userRef.child("jobsCompletedArray").childByAutoId()
-                        jobCompletedChild.setValue(["jobId": newPost.key])
-                        
-                        self.dismiss(animated: true, completion: nil)
-                    })
-        
-                })
+            let jobObject = snapshot.value as! [String: AnyObject]
+
+            let jobTitle = jobObject["jobTitle"] as! String
+            let jobDescription = jobObject["jobDescription"] as! String
+            let jobPayment = jobObject["jobPayment"] as! Double
+            let jobCompletedBy = jobObject["completedBy"] as! String
+            let userRef = databaseRef.child("users").child(jobCompletedBy)
+            
+            userRef.observeSingleEvent(of: .value, with: {(snap) in
+
+                let userObject = snap.value as! [String: AnyObject]
+
+                let numJobsCompleted = userObject["jobsCompleted"] as! Double
+                let moneyEarned = userObject["moneyEarned"] as! Double
+                let reviewStar = self.ratingStars.rating
+                
+                userRef.updateChildValues(["jobsCompleted" : numJobsCompleted + 1])
+                
+                // rating math
+                var userRating = userObject["userRating"] as? Double
+                if(userRating == nil) {
+                    userRating = 5.0
+                }
+                else {
+                    userRating = userRating! * numJobsCompleted
+                    userRating = (userRating! + Double(reviewStar)) / Double(numJobsCompleted + 1.0)
+                }
+                
+                userRef.updateChildValues(["userRating" : userRating!, "moneyEarned": moneyEarned + jobPayment])
+                
+                let newPost = databaseRef.child("completedJobs").childByAutoId()
+                let values = ["jobTitle": jobTitle, "jobDescription": jobDescription, "jobPayment": jobPayment, "jobRating" : reviewStar, "jobReview": self.reviewTextField.text!] as [String : Any]
+                newPost.setValue(values)
+
+                let jobCompletedChild = userRef.child("jobsCompletedArray").childByAutoId()
+                jobCompletedChild.setValue(["jobId": newPost.key])
+                
+                self.dismiss(animated: true, completion: nil)
+            })
+
+        })
         
         
         self.dismiss(animated: true, completion: nil)

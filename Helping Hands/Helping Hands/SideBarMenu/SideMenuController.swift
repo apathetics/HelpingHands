@@ -158,22 +158,7 @@ class SideMenuController: UIViewController, Themeable {
         self.performSegue(withIdentifier: "showContactUs", sender: self)
     }
     
-    // TEMPORARY PLACEMENT TO SHOW SCREENS
-    @IBAction func confirmHiredButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "showConfirmationHired", sender: self)
-    }
-    
-    @IBAction func confirmHireeButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "showConfirmationHiree", sender: self)
-    }
-    
-    @IBAction func paymentHireeButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "showPaymentHiree", sender: self)
-    }
-    
-    @IBAction func paymentHiredButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "showPaymentHired", sender: self)
-    }
+
     func populateSideMenu() {
 
         if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {
@@ -182,9 +167,9 @@ class SideMenuController: UIViewController, Themeable {
                 let value = snapshot.value as? NSDictionary
                 let fName = value?["firstName"] as? String ?? ""
                 let lName = value?["lastName"] as? String ?? ""
-                let jobsDone = String(value?["jobsCompleted"] as! Int64)
-                let jobsPosted = String(value?["jobsPosted"] as! Int64)
-                let moneyEarned = String(value?["moneyEarned"] as! Int64)
+                let jobsDone = String(value?["jobsCompleted"] as! Int)
+                let jobsPosted = String(value?["jobsPosted"] as! Int)
+                let moneyEarned = String(value?["moneyEarned"] as! Double)
                 // Placeholder image
                 let placeholderImage = UIImage(named: "profilePlaceholderImg.png")
                 // Load the image using SDWebImage
