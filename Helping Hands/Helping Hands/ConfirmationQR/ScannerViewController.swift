@@ -21,7 +21,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession:AVCaptureSession? = AVCaptureSession()
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
-    var scannedId: String?
+    var scannedId: String!
     var segueDone = false
     
     @IBAction func onPaymentClicked(_ sender: Any) {
@@ -30,7 +30,40 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     @IBAction func onBackClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
+    //  ** PREPARE SEGUES ** \\
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showPaymentHired") {
+            let vc:HiredPaymentController = segue.destination as! HiredPaymentController
+            
+            vc.chosenJobId = self.scannedId
+            
+            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+            let jobRef = databaseRef.child("jobs").child(scannedId)
+            
+            jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                
+                let jobObject = snapshot.value as! [String: AnyObject]
+                
+                vc.moneyLabel.text = String(jobObject["jobPayment"] as! Double)
+                
+                let payerId = jobObject["jobCreator"] as! String
+                
+                vc.bossId = payerId
+                
+                databaseRef.child("users").child(payerId).observeSingleEvent(of: .value, with: {(snap) in
+                    let userObject = snap.value as! [String: AnyObject]
+                    
+                    let firstName = userObject["firstName"] as! String
+                    let lastName = userObject["lastName"] as! String
+                    
+                    vc.payerLabel.text = "\(firstName) \(lastName)"
+                })
+            })
+            
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +141,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             if metadataObj.stringValue != nil {
                 let qrValue = metadataObj.stringValue
                 messageLabel.text = metadataObj.stringValue
+                self.scannedId = qrValue
                 
                 let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
                 let jobRef = databaseRef.child("jobs").child(qrValue!)

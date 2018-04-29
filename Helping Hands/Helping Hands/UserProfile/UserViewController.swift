@@ -357,6 +357,9 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             }
         })
         
+        //JOBS COMPLETED
+        
+        
         
         
     }

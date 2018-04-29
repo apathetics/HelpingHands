@@ -1795,6 +1795,7 @@
                     <connections>
                         <outlet property="moneyLabel" destination="73X-5h-Ile" id="h25-Km-rbV"/>
                         <outlet property="payerLabel" destination="RYa-zT-iae" id="GKJ-c1-Ffr"/>
+                        <outlet property="ratingStars" destination="XQa-nW-cEr" id="ztZ-Ky-ePZ"/>
                         <outlet property="reviewTextField" destination="N9G-sf-06j" id="eNn-I4-sOu"/>
                     </connections>
                 </viewController>
