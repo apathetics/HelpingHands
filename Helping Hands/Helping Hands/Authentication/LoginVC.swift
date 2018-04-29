@@ -60,21 +60,21 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
-//        // If user hasn't logged out
-//        if (FIRAuth.auth()?.currentUser != nil) {
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
-//            appDelegate.window?.rootViewController = SWRController
-//            if(UserDefaults.standard.value(forKey: "max_radius") == nil) {
-//                UserDefaults.standard.set(8, forKey: "max_radius")
+        // If user hasn't logged out
+        if (FIRAuth.auth()?.currentUser != nil) {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
+            appDelegate.window?.rootViewController = SWRController
+            if(UserDefaults.standard.value(forKey: "max_radius") == nil) {
+                UserDefaults.standard.set(8, forKey: "max_radius")
+            }
+//            if(UserDefaults.standard.value(forKey: "user_name") == nil) {
+//                UserDefaults.standard.set(FIRAuth.auth()?.currentUser?.uid., forKey: "user_name")
 //            }
-////            if(UserDefaults.standard.value(forKey: "user_name") == nil) {
-////                UserDefaults.standard.set(FIRAuth.auth()?.currentUser?.uid., forKey: "user_name")
-////            }
-//
-//
-//        }
+
+
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
