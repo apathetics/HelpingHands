@@ -290,7 +290,7 @@
                         <sections>
                             <tableViewSection id="U4G-p3-bhZ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="lKb-jE-Ske">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="lKb-jE-Ske">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lKb-jE-Ske" id="eAD-3Q-Npb">
@@ -305,16 +305,20 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="FirstName " textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4KT-XV-IFY">
-                                                    <rect key="frame" x="94" y="10" width="269" height="30"/>
+                                                    <rect key="frame" x="94" y="10" width="226" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="Zhg-7k-ifJ">
+                                                    <rect key="frame" x="331" y="8" width="34" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="Oun-hV-R2V">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Oun-hV-R2V">
                                         <rect key="frame" x="0.0" y="50" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oun-hV-R2V" id="wpv-Ev-ZPC">
@@ -329,12 +333,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" LastName" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o2B-vI-AYg">
-                                                    <rect key="frame" x="94" y="10" width="269" height="30"/>
+                                                    <rect key="frame" x="94" y="10" width="225" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="A2t-Hs-jem">
+                                                    <rect key="frame" x="331" y="8" width="34" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -370,8 +378,10 @@
                     <connections>
                         <outlet property="confirmLBL" destination="fwi-TA-Etd" id="J5I-eQ-aEP"/>
                         <outlet property="fNameLBL" destination="pVw-IL-aGU" id="fdz-gJ-X7H"/>
+                        <outlet property="firstNameImg" destination="Zhg-7k-ifJ" id="wj1-vl-cKK"/>
                         <outlet property="firstNameTF" destination="4KT-XV-IFY" id="UdB-TE-29B"/>
                         <outlet property="lNameLBL" destination="USc-3e-Xfk" id="wDq-tZ-n9k"/>
+                        <outlet property="lastNameImg" destination="A2t-Hs-jem" id="GRT-2U-ly3"/>
                         <outlet property="lastNameTF" destination="o2B-vI-AYg" id="BZJ-N9-bu7"/>
                     </connections>
                 </tableViewController>
@@ -3498,6 +3508,7 @@
     <resources>
         <image name="LoginScreenLogo" width="2667" height="1438"/>
         <image name="OK-3-512" width="512" height="512"/>
+        <image name="checkmark" width="180" height="180"/>
         <image name="filledStar" width="237" height="238"/>
         <image name="hamburger" width="24" height="24"/>
         <image name="home" width="30" height="30"/>

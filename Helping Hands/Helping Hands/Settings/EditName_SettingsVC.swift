@@ -21,6 +21,8 @@ class EditName_SettingsVC: UITableViewController, Themeable {
     var name: String!
     @IBOutlet weak var firstNameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
+    @IBOutlet weak var firstNameImg: UIImageView!
+    @IBOutlet weak var lastNameImg: UIImageView!
     
     var user = FIRAuth.auth()?.currentUser
     
@@ -30,16 +32,18 @@ class EditName_SettingsVC: UITableViewController, Themeable {
         var fullNameArr = name.components(separatedBy: " ")
         firstNameTF.text = fullNameArr[0]
         lastNameTF.text = fullNameArr.count > 1 ? fullNameArr[1] : ""
-        print("Name Array: " , fullNameArr , "\n")
+        firstNameImg.isHidden = true
+        lastNameImg.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var fullName: String = "\(firstNameTF.text!) \(lastNameTF.text!)" as String
+        
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        if(name == "\(firstNameTF.text) \(lastNameTF.text)") {
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-        } else {
-            cell.selectionStyle = UITableViewCellSelectionStyle.default
-        }
         cell.backgroundColor = UIColor.clear
         
         return cell
@@ -47,7 +51,8 @@ class EditName_SettingsVC: UITableViewController, Themeable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.section == 1 && indexPath.row == 0) {
-            print("Confirm button clicked")
+            var fullName: String = "\(firstNameTF.text!) \(lastNameTF.text!)" as String
+
             if (firstNameTF.text == "" || lastNameTF.text == "") {
                 let alert = UIAlertController(title: "Blank Fields", message: "Please do not leave any of the fields blank.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
@@ -55,9 +60,34 @@ class EditName_SettingsVC: UITableViewController, Themeable {
                 return
             }
             // None of the fields are blank, successful name change
-            if (name != "\(firstNameTF.text) \(lastNameTF.text)") {
+            if (name != fullName) {
                 user?.profileChangeRequest().displayName = firstNameTF.text
                 updateDatabase()
+                name = fullName
+                //animate check mark to indicate success
+                firstNameImg.isHidden = false
+                lastNameImg.isHidden = false
+                self.firstNameImg.alpha = 0
+                self.lastNameImg.alpha = 0
+                UIView.animate(withDuration: 1.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                    self.firstNameImg.alpha = 1
+                    self.lastNameImg.alpha = 1
+                }, completion: { (bool) in
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.firstNameImg.alpha = 0
+                        self.lastNameImg.alpha = 0
+                    }, completion: { (b) in
+                        self.firstNameImg.isHidden = true
+                        self.lastNameImg.isHidden = true
+
+                    })
+                })
+                
+            } else {
+                print("No changes were made")
+                let alert = UIAlertController(title: "No Changes Made", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
