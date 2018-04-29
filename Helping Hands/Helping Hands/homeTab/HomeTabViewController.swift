@@ -85,10 +85,8 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.errorLBL.textColor = UIColor(hex:"2b3445")
                 self.loadingView.addSubview(errorView)
                 self.loadingView.addSubview(self.errorLBL)
-                
             }
         }
-
     }
     
     //  ** PREPARE SEGUES ** \\
