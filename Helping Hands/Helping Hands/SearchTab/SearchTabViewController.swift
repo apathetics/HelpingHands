@@ -91,7 +91,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     // FIREBASE RETRIEVAL
     func retrieveJobs() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
         let jobsRef = databaseRef.child("jobs")
         
         jobsRef.observe(FIRDataEventType.value, with: {(snapshot) in

@@ -94,7 +94,7 @@ class SideMenuController: UIViewController, Themeable {
     
     // FIREBASE RETRIEVAL
     func retrieveUser() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-2-backup.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
         let jobRef = databaseRef.child("users").child(userId)
         
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in

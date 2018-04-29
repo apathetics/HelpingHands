@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class QRViewController: UIViewController {
     
@@ -22,6 +23,26 @@ class QRViewController: UIViewController {
         // Possibly just combine job date + job location (GPS string)?
         let myQRimage = createQRFromString(self.chosenJobId, size: qrCodeBox.frame.size)
         qrCodeBox.image = myQRimage
+        
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let jobRef = databaseRef.child("jobs").child(chosenJobId)
+        
+        jobRef.observe(.value, with: {(snapshot) in
+            
+            print("I AM IN OBSERVE")
+            
+            let jobObject = snapshot.value as! [String: AnyObject]
+            
+            let qrFlag = jobObject["QRCodeFlag"] as! Bool
+            
+            if (jobObject["scannerFlag"] != nil) {
+                print("SCAN IS HERE")
+            }
+            
+        })
+        
+        
+        
     }
     
     // Creating the QR image from string

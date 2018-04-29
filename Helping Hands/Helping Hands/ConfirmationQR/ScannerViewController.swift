@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AVFoundation
+import FirebaseDatabase
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -99,7 +100,27 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
+                let qrValue = metadataObj.stringValue
                 messageLabel.text = metadataObj.stringValue
+                
+                let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+                let jobRef = databaseRef.child("jobs").child(qrValue!)
+                
+                jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                    
+                    let jobObject = snapshot.value as! [String: AnyObject]
+                    
+                    let qrFlag = jobObject["QRCodeFlag"] as! Bool
+                    
+                    if (qrFlag) {
+                        jobRef.updateChildValues(["scannerFlag" : true])
+                        print("SUCCESSFULLY SCANNED")
+                        //SEGUE TO PAYMENT OF JOB_ID HERE
+                        self.performSegue(withIdentifier: "showPaymentHired", sender: self)
+                    }
+                    
+                })
+                
             }
         }
     }
