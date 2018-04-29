@@ -82,8 +82,9 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         userEmail.text = user.userEmail
         userDescription.text = user.userBio
         
+        print("I AM USER RATING ", user.userRating!)
+//        userRating.text = String(user.userRating!)
         // Change the ones below
-        userRating.text = String(describing: user.userRating!)
         userLocation.text = String(describing: user.userLocationRadius!)
         userDistance.text = String(describing: user.userDistance!)
         
@@ -237,8 +238,9 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             user.userNumJobsPosted = userObject["jobsPosted"] as! Int
             user.userMoneyEarned = userObject["moneyEarned"] as! Double
             user.userPhotoAsString = userObject["photoUrl"] as! String
+            user.userRating = userObject["userRating"] as! Double
             
-            
+            print("ACTUAL RETRIEVED RATING ", userObject["userRating"] as! Double)
             if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
                 user.userBio = "Description..."
             }
@@ -249,10 +251,11 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             //TODO: SETTINGS NOT IN DATABASE YET
             user.userLocationRadius = 1
             user.userDistance = 1
-            user.userRating = 5
             
             //FIX: self.userId is current logged in user's id. This could be different from the userId of the profile we're visiting if that profile is a different person.
             user.userID = self.userId
+            
+            self.userRating.text = String(user.userRating!)
             
             self.user = user
         })

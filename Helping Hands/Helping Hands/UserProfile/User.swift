@@ -21,6 +21,6 @@ class User {
     var userJobsCompleted:Int!
     var userID:String!
     var userMoneyEarned: Double!
-    var userRating: Int!
+    var userRating: Double!
     var userDistance: Double!
 }
