@@ -39,6 +39,8 @@ class HiringPaymentController: UIViewController {
             let jobDescription = jobObject["jobDescription"] as! String
             let jobPayment = jobObject["jobPayment"] as! Double
             let jobCompletedBy = jobObject["completedBy"] as! String
+            let jobImageUrl = jobObject["jobImageUrl"] as! String
+            
             let userRef = databaseRef.child("users").child(jobCompletedBy)
             
             userRef.observeSingleEvent(of: .value, with: {(snap) in
@@ -64,7 +66,7 @@ class HiringPaymentController: UIViewController {
                 userRef.updateChildValues(["userRating" : userRating!, "moneyEarned": moneyEarned + jobPayment])
                 
                 let newPost = databaseRef.child("completedJobs").childByAutoId()
-                let values = ["jobTitle": jobTitle, "jobDescription": jobDescription, "jobPayment": jobPayment, "jobRating" : reviewStar, "jobReview": self.reviewTextField.text!] as [String : Any]
+                let values = ["jobTitle": jobTitle, "jobDescription": jobDescription, "jobPayment": jobPayment, "jobRating" : reviewStar, "jobReview": self.reviewTextField.text!, "jobImageUrl": jobImageUrl] as [String : Any]
                 newPost.setValue(values)
 
                 let jobCompletedChild = userRef.child("jobsCompletedArray").childByAutoId()

@@ -28,4 +28,6 @@ class Job {
     var latitude: Double!
     var longitude: Double!
     var jobCreator: String!
+    var jobRating: Double!
+    var jobReview: String!
 }

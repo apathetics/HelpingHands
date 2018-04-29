@@ -58,8 +58,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         retrieveJobStatuses()
         retrieveUser()
         
-//        sleep(1)
-        
         // check for user permissions to edit
         if(user.userEmail != FIRAuth.auth()?.currentUser?.email) {
             //print("\nchecking out different user's profile\n")
@@ -82,11 +80,10 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         userEmail.text = user.userEmail
         userDescription.text = user.userBio
         
-        print("I AM USER RATING ", user.userRating!)
-//        userRating.text = String(user.userRating!)
         // Change the ones below
         userLocation.text = String(describing: user.userLocationRadius!)
         userDistance.text = String(describing: user.userDistance!)
+        //        userRating.text = String(user.userRating!)
         
         self.table.reloadData()
     }
@@ -155,31 +152,54 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         switch(jobBar.selectedSegmentIndex) {
         case 0:
             j = postedJobs[row]
+            
+            cell.jobTitleLbl.text = j!.jobTitle
+            cell.jobDescriptionLbl.text = j!.jobDescription
+            cell.distanceLbl.text = String(format: "%.2f", j!.distance) + " mi"
+            let ftmPayment = "$" + ((j!.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j!.payment) : String(j!.payment))
+            cell.paymentLbl.text = j!.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
+            
+            // Placeholder image
+            let placeholderImage = UIImage(named: "meeting")
+            // Load the image using SDWebImage
+            cell.jobImg.sd_setImage(with: URL(string: j!.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            })
             break
             
         case 1:
             j = pendingJobs[row]
+            
+            cell.jobTitleLbl.text = j!.jobTitle
+            cell.jobDescriptionLbl.text = j!.jobDescription
+            cell.distanceLbl.text = String(format: "%.2f", j!.distance) + " mi"
+            let ftmPayment = "$" + ((j!.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j!.payment) : String(j!.payment))
+            cell.paymentLbl.text = j!.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
+            
+            // Placeholder image
+            let placeholderImage = UIImage(named: "meeting")
+            // Load the image using SDWebImage
+            cell.jobImg.sd_setImage(with: URL(string: j!.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            })
             break
             
         case 2:
             j = completedJobs[row]
+            
+            cell.jobTitleLbl.text = j!.jobTitle
+            cell.jobDescriptionLbl.text = j!.jobReview
+            cell.paymentLbl.text = String(Int(j!.jobRating)) + "/5"
+            cell.distanceLbl.isHidden = true
+            
+            let placeholderImage = UIImage(named: "meeting")
+            cell.jobImg.sd_setImage(with: URL(string: j!.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            })
             break
             
         default:
             break
         }
         
-        cell.jobTitleLbl.text = j!.jobTitle
-        cell.jobDescriptionLbl.text = j!.jobDescription
-        cell.distanceLbl.text = String(format: "%.2f", j!.distance) + " mi"
-        let ftmPayment = "$" + ((j!.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j!.payment) : String(j!.payment))
-        cell.paymentLbl.text = j!.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-        
-        // Placeholder image
-        let placeholderImage = UIImage(named: "meeting")
-        // Load the image using SDWebImage
-        cell.jobImg.sd_setImage(with: URL(string: j!.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-        })
+    
         return cell
     }
     
@@ -238,9 +258,15 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             user.userNumJobsPosted = userObject["jobsPosted"] as! Int
             user.userMoneyEarned = userObject["moneyEarned"] as! Double
             user.userPhotoAsString = userObject["photoUrl"] as! String
-            user.userRating = userObject["userRating"] as! Double
+            user.userRating = userObject["userRating"] as? Double
             
-            print("ACTUAL RETRIEVED RATING ", userObject["userRating"] as! Double)
+            if(user.userRating != nil) {
+                self.userRating.text = String(user.userRating!)
+            }
+            else {
+                self.userRating.text = "5.0"
+            }
+            
             if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
                 user.userBio = "Description..."
             }
@@ -254,8 +280,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             
             //FIX: self.userId is current logged in user's id. This could be different from the userId of the profile we're visiting if that profile is a different person.
             user.userID = self.userId
-            
-            self.userRating.text = String(user.userRating!)
             
             self.user = user
         })
@@ -360,8 +384,41 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             }
         })
         
-        //JOBS COMPLETED
-        
+        // JOBS COMPLETED ARRAY
+        currentUserRef.child("jobsCompletedArray").observe(FIRDataEventType.value, with: {(snapshot) in
+            if snapshot.childrenCount > 0 {
+                for jobsCompletedSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    
+                    let jobsCompletedObject = jobsCompletedSnapshot.value as! [String: AnyObject]
+                    
+                    let jobId = jobsCompletedObject["jobId"] as! String
+                    completedJobsId.append(jobId)
+                }
+                print("I AM COMPLETED JOBS IDS: ", completedJobsId)
+                
+                for jobId in completedJobsId {
+                    let jobRef = databaseRef.child("completedJobs").child(jobId)
+                    
+                    jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                        
+                        // retrieve jobs and append to job list after creation
+                        // TODO: Bug seems to be happening here? Not sure why, but I can't open up my user profile - Bryan
+                        let jobObject = snapshot.value as! [String: AnyObject]
+                        let job = Job()
+                        
+                        job.jobDescription = jobObject["jobDescription"] as! String
+                        job.payment = jobObject["jobPayment"] as! Double
+                        job.jobRating = jobObject["jobRating"] as! Double
+                        job.jobReview = jobObject["jobReview"] as! String
+                        job.jobTitle = jobObject["jobTitle"] as! String
+                        job.imageAsString = jobObject["jobImageUrl"] as! String
+                        
+                        self.completedJobs.append(job)
+                        self.table.reloadData()
+                    })
+                }
+            }
+        })
         
         
         
