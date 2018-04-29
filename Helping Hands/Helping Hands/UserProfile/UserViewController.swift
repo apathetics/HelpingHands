@@ -43,6 +43,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     var chosen: Int?
     
+    var chosenPostedJob: Job!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
@@ -111,14 +113,12 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
 //            jobVC.jobID = j.jobId
         }
         if(segue.identifier == "showConfirmationHirer") {
-            
+            let vc:QRViewController = segue.destination as! QRViewController
+            vc.chosenJobId = self.chosenPostedJob.jobId
         }
     }
     
     @IBAction func segmentControlActionChanged(_ sender: Any) {
-//        print("I AM CHANGED")
-//        print("postedJobs", postedJobs, postedJobs.count)
-//        print("selected index", self.jobBar.selectedSegmentIndex)
         self.table.reloadData()
     }
     
@@ -129,7 +129,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         
         switch(self.jobBar.selectedSegmentIndex) {
         case 0:
-//            print("HELLO I AM POSTEDJOBS:", postedJobs, postedJobs.count)
             selectedJobCount = postedJobs.count
             break
             
@@ -190,9 +189,13 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("CHOSEN IS: \(String(describing: chosen))")
+        
+        let row = indexPath.row
+        
         switch(jobBar.selectedSegmentIndex) {
         case 0:
+            chosenPostedJob = postedJobs[row]
+            print("CHOSEN IS: \(chosenPostedJob.jobId)")
             self.performSegue(withIdentifier: "showConfirmationHirer", sender: self)
             break
         case 1:

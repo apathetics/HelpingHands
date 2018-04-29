@@ -12,6 +12,7 @@ import UIKit
 class QRViewController: UIViewController {
     
     @IBOutlet weak var qrCodeBox: UIImageView!
+    var chosenJobId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class QRViewController: UIViewController {
         // QR codes are always square so make sure width == height if playing with constraints
         // @TODO: Discuss how to hash a unique QR code from string?
         // Possibly just combine job date + job location (GPS string)?
-        let myQRimage = createQRFromString("https://www.apple.com", size: qrCodeBox.frame.size)
+        let myQRimage = createQRFromString(self.chosenJobId, size: qrCodeBox.frame.size)
         qrCodeBox.image = myQRimage
     }
     
