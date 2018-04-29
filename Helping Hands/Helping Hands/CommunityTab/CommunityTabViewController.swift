@@ -121,7 +121,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     // DATABASE RETRIEVAL
     func retrieveEvents() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let eventsRef = databaseRef.child("events")
         
         eventsRef.observe(FIRDataEventType.value, with: {(snapshot) in
@@ -170,7 +170,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                         self.events.append(event)
                         self.events = self.events.sorted(by: { $0.distance < $1.distance })
                     }
-                    
+                
                     self.table.reloadData()
                     
                 }

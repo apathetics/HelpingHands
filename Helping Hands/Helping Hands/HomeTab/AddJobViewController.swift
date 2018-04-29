@@ -182,7 +182,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     
     // Database
     func storeJob(j: Job) {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let postRef = databaseRef.child("jobs")
         let newPost = postRef.childByAutoId()
         if let imgUpload = UIImagePNGRepresentation(j.image!) {

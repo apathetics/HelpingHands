@@ -37,7 +37,7 @@
 		1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A614205F41C900628A1C /* HiredPaymentController.swift */; };
 		1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A619205F41F000628A1C /* ScannerViewController.swift */; };
 		1927A61C205F41F100628A1C /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A61A205F41F000628A1C /* QRViewController.swift */; };
-		1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61E205F430C00628A1C /* GoogleService-Info.plist */; };
+		1927A620205F430C00628A1C /* GoogleService-Info(BACKUP).plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61E205F430C00628A1C /* GoogleService-Info(BACKUP).plist */; };
 		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
@@ -60,6 +60,7 @@
 		39ED45C0206F3EFD00084F9E /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED45BF206F3EFD00084F9E /* LocationSearchTable.swift */; };
 		AB155E062075C1AB00A60F39 /* GoogleService-Info(BACKUP-PT2).plist in Resources */ = {isa = PBXBuildFile; fileRef = AB155E052075C1AB00A60F39 /* GoogleService-Info(BACKUP-PT2).plist */; };
 		AB5F4B88205DDEA30085A11D /* (null) in Sources */ = {isa = PBXBuildFile; };
+		AB6A0D6C20959FD500CB8212 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB6A0D6B20959FD500CB8212 /* GoogleService-Info.plist */; };
 		AB7743012047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB7743032047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB9E1651206318A60063A232 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E1650206318A60063A232 /* Event.swift */; };
@@ -104,7 +105,7 @@
 		1927A619205F41F000628A1C /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		1927A61A205F41F000628A1C /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		1927A61D205F430400628A1C /* CheckBoxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBoxHeader.h; sourceTree = "<group>"; };
-		1927A61E205F430C00628A1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1927A61E205F430C00628A1C /* GoogleService-Info(BACKUP).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info(BACKUP).plist"; sourceTree = "<group>"; };
 		1927A61F205F430C00628A1C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
 		AB155E052075C1AB00A60F39 /* GoogleService-Info(BACKUP-PT2).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info(BACKUP-PT2).plist"; sourceTree = "<group>"; };
+		AB6A0D6B20959FD500CB8212 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB7742FD2047853A00799F84 /* Helping Hands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helping Hands.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9E1650206318A60063A232 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWRevealViewController.podspec; sourceTree = "<group>"; };
@@ -170,7 +172,8 @@
 		1927A5D9205F3FD500628A1C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
+				AB6A0D6B20959FD500CB8212 /* GoogleService-Info.plist */,
+				1927A61E205F430C00628A1C /* GoogleService-Info(BACKUP).plist */,
 				AB155E052075C1AB00A60F39 /* GoogleService-Info(BACKUP-PT2).plist */,
 				1927A61F205F430C00628A1C /* Info.plist */,
 				1927A624205F439000628A1C /* LaunchScreen.storyboard */,
@@ -448,11 +451,12 @@
 			files = (
 				192776A020755820006451CD /* Settings.bundle in Resources */,
 				ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */,
+				AB6A0D6C20959FD500CB8212 /* GoogleService-Info.plist in Resources */,
 				AB155E062075C1AB00A60F39 /* GoogleService-Info(BACKUP-PT2).plist in Resources */,
 				194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */,
 				1927A621205F430C00628A1C /* Info.plist in Resources */,
 				1927A5E0205F404600628A1C /* Assets.xcassets in Resources */,
-				1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */,
+				1927A620205F430C00628A1C /* GoogleService-Info(BACKUP).plist in Resources */,
 				1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */,
 				1927A626205F439000628A1C /* Main.storyboard in Resources */,
 			);
@@ -710,13 +714,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BJLQZPP9P3;
 				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DreamTeamMemeTeam.HelpingHands;
+				PRODUCT_BUNDLE_IDENTIFIER = helpinghands3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -730,13 +736,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BJLQZPP9P3;
 				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DreamTeamMemeTeam.HelpingHands;
+				PRODUCT_BUNDLE_IDENTIFIER = helpinghands3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

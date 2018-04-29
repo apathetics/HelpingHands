@@ -29,7 +29,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
-    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
     
     var imgChosen = false
     var user:User!
@@ -193,7 +193,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         switch(jobBar.selectedSegmentIndex) {
         case 0:
             chosenPostedJob = postedJobs[row]
-            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
             let jobRef = databaseRef.child("jobs").child(chosenPostedJob.jobId)
             jobRef.updateChildValues(["QRCodeFlag": true])
             self.performSegue(withIdentifier: "showConfirmationHirer", sender: self)
@@ -221,7 +221,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     // FIREBASE RETRIEVAL
     func retrieveUser() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let userRef = databaseRef.child("users").child(userId)
         
         userRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -260,7 +260,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     func retrieveJobStatuses() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let currentUserRef = databaseRef.child("users").child(self.userId)
         
         var postedJobsId = [String]()

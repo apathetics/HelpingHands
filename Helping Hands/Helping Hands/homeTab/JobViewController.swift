@@ -40,7 +40,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var locationManager = CLLocationManager()
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
-    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -240,7 +240,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     // FIREBASE RETRIEVAL
     func retrieveUser() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let userRef = databaseRef.child("users").child(self.userId)
         
         userRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -288,7 +288,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     // FIREBASE RETRIEVAL
     func retrieveJob() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let jobRef = databaseRef.child("jobs").child(jobID!)
         
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -318,7 +318,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func retrieveInquiries() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let jobsRef = databaseRef.child("jobs")
         let usersInquiredRef = jobsRef.child(jobID!).child("usersInquiredArray")
         
