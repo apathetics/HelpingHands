@@ -42,9 +42,9 @@
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
 		193C22E9209480E900311893 /* ImageRotationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C22E8209480E900311893 /* ImageRotationExtension.swift */; };
-		193C22ED2094A5E900311893 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C22EC2094A5E900311893 /* TestVC.swift */; };
 		194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194FC6A3206419B800D6E439 /* Gidole-Regular.otf */; };
 		194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */; };
+		19826A2A2095EC7D0027FDE0 /* EditName_SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */; };
 		198AC0292072CCE10017C84F /* ThemeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC0282072CCE10017C84F /* ThemeExtension.swift */; };
 		198AC02B2072CDBD0017C84F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC02A2072CDBD0017C84F /* UIColorExtension.swift */; };
 		198AC02D2072D0080017C84F /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC02C2072D0080017C84F /* ThemeService.swift */; };
@@ -110,9 +110,9 @@
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		193C22E8209480E900311893 /* ImageRotationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRotationExtension.swift; sourceTree = "<group>"; };
-		193C22EC2094A5E900311893 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		194FC6A3206419B800D6E439 /* Gidole-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gidole-Regular.otf"; path = "gidole/Gidole-Regular.otf"; sourceTree = "<group>"; };
 		194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGradientExtension.swift; sourceTree = "<group>"; };
+		19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName_SettingsVC.swift; sourceTree = "<group>"; };
 		198AC0282072CCE10017C84F /* ThemeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeExtension.swift; sourceTree = "<group>"; };
 		198AC02A2072CDBD0017C84F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		198AC02C2072D0080017C84F /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
@@ -165,6 +165,7 @@
 			children = (
 				192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */,
 				192776A42075594C006451CD /* SettingsVC.swift */,
+				19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -352,7 +353,6 @@
 				ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */,
 				ABA3A2E52060E4B700E26814 /* SideMenuController.swift */,
 				ABAFCAEC207C39DA0053EDD8 /* ContactUsViewController.swift */,
-				193C22EC2094A5E900311893 /* TestVC.swift */,
 			);
 			path = SideBarMenu;
 			sourceTree = "<group>";
@@ -567,8 +567,8 @@
 				39ED45BC206F357300084F9E /* LocationViewController.swift in Sources */,
 				3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */,
 				3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */,
+				19826A2A2095EC7D0027FDE0 /* EditName_SettingsVC.swift in Sources */,
 				3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */,
-				193C22ED2094A5E900311893 /* TestVC.swift in Sources */,
 				AB7743012047853A00799F84 /* (null) in Sources */,
 				198AC0292072CCE10017C84F /* ThemeExtension.swift in Sources */,
 				398732892062B43200A29D39 /* EditEventViewController.swift in Sources */,

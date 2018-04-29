@@ -91,10 +91,15 @@ extension Theme {
         }
     }
     
-    public func applyTextFieldStyle(textFields: [UITextField]) {
+    public func applyTextFieldTextStyle(textFields: [UITextField]) {
         textFields.forEach {
-            $0.backgroundColor = textFieldColor
             $0.textColor = bodyTextColor
+        }
+    }
+    
+    public func applyTextFieldStyle(color: UIColor, textFields: [UITextField]) {
+        textFields.forEach {
+            $0.backgroundColor = color
         }
     }
     

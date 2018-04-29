@@ -31,6 +31,7 @@ class SettingsVC: UITableViewController, Themeable {
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
+        displayUserName()
         UserDefaults.standard.register(defaults: [String : Any]())
         
         if((UserDefaults.standard.value(forKey:"max_radius")) != nil) {
@@ -57,7 +58,12 @@ class SettingsVC: UITableViewController, Themeable {
         userDefaults.setValue(Int(sender.value), forKey: "max_radius")
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "editName_Settings") {
+            let destinationVC = segue.destination as! EditName_SettingsVC
+            destinationVC.name = userNameLBL.text
+        }
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 3 && indexPath.row == 0) {
             print("Log out button clicked")

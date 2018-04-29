@@ -93,7 +93,7 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
         theme.applyHeadlineStyle(labels: [header1, header2])
         theme.applyBodyTextStyle(labels: [subjectLBL, bodyLBL])
         theme.applyFilledButtonStyle(buttons: [sendBTN])
-        theme.applyTextFieldStyle(textFields: [subjectFld])
+        theme.applyTextFieldTextStyle(textFields: [subjectFld])
         theme.applyTextViewStyle(textViews: [body])
     }
 }

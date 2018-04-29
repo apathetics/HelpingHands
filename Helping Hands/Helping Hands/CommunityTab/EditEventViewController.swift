@@ -185,7 +185,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         theme.applyStepperStyle(steppers: [numHelpersButton])
         theme.applyFilledButtonStyle(buttons: [chooseImgButton, locationEditButton])
         theme.applyTextViewStyle(textViews: [eventDescription])
-        theme.applyTextFieldStyle(textFields: [editEventTitle])
+        theme.applyTextFieldTextStyle(textFields: [editEventTitle])
         theme.applyDatePickerStyle(pickers: [datePicker])
     }
     

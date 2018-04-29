@@ -113,6 +113,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                         return
                     }
                     print("Registration Success!")
+                    user?.profileChangeRequest().displayName = "\(self.firstNameTF.text) \(self.lastNameTF.text)"
                     if let imgUpload = UIImagePNGRepresentation(self.profileImage.image!) {
                         let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
                         let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
@@ -121,9 +122,11 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                                 print(error)
                                 return
                             }
-                            if let profileImgUrl = metadata?.downloadURL()?.absoluteString {
-                                let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrl, "jobsCompleted": 0, "jobsPosted": 0, "moneyEarned": 0] as [String : Any]
+                            if let profileImgUrl = metadata?.downloadURL() {
+                                let profileImgUrlString = profileImgUrl.absoluteString
+                                let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrlString, "jobsCompleted": 0, "jobsPosted": 0, "moneyEarned": 0] as [String : Any]
                                 self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
+                                user?.profileChangeRequest().photoURL = profileImgUrl
                             }
                         })
                     }
@@ -131,10 +134,6 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
             })
         }
-//        let user = FIRAuth.auth()?.currentUser
-//        if let user = user {
-//            let changeRequest = user.profileChangeRequest()
-//        }
     }
     
     // methods

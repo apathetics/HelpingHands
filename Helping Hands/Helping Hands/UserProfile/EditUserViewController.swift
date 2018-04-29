@@ -137,7 +137,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         user.userEmail = editEmail.text
         user.userBio = userDescription.text
         masterView?.user = self.user
-        updateJob(u: user)
+        updateUser(u: user)
         self.performSegueToReturnBack()
     }
     
@@ -152,7 +152,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
 //        self.performSegueToReturnBack()
 //    }
     
-    func updateJob(u: User) {
+    func updateUser(u: User) {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let jobRef = databaseRef.child("users").child(self.userId)
         if let imgUpload = UIImagePNGRepresentation(u.userPhoto) {
@@ -175,7 +175,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
         theme.applyTextViewStyle(textViews: [userDescription])
-        theme.applyTextFieldStyle(textFields: [editLastName, editFirstName, editEmail, editLocation])
+        theme.applyTextFieldTextStyle(textFields: [editLastName, editFirstName, editEmail, editLocation])
         theme.applyFilledButtonStyle(buttons: [chooseImgButton])
         theme.applyHeadlineStyle(labels: [bioLBL])
     }

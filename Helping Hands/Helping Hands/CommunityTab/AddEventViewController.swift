@@ -218,7 +218,7 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
         theme.applyHeadlineStyle(labels: [eventTitleLBL, eventDescLBL, eventLocationLBL, helpersGoalLBL, eventDateLBL, addressLBL])
         theme.applyTintColor_Font(navBar: self.navigationController!)
         theme.applyTextViewStyle(textViews: [descriptionFld])
-        theme.applyTextFieldStyle(textFields: [titleFld, helpersCountFld])
+        theme.applyTextFieldTextStyle(textFields: [titleFld, helpersCountFld])
         theme.applyStepperStyle(steppers: [helperStepper])
     }
     

@@ -189,7 +189,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         theme.applySegmentedControlStyle(controls: [payTypeButtons])
         theme.applyFilledButtonStyle(buttons: [chooseImgButton, locationEditButton])
         theme.applyTextViewStyle(textViews: [jobDescription])
-        theme.applyTextFieldStyle(textFields: [editJobPrice, editJobTitle])
+        theme.applyTextFieldTextStyle(textFields: [editJobPrice, editJobTitle])
         theme.applyDatePickerStyle(pickers: [datePicker])
     }
 }

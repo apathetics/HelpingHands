@@ -244,7 +244,8 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         theme.applySegmentedControlStyle(controls: [paymentTypeSeg])
         theme.applyFilledButtonStyle(buttons: [finishBTN, chooseImgBTN, chooseLocationBTN])
         theme.applyTextViewStyle(textViews: [descriptionFld])
-        theme.applyTextFieldStyle(textFields: [titleFld, paymentFld, helpersCountFld])
+        theme.applyTextFieldTextStyle(textFields: [titleFld, paymentFld, helpersCountFld])
+        theme.applyTextFieldStyle(color: UIColor(hex: "fdfdfd"), textFields: [titleFld, paymentFld, helpersCountFld])
         theme.applyDatePickerStyle(pickers: [datePickerItem])
     }
     
