@@ -1906,6 +1906,7 @@
                     </view>
                     <connections>
                         <outlet property="moneyLabel" destination="RLO-1k-h8t" id="BdV-il-pxv"/>
+                        <outlet property="ratingStars" destination="cr7-ZT-Lia" id="U8d-5U-ZfA"/>
                         <outlet property="recipientLabel" destination="6bZ-4Z-hF8" id="3Yo-G1-VGv"/>
                         <outlet property="reviewTextField" destination="CkX-xe-Rrd" id="LP3-aV-mVQ"/>
                         <outlet property="tipSwich" destination="c4e-lb-OVt" id="33v-cQ-tqA"/>

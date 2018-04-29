@@ -38,8 +38,36 @@ class QRViewController: UIViewController {
             }
             
         })
-        
-        
+    }
+    
+    //  ** PREPARE SEGUES ** \\
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showPaymentHiring") {
+            let vc:HiringPaymentController = segue.destination as! HiringPaymentController
+            
+            vc.chosenJobId = self.chosenJobId
+            
+            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+            let jobRef = databaseRef.child("jobs").child(self.chosenJobId)
+            
+            jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                
+                let jobObject = snapshot.value as! [String: AnyObject]
+                
+                vc.moneyLabel.text = String(jobObject["jobPayment"] as! Double)
+                let completedById = jobObject["completedBy"] as! String
+                
+                databaseRef.child("users").child(completedById).observeSingleEvent(of: .value, with: {(snap) in
+                    let userObject = snap.value as! [String: AnyObject]
+                    
+                    let firstName = userObject["firstName"] as! String
+                    let lastName = userObject["lastName"] as! String
+                    
+                    vc.recipientLabel.text = "\(firstName) \(lastName)"
+                })
+            })
+            
+        }
         
     }
     

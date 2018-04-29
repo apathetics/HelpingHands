@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import AVFoundation
 import FirebaseDatabase
+import FirebaseAuth
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -23,6 +24,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var qrCodeFrameView:UIView?
     var scannedId: String!
     var segueDone = false
+    
+    let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     
     @IBAction func onPaymentClicked(_ sender: Any) {
         self.performSegue(withIdentifier: "showPaymentHired", sender: self)
@@ -154,6 +157,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     
                     if (qrFlag && self.segueDone == false) {
                         jobRef.updateChildValues(["scannerFlag" : true])
+                        jobRef.updateChildValues(["completedBy" : self.userId])
                         self.segueDone = true
                         self.performSegue(withIdentifier: "showPaymentHired", sender: self)
                     }

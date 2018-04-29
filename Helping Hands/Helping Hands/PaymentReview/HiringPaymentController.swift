@@ -15,7 +15,10 @@ class HiringPaymentController: UIViewController {
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var tipSwich: UISegmentedControl!
     @IBOutlet weak var reviewTextField: UITextField!
+    @IBOutlet weak var ratingStars: RatingControl!
     
+    var chosenJobId: String!
+    var bossId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
