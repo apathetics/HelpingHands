@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class QRViewController: UIViewController {
     
     @IBOutlet weak var qrCodeBox: UIImageView!
     var chosenJobId: String!
+    
+    let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,23 +52,24 @@ class QRViewController: UIViewController {
             
             let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
             let jobRef = databaseRef.child("jobs").child(self.chosenJobId)
-            
-            jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                
-                let jobObject = snapshot.value as! [String: AnyObject]
-                
-                vc.moneyLabel.text = String(jobObject["jobPayment"] as! Double)
-                let completedById = jobObject["completedBy"] as! String
-                
-                databaseRef.child("users").child(completedById).observeSingleEvent(of: .value, with: {(snap) in
-                    let userObject = snap.value as! [String: AnyObject]
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
                     
-                    let firstName = userObject["firstName"] as! String
-                    let lastName = userObject["lastName"] as! String
+                    let jobObject = snapshot.value as! [String: AnyObject]
                     
-                    vc.recipientLabel.text = "\(firstName) \(lastName)"
+                    vc.moneyLabel.text = String(jobObject["jobPayment"] as! Double)
+                    let completedById = jobObject["completedBy"] as! String
+                    
+                    databaseRef.child("users").child(completedById).observeSingleEvent(of: .value, with: {(snap) in
+                        let userObject = snap.value as! [String: AnyObject]
+                        
+                        let firstName = userObject["firstName"] as! String
+                        let lastName = userObject["lastName"] as! String
+                        
+                        vc.recipientLabel.text = "\(firstName) \(lastName)"
+                    })
                 })
-            })
+            }
             
         }
         

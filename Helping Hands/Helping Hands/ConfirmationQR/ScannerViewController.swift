@@ -156,8 +156,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     let qrFlag = jobObject["QRCodeFlag"] as! Bool
                     
                     if (qrFlag && self.segueDone == false) {
+                        
+                        print("GROUP ENTER")
                         jobRef.updateChildValues(["scannerFlag" : true])
                         jobRef.updateChildValues(["completedBy" : self.userId])
+                        print("GROUP LEAVE")
+                        
                         self.segueDone = true
                         self.performSegue(withIdentifier: "showPaymentHired", sender: self)
                     }
