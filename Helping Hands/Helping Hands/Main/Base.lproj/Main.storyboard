@@ -243,7 +243,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
-                            <view tag="1" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bT7-U8-gBR" customClass="BEMCheckBox">
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bT7-U8-gBR" customClass="BEMCheckBox">
                                 <rect key="frame" x="52" y="433" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -252,7 +252,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view tag="2" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Co-Kj-N8v" customClass="BEMCheckBox">
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Co-Kj-N8v" customClass="BEMCheckBox">
                                 <rect key="frame" x="52" y="488" width="48.5" height="30"/>
                                 <color key="backgroundColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -261,13 +261,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPt-nU-oUd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPt-nU-oUd">
                                 <rect key="frame" x="112" y="436" width="187" height="23"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="21"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="18 and over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVF-ou-DTD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 and over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVF-ou-DTD">
                                 <rect key="frame" x="114.5" y="491" width="93.5" height="23"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="21"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1426,22 +1426,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This app requires Location Access to be turned on" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXh-8O-MXb">
-                                <rect key="frame" x="38" y="296" width="298" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app requires Location Access to be turned on" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXh-8O-MXb">
+                                <rect key="frame" x="38" y="383" width="298" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="Cdj-bb-55T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please go to Settings &gt; Helping Hands &gt; Location and select &quot;While Using the App&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCb-8t-lMJ">
+                                <rect key="frame" x="38" y="455" width="298" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="LJa-dM-VWh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nojobs" translatesAutoresizingMaskIntoConstraints="NO" id="6XL-rQ-bcy">
+                                <rect key="frame" x="38" y="188" width="298" height="187"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <accessibility key="accessibilityConfiguration" identifier="allowLocationPls"/>
+                        <constraints>
+                            <constraint firstItem="1YL-FN-Zgv" firstAttribute="bottom" secondItem="FCb-8t-lMJ" secondAttribute="bottom" constant="165" id="2d0-ja-ZjF"/>
+                            <constraint firstItem="6XL-rQ-bcy" firstAttribute="leading" secondItem="cXh-8O-MXb" secondAttribute="leading" id="7Rx-1w-2ER"/>
+                            <constraint firstItem="cXh-8O-MXb" firstAttribute="top" secondItem="6XL-rQ-bcy" secondAttribute="bottom" constant="8" symbolic="YES" id="C3t-QA-D46"/>
+                            <constraint firstItem="cXh-8O-MXb" firstAttribute="trailing" secondItem="FCb-8t-lMJ" secondAttribute="trailing" id="Crv-Yc-0qN"/>
+                            <constraint firstItem="6XL-rQ-bcy" firstAttribute="trailing" secondItem="cXh-8O-MXb" secondAttribute="trailing" id="EGm-SX-bHV"/>
+                            <constraint firstItem="6XL-rQ-bcy" firstAttribute="leading" secondItem="1YL-FN-Zgv" secondAttribute="leading" constant="38" id="UwU-Bo-vf4"/>
+                            <constraint firstItem="cXh-8O-MXb" firstAttribute="leading" secondItem="FCb-8t-lMJ" secondAttribute="leading" id="afe-Wc-t4b"/>
+                            <constraint firstItem="6XL-rQ-bcy" firstAttribute="centerX" secondItem="e2L-Ma-3WQ" secondAttribute="centerX" id="b9s-9m-8d7"/>
+                            <constraint firstItem="6XL-rQ-bcy" firstAttribute="top" secondItem="1YL-FN-Zgv" secondAttribute="top" constant="168" id="bMW-cP-hU1"/>
+                            <constraint firstItem="FCb-8t-lMJ" firstAttribute="top" secondItem="cXh-8O-MXb" secondAttribute="bottom" constant="8" symbolic="YES" id="id8-fr-Olp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="1YL-FN-Zgv"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25o-f2-M2t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="-143.47826086956522"/>
+            <point key="canvasLocation" x="1494" y="-169"/>
         </scene>
         <!--Add a Job-->
         <scene sceneID="P5z-Dt-2HM">
@@ -2346,49 +2372,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="90" id="9mx-Kk-z5l" customClass="SearchTableCell" customModule="Helping_Hands" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="121" id="9mx-Kk-z5l" customClass="SearchTableCell" customModule="Helping_Hands" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="121"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9mx-Kk-z5l" id="1vz-eb-h7L">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RNq-gM-6Ie">
-                                            <rect key="frame" x="16" y="11" width="70" height="70"/>
+                                            <rect key="frame" x="16" y="25" width="70" height="70"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="HQx-fj-mO0"/>
-                                                <constraint firstAttribute="height" constant="70" id="kXy-gJ-MFH"/>
+                                                <constraint firstAttribute="width" constant="70" id="GIi-Lr-F8J"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Job Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UA-cN-cPP">
-                                            <rect key="frame" x="96" y="16" width="188" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UA-cN-cPP">
+                                            <rect key="frame" x="96" y="25" width="188" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="Vlh-oa-HBu"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="19"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0.1 mi." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3F-bB-smk">
-                                            <rect key="frame" x="301" y="16" width="63" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.1 mi." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3F-bB-smk">
+                                            <rect key="frame" x="302" y="25" width="63" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="63" id="GJ1-Uh-FkT"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Really long description goes here. Testing long description blah blah blah blah blah" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksa-D5-rXB">
-                                            <rect key="frame" x="96" y="36" width="269" height="37"/>
+                                            <rect key="frame" x="96" y="58" width="269" height="37"/>
                                             <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Ksa-D5-rXB" firstAttribute="top" secondItem="S3F-bB-smk" secondAttribute="bottom" constant="0.5" id="0Ms-EW-FmR"/>
-                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="leading" secondItem="1vz-eb-h7L" secondAttribute="leadingMargin" id="2V3-wA-cnc" userLabel="Picture.leading = leadingMargin + 5"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ksa-D5-rXB" secondAttribute="trailing" constant="10" id="8u7-tf-YPU"/>
-                                        <constraint firstItem="1UA-cN-cPP" firstAttribute="top" secondItem="1vz-eb-h7L" secondAttribute="topMargin" constant="5" id="CRT-Vw-V5D"/>
-                                        <constraint firstItem="S3F-bB-smk" firstAttribute="top" secondItem="1vz-eb-h7L" secondAttribute="topMargin" constant="5" id="DbJ-8F-IMN"/>
-                                        <constraint firstItem="Ksa-D5-rXB" firstAttribute="leading" secondItem="RNq-gM-6Ie" secondAttribute="trailing" constant="10" id="JtP-Bg-Lha"/>
-                                        <constraint firstItem="S3F-bB-smk" firstAttribute="trailing" secondItem="1vz-eb-h7L" secondAttribute="trailingMargin" constant="5" id="TMq-F8-gNr"/>
-                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="top" secondItem="1vz-eb-h7L" secondAttribute="topMargin" id="UsV-Fh-xVV" userLabel="Picture.top = topMargin + 5"/>
-                                        <constraint firstItem="1UA-cN-cPP" firstAttribute="leading" secondItem="RNq-gM-6Ie" secondAttribute="trailing" constant="10" id="zFb-3d-13z"/>
+                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="leading" secondItem="1vz-eb-h7L" secondAttribute="leadingMargin" id="03C-z9-5D6"/>
+                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="centerY" secondItem="1vz-eb-h7L" secondAttribute="centerY" id="5n6-c7-L2U"/>
+                                        <constraint firstItem="Ksa-D5-rXB" firstAttribute="top" secondItem="1UA-cN-cPP" secondAttribute="bottom" constant="12" id="81C-tm-VsG"/>
+                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="top" secondItem="1UA-cN-cPP" secondAttribute="top" id="Crs-H5-Oqa"/>
+                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="bottom" secondItem="Ksa-D5-rXB" secondAttribute="bottom" id="PfN-KQ-ljf"/>
+                                        <constraint firstItem="S3F-bB-smk" firstAttribute="leading" secondItem="1UA-cN-cPP" secondAttribute="trailing" constant="18" id="bbH-RL-TJC"/>
+                                        <constraint firstItem="RNq-gM-6Ie" firstAttribute="top" secondItem="1vz-eb-h7L" secondAttribute="topMargin" constant="14" id="dOL-gU-hhi"/>
+                                        <constraint firstItem="1UA-cN-cPP" firstAttribute="leading" secondItem="RNq-gM-6Ie" secondAttribute="trailing" constant="10" id="gqp-tD-sKH"/>
+                                        <constraint firstItem="S3F-bB-smk" firstAttribute="trailing" secondItem="Ksa-D5-rXB" secondAttribute="trailing" id="iD2-4Q-mV8"/>
+                                        <constraint firstItem="Ksa-D5-rXB" firstAttribute="top" secondItem="S3F-bB-smk" secondAttribute="bottom" constant="8" symbolic="YES" id="pWG-MX-4SA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="S3F-bB-smk" secondAttribute="trailing" constant="-6" id="tvi-wh-nMd"/>
+                                        <constraint firstItem="1UA-cN-cPP" firstAttribute="top" secondItem="S3F-bB-smk" secondAttribute="top" id="v8d-Og-mHF"/>
+                                        <constraint firstItem="1UA-cN-cPP" firstAttribute="leading" secondItem="Ksa-D5-rXB" secondAttribute="leading" id="ySa-oD-6ch"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -2410,6 +2445,8 @@
                     <connections>
                         <outlet property="sideMenuButton" destination="dPY-LO-SPX" id="Vnn-3W-P40"/>
                         <outlet property="table" destination="Bwc-z1-QuT" id="75r-Ef-9XE"/>
+                        <segue destination="TTE-Re-l7J" kind="show" identifier="jobSearchResult" id="9Vc-Rv-L3Q"/>
+                        <segue destination="hMi-WU-zyp" kind="show" identifier="eventSearchResult" id="1Gy-YL-dzE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hE-bq-2aX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3797,15 +3834,16 @@
         <image name="loc_gray" width="48" height="48"/>
         <image name="meeting" width="30" height="30"/>
         <image name="nightModeIcon" width="512" height="512"/>
+        <image name="nojobs" width="967" height="1837"/>
         <image name="profile placeholder" width="360" height="360"/>
         <image name="search" width="30" height="30"/>
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GjD-RQ-lXZ"/>
-        <segue reference="m5T-tJ-blf"/>
+        <segue reference="1Gy-YL-dzE"/>
         <segue reference="k5o-ug-Gfi"/>
         <segue reference="5dw-2g-ub0"/>
-        <segue reference="Rmb-LX-uGO"/>
+        <segue reference="9Vc-Rv-L3Q"/>
     </inferredMetricsTieBreakers>
 </document>

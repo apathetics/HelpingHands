@@ -8,17 +8,21 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 import FirebaseDatabase
 
-class SearchTabViewController: UITableViewController, UISearchResultsUpdating, Themeable {
+class SearchTabViewController: UITableViewController, UISearchResultsUpdating, Themeable, CLLocationManagerDelegate {
     
     @IBOutlet var table: UITableView!
-    
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
+    
+    let manager = CLLocationManager()
     
     // Currently only searching through jobs and not events
     var unfilteredJobs = [Job]()
     var filteredJobs: [Job]?
+    var chosen: Int?
+    
     
     // Search controller responsible for doing real-time text search
     let searchController = UISearchController(searchResultsController: nil)
@@ -31,9 +35,15 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
-        tableView.tableHeaderView = searchController.searchBar
-        tableView.rowHeight = 90
+        
+        
+        tableView.rowHeight = 121
         super.viewDidLoad()
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "Gidole-Regular", size: 20)!
+        let searchBar = searchController.searchBar
+        searchBar.placeholder = "Search for Jobs"
+        navigationItem.titleView = searchController.searchBar
         
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
@@ -72,6 +82,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
             cell.picture.image = result.image
             cell.distanceLabel.text = String(format: "%.2f", result.distance) + " mi"
             cell.descriptionLabel.text = result.jobDescription
+            cell.typeResult = "job"
         }
         cell.backgroundColor = UIColor.clear
         return cell
@@ -89,6 +100,22 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosen = (indexPath.row)
+        if((table.cellForRow(at: indexPath) as! SearchTableCell).typeResult == "job") {
+            self.performSegue(withIdentifier: "jobSearchResult", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "jobSearchResult") {
+            let j:Job = filteredJobs![chosen!]
+            let jobVC:JobViewController = segue.destination as! JobViewController
+            jobVC.job = j
+            jobVC.jobID = j.jobId
+        }
+    }
+    
     // FIREBASE RETRIEVAL
     func retrieveJobs() {
         
@@ -103,9 +130,9 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
                 // clear job list before appending again
                 self.unfilteredJobs.removeAll()
                 
-                // for each snapshot (entity present under jobs child)
                 for jobSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
                     
+                    // retrieve jobs and append to job list after creation
                     let jobObject = jobSnapshot.value as! [String: AnyObject]
                     let job = Job()
                     
@@ -114,14 +141,28 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
                     job.jobDateString = jobObject["jobDate"] as! String
                     job.jobDescription = jobObject["jobDescription"] as! String
                     job.distance = jobObject["jobDistance"] as! Double
-                    
-                    // TODO: Image from URL?
-                    job.image = UIImage(named: "meeting")
-                    
+                    job.imageAsString = jobObject["jobImageUrl"] as! String
                     job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
                     job.numHelpers = jobObject["jobNumHelpers"] as! Int
                     job.payment = jobObject["jobPayment"] as! Double
                     job.jobTitle = jobObject["jobTitle"] as! String
+                    job.jobId = jobSnapshot.ref.key
+                    if(jobObject["latitude"] == nil)
+                    {
+                        job.latitude = 0
+                        job.longitude = 0
+                    }
+                    else {
+                        job.latitude = jobObject["latitude"] as! Double
+                        job.longitude = jobObject["longitude"] as! Double
+                    }
+                    
+                    let locationManager = self.manager
+                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    locationManager.requestAlwaysAuthorization()
+                    locationManager.startUpdatingLocation()
+                    let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
+                    job.distance = distance
                     
                     self.unfilteredJobs.append(job)
                     self.table.reloadData()

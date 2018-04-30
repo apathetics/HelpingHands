@@ -15,6 +15,8 @@ class SearchTableCell: UITableViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    var typeResult:String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

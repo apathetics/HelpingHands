@@ -253,7 +253,9 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                         self.jobs = self.jobs.sorted(by: { $0.distance < $1.distance })
                     }
                     
-                    self.table.reloadData()
+                    if(self.jobs.count > 0 && !self.loadingView.isHidden) {
+                        self.loadingView.isHidden = true
+                    }
 
                     self.table.reloadData()
                 }
