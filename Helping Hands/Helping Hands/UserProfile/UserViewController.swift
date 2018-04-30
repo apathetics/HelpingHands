@@ -18,8 +18,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userRating: UILabel!
-    @IBOutlet weak var userLocation: UILabel!
-    @IBOutlet weak var userDistance: UILabel!
     @IBOutlet weak var userDescription: UITextView!
     @IBOutlet weak var jobBar: UISegmentedControl!
     @IBOutlet weak var table: UITableView!
@@ -81,8 +79,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         userDescription.text = user.userBio
         
         // Change the ones below
-        userLocation.text = String(describing: user.userLocationRadius!)
-        userDistance.text = String(describing: user.userDistance!)
+//        userLocation.text = String(describing: user.userLocationRadius!)
+//        userDistance.text = String(describing: user.userDistance!)
         //        userRating.text = String(user.userRating!)
         
         self.table.reloadData()
@@ -158,7 +156,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             cell.distanceLbl.text = String(format: "%.2f", j!.distance) + " mi"
             let ftmPayment = "$" + ((j!.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j!.payment) : String(j!.payment))
             cell.paymentLbl.text = j!.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-            
+//            cell.distanceLbl.isHidden = false
             // Placeholder image
             let placeholderImage = UIImage(named: "meeting")
             // Load the image using SDWebImage
@@ -174,7 +172,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             cell.distanceLbl.text = String(format: "%.2f", j!.distance) + " mi"
             let ftmPayment = "$" + ((j!.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j!.payment) : String(j!.payment))
             cell.paymentLbl.text = j!.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-            
+//            cell.distanceLbl.isHidden = false
             // Placeholder image
             let placeholderImage = UIImage(named: "meeting")
             // Load the image using SDWebImage
@@ -188,7 +186,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             cell.jobTitleLbl.text = j!.jobTitle
             cell.jobDescriptionLbl.text = j!.jobReview
             cell.paymentLbl.text = String(Int(j!.jobRating)) + "/5"
-            cell.distanceLbl.isHidden = true
+//            cell.distanceLbl.isHidden = true
             
             let placeholderImage = UIImage(named: "meeting")
             cell.jobImg.sd_setImage(with: URL(string: j!.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
@@ -434,7 +432,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         theme.applyTintColor_Font(navBar: self.navigationController!)
         theme.applyTableViewBackgroundColor(tableView: [table])
         theme.applyHeadlineStyle(labels: [userName, bioLBL])
-        theme.applyBodyTextStyle(labels: [userEmail, userRating, userLocation, userDistance])
+        theme.applyBodyTextStyle(labels: [userEmail, userRating])
         theme.applySegmentedControlStyle(controls: [jobBar])
         theme.applyIconStyle(icons: [starIcon])
         theme.applyTextViewStyle(textViews: [userDescription])
