@@ -153,7 +153,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
 //    }
     
     func updateUser(u: User) {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let jobRef = databaseRef.child("users").child(self.userId)
         if let imgUpload = UIImagePNGRepresentation(u.userPhoto) {
             let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage

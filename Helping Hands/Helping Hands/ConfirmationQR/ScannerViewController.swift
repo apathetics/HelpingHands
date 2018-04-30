@@ -41,7 +41,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             
             vc.chosenJobId = self.scannedId
             
-            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
             let jobRef = databaseRef.child("jobs").child(scannedId)
             
             jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -146,7 +146,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 messageLabel.text = metadataObj.stringValue
                 self.scannedId = qrValue
                 
-                let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+                let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
                 let jobRef = databaseRef.child("jobs").child(qrValue!)
                 
                 jobRef.observeSingleEvent(of: .value, with: {(snapshot) in

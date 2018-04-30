@@ -182,7 +182,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     
     // Database
     func storeJob(j: Job) {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let postRef = databaseRef.child("jobs")
         let newPost = postRef.childByAutoId()
         if let imgUpload = UIImagePNGRepresentation(j.image!) {
@@ -198,7 +198,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
                     let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid, "jobCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
                     newPost.setValue(values)
                     newPost.updateChildValues(["latitude": self.latLong!.0, "longitude": self.latLong!.1])
-                    
+                    print("job added successfully")
                     // Increment jobs posted in users by 1
                     let userRef = databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
                     userRef.observeSingleEvent(of: .value, with: {(snapshot) in

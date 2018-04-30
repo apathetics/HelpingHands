@@ -28,7 +28,7 @@ class HiringPaymentController: UIViewController {
     
     @IBAction func onConfirm(_ sender: UIButton) {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let jobRef = databaseRef.child("jobs").child(chosenJobId)
         
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in

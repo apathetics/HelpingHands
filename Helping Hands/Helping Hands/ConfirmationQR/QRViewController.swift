@@ -27,7 +27,7 @@ class QRViewController: UIViewController {
         let myQRimage = createQRFromString(self.chosenJobId, size: qrCodeBox.frame.size)
         qrCodeBox.image = myQRimage
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let jobRef = databaseRef.child("jobs").child(chosenJobId)
         
         jobRef.observe(.value, with: {(snapshot) in
@@ -50,7 +50,7 @@ class QRViewController: UIViewController {
             
             vc.chosenJobId = self.chosenJobId
             
-            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
             let jobRef = databaseRef.child("jobs").child(self.chosenJobId)
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 jobRef.observeSingleEvent(of: .value, with: {(snapshot) in

@@ -206,7 +206,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     // DATABASE RETRIEVAL
     func retrieveEvents() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let eventsRef = databaseRef.child("events")
         
         eventsRef.observe(FIRDataEventType.value, with: {(snapshot) in

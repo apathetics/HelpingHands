@@ -27,7 +27,7 @@ class HiredPaymentController: UIViewController {
     
     @IBAction func onConfirm(_ sender: UIButton) {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
 //        let jobRef = databaseRef.child("jobs").child(chosenJobId)
         
         // NEED TO DECIDE IF WE WANNA HAVE POSTED INFORMATION (might need two arrays cause it will complicate)

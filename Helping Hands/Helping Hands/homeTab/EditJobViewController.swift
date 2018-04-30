@@ -147,7 +147,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     
     // Update the jobs by replacing values from current j instance
     func updateJob(j: Job) {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let jobRef = databaseRef.child("jobs").child(j.jobId)
         if let imgUpload = UIImagePNGRepresentation(j.image!) {
             let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage

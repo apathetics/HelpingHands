@@ -39,7 +39,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     var locationManager = CLLocationManager()
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
-    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
     
     override func viewDidAppear(_ animated: Bool) {
         let eventRef = databaseRef.child("events").child(eventID!)
@@ -242,7 +242,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func retrieveAttendees() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let eventsRef = databaseRef.child("events")
         let usersAttendedRef = eventsRef.child(eventID!).child("usersAttendedArray")
         
@@ -312,7 +312,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func retrieveEvents() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let eventRef = databaseRef.child("events").child(eventID!)
         
         eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -338,7 +338,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // FIREBASE RETRIEVAL
     func retrieveUser() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let userRef = databaseRef.child("users").child(userId)
         
         userRef.observeSingleEvent(of: .value, with: {(snapshot) in

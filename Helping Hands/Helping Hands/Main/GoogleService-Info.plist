@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>202342122671-1edofqs729kvg1lfdavqv48p59mao20q.apps.googleusercontent.com</string>
+	<string>533370814301-nop2un57e29q08c3mnoe7q29etnhooog.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.202342122671-1edofqs729kvg1lfdavqv48p59mao20q</string>
+	<string>com.googleusercontent.apps.533370814301-nop2un57e29q08c3mnoe7q29etnhooog</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCPaysnM9VnIvLatJjigFk7YOSnxWAwNJY</string>
+	<string>AIzaSyAYIkUpyA6fZ2tRjJgjTHMILt-P09jsEhg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>202342122671</string>
+	<string>533370814301</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>helpinghands3</string>
+	<string>com.helpinghands</string>
 	<key>PROJECT_ID</key>
-	<string>helpinghands3-fb14f</string>
+	<string>helpinghands-presentation</string>
 	<key>STORAGE_BUCKET</key>
-	<string>helpinghands3-fb14f.appspot.com</string>
+	<string>helpinghands-presentation.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:202342122671:ios:0563e6ecb436f8bb</string>
+	<string>1:533370814301:ios:119a44913ebf8beb</string>
 	<key>DATABASE_URL</key>
-	<string>https://helpinghands3-fb14f.firebaseio.com</string>
+	<string>https://helpinghands-presentation.firebaseio.com</string>
 </dict>
 </plist>
