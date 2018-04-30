@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
-class EditEmail_SettingsVC: UITableViewController, Themeable {
+class EditEmail_SettingsVC: UITableViewController, Themeable, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var checkmarkImg: UIImageView!
     @IBOutlet weak var emailImg: UIImageView!
@@ -52,15 +52,7 @@ class EditEmail_SettingsVC: UITableViewController, Themeable {
                         switch errCode {
                         case .errorCodeRequiresRecentLogin:
                             print("Requires recent login\n\n")
-                            let reauthVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReauthenticationVC") as! ReauthenticationVC
-                            reauthVC.modalPresentationStyle = UIModalPresentationStyle.currentContext
-                            self.present(reauthVC, animated: true, completion: {
-//                                if (reauthVC.success) {
-//
-//                                } else {
-//
-//                                }
-                            })
+                            self.showReauthPopover()
                             return
                         default:
                             let alert = UIAlertController(title: "Invalid Email", message: "Please make sure the email you entered is valid.", preferredStyle: UIAlertControllerStyle.alert)
@@ -86,35 +78,31 @@ class EditEmail_SettingsVC: UITableViewController, Themeable {
                             self.checkmarkImg.isHidden = true
                         })
                     }
-
                 }
             }
-
-//            user?.updateEmail(emailTF.text!, completion: { (error) in
-//                let alert = UIAlertController(title: "Invalid Email", message: "Please make sure the email you entered is valid.", preferredStyle: UIAlertControllerStyle.alert)
-//                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//                self.emailTF.text = ""
-//
-//                return
-//            })
-//            print("Email change success!")
-//            updateDatabase()
-//            checkmarkImg.isHidden = false
-//            checkmarkImg.alpha = 0
-//            UIView.animate(withDuration: 1.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-//                self.checkmarkImg.alpha = 1
-//            }) { (bool) in
-//                UIView.animate(withDuration: 0.3, animations: {
-//                    self.checkmarkImg.alpha = 0
-//                }, completion: { (b) in
-//                    self.checkmarkImg.isHidden = true
-//                })
-//            }
-            
         }
     }
     
+
+    func showReauthPopover() {
+        // Display popover view controller for re-authorization
+        let reauthVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReauthenticationVC") as! ReauthenticationVC
+        reauthVC.preferredContentSize = CGSize(width: 300, height: 400)
+        reauthVC.modalPresentationStyle = .popover
+        
+        let popover = reauthVC.popoverPresentationController
+        popover?.delegate = self
+        popover?.sourceView = self.view
+        popover?.sourceRect  = CGRect(x: self.view.bounds.width*0.5, y: self.view.bounds.height*0.5, width: 0, height: 0)
+        reauthVC.view.backgroundColor = UIColor(hex:"2b3445")
+        self.present(reauthVC, animated: true, completion: nil)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle
+    {
+        return .none
+    }
+
     func updateDatabase() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
         let userRef = databaseRef.child("users").child((user?.uid)!)

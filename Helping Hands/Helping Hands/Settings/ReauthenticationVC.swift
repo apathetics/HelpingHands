@@ -27,17 +27,18 @@ class ReauthenticationVC: UIViewController {
     @IBAction func buttonPressed(_ sender: Any) {
         var credential = FIREmailPasswordAuthProvider.credential(withEmail: (user?.email)!, password: passwordTF.text!)
         user?.reauthenticate(with: credential, completion: { (error) in
-            if error != nil {
+            if error == nil {
                 self.success = true
                 self.dismiss(animated: true, completion: nil)
                 return
+            } else {
+                self.success = false
+                self.badPassLBL.isHidden = false
+                let alert = UIAlertController(title: "Incorrect Password", message: "Please check that the password you entered is correct.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                self.passwordTF.text = ""
             }
-            self.success = false
-            self.badPassLBL.isHidden = false
-            let alert = UIAlertController(title: "Incorrect Password", message: "Please check that the password you entered is correct.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            self.passwordTF.text = ""
         })
     }
     
