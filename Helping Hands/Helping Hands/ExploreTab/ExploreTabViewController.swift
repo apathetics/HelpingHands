@@ -169,7 +169,6 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("chosen a pin!!!")
         if let annotation = view.annotation as? JobAnnotation {
             kindSegue = "showPinJob"
             chosenJob = annotation.job!
