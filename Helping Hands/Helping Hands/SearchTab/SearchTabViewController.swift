@@ -46,6 +46,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         retrieveJobs()
         filteredJobs = unfilteredJobs
         table.reloadData()
+        searchController.isActive = true
     }
     
     // Basic Table Functions
