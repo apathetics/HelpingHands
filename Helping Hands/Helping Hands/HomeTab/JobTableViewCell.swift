@@ -30,8 +30,8 @@ class JobTableViewCell: UITableViewCell, Themeable {
     }
     
     func applyTheme(theme: Theme) {
-        theme.applyBodyTextStyle(labels: [distanceLbl])
+        theme.applyBodyTextStyle(labels: [distanceLbl, jobDescriptionLbl])
         theme.applyBackgroundColor(views: [jobImg])
-        theme.applyHeadlineStyle(labels: [jobTitleLbl, jobDescriptionLbl, paymentLbl])
+        theme.applyHeadlineStyle(labels: [jobTitleLbl])
     }
 }

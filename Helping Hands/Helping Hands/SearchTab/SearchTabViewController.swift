@@ -23,6 +23,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     var unfilteredJobs = [Job]()
     var filteredJobs: [Job]?
     var chosen: Int?
+    var searchBar: UISearchBar?
     
     
     // Search controller responsible for doing real-time text search
@@ -45,10 +46,19 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         super.viewDidLoad()
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "Gidole-Regular", size: 20)!
+        """
+        let attributes = [
+            kCTForegroundColorAttributeName : UIColor.darkText,
+            kCTFontAttributeName : UIFont(name: "Gidole-Regular", size: 20)!
+        ]
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: ([UISearchBar.self])).setTitleTextAttributes(attributes as [NSAttributedStringKey : Any], for: [])
+        """
         let searchBar = searchController.searchBar
         searchBar.placeholder = "Search for Jobs"
         navigationItem.titleView = searchController.searchBar
-        
+        if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.titleLabel!.font = UIFont(name: "Gidole-Regular", size: 20)
+        }
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -57,11 +67,6 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if #available(iOS 11.0, *) {
-            table.contentInset = UIEdgeInsetsMake(0, 0, UIApplication.shared.keyWindow!.safeAreaInsets.bottom, 0.0)
-        } else {
-            // Fallback on earlier versions
-        };
         retrieveJobs()
         filteredJobs = unfilteredJobs
         table.reloadData()

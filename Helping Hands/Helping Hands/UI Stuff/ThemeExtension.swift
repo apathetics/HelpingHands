@@ -39,7 +39,7 @@ extension Theme {
     public var navigationBarTintColor: UIColor? { return UIColor.white }
     public var navigationBarTranslucent: Bool { return true }
     
-    public var navigationTitleFont: UIFont { return UIFont(name: "Gidole-Regular", size: 18)! }
+    public var navigationTitleFont: UIFont { return UIFont(name: "Gidole-Regular", size: 20)! }
     public var navigationTitleColor: UIColor { return UIColor(hex: "#1B212C") }
     
     public var tableViewBackgroundColor: UIColor { return UIColor.white }
@@ -47,7 +47,7 @@ extension Theme {
     public var headlineFont: UIFont { return UIFont(name: "Gidole-Regular", size: 20)! }
     public var headlineColor: UIColor { return UIColor(hex: "#1B212C") }
     
-    public var bodyTextFont: UIFont { return UIFont(name: "Gidole-Regular", size: 18)! }
+    public var bodyTextFont: UIFont { return UIFont(name: "Gidole-Regular", size: 17)! }
     public var bodyTextColor: UIColor { return UIColor(hex: "#1B212C") }
     
     public func applyBackgroundColor(views: [UIView]) {
