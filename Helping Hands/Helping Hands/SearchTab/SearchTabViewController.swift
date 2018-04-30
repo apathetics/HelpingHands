@@ -82,8 +82,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
             // Placeholder image
             let placeholderImage = UIImage(named: "meeting")
             // Load the image using SDWebImage
-            cell.picture.sd_setImage(with: URL(string: result.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
-            })
+            cell.picture.image = result.image
             cell.picture.layer.cornerRadius = 6.0
             cell.picture.clipsToBounds = true
             cell.jobTitleLabel.text = result.jobTitle
@@ -155,6 +154,14 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
                     job.payment = jobObject["jobPayment"] as! Double
                     job.jobTitle = jobObject["jobTitle"] as! String
                     job.jobId = jobSnapshot.ref.key
+                    // Placeholder image
+                    let placeholderImage = UIImage(named: "meeting")
+                    job.image = placeholderImage
+                    SDWebImageManager.shared().imageDownloader?.downloadImage(with:URL(string: job.imageAsString), options: SDWebImageDownloaderOptions.useNSURLCache, progress: nil, completed: { (image, error, cacheType, url) in
+                        if image != nil {
+                            job.image = image
+                        }
+                    })
                     if(jobObject["latitude"] == nil)
                     {
                         job.latitude = 0
