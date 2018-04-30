@@ -22,13 +22,10 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     var chosenJob:Job?
     var chosenEvent:Event?
     var kindSegue:String?
+    var lastLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
         
         ThemeService.shared.addThemeable(themable: self)
         self.navigationController?.title = "Explore"
@@ -38,13 +35,6 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        for _annotation in self.mapView.annotations {
-            if let annotation = _annotation as? MKAnnotation
-            {
-                self.mapView.removeAnnotation(annotation)
-            }
-        }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -125,10 +115,15 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+        if(lastLocation == nil) {
+            lastLocation = locations.first
             let span = MKCoordinateSpanMake(0.05, 0.05)
-            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+            let region = MKCoordinateRegion(center: lastLocation!.coordinate, span: span)
             mapView.setRegion(region, animated: true)
+            locationManager.stopUpdatingLocation()
+        }
+        else {
+            lastLocation = locations.last
         }
     }
     
