@@ -30,7 +30,9 @@ class EventTableViewCell: UITableViewCell, Themeable {
     }
     
     func applyTheme(theme: Theme) {
-        theme.applyBodyTextStyle(labels: [eventTitleLbl, eventDescriptionLbl])
+        theme.applyBodyTextStyle(labels: [distanceLbl, eventDescriptionLbl])
+        theme.applyBackgroundColor(views: [eventImg])
+        theme.applyHeadlineStyle(labels: [eventTitleLbl])
     }
     
 }

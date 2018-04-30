@@ -275,10 +275,6 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
         theme.applyTableViewBackgroundColor(tableView: [table])
-        for cell in table.visibleCells {
-            theme.applyBodyTextStyle(labels: [ ((cell as! EventTableViewCell).eventDescriptionLbl!) ])
-            theme.applyHeadlineStyle(labels: [ ((cell as! EventTableViewCell).eventTitleLbl!) ])
-        }
 
     }
 }

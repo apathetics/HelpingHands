@@ -12,7 +12,7 @@ import CoreLocation
 import FirebaseDatabase
 import FirebaseStorageUI
 
-class SearchTabViewController: UITableViewController, UISearchResultsUpdating, Themeable, CLLocationManagerDelegate {
+class SearchTabViewController: UITableViewController, UISearchResultsUpdating, Themeable, CLLocationManagerDelegate, SDWebImageManagerDelegate{
     
     @IBOutlet var table: UITableView!
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
@@ -23,6 +23,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     var unfilteredJobs = [Job]()
     var filteredJobs: [Job]?
     var chosen: Int?
+    var searchBar: UISearchBar?
     
     
     // Search controller responsible for doing real-time text search
@@ -30,6 +31,8 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     
     // Create unfiltered job list from Job CoreData
     override func viewDidLoad() {
+        SDWebImageManager.shared().delegate = self
+        SDWebImagePrefetcher.shared().manager.delegate = self
         self.definesPresentationContext = true
         self.hideKeyboardWhenTappedAround()
         ThemeService.shared.addThemeable(themable: self)
@@ -43,10 +46,19 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         super.viewDidLoad()
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "Gidole-Regular", size: 20)!
+        """
+        let attributes = [
+            kCTForegroundColorAttributeName : UIColor.darkText,
+            kCTFontAttributeName : UIFont(name: "Gidole-Regular", size: 20)!
+        ]
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: ([UISearchBar.self])).setTitleTextAttributes(attributes as [NSAttributedStringKey : Any], for: [])
+        """
         let searchBar = searchController.searchBar
         searchBar.placeholder = "Search for Jobs"
         navigationItem.titleView = searchController.searchBar
-        
+        if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.titleLabel!.font = UIFont(name: "Gidole-Regular", size: 20)
+        }
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -156,11 +168,19 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
                     job.jobTitle = jobObject["jobTitle"] as! String
                     job.jobId = jobSnapshot.ref.key
                     // Placeholder image
-                    let placeholderImage = UIImage(named: "meeting")
-                    job.image = placeholderImage
-                    SDWebImageManager.shared().imageDownloader?.downloadImage(with:URL(string: job.imageAsString), options: SDWebImageDownloaderOptions.useNSURLCache, progress: nil, completed: { (image, error, cacheType, url) in
-                        if image != nil {
+                    
+                    SDImageCache.shared().queryCacheOperation(forKey: job.imageAsString, done: { (image, data, type) in
+                        if let image = image {
                             job.image = image
+                        } else {
+                            if let imgUrl = job.imageAsString {
+                                SDWebImageManager.shared().loadImage(with: URL(string: imgUrl), options: [], progress: nil) { (image, data, error, type, done, url) in
+                                    job.image = image
+                                    SDImageCache.shared().store(image, forKey: job.imageAsString, completion: nil)
+                                }
+                            } else {
+                                job.image = UIImage(named: "meeting")
+                            }
                         }
                     })
                     if(jobObject["latitude"] == nil)
