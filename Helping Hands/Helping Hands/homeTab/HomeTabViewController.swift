@@ -37,7 +37,10 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
+        if(jobs.count > 0) {
+            activityIndicatorView.stopAnimating()
+            loadingView.isHidden = true
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -259,27 +262,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         })
-//        usleep(1500000) // sleep .5 seconds
-//        if (table.visibleCells.count == 0) {
-//            activityIndicatorView.stopAnimating()
-//            activityIndicatorView.isHidden = true
-//            var frame = CGRect(x: loadingView.bounds.size.width*0.5 - 90, y: loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
-//            let errorView = UIView(frame: frame)
-//            let size = CGSize(width: 180, height: 350)
-//            let errorGraphic = UIImageView(image: UIImage(named: "nojobs")?.scaleImageToSize(newSize: size))
-//            errorView.addSubview(errorGraphic)
-//            frame = CGRect(x: loadingView.bounds.size.width*0.5 - 90, y: loadingView.bounds.size.height*0.5 + 180, width: 180, height: 50)
-//            errorLBL = UILabel(frame: frame)
-//            errorLBL.lineBreakMode = .byWordWrapping
-//            errorLBL.numberOfLines = 0
-//            errorLBL.textAlignment = .center
-//            errorLBL.text = "There are currently no jobs in this area :("
-//            errorLBL.font = UIFont(name: "Gidole-Regular", size: 20)
-//            errorLBL.textColor = UIColor(hex:"2b3445")
-//            loadingView.addSubview(errorView)
-//            loadingView.addSubview(errorLBL)
-//
-//        }
     }
     
     
