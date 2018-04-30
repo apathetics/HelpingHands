@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Helping Hands/ExploreTab/ExploreTabViewController.swift"
-            timestampString = "546764889.958814"
+            timestampString = "546770878.341238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "retrieveEvents()"
             landmarkType = "7">
          </BreakpointContent>
