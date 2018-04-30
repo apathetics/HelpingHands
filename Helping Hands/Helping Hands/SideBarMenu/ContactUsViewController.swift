@@ -8,24 +8,30 @@
 
 import UIKit
 import MessageUI
+import FirebaseAuth
 
-class ContactUsViewController: UIViewController, MFMailComposeViewControllerDelegate, Themeable {
+class ContactUsViewController: UITableViewController, MFMailComposeViewControllerDelegate, UITextViewDelegate, UITextFieldDelegate, Themeable {
+
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var emailTF: UITextField!
+    @IBOutlet weak var subjectTF: UITextField!
+    @IBOutlet weak var msgTV: UITextView!
     
-    @IBOutlet weak var subjectFld: UITextField!
-    @IBOutlet weak var body: UITextView!
-    
-    @IBOutlet weak var header1: UILabel!
-    @IBOutlet weak var header2: UILabel!
-    @IBOutlet weak var subjectLBL: UILabel!
-    @IBOutlet weak var bodyLBL: UILabel!
-    @IBOutlet weak var sendBTN: UIButton!
-    
+    var user = FIRAuth.auth()?.currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         ThemeService.shared.addThemeable(themable: self)
         // Do any additional setup after loading the view.
+        msgTV.delegate = self
+        nameTF.delegate = self
+        emailTF.delegate = self
+        subjectTF.delegate = self
+        
+        //Display user name and email based on account
+        nameTF.text = user?.displayName
+        emailTF.text = user?.email
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,67 +39,46 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onBackButtonClick(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func exit(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    func configuredMailComposeViewController() -> MFMailComposeViewController {
-        let subjectText = subjectFld.text!
-        let bodyText = body.text!
+    @IBAction func sendPressed(_ sender: Any) {
+        let mailVC = MFMailComposeViewController()
+        if(!MFMailComposeViewController.canSendMail()) {
+            print("can't send any mail!!!!!")
+            return
+        }
+
+        mailVC.mailComposeDelegate = self
+        mailVC.setSubject(subjectTF.text!)
         
-        let mailViewController:MFMailComposeViewController = MFMailComposeViewController()
+        let email = emailTF.text?.lowercased()
+        let finalEmail = email?.trimmingCharacters(in: NSCharacterSet.whitespaces)
         
-        mailViewController.mailComposeDelegate = self
-        mailViewController.setSubject(subjectText)
-        mailViewController.setMessageBody(bodyText, isHTML: false)
-        mailViewController.setToRecipients(["kafleyozone@gmail.com"])
+        let mailContent = "Name: \(nameTF.text!)\n\nSubject: \(subjectTF.text!)\n\nEmail: \(finalEmail)\n\nMessage: \(msgTV.text!)"
         
-        return mailViewController
-    }
-    
-    func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertController(title: "Error Sending Mail", message: "Please try again after properly setting up your email account on this device.", preferredStyle: UIAlertControllerStyle.alert)
-        self.present(sendMailErrorAlert, animated: true, completion: nil)
-    }
-    
-    @IBAction func sendEmail(_ sender: Any) {
-        let mailComposeVC = configuredMailComposeViewController()
-        self.dismiss(animated: true, completion: nil)
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeVC, animated: true, completion: nil)
-        } else {
-            self.showSendMailErrorAlert()
+        mailVC.setMessageBody(msgTV.text!, isHTML: false)
+        
+        mailVC.setToRecipients(["manasa.tipparam@gmail.com", "bryanbernal97@gmail.com", "kafleyozone@gmail.com"])
+        
+        self.present(mailVC, animated: true) {
+            self.nameTF.text = ""
+            self.emailTF.text = ""
+            self.subjectTF.text = ""
+            self.msgTV.text = ""
         }
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        self.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true)
     }
     
     func applyTheme(theme: Theme) {
-        theme.applyBackgroundColor(views: [view])
-        theme.applyNavBarTintColor(navBar: self.navigationController!)
-        theme.applyTintColor_Font(navBar: self.navigationController!)
-        theme.applyHeadlineStyle(labels: [header1, header2])
-        theme.applyBodyTextStyle(labels: [subjectLBL, bodyLBL])
-        theme.applyFilledButtonStyle(buttons: [sendBTN])
-        theme.applyTextFieldTextStyle(textFields: [subjectFld])
-        theme.applyTextViewStyle(textViews: [body])
+        theme.applyBackgroundColor(views: [self.view])
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTF.resignFirstResponder()
+        emailTF.resignFirstResponder()
+        subjectTF.resignFirstResponder()
+    
+        return true
     }
 }
