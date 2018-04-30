@@ -44,11 +44,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
                 self.mapView.removeAnnotation(annotation)
             }
         }
-        
-        retrieveJobs()
-        retrieveEvents()
-        
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,13 +60,67 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
             }
         }
         
+        enableBasicLocationServices()
+    }
+    
+    // asynchronously determines whether or not changes to location settings have been made and responds
+    // by asking user to turn them back on for the app.
+    func enableBasicLocationServices() {
+        locationManager.delegate = self
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            // Request when-in-use authorization initially
+            locationManager.requestWhenInUseAuthorization()
+            break
+            
+        case .restricted, .denied:
+            // Disable location features
+            disableMyLocationBasedFeatures()
+            break
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            // Enable location features
+            enableMyWhenInUseFeatures()
+            break
+        }
+    }
+    
+    // Prevents Location Features from being called, asks user to enable them
+    func disableMyLocationBasedFeatures() {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let SWRController: EnableLocationViewController = storyboard.instantiateViewController(withIdentifier: "allowLocationPls") as! EnableLocationViewController
+        self.present(SWRController, animated: true, completion: nil)
+    }
+    
+    // Enables Location Features
+    func enableMyWhenInUseFeatures() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
         retrieveJobs()
         retrieveEvents()
     }
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            locationManager.requestLocation()
+    // asynchronously determines whether or not changes to location settings have been made and responds
+    // by asking user to turn them back on for the app.
+    public func locationManager(_ manager: CLLocationManager,
+                                didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+            
+        // Display page asking to turn back on settings to use the app.
+        case .restricted, .denied:
+            disableMyLocationBasedFeatures()
+            break
+            
+        // If authorized, load in jobs
+        case .authorizedWhenInUse, .authorizedAlways:
+            enableMyWhenInUseFeatures()
+            break
+            
+        // Not happening
+        case .notDetermined:
+            break
         }
     }
     
