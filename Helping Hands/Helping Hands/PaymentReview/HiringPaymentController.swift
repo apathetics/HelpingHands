@@ -72,10 +72,27 @@ class HiringPaymentController: UIViewController {
                 let jobCompletedChild = userRef.child("jobsCompletedArray").childByAutoId()
                 jobCompletedChild.setValue(["jobId": newPost.key])
                 
+                // GOING THROUGH JOBS INQUIRED ARRAY
+                databaseRef.child("users").child(jobCompletedBy).child("jobsInquiredArray").observe(FIRDataEventType.value, with: {(snapshot) in
+                    if snapshot.childrenCount > 0 {
+                        for jobsPostedSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                            let jobsPostedObject = jobsPostedSnapshot.value as! [String: AnyObject]
+                            
+                            let jobId = jobsPostedObject["jobId"] as! String
+                            
+                            // DELETE FROM POSTER'S POSTED! @TODO: UNCOMMENT!
+                            if (jobId == self.chosenJobId) {
+//                                databaseRef.child("users").child(jobCompletedBy).child("jobsInquiredArray").child(jobsPostedSnapshot.key).removeValue()
+                            }
+                        }
+                    }
+                })
+                
                 self.dismiss(animated: true, completion: nil)
             })
 
         })
+        
         
         
         self.dismiss(animated: true, completion: nil)
