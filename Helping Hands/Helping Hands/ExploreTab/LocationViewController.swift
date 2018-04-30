@@ -30,6 +30,7 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
     var delegate: AddressDelegate?
     var address:String?
     var latLong:(Double, Double)?
+    var lastLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,10 +117,15 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+        if(lastLocation == nil) {
+            lastLocation = locations.first
             let span = MKCoordinateSpanMake(0.05, 0.05)
-            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+            let region = MKCoordinateRegion(center: lastLocation!.coordinate, span: span)
             mapView.setRegion(region, animated: true)
+            locationManager.stopUpdatingLocation()
+        }
+        else {
+            lastLocation = locations.last
         }
     }
     

@@ -60,6 +60,7 @@
 		398732872062A83300A29D39 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732862062A83300A29D39 /* EditUserViewController.swift */; };
 		398732892062B43200A29D39 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732882062B43200A29D39 /* EditEventViewController.swift */; };
 		3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328A2062C8DB00A29D39 /* EditJobViewController.swift */; };
+		39D84B27209740D200BFCC08 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D84B26209740D200BFCC08 /* SearchResult.swift */; };
 		39ED45BC206F357300084F9E /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED45BB206F357300084F9E /* LocationViewController.swift */; };
 		39ED45C0206F3EFD00084F9E /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED45BF206F3EFD00084F9E /* LocationSearchTable.swift */; };
 		AB5F4B88205DDEA30085A11D /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -130,6 +131,7 @@
 		398732862062A83300A29D39 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
 		398732882062B43200A29D39 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		3987328A2062C8DB00A29D39 /* EditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJobViewController.swift; sourceTree = "<group>"; };
+		39D84B26209740D200BFCC08 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		39ED45BB206F357300084F9E /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		39ED45BF206F3EFD00084F9E /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Helping_Hands.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,6 +259,7 @@
 			children = (
 				1927A60E205F419F00628A1C /* SearchTableCell.swift */,
 				1927A60D205F419F00628A1C /* SearchTabViewController.swift */,
+				39D84B26209740D200BFCC08 /* SearchResult.swift */,
 			);
 			path = SearchTab;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				193C22E9209480E900311893 /* ImageRotationExtension.swift in Sources */,
 				AB9E1651206318A60063A232 /* Event.swift in Sources */,
 				1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */,
+				39D84B27209740D200BFCC08 /* SearchResult.swift in Sources */,
 				1927A5F5205F40F300628A1C /* BEMCheckBox.m in Sources */,
 				1927A615205F41C900628A1C /* HiringPaymentController.swift in Sources */,
 				1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */,
@@ -724,11 +728,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MSX86K838U;
+				DEVELOPMENT_TEAM = 7K6545L544;
 				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = helpinghands;
+				PRODUCT_BUNDLE_IDENTIFIER = helpinghands123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
@@ -746,11 +750,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MSX86K838U;
+				DEVELOPMENT_TEAM = 7K6545L544;
 				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = helpinghands;
+				PRODUCT_BUNDLE_IDENTIFIER = helpinghands123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
