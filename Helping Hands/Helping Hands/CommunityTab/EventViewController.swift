@@ -223,6 +223,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             let u:User = attendees[chosen!]
             let destVC: UINavigationController = segue.destination as! UINavigationController
             let userVC:UserViewController =  destVC.topViewController as! UserViewController
+            
+            userVC.inquiryOrAttendee = true
             userVC.user = u
             userVC.userIndexPath = chosen!
         }
@@ -286,7 +288,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                         user.userNumJobsPosted = userObject["jobsPosted"] as! Int
                         user.userMoneyEarned = userObject["moneyEarned"] as! Double
                         user.userPhotoAsString = userObject["photoUrl"] as! String
-                        
+                        user.userID = userAttendeeId
                         
                         if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
                             user.userBio = "Description..."

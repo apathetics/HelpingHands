@@ -33,6 +33,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     var user:User!
     var userIndexPath:Int?
     
+    var inquiryOrAttendee = false
+    
     var postedJobs = [Job]()
     var pendingJobs = [Job]()
     var completedJobs = [Job]()
@@ -241,8 +243,12 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     // FIREBASE RETRIEVAL
     func retrieveUser() {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
-        let userRef = databaseRef.child("users").child(userId)
+        var userRef = databaseRef.child("users").child(self.userId)
         
+        if self.inquiryOrAttendee {
+            userRef = databaseRef.child("users").child(user.userID)
+        }
+
         userRef.observeSingleEvent(of: .value, with: {(snapshot) in
             
             // retrieve jobs and append to job list after creation
@@ -286,7 +292,11 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     func retrieveJobStatuses() {
         
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
-        let currentUserRef = databaseRef.child("users").child(self.userId)
+        var currentUserRef = databaseRef.child("users").child(self.userId)
+    
+        if self.inquiryOrAttendee {
+            currentUserRef = databaseRef.child("users").child(user.userID)
+        }
         
         var postedJobsId = [String]()
         var pendingJobsId = [String]()
@@ -315,7 +325,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         
                         // retrieve jobs and append to job list after creation
                         // TODO: Bug seems to be happening here? Not sure why, but I can't open up my user profile - Bryan
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         let jobObject = snapshot.value as! [String: AnyObject]
                         let job = Job()
                         
