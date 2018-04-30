@@ -206,6 +206,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
                         job.longitude = jobObject["longitude"] as! Double
                     }
                     
+                    
                     let locationManager = CLLocationManager()
                     locationManager.delegate = self;
                     locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -261,6 +262,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
                         event.longitude = eventObject["longitude"] as! Double
                     }
                     
+                    // Grab user's current location and calculate distance between event and user
                     let locationManager = CLLocationManager()
                     locationManager.delegate = self;
                     locationManager.desiredAccuracy = kCLLocationAccuracyBest

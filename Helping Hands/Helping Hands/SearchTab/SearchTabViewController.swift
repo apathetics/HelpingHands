@@ -130,6 +130,8 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         })
     }
     
+
+    
     // Retrieve Events from CoreData
     // @TODO: Put this in a Util class.
     func retrieveEvents() -> [NSManagedObject] {
