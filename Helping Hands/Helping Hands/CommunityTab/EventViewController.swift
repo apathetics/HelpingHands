@@ -220,9 +220,10 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showAttendee")
         {
-            let j:User = attendees[chosen!]
-            let userVC:UserViewController = segue.destination as! UserViewController
-            userVC.user = j
+            let u:User = attendees[chosen!]
+            let destVC: UINavigationController = segue.destination as! UINavigationController
+            let userVC:UserViewController =  destVC.topViewController as! UserViewController
+            userVC.user = u
             userVC.userIndexPath = chosen!
         }
         if(segue.identifier == "showEventEditor")
