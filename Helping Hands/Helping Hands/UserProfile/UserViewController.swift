@@ -315,6 +315,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         
                         // retrieve jobs and append to job list after creation
                         // TODO: Bug seems to be happening here? Not sure why, but I can't open up my user profile - Bryan
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         let jobObject = snapshot.value as! [String: AnyObject]
                         let job = Job()
                         
@@ -334,6 +335,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         
                         self.postedJobs.append(job)
                         self.table.reloadData()
+                        }
                     })
                 }
             }
