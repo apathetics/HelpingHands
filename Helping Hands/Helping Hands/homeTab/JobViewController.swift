@@ -25,7 +25,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var jobDistance: UILabel!
     @IBOutlet weak var jobDescription: UILabel!
     @IBOutlet weak var table: UITableView!
-    @IBOutlet weak var navButton: UIBarButtonItem!
+    @IBOutlet weak var signUpButton: UIBarButtonItem!
     
     @IBOutlet weak var descriptionLBL: UILabel!
     @IBOutlet weak var inquiriesLBL: UILabel!
@@ -39,6 +39,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var inquiry:User!
     var locationManager = CLLocationManager()
     
+//    var inquiriesArray: [String]!
+    
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
     
@@ -49,6 +51,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         table.dataSource = self
         table.delegate = self
+        
+        table.rowHeight = 73
         
         j = job
         
@@ -163,6 +167,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // Load the image using SDWebImage
         cell.userImg.sd_setImage(with: URL(string: u.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
+        cell.userImg.layer.cornerRadius = cell.userImg.frame.height/2
         cell.userImg.clipsToBounds = true
         cell.userImg.contentMode = .scaleAspectFill
 //        cell.userImg.image = u.userPhoto
@@ -317,6 +322,65 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         })
     }
     
+//    func retrieveInquiries() {
+//        if inquiriesArray == nil {
+//            inquiriesArray = [String]()
+//        }
+//        let jobsRef = databaseRef.child("jobs")
+//        let userRef = databaseRef.child("users")
+//        let usersInquiredRef = jobsRef.child(jobID!).child("usersInquiredArray")
+//
+//        usersInquiredRef.observe(FIRDataEventType.value) { (snapshot) in
+//            // More than 0 inquiries
+//            if snapshot.childrenCount > 0 {
+//                // For each snapshot (entity) -> Add user id to inquiriesArray
+//                for inquirySnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+//                    let inquiryObj = inquirySnapshot.value as! [String:AnyObject]
+//                    let inquiryUserId = inquiryObj["userId"] as! String
+//
+//                    //User already signed up
+//                    if self.inquiriesArray.contains(inquiryUserId) {
+//                        print("User Already Signed up")
+//                        self.navigationItem.rightBarButtonItem = nil
+//                        return
+//                    } else {
+//                        self.inquiriesArray.append(inquiryUserId)
+//                    }
+//                }
+//                // For each user id in inquiriesArray -> add user to inquiries list
+//                for userId in self.inquiriesArray {
+//                    userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//                        let userObj = snapshot.value as! [String:Any]
+//                        let user = User()
+//
+//                        user.userFirstName = userObj["firstName"] as! String
+//                        user.userLastName = userObj["lastName"] as! String
+//                        user.userEmail = userObj["email"] as! String
+//                        user.userJobsCompleted = userObj["jobsCompleted"] as! Int
+//                        user.userNumJobsPosted = userObj["jobsPosted"] as! Int
+//                        user.userMoneyEarned = userObj["moneyEarned"] as! Double
+//                        user.userPhotoAsString = userObj["photoUrl"] as! String
+//                        user.userID = userId
+//                        if(userObj["bio"] as? String == nil || userObj["bio"] as! String == "") {
+//                            user.userBio = "Description..."
+//                        }
+//                        else {
+//                            user.userBio = userObj["bio"] as! String
+//                        }
+//                        //TODO: SETTINGS NOT IN DATABASE YET
+//                        user.userLocationRadius = 1
+//                        user.userDistance = 1
+//                        user.userRating = 5
+//
+//                        self.inquiries.append(user)
+//                        self.table.reloadData()
+//                    })
+//                }
+//                self.table.reloadData()
+//            }
+//        }
+//    }
+    
     func retrieveInquiries() {
         
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
@@ -348,7 +412,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 
                 for userInquiryId in userInquiryIdArray {
                     self.inquiries.removeAll()
-
+                    
                     let userRef = databaseRef.child("users").child(userInquiryId)
                     
                     userRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -387,7 +451,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         })
         
     }
-    
+
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, imgGradientView])

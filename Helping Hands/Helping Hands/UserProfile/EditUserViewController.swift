@@ -117,7 +117,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            userPhoto.image = image
+            userPhoto.image = image.fixOrientation()
             self.imgChosen = true
         } else {
             //error

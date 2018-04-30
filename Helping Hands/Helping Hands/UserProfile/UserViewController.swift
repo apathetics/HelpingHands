@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorageUI
@@ -24,8 +25,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var starIcon: UIImageView!
     @IBOutlet weak var bioLBL: UILabel!
     
-    
-    
+    let manager = CLLocationManager()
+
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
     
@@ -291,7 +292,11 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     func retrieveJobStatuses() {
-        
+        let locationManager = self.manager
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         var currentUserRef = databaseRef.child("users").child(self.userId)
     
@@ -344,6 +349,11 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         job.jobTitle = jobObject["jobTitle"] as! String
                         job.jobId = snapshot.ref.key
                         
+                            
+                        let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
+                        
+                        job.distance = distance
+
                         self.postedJobs.append(job)
                         self.table.reloadData()
                         }
@@ -387,6 +397,10 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         job.jobTitle = jobObject["jobTitle"] as! String
                         job.jobId = snapshot.ref.key
                         job.jobCreator = jobObject["jobCreator"] as! String
+
+                        let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
+
+                        job.distance = distance
                         
                         self.pendingJobs.append(job)
                         self.table.reloadData()
