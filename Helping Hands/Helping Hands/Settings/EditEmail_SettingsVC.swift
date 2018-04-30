@@ -69,22 +69,27 @@ class EditEmail_SettingsVC: UITableViewController, Themeable, UIPopoverPresentat
                     // Email updated.
                     print("Email change success!")
                     self.updateDatabase()
-                    self.checkmarkImg.isHidden = false
-                    self.checkmarkImg.alpha = 0
-                    UIView.animate(withDuration: 1.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                        self.checkmarkImg.alpha = 1
-                    }) { (bool) in
-                        UIView.animate(withDuration: 0.3, animations: {
-                            self.checkmarkImg.alpha = 0
-                        }, completion: { (b) in
-                            self.checkmarkImg.isHidden = true
-                        })
-                    }
+                    self.successAnimation(images: [self.checkmarkImg])
                 }
             }
         }
     }
-    
+
+    func successAnimation(images: [UIImageView]) {
+        for img in images {
+            img.isHidden = false
+            img.alpha = 0
+            UIView.animate(withDuration: 1.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                img.alpha = 1
+            }) { (bool) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    img.alpha = 0
+                }, completion: { (b) in
+                    img.isHidden = true
+                })
+            }
+        }
+    }
 
     func showReauthPopover() {
         // Display popover view controller for re-authorization
@@ -119,6 +124,7 @@ class EditEmail_SettingsVC: UITableViewController, Themeable, UIPopoverPresentat
         theme.applyIconStyle(icons: [emailImg])
         theme.applyTextFieldTextStyle(textFields: [emailTF])
         theme.applyTextFieldStyle(color: UIColor.white, textFields: [emailTF])
+        theme.applyHeadlineStyle(labels: [confirmLBL])
     }
     
 }

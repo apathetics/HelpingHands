@@ -50,6 +50,7 @@
 		198AC02D2072D0080017C84F /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC02C2072D0080017C84F /* ThemeService.swift */; };
 		19CEC47720964E3F00867280 /* EditEmail_SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CEC47620964E3F00867280 /* EditEmail_SettingsVC.swift */; };
 		19CEC4792096660900867280 /* ReauthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CEC4782096660900867280 /* ReauthenticationVC.swift */; };
+		19EBB0E72096D30C00A026E6 /* EditPassword_SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EBB0E62096D30B00A026E6 /* EditPassword_SettingsVC.swift */; };
 		3969FBD42096B7BD00F11470 /* EnableLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3969FBD32096B7BD00F11470 /* EnableLocationViewController.swift */; };
 		3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB0205F350700DBFA64 /* UserViewController.swift */; };
 		3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* EventViewController.swift */; };
@@ -121,6 +122,7 @@
 		198AC02C2072D0080017C84F /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
 		19CEC47620964E3F00867280 /* EditEmail_SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEmail_SettingsVC.swift; sourceTree = "<group>"; };
 		19CEC4782096660900867280 /* ReauthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReauthenticationVC.swift; sourceTree = "<group>"; };
+		19EBB0E62096D30B00A026E6 /* EditPassword_SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPassword_SettingsVC.swift; sourceTree = "<group>"; };
 		3969FBD32096B7BD00F11470 /* EnableLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableLocationViewController.swift; sourceTree = "<group>"; };
 		3970FEB0205F350700DBFA64 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		3970FEB2205F3CA300DBFA64 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		192776A120755886006451CD /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				19EBB0E62096D30B00A026E6 /* EditPassword_SettingsVC.swift */,
 				192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */,
 				192776A42075594C006451CD /* SettingsVC.swift */,
 				19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */,
@@ -566,6 +569,7 @@
 				3969FBD42096B7BD00F11470 /* EnableLocationViewController.swift in Sources */,
 				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,
+				19EBB0E72096D30C00A026E6 /* EditPassword_SettingsVC.swift in Sources */,
 				19CEC47720964E3F00867280 /* EditEmail_SettingsVC.swift in Sources */,
 				1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */,
 				1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */,
@@ -733,6 +737,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = helpinghands123;
+				DEVELOPMENT_TEAM = MSX86K838U;
+				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = helpinghands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
@@ -755,6 +764,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = helpinghands123;
+				DEVELOPMENT_TEAM = MSX86K838U;
+				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = helpinghands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
