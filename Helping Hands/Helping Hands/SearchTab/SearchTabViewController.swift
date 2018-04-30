@@ -20,8 +20,9 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     let manager = CLLocationManager()
     
     // Currently only searching through jobs and not events
-    var unfilteredJobs = [Job]()
-    var filteredJobs: [Job]?
+    var unfilteredSearchResults = [SearchResult]()
+    var filteredSearchResults: [SearchResult]?
+    
     var chosen: Int?
     var searchBar: UISearchBar?
     
@@ -54,7 +55,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         UIBarButtonItem.appearance(whenContainedInInstancesOf: ([UISearchBar.self])).setTitleTextAttributes(attributes as [NSAttributedStringKey : Any], for: [])
         """
         let searchBar = searchController.searchBar
-        searchBar.placeholder = "Search for Jobs"
+        searchBar.placeholder = "Search for Jobs or Events"
         navigationItem.titleView = searchController.searchBar
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.titleLabel!.font = UIFont(name: "Gidole-Regular", size: 20)
@@ -68,7 +69,8 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     
     override func viewWillAppear(_ animated: Bool) {
         retrieveJobs()
-        filteredJobs = unfilteredJobs
+        retrieveEvents()
+        filteredSearchResults = unfilteredSearchResults
         table.reloadData()
         searchController.isActive = true
     }
@@ -79,7 +81,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let returnedResults = filteredJobs else {
+        guard let returnedResults = filteredSearchResults else {
             return 0
         }
         
@@ -89,21 +91,39 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchTableCell
     
-        // Fill cells with jobs from filteredJobs
-        if let returnedResults = filteredJobs {
-            let result: Job = returnedResults[indexPath.row]
-            // Placeholder image
-            let placeholderImage = UIImage(named: "meeting")
-            // Load the image using SDWebImage
-            cell.picture.image = result.image
-            cell.picture.layer.cornerRadius = 6.0
-            cell.picture.clipsToBounds = true
-            cell.jobTitleLabel.text = result.jobTitle
-            cell.picture.image = result.image
-            cell.distanceLabel.text = String(format: "%.2f", result.distance) + " mi"
-            cell.descriptionLabel.text = result.jobDescription
-            cell.typeResult = "job"
+        // Fill cells with jobs from filteredSearchResults
+        if let returnedResults = filteredSearchResults {
+            let searchR: SearchResult = returnedResults[indexPath.row]
+            if searchR.kind == "job" {
+                let result = searchR.j!
+                // Placeholder image
+                let placeholderImage = UIImage(named: "meeting")
+                // Load the image using SDWebImage
+                cell.picture.image = result.image
+                cell.picture.layer.cornerRadius = 6.0
+                cell.picture.clipsToBounds = true
+                cell.jobTitleLabel.text = result.jobTitle
+                cell.picture.image = result.image
+                cell.distanceLabel.text = String(format: "%.2f", result.distance) + " mi"
+                cell.descriptionLabel.text = result.jobDescription
+                cell.typeResult = "job"
+            }
+            else if searchR.kind == "event" {
+                let result = searchR.e!
+                // Placeholder image
+                let placeholderImage = UIImage(named: "meeting")
+                // Load the image using SDWebImage
+                cell.picture.image = result.image
+                cell.picture.layer.cornerRadius = 6.0
+                cell.picture.clipsToBounds = true
+                cell.jobTitleLabel.text = result.eventTitle
+                cell.picture.image = result.image
+                cell.distanceLabel.text = String(format: "%.2f", result.distance) + " mi"
+                cell.descriptionLabel.text = result.eventDescription
+                cell.typeResult = "event"
+            }
         }
+        
         cell.backgroundColor = UIColor.clear
         return cell
     }
@@ -111,11 +131,12 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     // Real-time update search results per letter typed
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            filteredJobs = unfilteredJobs.filter {
-                job in return (job.jobTitle.lowercased().contains(searchText.lowercased()))
-            }
-        } else {
-            filteredJobs = unfilteredJobs
+            filteredSearchResults = unfilteredSearchResults.filter {
+                result in return ((result.kind == "job" && result.j!.jobTitle.lowercased().contains(searchText.lowercased())) || (result.kind == "event" && result.e!.eventTitle.lowercased().contains(searchText.lowercased())))
+                }
+        }
+        else {
+            filteredSearchResults = unfilteredSearchResults
         }
         tableView.reloadData()
     }
@@ -125,14 +146,24 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         if((table.cellForRow(at: indexPath) as! SearchTableCell).typeResult == "job") {
             self.performSegue(withIdentifier: "jobSearchResult", sender: self)
         }
+        else if((table.cellForRow(at: indexPath) as! SearchTableCell).typeResult == "event") {
+            self.performSegue(withIdentifier: "eventSearchResult", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "jobSearchResult") {
-            let j:Job = filteredJobs![chosen!]
+            let j:Job = filteredSearchResults![chosen!].j!
             let jobVC:JobViewController = segue.destination as! JobViewController
             jobVC.job = j
             jobVC.jobID = j.jobId
+        }
+        
+        if(segue.identifier == "eventSearchResult") {
+            let e:Event = filteredSearchResults![chosen!].e!
+            let eventVC:EventViewController = segue.destination as! EventViewController
+            eventVC.event = e
+            eventVC.eventID = e.eventId
         }
     }
     
@@ -148,7 +179,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
             if snapshot.childrenCount > 0 {
                 
                 // clear job list before appending again
-                self.unfilteredJobs.removeAll()
+                self.unfilteredSearchResults.removeAll()
                 
                 for jobSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
                     
@@ -167,7 +198,6 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
                     job.payment = jobObject["jobPayment"] as! Double
                     job.jobTitle = jobObject["jobTitle"] as! String
                     job.jobId = jobSnapshot.ref.key
-                    // Placeholder image
                     
                     SDImageCache.shared().queryCacheOperation(forKey: job.imageAsString, done: { (image, data, type) in
                         if let image = image {
@@ -183,6 +213,7 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
                             }
                         }
                     })
+                    
                     if(jobObject["latitude"] == nil)
                     {
                         job.latitude = 0
@@ -200,7 +231,12 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
                     let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
                     job.distance = distance
                     
-                    self.unfilteredJobs.append(job)
+                    var j = SearchResult()
+                    j.kind = "job"
+                    j.j = job
+                    
+                    self.unfilteredSearchResults.append(j)
+
                     self.table.reloadData()
                     
                 }
@@ -208,31 +244,74 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         })
     }
     
-
-    
-    // Retrieve Events from CoreData
-    // @TODO: Put this in a Util class.
-    func retrieveEvents() -> [NSManagedObject] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
+    // DATABASE RETRIEVAL
+    func retrieveEvents() {
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"EventEntity")
-        var fetchedResults:[NSManagedObject]? = nil
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+        let eventsRef = databaseRef.child("events")
         
-        // Examples of filtering using predicates
-        // let predicate = NSPredicate(format: "age = 35")
-        // let predicate = NSPredicate(format: "name CONTAINS[c] 'ake'")
-        // request.predicate = predicate
-        
-        do {
-            try fetchedResults = context.fetch(request) as? [NSManagedObject]
-        } catch {
-            // If an error occurs
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        return(fetchedResults)!
+        eventsRef.observe(FIRDataEventType.value, with: {(snapshot) in
+            
+            // make sure there are events
+            if snapshot.childrenCount > 0 {
+                
+                // for each snapshot (entity present under events child)
+                for eventSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    
+                    let eventObject = eventSnapshot.value as! [String: AnyObject]
+                    let event = Event()
+                    
+                    event.address = eventObject["eventAddress"] as! String
+                    event.currentLocation = eventObject["eventCurrentLocation"] as! Bool
+                    event.eventDateString = eventObject["eventDate"] as! String
+                    event.eventDescription = eventObject["eventDescription"] as! String
+                    event.distance = eventObject["eventDistance"] as! Double
+                    event.imageAsString = eventObject["eventImageUrl"] as! String
+                    event.numHelpers = eventObject["eventNumHelpers"] as! Int
+                    event.eventTitle = eventObject["eventTitle"] as! String
+                    event.eventId = eventSnapshot.ref.key
+                    if(eventObject["latitude"] == nil)
+                    {
+                        event.latitude = 0
+                        event.longitude = 0
+                    }
+                    else {
+                        event.latitude = eventObject["latitude"] as! Double
+                        event.longitude = eventObject["longitude"] as! Double
+                    }
+                    
+                    SDImageCache.shared().queryCacheOperation(forKey: event.imageAsString, done: { (image, data, type) in
+                        if let image = image {
+                            event.image = image
+                        } else {
+                            if let imgUrl = event.imageAsString {
+                                SDWebImageManager.shared().loadImage(with: URL(string: imgUrl), options: [], progress: nil) { (image, data, error, type, done, url) in
+                                    event.image = image
+                                    SDImageCache.shared().store(image, forKey: event.imageAsString, completion: nil)
+                                }
+                            } else {
+                                event.image = UIImage(named: "meeting")
+                            }
+                        }
+                    })
+                    
+                    let locationManager = self.manager
+                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    locationManager.requestAlwaysAuthorization()
+                    locationManager.startUpdatingLocation()
+                    let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as! Double) * 0.00062137
+                    event.distance = distance
+                    
+                    var e = SearchResult()
+                    e.kind = "event"
+                    e.e = event
+                    
+                    self.unfilteredSearchResults.append(e)
+                    self.table.reloadData()
+                    
+                }
+            }
+        })
     }
     
     func applyTheme(theme: Theme) {

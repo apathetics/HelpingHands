@@ -16,6 +16,7 @@ class SearchTableCell: UITableViewCell, Themeable {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     var typeResult:String?
+    var indexFiltered:Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
