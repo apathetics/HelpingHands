@@ -45,6 +45,8 @@ class EditEmail_SettingsVC: UITableViewController, Themeable, UIPopoverPresentat
                 // do nothing, email is the same
                 return
             }
+            
+            
             //print("update to this \(emailTF.text!)\n\n\n")
             user?.updateEmail(emailTF.text!) { error in
                 if let error = error {
