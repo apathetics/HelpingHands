@@ -37,7 +37,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        if(jobs.count > 0) {
+        if(table.visibleCells.count > 0) {
             activityIndicatorView.stopAnimating()
             loadingView.isHidden = true
         }
@@ -84,7 +84,10 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.loadingView.addSubview(self.errorLBL)
             }
         }
-
+        if(table.visibleCells.count > 0) {
+            activityIndicatorView.stopAnimating()
+            loadingView.isHidden = true
+        }
     }
     
     // asynchronously determines whether or not changes to location settings have been made and responds

@@ -11,7 +11,12 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class QRViewController: UIViewController {
+class QRViewController: UIViewController, Themeable {
+    @IBOutlet weak var scanLBL: UILabel!
+    @IBOutlet weak var backBTN: UIButton!
+    @IBOutlet weak var paymentBTN: UIButton!
+    
+    
     
     @IBOutlet weak var qrCodeBox: UIImageView!
     var chosenJobId: String!
@@ -20,7 +25,7 @@ class QRViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ThemeService.shared.addThemeable(themable: self)
         // QR codes are always square so make sure width == height if playing with constraints
         // @TODO: Discuss how to hash a unique QR code from string?
         // Possibly just combine job date + job location (GPS string)?
@@ -96,7 +101,16 @@ class QRViewController: UIViewController {
     @IBAction func onClickPayment(_ sender: Any) {
         self.performSegue(withIdentifier: "showPaymentHiring", sender: self)
     }
-    @IBAction func onBackClick(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    
+    func applyTheme(theme: Theme) {
+        if(self.navigationController == nil) {
+            // big fix: UserVC->navigationController is nil after clicking back button
+            UINavigationController(rootViewController: self)
+        }
+        theme.applyBackgroundColor(views: [self.view])
+        theme.applyHeadlineStyle(labels: [scanLBL])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyButtonTextStyle(buttons: [paymentBTN])
     }
 }
