@@ -39,6 +39,10 @@ class ContactUsViewController: UITableViewController, MFMailComposeViewControlle
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func cancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func sendPressed(_ sender: Any) {
         let mailVC = MFMailComposeViewController()
         if(!MFMailComposeViewController.canSendMail()) {
@@ -52,7 +56,7 @@ class ContactUsViewController: UITableViewController, MFMailComposeViewControlle
         let email = emailTF.text?.lowercased()
         let finalEmail = email?.trimmingCharacters(in: NSCharacterSet.whitespaces)
         
-        let mailContent = "Name: \(nameTF.text!)\n\nSubject: \(subjectTF.text!)\n\nEmail: \(finalEmail)\n\nMessage: \(msgTV.text!)"
+//        let mailContent = "Name: \(nameTF.text!)\n\nSubject: \(subjectTF.text!)\n\nEmail: \(finalEmail)\n\nMessage: \(msgTV.text!)"
         
         mailVC.setMessageBody(msgTV.text!, isHTML: false)
         
@@ -66,12 +70,14 @@ class ContactUsViewController: UITableViewController, MFMailComposeViewControlle
         }
     }
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell.backgroundColor = UIColor.clear
+        return cell
     }
     
-    func applyTheme(theme: Theme) {
-        theme.applyBackgroundColor(views: [self.view])
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -81,4 +87,18 @@ class ContactUsViewController: UITableViewController, MFMailComposeViewControlle
     
         return true
     }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [self.view])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyTextFieldTextStyle(textFields: [nameTF, emailTF, subjectTF])
+        if(self.view.backgroundColor == UIColor.white) {
+            theme.applyTextFieldStyle(color: UIColor.white, textFields: [nameTF, emailTF, subjectTF])
+        } else {
+            theme.applyTextFieldStyle(color: UIColor(hex:"1B212C"), textFields: [nameTF, emailTF, subjectTF])
+        }
+        theme.applyTextViewStyle(textViews: [msgTV])
+    }
+
 }

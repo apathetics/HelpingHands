@@ -991,7 +991,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Contact Us" id="wqQ-jj-n0i">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="i0O-aQ-g9a"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="i0O-aQ-g9a">
+                            <connections>
+                                <action selector="cancelPressed:" destination="8z6-Fd-xB7" id="m63-sj-5Uy"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Send" id="l6Q-JY-f5o">
                             <connections>
                                 <action selector="sendPressed:" destination="8z6-Fd-xB7" id="4ai-SO-vue"/>
