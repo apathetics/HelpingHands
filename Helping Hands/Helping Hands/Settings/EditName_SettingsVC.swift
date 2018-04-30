@@ -93,7 +93,7 @@ class EditName_SettingsVC: UITableViewController, Themeable {
     }
     
     func updateDatabase() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let userRef = databaseRef.child("users").child((user?.uid)!)
         userRef.updateChildValues(["firstName": firstNameTF.text, "lastName": lastNameTF.text])
     }

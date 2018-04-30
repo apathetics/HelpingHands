@@ -160,7 +160,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     
     // Update the events by replacing values from current e instance
     func updateEvent(e: Event) {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let eventRef = databaseRef.child("events").child(e.eventId)
         if let imgUpload = UIImagePNGRepresentation(e.image!) {
             let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage

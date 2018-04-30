@@ -45,6 +45,10 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
             manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
             manager.startUpdatingLocation()
         }
+        if(table.visibleCells.count > 0) {
+            activityIndicatorView.stopAnimating()
+            loadingView.isHidden = true
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,7 +93,10 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                 
             }
         }
-
+        if(table.visibleCells.count > 0) {
+            activityIndicatorView.stopAnimating()
+            loadingView.isHidden = true
+        }
     }
     
     // asynchronously determines whether or not changes to location settings have been made and responds
@@ -206,7 +213,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     // DATABASE RETRIEVAL
     func retrieveEvents() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands3-fb14f.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let eventsRef = databaseRef.child("events")
         
         eventsRef.observe(FIRDataEventType.value, with: {(snapshot) in
