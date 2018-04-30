@@ -39,7 +39,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var inquiry:User!
     var locationManager = CLLocationManager()
     
-//    var inquiriesArray: [String]!
+    var inquiriesArray: [String]!
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
@@ -209,6 +209,9 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         // Permissions check
         let jobRef = databaseRef.child("jobs").child(jobID!)
+        let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
+        let usersInquiredRef = jobRef.child("usersInquiredArray")
+        
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let jobObject = snapshot.value as! [String: Any]
             
@@ -219,22 +222,46 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             // Else sign up the user as an inquiry.
             else {
                 self.retrieveUser()
-                
-                // Save job inquiry
-                let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
-                userRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                
-                    let jobInquiredChild = userRef.child("jobsInquiredArray").childByAutoId()
-                    jobInquiredChild.updateChildValues(["jobId": jobRef.key])
-                    
-                    let userInquiredChild = jobRef.child("usersInquiredArray").childByAutoId()
-                    userInquiredChild.updateChildValues(["userId": self.userId])
-                    
-                    self.table.reloadData()
+                usersInquiredRef.observe(FIRDataEventType.value, with: { (snapshot_inquiry) in
+                    if snapshot_inquiry.childrenCount > 0 {
+                        if (!self.userSignedUpForJob(snapshot: snapshot_inquiry)) {
+                            // User hasn't signed up
+                            userRef.observeSingleEvent(of: .value, with: {(snapshot_usr) in
+                                let jobInquiredChild = userRef.child("jobsInquiredArray").childByAutoId()
+                                jobInquiredChild.updateChildValues(["jobId": jobRef.key])
+                                
+                                let userInquiredChild = jobRef.child("usersInquiredArray").childByAutoId()
+                                userInquiredChild.updateChildValues(["userId": self.userId])
+                                
+                                self.navigationItem.rightBarButtonItem = self.signUpButton
+                                
+                                self.table.reloadData()
+                            })
+                        }
+                    }
                 })
-            
             }
         })
+    }
+    
+    // Check to see if the current user has already signed up for the job
+    func userSignedUpForJob(snapshot: FIRDataSnapshot) -> Bool {
+        for inquiry in snapshot.children.allObjects as! [FIRDataSnapshot] {
+            let inquiryObj = inquiry.value as! [String:AnyObject]
+            let inquiryUserId = inquiryObj["userId"] as! String
+            if(inquiryUserId == self.userId) {
+                // Don't add user again (duplicate)
+                print("User already signed up for this job!\n\n")
+                let alertController = UIAlertController(title: "You are already signed up for this job", message:
+                    "", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+
+                // exit logic
+                return true
+            }
+        }
+        return false
     }
     
     // Auxiliary getDate function
@@ -321,106 +348,47 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.table.reloadData()
         })
     }
-    
-//    func retrieveInquiries() {
-//        if inquiriesArray == nil {
-//            inquiriesArray = [String]()
-//        }
-//        let jobsRef = databaseRef.child("jobs")
-//        let userRef = databaseRef.child("users")
-//        let usersInquiredRef = jobsRef.child(jobID!).child("usersInquiredArray")
-//
-//        usersInquiredRef.observe(FIRDataEventType.value) { (snapshot) in
-//            // More than 0 inquiries
-//            if snapshot.childrenCount > 0 {
-//                // For each snapshot (entity) -> Add user id to inquiriesArray
-//                for inquirySnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
-//                    let inquiryObj = inquirySnapshot.value as! [String:AnyObject]
-//                    let inquiryUserId = inquiryObj["userId"] as! String
-//
-//                    //User already signed up
-//                    if self.inquiriesArray.contains(inquiryUserId) {
-//                        print("User Already Signed up")
-//                        self.navigationItem.rightBarButtonItem = nil
-//                        return
-//                    } else {
-//                        self.inquiriesArray.append(inquiryUserId)
-//                    }
-//                }
-//                // For each user id in inquiriesArray -> add user to inquiries list
-//                for userId in self.inquiriesArray {
-//                    userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//                        let userObj = snapshot.value as! [String:Any]
-//                        let user = User()
-//
-//                        user.userFirstName = userObj["firstName"] as! String
-//                        user.userLastName = userObj["lastName"] as! String
-//                        user.userEmail = userObj["email"] as! String
-//                        user.userJobsCompleted = userObj["jobsCompleted"] as! Int
-//                        user.userNumJobsPosted = userObj["jobsPosted"] as! Int
-//                        user.userMoneyEarned = userObj["moneyEarned"] as! Double
-//                        user.userPhotoAsString = userObj["photoUrl"] as! String
-//                        user.userID = userId
-//                        if(userObj["bio"] as? String == nil || userObj["bio"] as! String == "") {
-//                            user.userBio = "Description..."
-//                        }
-//                        else {
-//                            user.userBio = userObj["bio"] as! String
-//                        }
-//                        //TODO: SETTINGS NOT IN DATABASE YET
-//                        user.userLocationRadius = 1
-//                        user.userDistance = 1
-//                        user.userRating = 5
-//
-//                        self.inquiries.append(user)
-//                        self.table.reloadData()
-//                    })
-//                }
-//                self.table.reloadData()
-//            }
-//        }
-//    }
-    
-    func retrieveInquiries() {
         
+    func retrieveInquiries() {
+
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let jobsRef = databaseRef.child("jobs")
         let usersInquiredRef = jobsRef.child(jobID!).child("usersInquiredArray")
-        
+
         var userInquiryIdArray = [String]()
-        
+
         usersInquiredRef.observe(FIRDataEventType.value, with: {(snapshot) in
-            
+
             // make sure there are jobs
             if snapshot.childrenCount > 0 {
-                
+
                 // clear job list before appending again
                 self.inquiries.removeAll()
                 userInquiryIdArray.removeAll()
-                
+
                 // for each snapshot (entity present under jobs child)
                 for userInquiriesSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                    
+
                     // retrieve jobs and append to job list after creation
                     let inquiryObject = userInquiriesSnapshot.value as! [String: AnyObject]
-                    
+
                     let inquiryUserId = inquiryObject["userId"] as! String
-                    
+
                     userInquiryIdArray.append(inquiryUserId)
-                    
+
                 }
-                
+
                 for userInquiryId in userInquiryIdArray {
                     self.inquiries.removeAll()
-                    
+
                     let userRef = databaseRef.child("users").child(userInquiryId)
-                    
+
                     userRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                        
+
                         // retrieve jobs and append to job list after creation
                         let userObject = snapshot.value as! [String : Any]
                         let user = User()
-                        
+
                         user.userFirstName = userObject["firstName"] as! String
                         user.userLastName = userObject["lastName"] as! String
                         user.userEmail = userObject["email"] as! String
@@ -429,19 +397,19 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                         user.userMoneyEarned = userObject["moneyEarned"] as! Double
                         user.userPhotoAsString = userObject["photoUrl"] as! String
                         user.userID = userInquiryId
-                        
+
                         if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
                             user.userBio = "Description..."
                         }
                         else {
                             user.userBio = userObject["bio"] as! String
                         }
-                        
+
                         //TODO: SETTINGS NOT IN DATABASE YET
                         user.userLocationRadius = 1
                         user.userDistance = 1
                         user.userRating = 5
-                        
+
                         self.inquiries.append(user)
                         self.table.reloadData()
                     })
@@ -449,7 +417,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 self.table.reloadData()
             }
         })
-        
+
     }
 
     
