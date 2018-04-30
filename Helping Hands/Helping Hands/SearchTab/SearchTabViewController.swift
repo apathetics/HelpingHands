@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import FirebaseDatabase
+import FirebaseStorageUI
 
 class SearchTabViewController: UITableViewController, UISearchResultsUpdating, Themeable, CLLocationManagerDelegate {
     
@@ -78,6 +79,13 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
         // Fill cells with jobs from filteredJobs
         if let returnedResults = filteredJobs {
             let result: Job = returnedResults[indexPath.row]
+            // Placeholder image
+            let placeholderImage = UIImage(named: "meeting")
+            // Load the image using SDWebImage
+            cell.picture.sd_setImage(with: URL(string: result.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
+            })
+            cell.picture.layer.cornerRadius = 6.0
+            cell.picture.clipsToBounds = true
             cell.jobTitleLabel.text = result.jobTitle
             cell.picture.image = result.image
             cell.distanceLabel.text = String(format: "%.2f", result.distance) + " mi"
