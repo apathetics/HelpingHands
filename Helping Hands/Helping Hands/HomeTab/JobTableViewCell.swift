@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JobTableViewCell: UITableViewCell {
+class JobTableViewCell: UITableViewCell, Themeable {
 
     @IBOutlet weak var jobImg: UIImageView!
     
@@ -20,6 +20,7 @@ class JobTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        ThemeService.shared.addThemeable(themable: self)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,5 +29,9 @@ class JobTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
+    func applyTheme(theme: Theme) {
+        theme.applyBodyTextStyle(labels: [distanceLbl])
+        theme.applyBackgroundColor(views: [jobImg])
+        theme.applyHeadlineStyle(labels: [jobTitleLbl, jobDescriptionLbl, paymentLbl])
+    }
 }
