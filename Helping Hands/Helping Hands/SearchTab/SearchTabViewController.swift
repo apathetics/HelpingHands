@@ -12,7 +12,7 @@ import CoreLocation
 import FirebaseDatabase
 import FirebaseStorageUI
 
-class SearchTabViewController: UITableViewController, UISearchResultsUpdating, Themeable, CLLocationManagerDelegate {
+class SearchTabViewController: UITableViewController, UISearchResultsUpdating, Themeable, CLLocationManagerDelegate, SDWebImageManagerDelegate{
     
     @IBOutlet var table: UITableView!
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
@@ -30,6 +30,8 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     
     // Create unfiltered job list from Job CoreData
     override func viewDidLoad() {
+        SDWebImageManager.shared().delegate = self
+        SDWebImagePrefetcher.shared().manager.delegate = self
         self.definesPresentationContext = true
         self.hideKeyboardWhenTappedAround()
         ThemeService.shared.addThemeable(themable: self)
@@ -55,6 +57,11 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if #available(iOS 11.0, *) {
+            table.contentInset = UIEdgeInsetsMake(0, 0, UIApplication.shared.keyWindow!.safeAreaInsets.bottom, 0.0)
+        } else {
+            // Fallback on earlier versions
+        };
         retrieveJobs()
         filteredJobs = unfilteredJobs
         table.reloadData()
@@ -156,11 +163,19 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
                     job.jobTitle = jobObject["jobTitle"] as! String
                     job.jobId = jobSnapshot.ref.key
                     // Placeholder image
-                    let placeholderImage = UIImage(named: "meeting")
-                    job.image = placeholderImage
-                    SDWebImageManager.shared().imageDownloader?.downloadImage(with:URL(string: job.imageAsString), options: SDWebImageDownloaderOptions.useNSURLCache, progress: nil, completed: { (image, error, cacheType, url) in
-                        if image != nil {
+                    
+                    SDImageCache.shared().queryCacheOperation(forKey: job.imageAsString, done: { (image, data, type) in
+                        if let image = image {
                             job.image = image
+                        } else {
+                            if let imgUrl = job.imageAsString {
+                                SDWebImageManager.shared().loadImage(with: URL(string: imgUrl), options: [], progress: nil) { (image, data, error, type, done, url) in
+                                    job.image = image
+                                    SDImageCache.shared().store(image, forKey: job.imageAsString, completion: nil)
+                                }
+                            } else {
+                                job.image = UIImage(named: "meeting")
+                            }
                         }
                     })
                     if(jobObject["latitude"] == nil)
