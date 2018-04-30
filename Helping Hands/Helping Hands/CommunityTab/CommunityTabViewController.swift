@@ -45,6 +45,10 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
             manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
             manager.startUpdatingLocation()
         }
+        if(table.visibleCells.count > 0) {
+            activityIndicatorView.stopAnimating()
+            loadingView.isHidden = true
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,7 +93,10 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                 
             }
         }
-
+        if(table.visibleCells.count > 0) {
+            activityIndicatorView.stopAnimating()
+            loadingView.isHidden = true
+        }
     }
     
     // asynchronously determines whether or not changes to location settings have been made and responds
