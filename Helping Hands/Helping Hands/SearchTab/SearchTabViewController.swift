@@ -26,10 +26,11 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
     
     
     // Search controller responsible for doing real-time text search
-    let searchController = UISearchController(searchResultsController: nil)
+    let searchController = MySearchController(searchResultsController: nil)
     
     // Create unfiltered job list from Job CoreData
     override func viewDidLoad() {
+        self.definesPresentationContext = true
         self.hideKeyboardWhenTappedAround()
         ThemeService.shared.addThemeable(themable: self)
         // Search bar settings
@@ -224,5 +225,17 @@ class SearchTabViewController: UITableViewController, UISearchResultsUpdating, T
             theme.applyBodyTextStyle(labels: [(cell as! SearchTableCell).descriptionLabel])
         }
         theme.applySearchControllerStyle(searchBar: searchController)
+    }
+}
+
+class MySearchController: UISearchController {
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        dismissSearch()
+    }
+    
+    func dismissSearch() {
+        self.dismiss(animated: false, completion: nil)
     }
 }
