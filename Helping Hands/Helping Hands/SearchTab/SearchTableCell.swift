@@ -31,8 +31,8 @@ class SearchTableCell: UITableViewCell, Themeable {
     }
     
     func applyTheme(theme: Theme) {
-        theme.applyBodyTextStyle(labels: [distanceLabel])
+        theme.applyBodyTextStyle(labels: [distanceLabel, descriptionLabel])
         theme.applyBackgroundColor(views: [picture])
-        theme.applyHeadlineStyle(labels: [jobTitleLabel, descriptionLabel])
+        theme.applyHeadlineStyle(labels: [jobTitleLabel])
     }
 }
