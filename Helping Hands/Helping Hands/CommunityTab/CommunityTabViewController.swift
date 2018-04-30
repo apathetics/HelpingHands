@@ -64,7 +64,9 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         loadingView.addSubview(activityIndicatorView)
         activityIndicatorView.startAnimating()
 
-        retrieveEvents()
+        // responds accordingly to location permissions
+        enableBasicLocationServices()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if (self.events.count == 0) {
                 self.activityIndicatorView.stopAnimating()
@@ -88,6 +90,65 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
 
+    }
+    
+    // asynchronously determines whether or not changes to location settings have been made and responds
+    // by asking user to turn them back on for the app.
+    func enableBasicLocationServices() {
+        manager.delegate = self
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            // Request when-in-use authorization initially
+            manager.requestWhenInUseAuthorization()
+            break
+            
+        case .restricted, .denied:
+            // Disable location features
+            disableMyLocationBasedFeatures()
+            break
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            // Enable location features
+            enableMyWhenInUseFeatures()
+            break
+        }
+    }
+    
+    // Prevents Location Features from being called, asks user to enable them
+    func disableMyLocationBasedFeatures() {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let SWRController: EnableLocationViewController = storyboard.instantiateViewController(withIdentifier: "allowLocationPls") as! EnableLocationViewController
+        self.present(SWRController, animated: true, completion: nil)
+    }
+    
+    // Enables Location Features
+    func enableMyWhenInUseFeatures() {
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        manager.startUpdatingLocation()
+        retrieveEvents()
+    }
+    
+    // asynchronously determines whether or not changes to location settings have been made and responds
+    // by asking user to turn them back on for the app.
+    public func locationManager(_ manager: CLLocationManager,
+                                didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+            
+        // Display page asking to turn back on settings to use the app.
+        case .restricted, .denied:
+            disableMyLocationBasedFeatures()
+            break
+            
+        // If authorized, load in jobs
+        case .authorizedWhenInUse, .authorizedAlways:
+            enableMyWhenInUseFeatures()
+            break
+            
+        // Not happening
+        case .notDetermined:
+            break
+        }
     }
     
     // ** START TABLE FUNCTIONS ** \\
@@ -181,8 +242,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                         event.longitude = eventObject["longitude"] as! Double
                     }
                     
-                    let locationManager = CLLocationManager()
-                    locationManager.delegate = self;
+                    let locationManager = self.manager
                     locationManager.desiredAccuracy = kCLLocationAccuracyBest
                     locationManager.requestAlwaysAuthorization()
                     locationManager.startUpdatingLocation()
