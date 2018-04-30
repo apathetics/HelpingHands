@@ -159,7 +159,7 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
                 }
                 if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
                     let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid, "jobCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
-                    jobRef.setValue(values)
+                    jobRef.updateChildValues(values)
                     jobRef.updateChildValues(["latitude": self.latLong!.0, "longitude": self.latLong!.1])
                 }
             })
