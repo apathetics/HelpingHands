@@ -23,7 +23,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     var jobs = [Job]()
     var chosen: Int?
     
-    var loadingView: UIView!
+    var loadingView: UIView = UIView()
     var activityIndicatorView: NVActivityIndicatorView!
     var errorLBL: UILabel!
     
@@ -43,6 +43,8 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         if(table.visibleCells.count > 0) {
             activityIndicatorView.stopAnimating()
             loadingView.isHidden = true
+        } else {
+            loadingView.isHidden = false
         }
         print("JOB COUNT: \(jobs.count)\n\n")
     }
@@ -71,7 +73,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if (self.jobs.count == 0) {
                 self.activityIndicatorView.stopAnimating()
-                self.loadingView.isHidden = true
+                self.loadingView.isHidden = false
                 var frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
                 let errorView = UIView(frame: frame)
                 let size = CGSize(width: 180, height: 350)
@@ -92,6 +94,8 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         if(table.visibleCells.count > 0) {
             activityIndicatorView.stopAnimating()
             loadingView.isHidden = true
+        } else {
+            loadingView.isHidden = false
         }
     }
     
