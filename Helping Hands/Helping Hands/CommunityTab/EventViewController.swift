@@ -12,6 +12,7 @@ import CoreLocation
 import FirebaseStorageUI
 import FirebaseAuth
 import FirebaseDatabase
+import UserNotifications
 
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
     
@@ -27,8 +28,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var eventDescriptionLBL: UILabel!
     @IBOutlet weak var attendeesLBL: UILabel!
     
-    
-    
+    //Shared Notification Center
+    let center = UNUserNotificationCenter.current()
+
     var eventID:String?
     var clearCore: Bool = false
     var event:Event?
@@ -238,6 +240,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         eventInquiredChild.updateChildValues(["eventId": eventRef.key])
         self.navigationItem.rightBarButtonItem = nil
         self.table.reloadData()
+        sendNotification()
     }
 
     // Check to see if the current user has already signed up for the job
@@ -407,6 +410,57 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.attendee = user
         })
     }
+    
+    // Auxiliary getDate function
+    func getDateFromString(str: String) -> Date {
+        //print("input date: \(str)\n\n")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
+        dateFormatter.timeZone = TimeZone(abbreviation: "CDT") //Current time zone
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        let date = dateFormatter.date(from:str)!
+        return date
+    }
+    
+
+    func sendNotification() {
+        let userSettingOn: Bool = UserDefaults.standard.bool(forKey: "event_reminders_notif")
+        if !userSettingOn {
+            print("User's settings for notifications are off\n\n")
+            return
+        }
+        self.center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized {
+                // Notifications not allowed
+                UserDefaults.standard.set(false, forKey: "event_reminders_notif")
+            } else {
+                // Notifications allowed
+                print("Authorized\n\n")
+                let content = UNMutableNotificationContent()
+                content.title = "Reminder"
+                content.body = "You have an event coming up!"
+                content.sound = UNNotificationSound.default()
+                // User recieves a notification 1 day prior to a pending job
+                let date = Calendar.current.date(byAdding: .day, value: -1, to: self.getDateFromString(str: (self.e?.eventDateString!)!))
+                let df = DateFormatter()
+                df.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
+                df.timeZone = TimeZone(abbreviation: "CDT")
+                print("\nSending User Notification at \(df.string(from: date!))")
+                let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date!)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+                
+                let identifier = self.e?.eventId
+                let request = UNNotificationRequest(identifier: identifier!, content: content, trigger: trigger)
+                self.center.add(request, withCompletionHandler: { (error) in
+                    if let error = error {
+                        // Something went very wrong
+                        print("Notification Error: \(error)\n\n\n")
+                    }
+                })
+            }
+        }
+    }
+
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, imgGradientView])

@@ -102,11 +102,11 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>New Review</string>
+			<string>Event Reminders</string>
 			<key>Key</key>
-			<string>new_review_notif</string>
+			<string>event_reminders_notif</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 		</dict>
 	</array>
 </dict>

@@ -23,13 +23,14 @@ class SettingsVC: UITableViewController, Themeable {
     @IBOutlet weak var maxDistLBL: UILabel!
     @IBOutlet weak var newReviewLBL: UILabel!
     @IBOutlet weak var newSignUpLBL: UILabel!
-    @IBOutlet weak var remindersSwitch: UISwitch!
     
     //Functional Components
     @IBOutlet weak var distLBL: UILabel!
     @IBOutlet weak var distSlider: UISlider!
     @IBOutlet weak var userNameLBL: UILabel!
-    
+    @IBOutlet weak var jobRemindersSwitch: UISwitch!
+    @IBOutlet weak var eventRemindersSwitch: UISwitch!
+
     //Shared Notification Center
     let center = UNUserNotificationCenter.current()
     var allowNotifs: Bool!
@@ -52,17 +53,19 @@ class SettingsVC: UITableViewController, Themeable {
     
     override func viewWillAppear(_ animated: Bool) {
         displayUserName()
-        print("Settings:\nName=\(UserDefaults.standard.value(forKey: "user_name"))\nRadius=\(UserDefaults.standard.value(forKey: "max_radius"))\nReminder Notifications=\(UserDefaults.standard.bool(forKey: "reminders_notif"))")
+        print("Settings:\nName=\(UserDefaults.standard.value(forKey: "user_name"))\nRadius=\(UserDefaults.standard.value(forKey: "max_radius"))\nJob Reminder Notifications=\(UserDefaults.standard.bool(forKey: "reminders_notif"))\nEvent Reminder Notifications=\(UserDefaults.standard.bool(forKey: "event_reminders_notif"))")
         center.getNotificationSettings(completionHandler: { (settings) in
             if settings.authorizationStatus != .authorized {
                 // If user turned off notification permissions, set the switch to off
                 UserDefaults.standard.set(false, forKey: "reminders_notif")
+                UserDefaults.standard.set(false, forKey: "event_reminders_notif")
                 self.allowNotifs = false
             } else {
                 self.allowNotifs = true
             }
         })
-        remindersSwitch.isOn = UserDefaults.standard.bool(forKey: "reminders_notif")
+        jobRemindersSwitch.isOn = UserDefaults.standard.bool(forKey: "reminders_notif")
+        eventRemindersSwitch.isOn = UserDefaults.standard.bool(forKey: "event_reminders_notif")
         
     }
     
@@ -92,6 +95,17 @@ class SettingsVC: UITableViewController, Themeable {
             return
         } else {
             UserDefaults.standard.set(sender.isOn, forKey: "reminders_notif")
+        }
+    }
+    
+    @IBAction func setEventReminders(_ sender: UISwitch) {
+        if !self.allowNotifs && sender.isOn {
+            let alert = UIAlertController(title: "Notifications Disabled in Settings", message: "Please go to your settings app and enable notifications to turn your reminders back on.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        } else {
+            UserDefaults.standard.set(sender.isOn, forKey: "event_reminders_notif")
         }
     }
     
