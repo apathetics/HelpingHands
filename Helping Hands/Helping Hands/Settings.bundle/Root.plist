@@ -92,9 +92,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>New Sign-Up for Job</string>
+			<string>Pending Job Reminders</string>
 			<key>Key</key>
-			<string>new_job_signup_notif</string>
+			<string>reminders_notif</string>
 			<key>DefaultValue</key>
 			<true/>
 		</dict>
@@ -106,7 +106,7 @@
 			<key>Key</key>
 			<string>new_review_notif</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 </dict>

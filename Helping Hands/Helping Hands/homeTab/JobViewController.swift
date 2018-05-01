@@ -13,6 +13,7 @@ import FirebaseStorageUI
 import FirebaseAuth
 import FirebaseDatabase
 import UIImageColors
+import UserNotifications
 
 class JobViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
     
@@ -44,6 +45,10 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+
+    //Shared Notification Center
+    let center = UNUserNotificationCenter.current()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +136,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             else {
                 if(self.userInquiryIdArray.contains(self.userId)) {
                     self.navigationItem.rightBarButtonItem = nil
-                    print("hide button")
                 } else {
                     self.navigationItem.rightBarButtonItem?.title = "Sign-up"
                 }
@@ -230,7 +234,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 self.retrieveUser()
                 usersInquiredRef.observe(FIRDataEventType.value, with: { (snapshot_inquiry) in
                     if snapshot_inquiry.childrenCount > 0 {
-                        print("inquiries not empty\n\n")
                         if (!self.userSignedUpForJob(snapshot: snapshot_inquiry)) {
                             // User hasn't signed up already, approve inquiry request and update database
                             userRef.observeSingleEvent(of: .value, with: {(snapshot_usr) in
@@ -239,7 +242,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                             })
                         }
                     } else {
-                        print("inquiries empty\n\n")
                         self.signUserUpForJob()
                     }
                 })
@@ -258,6 +260,45 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         userInquiredChild.updateChildValues(["userId": self.userId])
         self.navigationItem.rightBarButtonItem = nil
         self.table.reloadData()
+        sendNotification()
+    }
+    
+    func sendNotification() {
+        let userSettingOn: Bool = UserDefaults.standard.bool(forKey: "reminders_notif")
+        if !userSettingOn {
+            print("User's settings for notifications are off\n\n")
+            return
+        }
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized {
+                // Notifications not allowed
+                UserDefaults.standard.set(false, forKey: "reminders_notif")
+            } else {
+                // Notifications allowed
+                print("Authorized\n\n")
+                let content = UNMutableNotificationContent()
+                content.title = "Reminder"
+                content.body = "You have a job coming up!"
+                content.sound = UNNotificationSound.default()
+                // User recieves a notification 8 hours prior to a pending job
+                let date = Calendar.current.date(byAdding: .hour, value: -8, to: self.getDateFromString(str: (self.j?.jobDateString!)!))
+                let df = DateFormatter()
+                df.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
+                df.timeZone = TimeZone(abbreviation: "CDT")
+                print("\nSending User Notification at \(df.string(from: date!))")
+                let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date!)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+                
+                let identifier = self.j?.jobId
+                let request = UNNotificationRequest(identifier: identifier!, content: content, trigger: trigger)
+                self.center.add(request, withCompletionHandler: { (error) in
+                    if let error = error {
+                        // Something went very wrong
+                        print("Notification Error: \(error)\n\n\n")
+                    }
+                })
+            }
+        }
     }
     
     // Check to see if the current user has already signed up for the job
@@ -278,10 +319,14 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     // Auxiliary getDate function
-    func getDate(date: NSDate) -> String {
-        let dateFormate = DateFormatter()
-        dateFormate.dateFormat = "MM/dd/yyyy"
-        return dateFormate.string(from: date as Date)
+    func getDateFromString(str: String) -> Date {
+        //print("input date: \(str)\n\n")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
+        dateFormatter.timeZone = TimeZone(abbreviation: "CDT") //Current time zone
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        let date = dateFormatter.date(from:str)!
+        return date
     }
     
     // FIREBASE RETRIEVAL
@@ -414,7 +459,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
         })
     }
-
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, imgGradientView])

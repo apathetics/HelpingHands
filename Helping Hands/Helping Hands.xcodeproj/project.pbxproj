@@ -41,6 +41,7 @@
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
 		193C22E9209480E900311893 /* ImageRotationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C22E8209480E900311893 /* ImageRotationExtension.swift */; };
+		193F5A3F2098294E00CDBD70 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193F5A3E2098294E00CDBD70 /* NotificationDelegate.swift */; };
 		194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194FC6A3206419B800D6E439 /* Gidole-Regular.otf */; };
 		194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */; };
 		19826A2A2095EC7D0027FDE0 /* EditName_SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */; };
@@ -112,6 +113,7 @@
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		193C22E8209480E900311893 /* ImageRotationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRotationExtension.swift; sourceTree = "<group>"; };
+		193F5A3E2098294E00CDBD70 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		194FC6A3206419B800D6E439 /* Gidole-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gidole-Regular.otf"; path = "gidole/Gidole-Regular.otf"; sourceTree = "<group>"; };
 		194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGradientExtension.swift; sourceTree = "<group>"; };
 		19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName_SettingsVC.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				3969FBD32096B7BD00F11470 /* EnableLocationViewController.swift */,
 				19CEC47620964E3F00867280 /* EditEmail_SettingsVC.swift */,
 				19CEC4782096660900867280 /* ReauthenticationVC.swift */,
+				193F5A3E2098294E00CDBD70 /* NotificationDelegate.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */,
 				ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */,
 				1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */,
+				193F5A3F2098294E00CDBD70 /* NotificationDelegate.swift in Sources */,
 				194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */,
 				1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */,
 				193C22E9209480E900311893 /* ImageRotationExtension.swift in Sources */,
