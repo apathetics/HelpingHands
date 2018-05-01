@@ -43,19 +43,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
     
-    // Permissions check for edit/sign-up
-    override func viewDidAppear(_ animated: Bool) {
-        let eventRef = databaseRef.child("events").child(eventID!)
-        eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
-            let eventObject = snapshot.value as! [String: Any]
-            if(eventObject["eventCreator"] as! String == self.userId) {
-                self.navigationItem.rightBarButtonItem?.title = "Edit"
-            }
-            self.table.reloadData()
-        })
-        table.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,7 +92,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // EDIT WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.navigationItem.rightBarButtonItem?.title = ""
         // retrieve attendees
         retrieveAttendees()
         

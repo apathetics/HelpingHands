@@ -123,6 +123,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // UPDATE WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
         
+        self.navigationItem.rightBarButtonItem?.title = ""
+        
         // retrieve inquiries
         retrieveInquiries()
         

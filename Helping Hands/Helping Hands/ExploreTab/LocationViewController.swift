@@ -35,20 +35,24 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Search results table created
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         
+        // Search bar embedded into nav bar
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "Gidole-Regular", size: 18)!
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
         navigationItem.titleView = resultSearchController?.searchBar
         
+        // Results view attributes
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
         
+        // More prep work
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
     }
@@ -116,6 +120,8 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
         }
     }
     
+    // Used to update view on MKMap. Starts off at current location, but will move to the last location it's
+    // centered on
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if(lastLocation == nil) {
             lastLocation = locations.first
@@ -133,28 +139,41 @@ class LocationViewController : UIViewController, CLLocationManagerDelegate, Hand
         print("error:: (error)")
     }
     
+    // If the user selects a location from the search result, zoom in on a pin in the MKMapView
     func dropPinZoomIn(placemark:MKPlacemark){
         // cache the pin
         selectedPin = placemark
+        
         // clear existing pins
         mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = placemark.name
+        
+        // Subtitle for annotation becomes address using two methods depending on iOS version
         if #available(iOS 11.0, *) {
             annotation.subtitle = CNPostalAddressFormatter.string(from: placemark.postalAddress!, style: .mailingAddress)
         } else {
             annotation.subtitle = ABCreateStringWithAddressDictionary(placemark.addressDictionary!, false)
         }
+        
+        // Address will be the string value passed and stored into models
         address = annotation.subtitle
+        // Geographic coordinates will also be passed and stored into models
+        // for distance calculations
         latLong = (placemark.coordinate.latitude, placemark.coordinate.longitude)
+        
+        // Add annotation
         mapView.addAnnotation(annotation)
+        
+        // Center on new pin
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
         mapView.selectAnnotation(annotation, animated: true)
     }
     
+    // Draws the pin that will be zoomed in on
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         if annotation is MKUserLocation {
             //return nil so map view draws "blue dot" for standard user location

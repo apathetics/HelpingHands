@@ -219,6 +219,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosen = (indexPath.row)
         self.performSegue(withIdentifier: "showJob", sender: self)
+        table.deselectRow(at: indexPath, animated: true)
     }
     
     // FIREBASE RETRIEVAL

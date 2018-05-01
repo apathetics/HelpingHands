@@ -29,6 +29,8 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         
         ThemeService.shared.addThemeable(themable: self)
         self.navigationController?.title = "Explore"
+        
+        // Side Menu
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -42,6 +44,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         // Dispose of any resources that can be recreated.
     }
     
+    // Clear all annotations that already exist
     override func viewWillAppear(_ animated: Bool) {
         for _annotation in self.mapView.annotations {
             if let annotation = _annotation as? MKAnnotation
@@ -114,6 +117,8 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         }
     }
     
+    // Used to update view on MKMap. Starts off at current location, but will move to the last location it's
+    // centered on
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if(lastLocation == nil) {
             lastLocation = locations.first
@@ -131,6 +136,7 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         print("error:: (error)")
     }
     
+    // Fills the map with pins and their corresponding annotations
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         if annotation is MKUserLocation {
             //return nil so map view draws "blue dot" for standard user location
@@ -141,17 +147,25 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         
+        // Change color of pin and acknowledge what kind of segue will be performed
+        // and to what model. Also determines which job is selected by getting the
+        // annotation's contained job.
         if let thisAnnotation = annotation as? JobAnnotation {
             pinView?.pinTintColor = UIColor.blue
+            
+            // It's possible that neither of these should be here
             chosenJob = thisAnnotation.job!
             kindSegue = "showPinJob"
         }
         else if let thisAnnotation = annotation as? EventAnnotation {
             pinView?.pinTintColor = UIColor.orange
+            
+            // It's possible that neither of these should be here
             chosenEvent = thisAnnotation.event!
             kindSegue = "showPinEvent"
         }
         
+        // Designs what will actually appear on the
         pinView?.canShowCallout = true
         let smallSquare = CGSize(width: 100, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint(x:0, y:0), size: smallSquare))
@@ -163,6 +177,8 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         return pinView
     }
     
+    // Selects the corresponding job or event that has been selected based on
+    // the pin
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? JobAnnotation {
             kindSegue = "showPinJob"
@@ -174,10 +190,12 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
         }
     }
     
+    // Perform Segue Action for programatically added "checkout" button
     @objc fileprivate func action(sender: UIButton) {
         self.performSegue(withIdentifier: kindSegue!, sender: self)
     }
     
+    // Segue into the appropriate model, passing data along the way.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showPinJob") {
             print(chosenJob!.jobTitle)
@@ -331,10 +349,12 @@ class ExploreTabViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
 }
 
+// Annotations for Jobs
 class JobAnnotation: MKPointAnnotation {
     var job:Job?
 }
 
+// Annotations for Events
 class EventAnnotation: MKPointAnnotation {
     var event:Event?
 }

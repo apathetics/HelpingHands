@@ -1967,15 +1967,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WN-fO-Il3">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WN-fO-Il3">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="DFQ-AS-xxX" id="ceD-Yz-PbV"/>
                                 </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7WN-fO-Il3" firstAttribute="bottom" secondItem="18m-m7-9t4" secondAttribute="top" id="PPf-g5-N7a"/>
+                            <constraint firstItem="7WN-fO-Il3" firstAttribute="top" secondItem="Dz4-9h-ynK" secondAttribute="bottom" id="grh-nv-fUL"/>
+                            <constraint firstItem="7WN-fO-Il3" firstAttribute="leading" secondItem="vjm-3v-Fzb" secondAttribute="leading" id="o7F-Ra-Ngu"/>
+                            <constraint firstAttribute="trailing" secondItem="7WN-fO-Il3" secondAttribute="trailing" id="oiq-Ca-Sy4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Explore" id="F1V-cL-WGH">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger" id="kaX-v8-BzV"/>
@@ -3052,15 +3057,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68r-C9-dZb">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68r-C9-dZb">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="8kk-4a-Cn8" id="Jcz-W7-mgd"/>
                                 </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="68r-C9-dZb" secondAttribute="trailing" id="EaR-1G-cQN"/>
+                            <constraint firstItem="68r-C9-dZb" firstAttribute="bottom" secondItem="upB-pc-LRs" secondAttribute="top" id="LMq-WC-JQr"/>
+                            <constraint firstItem="68r-C9-dZb" firstAttribute="leading" secondItem="jS5-dm-L3o" secondAttribute="leading" id="VlP-Q2-iwr"/>
+                            <constraint firstItem="68r-C9-dZb" firstAttribute="top" secondItem="ZB3-hP-3mV" secondAttribute="bottom" id="dOm-KA-pYQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TRZ-vV-vNZ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -3863,7 +3873,7 @@
         <segue reference="Dxf-mJ-YBy"/>
         <segue reference="m5T-tJ-blf"/>
         <segue reference="k5o-ug-Gfi"/>
-        <segue reference="5dw-2g-ub0"/>
-        <segue reference="Rmb-LX-uGO"/>
+        <segue reference="7hC-Tu-DGP"/>
+        <segue reference="9Vo-Yf-zUK"/>
     </inferredMetricsTieBreakers>
 </document>
