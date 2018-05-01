@@ -25,7 +25,6 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var redLbl: UILabel!
     @IBOutlet weak var locImg: UIImageView!
-    
     @IBOutlet weak var addJobView: UIView!
     @IBOutlet weak var jobTitleLBL: UILabel!
     @IBOutlet weak var jobDescLBL: UILabel!
@@ -40,7 +39,6 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var chooseImgBTN: UIButton!
     @IBOutlet weak var datePickerItem: UIDatePicker!
     @IBOutlet weak var chooseLocationBTN: UIButton!
-    
     
     var imgChosen = false
     var masterView:HomeTabViewController?

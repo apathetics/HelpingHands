@@ -24,7 +24,6 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var locationEditButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var numHelpersText: UITextField!
-    
     @IBOutlet weak var jobDescriptionLabel: UILabel!
     @IBOutlet weak var jobTitleLabel: UILabel!
     @IBOutlet weak var paymentLabel: UILabel!
@@ -45,8 +44,11 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Theme
         ThemeService.shared.addThemeable(themable: self)
         self.hideKeyboardWhenTappedAround()
+        
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
@@ -57,8 +59,8 @@ class EditJobViewController: UIViewController, UINavigationControllerDelegate, U
         jobPhoto.image = job.image
         editJobTitle.text = job.jobTitle
         editJobPrice.text = String(job.payment)
-
         jobDescription.text = job.jobDescription
+        
         self.latLong = (job.latitude, job.longitude)
         
         // TODO when location is more than an illusion

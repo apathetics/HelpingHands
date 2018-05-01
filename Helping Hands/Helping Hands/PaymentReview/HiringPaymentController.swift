@@ -26,6 +26,7 @@ class HiringPaymentController: UIViewController {
         super.viewDidLoad()
     }
     
+    // On confirmation, we want to update the person who completed the job's rating/review and update their jobsCompleted array.
     @IBAction func onConfirm(_ sender: UIButton) {
         
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
@@ -42,7 +43,7 @@ class HiringPaymentController: UIViewController {
             let jobImageUrl = jobObject["jobImageUrl"] as! String
             
             let userRef = databaseRef.child("users").child(jobCompletedBy)
-            
+
             userRef.observeSingleEvent(of: .value, with: {(snap) in
 
                 let userObject = snap.value as! [String: AnyObject]
@@ -51,9 +52,10 @@ class HiringPaymentController: UIViewController {
                 let moneyEarned = userObject["moneyEarned"] as! Double
                 let reviewStar = self.ratingStars.rating
                 
+                // Increment number of jobs completed
                 userRef.updateChildValues(["jobsCompleted" : numJobsCompleted + 1])
                 
-                // rating math
+                // Update the user rating and if nil, automatically default to 5.
                 var userRating = userObject["userRating"] as? Double
                 if(userRating == nil) {
                     userRating = 5.0
@@ -65,6 +67,7 @@ class HiringPaymentController: UIViewController {
                 
                 userRef.updateChildValues(["userRating" : userRating!, "moneyEarned": moneyEarned + jobPayment])
                 
+                // Make a new database post for a completedJob so that we can remove it from the actual user table.
                 let newPost = databaseRef.child("completedJobs").childByAutoId()
                 let values = ["jobTitle": jobTitle, "jobDescription": jobDescription, "jobPayment": jobPayment, "jobRating" : reviewStar, "jobReview": self.reviewTextField.text!, "jobImageUrl": jobImageUrl] as [String : Any]
                 newPost.setValue(values)
@@ -73,6 +76,7 @@ class HiringPaymentController: UIViewController {
                 jobCompletedChild.setValue(["jobId": newPost.key])
                 
                 // GOING THROUGH JOBS INQUIRED ARRAY
+                // Possibly delete inquired arrays, but leave commented out because I think Manasa has taken care of this elsewhere.
                 databaseRef.child("users").child(jobCompletedBy).child("jobsInquiredArray").observe(FIRDataEventType.value, with: {(snapshot) in
                     if snapshot.childrenCount > 0 {
                         for jobsPostedSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -87,14 +91,9 @@ class HiringPaymentController: UIViewController {
                         }
                     }
                 })
-                
                 self.dismiss(animated: true, completion: nil)
             })
-
         })
-        
-        
-        
         self.dismiss(animated: true, completion: nil)
     }
     

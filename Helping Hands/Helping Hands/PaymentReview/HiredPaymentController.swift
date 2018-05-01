@@ -24,49 +24,17 @@ class HiredPaymentController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
+    // On confirmation, we can possibly delete the job (I think Manasa is handling this somewhere else, so probably leave out).
     @IBAction func onConfirm(_ sender: UIButton) {
-        
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
-//        let jobRef = databaseRef.child("jobs").child(chosenJobId)
-        
-        // NEED TO DECIDE IF WE WANNA HAVE POSTED INFORMATION (might need two arrays cause it will complicate)
-//
-//        jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
-//
-//            let jobObject = snapshot.value as! [String: AnyObject]
-//
-//            let jobTitle = jobObject["jobTitle"] as! String
-//            let jobDescription = jobObject["jobDescription"] as! String
-//            let jobPayment = jobObject["jobPayment"] as! Double
-//
-//            let userRef = databaseRef.child("users").child(self.bossId)
-//            userRef.observeSingleEvent(of: .value, with: {(snap) in
-//
-//                let userObject = snap.value as! [String: AnyObject]
-//
-//                let numJobsCompleted = userObject["jobsCompleted"] as! Int
-//                let reviewStar = self.ratingStars.rating
-//                let newPost = databaseRef.child("completedJobs").childByAutoId()
-//
-//                userRef.child("jobsPostedArray")
-//
-//                let values = ["jobTitle": jobTitle, "jobDescription": jobDescription, "jobPayment": jobPayment, "jobRating" : reviewStar, "jobReview": self.reviewTextField.text!] as [String : Any]
-//                newPost.setValue(values)
-//
-//                self.dismiss(animated: true, completion: nil)
-//            })
-//
-//        })
-        
+
         // GOING THROUGH JOBS POSTED ARRAY
         databaseRef.child("users").child(self.bossId).child("jobsPostedArray").observe(FIRDataEventType.value, with: {(snapshot) in
             if snapshot.childrenCount > 0 {
                 for jobsPostedSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                    
-//                    print("I AM JOBS SNAPSHOT", jobsPostedSnapshot.key)
+    
                     let jobsPostedObject = jobsPostedSnapshot.value as! [String: AnyObject]
-                    
                     let jobId = jobsPostedObject["jobId"] as! String
                     
                     // DELETE FROM POSTER'S POSTED! @TODO: UNCOMMENT!
@@ -76,11 +44,8 @@ class HiredPaymentController: UIViewController {
                 }
             }
         })
-        
-                        self.dismiss(animated: true, completion: nil)
-        
+        self.dismiss(animated: true, completion: nil)
     }
-    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -88,7 +53,6 @@ class HiredPaymentController: UIViewController {
     }
     
     // Called when the user touches on the main view (outside the UITextField).
-    //
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

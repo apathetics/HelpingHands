@@ -16,10 +16,9 @@ import NVActivityIndicatorView
 
 class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
     
-    let manager = CLLocationManager()
-    
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
+    
     var jobs = [Job]()
     var chosen: Int?
     
@@ -27,6 +26,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     var activityIndicatorView: NVActivityIndicatorView!
     var errorLBL: UILabel!
     
+    let manager = CLLocationManager()
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
 
     
@@ -35,11 +35,14 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         // Do any additional setup after loading the view, typically from a nib.
         ThemeService.shared.addThemeable(themable: self)
         
+        // Reveal side menu toggle.
         if self.revealViewController() != nil {
             sideMenuButton.target = self.revealViewController()
             sideMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        // If not populated, then loading animation.
         if(table.visibleCells.count > 0) {
             activityIndicatorView.stopAnimating()
             loadingView.isHidden = true
@@ -70,6 +73,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         // enableBasicLocationServices
         enableBasicLocationServices()
 
+        // Check if there are jobs and if not, show loading screen.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if (self.jobs.count == 0) {
                 self.activityIndicatorView.stopAnimating()
@@ -91,6 +95,8 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.loadingView.addSubview(self.errorLBL)
             }
         }
+        
+        // If there are jobs, then hide loading animation.
         if(table.visibleCells.count > 0) {
             activityIndicatorView.stopAnimating()
             loadingView.isHidden = true
