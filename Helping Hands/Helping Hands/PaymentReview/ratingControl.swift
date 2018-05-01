@@ -9,6 +9,7 @@
 import UIKit
 
 // Custom class for horizontal rating system.
+// This is taken from Apple's xCode custom class tutorial with some modifications.
 @IBDesignable class RatingControl: UIStackView {
     
     //MARK: Properties
