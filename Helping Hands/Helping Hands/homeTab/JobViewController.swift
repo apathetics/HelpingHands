@@ -235,10 +235,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                             // User hasn't signed up already, approve inquiry request and update database
                             userRef.observeSingleEvent(of: .value, with: {(snapshot_usr) in
                                 self.signUserUpForJob()
-                                self.navigationItem.rightBarButtonItem = self.signUpButton
-                                self.table.reloadData()
+                                //self.navigationItem.rightBarButtonItem = self.signUpButton
                             })
-                        } else {
                         }
                     } else {
                         print("inquiries empty\n\n")
@@ -259,6 +257,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         let userInquiredChild = jobRef.child("usersInquiredArray").childByAutoId()
         userInquiredChild.updateChildValues(["userId": self.userId])
         self.navigationItem.rightBarButtonItem = nil
+        self.table.reloadData()
     }
     
     // Check to see if the current user has already signed up for the job
@@ -414,7 +413,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 self.table.reloadData()
             }
         })
-
     }
 
     

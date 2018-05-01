@@ -33,6 +33,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     var clearCore: Bool = false
     var event:Event?
     var attendees = [User]()
+    var userAttendeeIdArray = [String]()
     var attendee: User!
     var chosen:Int?
     var e:Event!
@@ -59,6 +60,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         table.dataSource = self
         table.delegate = self
+        
+        table.rowHeight = 73
         
         e = event
         
@@ -114,7 +117,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.navigationItem.rightBarButtonItem?.title = "Edit"
             }
             else {
-                self.navigationItem.rightBarButtonItem?.title = "Sign-up"
+                if(self.userAttendeeIdArray.contains(self.userId)) {
+                    self.navigationItem.rightBarButtonItem = nil
+                } else {
+                    self.navigationItem.rightBarButtonItem?.title = "Sign-up"
+                }
             }
             self.table.reloadData()
         })
@@ -172,7 +179,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Load the image using SDWebImage
         cell.userImg.sd_setImage(with: URL(string: u.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
-    
+        cell.userImg.layer.cornerRadius = cell.userImg.frame.height/2
+        cell.userImg.clipsToBounds = true
+        cell.userImg.contentMode = .scaleAspectFill
         cell.userName.text = u.userFirstName + " " + u.userLastName
         cell.backgroundColor = UIColor.clear
         return cell
@@ -188,34 +197,66 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Permissions check
         let eventRef = databaseRef.child("events").child(eventID!)
+        let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
+        let usersAttendedRef = eventRef.child("usersAttendedArray")
+
         eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let eventObject = snapshot.value as! [String: Any]
-            
+            // Take to editing screen if user is creator
             if(eventObject["eventCreator"] as! String == self.userId) {
                 self.performSegue(withIdentifier: "showEventEditor", sender: self)
             }
+            // Else sign up the user as an inquiry.
             else {
                 self.retrieveUser()
-                
-                // Save job inquiry
-                let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
-                userRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                    
-                    let eventInquiredChild = userRef.child("eventsAttendedArray").childByAutoId()
-                    eventInquiredChild.updateChildValues(["eventId": eventRef.key])
+                usersAttendedRef.observe(.value, with: { (snapshot_inquiry) in
+                    if snapshot_inquiry.childrenCount > 0 {
+                        print("inquiries not empty\n\n")
+                        if(!self.userSignedUpForEvent(snapshot: snapshot_inquiry)) {
+                            // User hasn't signed up already, approve inquiry request and update database
+                            userRef.observeSingleEvent(of: .value, with: { (snapshot_usr) in
+                                self.signUserUpForEvent()
+                            })
+                        }
+                    } else {
+                        print("inquiries empty\n\n")
+                        self.signUserUpForEvent()
+                    }
                 })
-                
-                let userInquiredChild = eventRef.child("usersAttendedArray").childByAutoId()
-                userInquiredChild.updateChildValues(["userId": self.userId])
-                
-                self.attendees.append(self.attendee)
-                self.table.reloadData()
             }
-            self.table.reloadData()
         })
-        self.table.reloadData()
     }
     
+    func signUserUpForEvent() {
+        let eventRef = databaseRef.child("events").child(eventID!)
+        let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
+        
+        let userInquiredChild = eventRef.child("usersAttendedArray").childByAutoId()
+        userInquiredChild.updateChildValues(["userId": self.userId])
+        
+        let eventInquiredChild = userRef.child("eventsAttendedArray").childByAutoId()
+        eventInquiredChild.updateChildValues(["eventId": eventRef.key])
+        self.navigationItem.rightBarButtonItem = nil
+        self.table.reloadData()
+    }
+
+    // Check to see if the current user has already signed up for the job
+    func userSignedUpForEvent(snapshot: FIRDataSnapshot) -> Bool {
+        for inquiry in snapshot.children.allObjects as! [FIRDataSnapshot] {
+            let inquiryObj = inquiry.value as! [String:AnyObject]
+            let inquiryUserId = inquiryObj["userId"] as! String
+            if(inquiryUserId == self.userId) {
+                // Don't add user again (duplicate)
+                print("User already signed up for this job!\n\n")
+                self.navigationItem.rightBarButtonItem = nil
+                // exit logic
+                return true
+            }
+        }
+        print("User not yet signed up for this job!\n\n")
+        return false
+    }
+
     // ** SEGUE PREPARATION ** \\
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showAttendee")
@@ -245,77 +286,58 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func retrieveAttendees() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
-        let eventsRef = databaseRef.child("events")
-        let usersAttendedRef = eventsRef.child(eventID!).child("usersAttendedArray")
-        
-        var userAttendeeIdArray = [String]()
+        let usersAttendedRef = databaseRef.child("events").child(eventID!).child("usersAttendedArray")
         
         usersAttendedRef.observe(FIRDataEventType.value, with: {(snapshot) in
             // make sure there are jobs
             if snapshot.childrenCount > 0 {
                 
-                // clear job list before appending again
-                self.attendees.removeAll()
-                userAttendeeIdArray.removeAll()
-                
                 // for each snapshot (entity present under jobs child)
                 for userAttendeesSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
                     
-                    // retrieve jobs and append to job list after creation
+                    // retrieve events and append to job list after creation
                     let attendeeObject = userAttendeesSnapshot.value as! [String: AnyObject]
-                    
                     let attendeeUserId = attendeeObject["userId"] as! String
+                    let userRef = self.databaseRef.child("users").child(attendeeUserId)
                     
-                    userAttendeeIdArray.append(attendeeUserId)
-                    
-                }
-                
-                for userAttendeeId in userAttendeeIdArray {
-                    
-                    let userRef = databaseRef.child("users").child(userAttendeeId)
-                    
-                    userRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                        
-                        // retrieve jobs and append to job list after creation
-                        let userObject = snapshot.value as! [String : Any]
-                        let user = User()
-                        
-                        user.userFirstName = userObject["firstName"] as! String
-                        user.userLastName = userObject["lastName"] as! String
-                        user.userEmail = userObject["email"] as! String
-                        user.userJobsCompleted = userObject["jobsCompleted"] as! Int
-                        user.userNumJobsPosted = userObject["jobsPosted"] as! Int
-                        user.userMoneyEarned = userObject["moneyEarned"] as! Double
-                        user.userPhotoAsString = userObject["photoUrl"] as! String
-                        user.userID = userAttendeeId
-                        
-                        if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
-                            user.userBio = "Description..."
-                        }
-                        else {
-                            user.userBio = userObject["bio"] as! String
-                        }
-                        
-                        //TODO: SETTINGS NOT IN DATABASE YET
-                        user.userLocationRadius = 1
-                        user.userDistance = 1
-                        user.userRating = 5
-                        
-                        //                        user.userID = self.userId
-                        
-                        self.attendees.append(user)
-                        self.table.reloadData()
-                    })
+                    if(!self.userAttendeeIdArray.contains(attendeeUserId)) {
+                        self.userAttendeeIdArray.append(attendeeUserId)
+                        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                            let userObject = snapshot.value as! [String : Any]
+                            let user = User()
+                            
+                            user.userFirstName = userObject["firstName"] as! String
+                            user.userLastName = userObject["lastName"] as! String
+                            user.userEmail = userObject["email"] as! String
+                            user.userJobsCompleted = userObject["jobsCompleted"] as! Int
+                            user.userNumJobsPosted = userObject["jobsPosted"] as! Int
+                            user.userMoneyEarned = userObject["moneyEarned"] as! Double
+                            user.userPhotoAsString = userObject["photoUrl"] as! String
+                            user.userID = attendeeUserId
+                            
+                            if(userObject["bio"] as? String == nil || userObject["bio"] as! String == "") {
+                                user.userBio = "Description..."
+                            }
+                            else {
+                                user.userBio = userObject["bio"] as! String
+                            }
+                            
+                            //TODO: SETTINGS NOT IN DATABASE YET
+                            user.userLocationRadius = 1
+                            user.userDistance = 1
+                            user.userRating = 5
+                            
+                            self.attendees.append(user)
+                            self.table.reloadData()
+                        })
+                    }
                 }
                 self.table.reloadData()
             }
         })
-        
     }
     
     func retrieveEvents() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let eventRef = databaseRef.child("events").child(eventID!)
         
         eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -341,7 +363,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // FIREBASE RETRIEVAL
     func retrieveUser() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let userRef = databaseRef.child("users").child(userId)
         
         userRef.observeSingleEvent(of: .value, with: {(snapshot) in
