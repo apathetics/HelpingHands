@@ -11,9 +11,34 @@ import FirebaseAuth
 
 class LoginVC: UIViewController {
 
+    // Components
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
+    // Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() // dismiss keyboard
+        
+        // If user hasn't logged out -> Auto Login
+        if (FIRAuth.auth()?.currentUser != nil) {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
+            appDelegate.window?.rootViewController = SWRController
+            // Set default max radius
+            if(UserDefaults.standard.value(forKey: "max_radius") == nil) {
+                UserDefaults.standard.set(8, forKey: "max_radius")
+            }
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     @IBAction func loginButtonPressed(_ sender: Any) {
         if let email = emailTF.text, let pass = passwordTF.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
@@ -34,7 +59,7 @@ class LoginVC: UIViewController {
                                 message = "The credentials you entered are incorrect. Please try again."
                                 log = "Other error Alert Displayed"
                         }
-                        //display alert
+                        //display alert with message
                         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
                             NSLog(log)
@@ -48,6 +73,7 @@ class LoginVC: UIViewController {
                     let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
                     appDelegate.window?.rootViewController = SWRController
+                    // Set default max radius
                     if(UserDefaults.standard.value(forKey: "max_radius") == nil) {
                         UserDefaults.standard.set(8, forKey: "max_radius")
                     }
@@ -55,33 +81,4 @@ class LoginVC: UIViewController {
             })
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
-        
-        // If user hasn't logged out
-        if (FIRAuth.auth()?.currentUser != nil) {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let SWRController: SWRevealViewController = storyboard.instantiateViewController(withIdentifier: "SWRController") as! SWRevealViewController
-            appDelegate.window?.rootViewController = SWRController
-            if(UserDefaults.standard.value(forKey: "max_radius") == nil) {
-                UserDefaults.standard.set(8, forKey: "max_radius")
-            }
-//            if(UserDefaults.standard.value(forKey: "user_name") == nil) {
-//                UserDefaults.standard.set(FIRAuth.auth()?.currentUser?.uid., forKey: "user_name")
-//            }
-
-
-        }
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
-

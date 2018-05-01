@@ -11,11 +11,15 @@ import FirebaseAuth
 
 class ReauthenticationVC: UIViewController {
     
+    // components
+    
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var badPassLBL: UILabel!
     
     var user = FIRAuth.auth()?.currentUser
     var success: Bool!
+    
+    // methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +32,15 @@ class ReauthenticationVC: UIViewController {
         var credential = FIREmailPasswordAuthProvider.credential(withEmail: (user?.email)!, password: passwordTF.text!)
         user?.reauthenticate(with: credential, completion: { (error) in
             if error == nil {
+                // successful reauthentication
                 self.success = true
                 self.dismiss(animated: true, completion: nil)
                 return
             } else {
+                // reauth failed
                 self.success = false
                 self.badPassLBL.isHidden = false
+                // display alert
                 let alert = UIAlertController(title: "Incorrect Password", message: "Please check that the password you entered is correct.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)

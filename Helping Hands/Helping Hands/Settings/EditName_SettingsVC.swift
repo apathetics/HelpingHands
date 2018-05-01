@@ -25,13 +25,18 @@ class EditName_SettingsVC: UITableViewController, Themeable {
     @IBOutlet weak var lastNameImg: UIImageView!
     
     var user = FIRAuth.auth()?.currentUser
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+
+    // methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
+        // split name string into first and last name
         var fullNameArr = name.components(separatedBy: " ")
         firstNameTF.text = fullNameArr[0]
         lastNameTF.text = fullNameArr.count > 1 ? fullNameArr[1] : ""
+        // hide checkmarks
         firstNameImg.isHidden = true
         lastNameImg.isHidden = true
     }
@@ -39,6 +44,31 @@ class EditName_SettingsVC: UITableViewController, Themeable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+    
+    // A small checkmark animation indicating a successful email change
+    func successAnimation(images: [UIImageView]) {
+        for img in images {
+            img.isHidden = false
+            img.alpha = 0
+            UIView.animate(withDuration: 1.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                img.alpha = 1
+            }) { (bool) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    img.alpha = 0
+                }, completion: { (b) in
+                    img.isHidden = true
+                })
+            }
+        }
+    }
+    
+    // Update database with new user name
+    func updateDatabase() {
+        let userRef = databaseRef.child("users").child((user?.uid)!)
+        userRef.updateChildValues(["firstName": firstNameTF.text, "lastName": lastNameTF.text])
+    }
+
+    // tableview functions
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var fullName: String = "\(firstNameTF.text!) \(lastNameTF.text!)" as String
@@ -50,52 +80,34 @@ class EditName_SettingsVC: UITableViewController, Themeable {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Confirm button selected
         if(indexPath.section == 1 && indexPath.row == 0) {
             var fullName: String = "\(firstNameTF.text!) \(lastNameTF.text!)" as String
-
+            //empty text fields
             if (firstNameTF.text == "" || lastNameTF.text == "") {
+                //display alert
                 let alert = UIAlertController(title: "Blank Fields", message: "Please do not leave any of the fields blank.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            // None of the fields are blank, successful name change
+            
             if (name != fullName) {
+                //successful name change
                 user?.profileChangeRequest().displayName = firstNameTF.text
                 updateDatabase()
                 name = fullName
                 //animate check mark to indicate success
-                firstNameImg.isHidden = false
-                lastNameImg.isHidden = false
-                self.firstNameImg.alpha = 0
-                self.lastNameImg.alpha = 0
-                UIView.animate(withDuration: 1.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                    self.firstNameImg.alpha = 1
-                    self.lastNameImg.alpha = 1
-                }, completion: { (bool) in
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self.firstNameImg.alpha = 0
-                        self.lastNameImg.alpha = 0
-                    }, completion: { (b) in
-                        self.firstNameImg.isHidden = true
-                        self.lastNameImg.isHidden = true
-
-                    })
-                })
+                successAnimation(images: [self.firstNameImg, self.lastNameImg])
                 
             } else {
+                // No changes made, display alert
                 print("No changes were made")
                 let alert = UIAlertController(title: "No Changes Made", message: "", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
-    }
-    
-    func updateDatabase() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
-        let userRef = databaseRef.child("users").child((user?.uid)!)
-        userRef.updateChildValues(["firstName": firstNameTF.text, "lastName": lastNameTF.text])
     }
     
     func applyTheme(theme: Theme) {

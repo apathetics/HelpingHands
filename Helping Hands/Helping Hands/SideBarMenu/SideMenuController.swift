@@ -30,30 +30,37 @@ class SideMenuController: UIViewController, Themeable {
     @IBOutlet weak var SettingsBTN: UIButton!
     @IBOutlet weak var ContactBTN: UIButton!
     
-    
-    
     @IBOutlet weak var themeButton: UIButton!
     var selectedThemeIcon: UIImage = UIImage(named: "nightModeIcon")!
     var otherThemeIcon: UIImage = UIImage(named: "dayModeIcon")!
     var selectedTheme: Theme = DarkTheme()
     var otherTheme: Theme = DefaultTheme()
 
-    
     var user: User!
     let userRef = FIRDatabase.database().reference().child("users")
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
+    let currentUser = FIRAuth.auth()?.currentUser
     
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeService.shared.addThemeable(themable: self)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         
         // Display profile image as a cirle
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         profileImage.clipsToBounds = true
         profileImage.contentMode = .scaleAspectFill
+        
+        //Open user profile page when clicking on image
         let profileTap = UITapGestureRecognizer(target: self, action: #selector(profileTapGesture))
         profileImage.addGestureRecognizer(profileTap)
         profileImage.isUserInteractionEnabled = true
@@ -61,6 +68,7 @@ class SideMenuController: UIViewController, Themeable {
         retrieveUser()
         populateSideMenu()
     }
+    
     // Dummy for connecting to PROFILE screen
     @objc func profileTapGesture() {
         print("Image Tapped")
@@ -72,9 +80,6 @@ class SideMenuController: UIViewController, Themeable {
             let destVC: UINavigationController = segue.destination as! UINavigationController
             let userVC:UserViewController = destVC.topViewController as! UserViewController
             userVC.user = self.user
-        }
-        if(segue.identifier == "showContactUs") {
-            
         }
     }
     
@@ -94,7 +99,6 @@ class SideMenuController: UIViewController, Themeable {
     
     // FIREBASE RETRIEVAL
     func retrieveUser() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let jobRef = databaseRef.child("users").child(userId)
         
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -117,9 +121,10 @@ class SideMenuController: UIViewController, Themeable {
             else {
                 user.userBio = userObject["bio"] as! String
             }
+            // get radius from settings
+            user.userLocationRadius = UserDefaults.standard.value(forKey: "max_radius") as! Double
             
             //TODO: SETTINGS NOT IN DATABASE YET
-            user.userLocationRadius = 1
             user.userDistance = 1
             user.userRating = 5
             
@@ -158,11 +163,11 @@ class SideMenuController: UIViewController, Themeable {
         self.performSegue(withIdentifier: "showContactUs", sender: self)
     }
     
-
+    // Function to populate the side bar
     func populateSideMenu() {
 
-        if let userID:String = (FIRAuth.auth()?.currentUser?.uid) {
-            userRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+        if self.userId != nil {
+            userRef.child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user values
                 let value = snapshot.value as? NSDictionary
                 let fName = value?["firstName"] as? String ?? ""
@@ -184,7 +189,7 @@ class SideMenuController: UIViewController, Themeable {
                 print(error.localizedDescription)
             }
         } else {
-            print("User ID is nil")
+            print("UserId is nil")
         }
     }
     
@@ -199,10 +204,6 @@ class SideMenuController: UIViewController, Themeable {
     //        self.revealViewController().frontViewController.view.alpha = 1
     //    }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
