@@ -27,7 +27,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var jobDescription: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var signUpButton: UIBarButtonItem!
-    
     @IBOutlet weak var descriptionLBL: UILabel!
     @IBOutlet weak var inquiriesLBL: UILabel!
     
@@ -40,7 +39,6 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var j:Job!
     var inquiry:User!
     var locationManager = CLLocationManager()
-    
     var inquiriesArray: [String]!
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
@@ -48,19 +46,23 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
 
     //Shared Notification Center
     let center = UNUserNotificationCenter.current()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Theme
         ThemeService.shared.addThemeable(themable: self)
         
+        // Delegates
         table.dataSource = self
         table.delegate = self
         
+        // Hard table modification (probably change to constraint later)
         table.rowHeight = 73
         
         j = job
         
+        // Download image
         let url = URL(string: j.imageAsString)
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
@@ -72,6 +74,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.jobPhoto.image = UIImage(data: data!)
         }
         
+        // Location updates
         // Not sure if this is too much, might not have to update this often
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -80,6 +83,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         let distance = (locationManager.location?.distance(from: CLLocation(latitude: j.latitude, longitude: j.longitude)) as! Double) * 0.00062137
         jobDistance.text = String(format: "%.2f", distance) + " mi"
         
+        // Fill in information for job
         jobTitle.text = j.jobTitle
         let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
@@ -101,6 +105,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // Dispose of any resources that can be recreated.
     }
     
+    // Set the gradient for the job instance view based on the given colors of the image.
     override func viewDidLayoutSubviews() {
         let colors = jobPhoto.image?.getColors()
         
@@ -117,6 +122,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     // UPDATE WITH ALL FIELDS TAKEN FROM DATABASE
     override func viewWillAppear(_ animated: Bool) {
+        
         // retrieve inquiries
         retrieveInquiries()
         
@@ -126,6 +132,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // retrieve user for inquiry
         retrieveUser()
         
+        // Check user permission, if creator then allow edit else allow sign-up.
         let jobRef = databaseRef.child("jobs").child(jobID!)
         jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
             let jobObject = snapshot.value as! [String: Any]
@@ -143,12 +150,14 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.table.reloadData()
         })
         
+        // Location
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         let distance = (locationManager.location?.distance(from: CLLocation(latitude: j.latitude, longitude: j.longitude)) as! Double) * 0.00062137
         jobDistance.text = String(format: "%.2f", distance) + " mi"
         
+        // Fill in the job labels
         jobTitle.text = j.jobTitle
         let ftmPayment = "$" + (j.payment.truncatingRemainder(dividingBy: 1) == 0 ? String(j.payment) : String(j.payment))
         jobPrice.text = j.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
@@ -175,10 +184,11 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // Load the image using SDWebImage
         cell.userImg.sd_setImage(with: URL(string: u.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
+        
+        // Set cell information
         cell.userImg.layer.cornerRadius = cell.userImg.frame.height/2
         cell.userImg.clipsToBounds = true
         cell.userImg.contentMode = .scaleAspectFill
-//        cell.userImg.image = u.userPhoto
         cell.userName.text = u.userFirstName + " " + u.userLastName
         cell.backgroundColor = UIColor.clear
         return cell
@@ -249,6 +259,8 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         })
     }
     
+    // Sign the user up for the job and add to inquiry array
+    // Possibly allow notification if on
     func signUserUpForJob() {
         let jobRef = databaseRef.child("jobs").child(jobID!)
         let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
@@ -263,6 +275,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         sendNotification()
     }
     
+    // Send notification for when job date is almost due.
     func sendNotification() {
         let userSettingOn: Bool = UserDefaults.standard.bool(forKey: "reminders_notif")
         if !userSettingOn {
@@ -320,7 +333,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     // Auxiliary getDate function
     func getDateFromString(str: String) -> Date {
-        //print("input date: \(str)\n\n")
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
         dateFormatter.timeZone = TimeZone(abbreviation: "CDT") //Current time zone

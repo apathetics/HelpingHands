@@ -11,7 +11,6 @@ import UIKit
 class JobTableViewCell: UITableViewCell, Themeable {
 
     @IBOutlet weak var jobImg: UIImageView!
-    
     @IBOutlet weak var jobTitleLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var jobDescriptionLbl: UILabel!
