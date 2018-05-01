@@ -113,10 +113,10 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                         return
                     }
                     print("Registration Success!")
-                    user?.profileChangeRequest().displayName = "\(self.firstNameTF.text) \(self.lastNameTF.text)"
+                    user?.profileChangeRequest().displayName = "\(self.firstNameTF.text!) \(self.lastNameTF.text!)"
                     if let imgUpload = UIImagePNGRepresentation(self.profileImage.image!) {
                         let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
-                        let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+                        let storageRef = FIRStorage.storage().reference().child("profile_photos/\(user?.uid).png")
                         storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
                             if error != nil {
                                 print(error)

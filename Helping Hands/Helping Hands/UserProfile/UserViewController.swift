@@ -328,7 +328,10 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                     let jobRef = databaseRef.child("jobs").child(jobId)
                     
                     jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                        
+                        if snapshot == nil {
+                            print("Error: Something went wrong")
+                            return
+                        }
                         // retrieve jobs and append to job list after creation
                         // TODO: Bug seems to be happening here? Not sure why, but I can't open up my user profile - Bryan
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

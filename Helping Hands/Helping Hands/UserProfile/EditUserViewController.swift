@@ -157,7 +157,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         let jobRef = databaseRef.child("users").child(self.userId)
         if let imgUpload = UIImagePNGRepresentation(u.userPhoto) {
             let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
-            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            let storageRef = FIRStorage.storage().reference().child("profile_photos/\(self.userId).png")
             storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error!)

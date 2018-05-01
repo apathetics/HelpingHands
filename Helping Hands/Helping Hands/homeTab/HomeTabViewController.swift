@@ -27,6 +27,9 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     var activityIndicatorView: NVActivityIndicatorView!
     var errorLBL: UILabel!
     
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -41,6 +44,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             activityIndicatorView.stopAnimating()
             loadingView.isHidden = true
         }
+        print("JOB COUNT: \(jobs.count)\n\n")
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,6 +56,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         table.isHidden = true
         let screenWidth = UIScreen.main.bounds.size.width
         let screenHeight = UIScreen.main.bounds.size.height
+        
         loadingView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
         self.view.addSubview(loadingView)
         let frame = CGRect(x: screenWidth*0.5 - 30, y: screenHeight*0.5 - 30, width: 60, height: 60)
@@ -208,67 +213,76 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // FIREBASE RETRIEVAL
     @objc func retrieveJobs() {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let jobsRef = databaseRef.child("jobs")
         
         jobsRef.observe(FIRDataEventType.value, with: {(snapshot) in
             
             // make sure there are jobs
             if snapshot.childrenCount > 0 {
-                // clear job list before appending again
-                self.jobs.removeAll()
-                
+                self.table.isHidden = false
+                print("There are job snapshots!!")
                 // for each snapshot (entity present under jobs child)
                 for jobSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                    
-                    // retrieve jobs and append to job list after creation
-                    let jobObject = jobSnapshot.value as! [String: AnyObject]
-                    let job = Job()
-                    
-                    job.address = jobObject["jobAddress"] as! String
-                    job.currentLocation = jobObject["jobCurrentLocation"] as! Bool
-                    job.jobDateString = jobObject["jobDate"] as! String
-                    job.jobDescription = jobObject["jobDescription"] as! String
-                    job.distance = jobObject["jobDistance"] as! Double
-                    job.imageAsString = jobObject["jobImageUrl"] as! String
-                    job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
-                    job.numHelpers = jobObject["jobNumHelpers"] as! Int
-                    job.payment = jobObject["jobPayment"] as! Double
-                    job.jobTitle = jobObject["jobTitle"] as! String
-                    job.jobId = jobSnapshot.ref.key
-                    if(jobObject["latitude"] == nil)
-                    {
-                        job.latitude = 0
-                        job.longitude = 0
+                    if(self.containsJobWithId(id: jobSnapshot.ref.key)) {
+                        // job already in list
+                    } else {
+                        // retrieve jobs and append to job list after creation
+                        let jobObject = jobSnapshot.value as! [String: AnyObject]
+                        let job = Job()
+                        
+                        job.address = jobObject["jobAddress"] as! String
+                        job.currentLocation = jobObject["jobCurrentLocation"] as! Bool
+                        job.jobDateString = jobObject["jobDate"] as! String
+                        job.jobDescription = jobObject["jobDescription"] as! String
+                        job.distance = jobObject["jobDistance"] as! Double
+                        job.imageAsString = jobObject["jobImageUrl"] as! String
+                        job.isHourlyPaid = jobObject["jobIsHourlyPaid"] as! Bool
+                        job.numHelpers = jobObject["jobNumHelpers"] as! Int
+                        job.payment = jobObject["jobPayment"] as! Double
+                        job.jobTitle = jobObject["jobTitle"] as! String
+                        job.jobId = jobSnapshot.ref.key
+                        if(jobObject["latitude"] == nil)
+                        {
+                            job.latitude = 0
+                            job.longitude = 0
+                        }
+                        else {
+                            job.latitude = jobObject["latitude"] as! Double
+                            job.longitude = jobObject["longitude"] as! Double
+                        }
+                        
+                        let locationManager = self.manager
+                        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                        locationManager.requestAlwaysAuthorization()
+                        locationManager.startUpdatingLocation()
+                        let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
+                        job.distance = distance
+                        
+                        if (job.distance <= UserDefaults.standard.value(forKey:"max_radius") as! Double)
+                        {
+                            self.jobs.append(job)
+                            self.jobs = self.jobs.sorted(by: { $0.distance < $1.distance })
+                        }
+                        
+                        if(self.jobs.count > 0 && !self.loadingView.isHidden) {
+                            self.loadingView.isHidden = true
+                        }
+                        
+                        self.table.reloadData()
                     }
-                    else {
-                        job.latitude = jobObject["latitude"] as! Double
-                        job.longitude = jobObject["longitude"] as! Double
-                    }
-                    
-                    let locationManager = self.manager
-                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-                    locationManager.requestAlwaysAuthorization()
-                    locationManager.startUpdatingLocation()
-                    let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
-                    job.distance = distance
-                    
-                    if (job.distance <= UserDefaults.standard.value(forKey:"max_radius") as! Double)
-                    {
-                        self.jobs.append(job)
-                        self.jobs = self.jobs.sorted(by: { $0.distance < $1.distance })
-                    }
-                    
-                    if(self.jobs.count > 0 && !self.loadingView.isHidden) {
-                        self.loadingView.isHidden = true
-                    }
-
-                    self.table.reloadData()
                 }
             }
         })
     }
     
+    func containsJobWithId(id: String) -> Bool{
+        for j in jobs {
+            if j.jobId == id {
+                return true
+            }
+        }
+        return false
+    }
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])

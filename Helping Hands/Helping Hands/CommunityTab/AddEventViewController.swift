@@ -172,7 +172,7 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
         let newPost = postRef.childByAutoId()
         if let imgUpload = UIImagePNGRepresentation(e.image!) {
             let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
-            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            let storageRef = FIRStorage.storage().reference().child("event_photos/\(newPost.key).png")
             storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error!)

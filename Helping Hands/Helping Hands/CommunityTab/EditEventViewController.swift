@@ -164,7 +164,7 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         let eventRef = databaseRef.child("events").child(e.eventId)
         if let imgUpload = UIImagePNGRepresentation(e.image!) {
             let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
-            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            let storageRef = FIRStorage.storage().reference().child("event_photos/\(e.eventId).png")
             storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error!)
