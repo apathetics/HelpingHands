@@ -17,6 +17,8 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     
     let manager = CLLocationManager()
     
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
     
@@ -74,7 +76,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if (self.events.count == 0) {
                 self.activityIndicatorView.stopAnimating()
-                self.activityIndicatorView.isHidden = true
+                self.loadingView.isHidden = true
                 var frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
                 let errorView = UIView(frame: frame)
                 let size = CGSize(width: 180, height: 350)
@@ -213,68 +215,81 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     // DATABASE RETRIEVAL
     func retrieveEvents() {
         
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let eventsRef = databaseRef.child("events")
         
         eventsRef.observe(FIRDataEventType.value, with: {(snapshot) in
             
             // make sure there are events
             if snapshot.childrenCount > 0 {
-                
-                // clear event list before appending again
-                self.events.removeAll()
-                
+                self.table.isHidden = false
                 // for each snapshot (entity present under events child)
                 for eventSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                    
-                    let eventObject = eventSnapshot.value as! [String: AnyObject]
-                    let event = Event()
-                    
-                    event.address = eventObject["eventAddress"] as! String
-                    event.currentLocation = eventObject["eventCurrentLocation"] as! Bool
-                    event.eventDateString = eventObject["eventDate"] as! String
-                    event.eventDescription = eventObject["eventDescription"] as! String
-                    event.distance = eventObject["eventDistance"] as! Double
-                    event.imageAsString = eventObject["eventImageUrl"] as! String
-                    event.numHelpers = eventObject["eventNumHelpers"] as! Int
-                    event.eventTitle = eventObject["eventTitle"] as! String
-                    event.eventId = eventSnapshot.ref.key
-                    if(eventObject["latitude"] == nil)
-                    {
-                        event.latitude = 0
-                        event.longitude = 0
+                    if(self.containsEventWithId(id: eventSnapshot.ref.key)) {
+                        //event already in list
+                    } else {
+                        // retrieve events and append to event list after creation
+                        let eventObject = eventSnapshot.value as! [String: AnyObject]
+                        let event = Event()
+                        
+                        event.address = eventObject["eventAddress"] as! String
+                        event.currentLocation = eventObject["eventCurrentLocation"] as! Bool
+                        event.eventDateString = eventObject["eventDate"] as! String
+                        event.eventDescription = eventObject["eventDescription"] as! String
+                        event.distance = eventObject["eventDistance"] as! Double
+                        event.imageAsString = eventObject["eventImageUrl"] as! String
+                        event.numHelpers = eventObject["eventNumHelpers"] as! Int
+                        event.eventTitle = eventObject["eventTitle"] as! String
+                        event.eventId = eventSnapshot.ref.key
+                        if(eventObject["latitude"] == nil)
+                        {
+                            event.latitude = 0
+                            event.longitude = 0
+                        }
+                        else {
+                            event.latitude = eventObject["latitude"] as! Double
+                            event.longitude = eventObject["longitude"] as! Double
+                        }
+                        
+                        let locationManager = self.manager
+                        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                        locationManager.requestAlwaysAuthorization()
+                        locationManager.startUpdatingLocation()
+                        let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as! Double) * 0.00062137
+                        event.distance = distance
+                        
+                        if (event.distance <= UserDefaults.standard.value(forKey:"max_radius") as! Double)
+                        {
+                            self.events.append(event)
+                            self.events = self.events.sorted(by: { $0.distance < $1.distance })
+                            self.activityIndicatorView.stopAnimating()
+                            self.loadingView.isHidden = true
+                        }
+                        
+                        self.table.reloadData()
                     }
-                    else {
-                        event.latitude = eventObject["latitude"] as! Double
-                        event.longitude = eventObject["longitude"] as! Double
-                    }
-                    
-                    let locationManager = self.manager
-                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-                    locationManager.requestAlwaysAuthorization()
-                    locationManager.startUpdatingLocation()
-                    let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as! Double) * 0.00062137
-                    event.distance = distance
-                    
-                    if (event.distance <= UserDefaults.standard.value(forKey:"max_radius") as! Double)
-                    {
-                        self.events.append(event)
-                        self.events = self.events.sorted(by: { $0.distance < $1.distance })
-                    }
-                
-                    self.table.reloadData()
-                    
                 }
             }
         })
     }
-    
+   
+    func containsEventWithId(id: String) -> Bool{
+        for j in events {
+            if j.eventId == id {
+                return true
+            }
+        }
+        return false
+    }
+
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
         theme.applyTabBarTintColor(tabBar: self.tabBarController!)
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
         theme.applyTableViewBackgroundColor(tableView: [table])
-
+        for cell in table.visibleCells {
+            theme.applyBodyTextStyle(labels: [(cell as! EventTableViewCell).eventDescriptionLbl!])
+            theme.applyHeadlineStyle(labels: [(cell as! EventTableViewCell).eventTitleLbl!])
+        }
     }
 }

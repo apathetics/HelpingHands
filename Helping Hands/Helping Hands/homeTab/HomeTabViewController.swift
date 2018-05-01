@@ -71,7 +71,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if (self.jobs.count == 0) {
                 self.activityIndicatorView.stopAnimating()
-                self.activityIndicatorView.isHidden = true
+                self.loadingView.isHidden = true
                 var frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
                 let errorView = UIView(frame: frame)
                 let size = CGSize(width: 180, height: 350)
@@ -262,6 +262,9 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                         {
                             self.jobs.append(job)
                             self.jobs = self.jobs.sorted(by: { $0.distance < $1.distance })
+                            self.activityIndicatorView.stopAnimating()
+                            self.loadingView.isHidden = true
+
                         }
                         
                         if(self.jobs.count > 0 && !self.loadingView.isHidden) {
