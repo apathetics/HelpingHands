@@ -1358,15 +1358,15 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gardening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6p-Ui-C0J">
-                                                    <rect key="frame" x="105" y="11" width="193" height="21"/>
+                                                    <rect key="frame" x="105" y="11" width="191" height="21"/>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14.99mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsT-Mf-VqD">
-                                                    <rect key="frame" x="306" y="12" width="59" height="19"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14.99 mi." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsT-Mf-VqD">
+                                                    <rect key="frame" x="304" y="12" width="61" height="19"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="59" id="i5s-fF-f0b"/>
+                                                        <constraint firstAttribute="width" constant="61" id="i5s-fF-f0b"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                                     <color key="textColor" red="0.046060357693386844" green="0.28126769088639547" blue="0.30606379533678751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1806,58 +1806,54 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zeq-SF-WW3">
-                                                    <rect key="frame" x="11" y="15" width="78" height="78"/>
+                                                    <rect key="frame" x="15" y="12" width="78" height="78"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="78" id="Arj-DT-b8w"/>
-                                                        <constraint firstAttribute="width" constant="78" id="oUn-N8-h7u"/>
+                                                        <constraint firstAttribute="width" constant="78" id="TQ1-Nu-rqN"/>
+                                                        <constraint firstAttribute="height" constant="78" id="hIr-rp-z16"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.1 mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3t4-9p-Z7G">
-                                                    <rect key="frame" x="280" y="13" width="85" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14.99 mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3t4-9p-Z7G">
+                                                    <rect key="frame" x="303" y="13" width="62" height="18.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="85" id="RpA-Hz-k8J"/>
+                                                        <constraint firstAttribute="width" constant="62" id="8eh-IR-PqD"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                                     <color key="textColor" red="0.046060357689999998" green="0.28126769089999998" blue="0.3060637953" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Helpers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdC-oY-ugp">
-                                                    <rect key="frame" x="11" y="96" width="78" height="20"/>
+                                                    <rect key="frame" x="17" y="95" width="74" height="17.5"/>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvS-ih-MOi">
-                                                    <rect key="frame" x="105" y="43" width="260" height="67"/>
+                                                    <rect key="frame" x="103" y="42" width="262" height="55"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Park Cleanup!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmP-pa-sJI">
-                                                    <rect key="frame" x="105" y="13" width="170" height="21"/>
+                                                    <rect key="frame" x="103" y="11" width="192" height="21"/>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="vvS-ih-MOi" firstAttribute="top" secondItem="3t4-9p-Z7G" secondAttribute="bottom" constant="9" id="3D0-dA-UyG"/>
-                                                <constraint firstItem="zeq-SF-WW3" firstAttribute="top" secondItem="utX-XS-8UE" secondAttribute="topMargin" constant="4" id="7vo-Fb-ceK"/>
-                                                <constraint firstItem="vvS-ih-MOi" firstAttribute="leading" secondItem="PdC-oY-ugp" secondAttribute="trailing" constant="16" id="9fy-Rx-Jns"/>
-                                                <constraint firstItem="vvS-ih-MOi" firstAttribute="top" secondItem="GmP-pa-sJI" secondAttribute="bottom" constant="9" id="QOg-Uq-bOo"/>
-                                                <constraint firstItem="GmP-pa-sJI" firstAttribute="leading" secondItem="vvS-ih-MOi" secondAttribute="leading" id="Re5-sZ-4BI"/>
-                                                <constraint firstItem="vvS-ih-MOi" firstAttribute="bottom" secondItem="utX-XS-8UE" secondAttribute="bottomMargin" id="Zs8-Jg-1UT"/>
-                                                <constraint firstItem="GmP-pa-sJI" firstAttribute="leading" secondItem="zeq-SF-WW3" secondAttribute="trailing" constant="16" id="bhB-H7-N2F"/>
-                                                <constraint firstItem="3t4-9p-Z7G" firstAttribute="leading" secondItem="GmP-pa-sJI" secondAttribute="trailing" constant="5" id="by5-j6-tcY"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3t4-9p-Z7G" secondAttribute="trailing" constant="-5" id="gfw-yg-KO8"/>
-                                                <constraint firstItem="PdC-oY-ugp" firstAttribute="top" secondItem="zeq-SF-WW3" secondAttribute="bottom" constant="3" id="hMw-jR-aFJ"/>
-                                                <constraint firstItem="zeq-SF-WW3" firstAttribute="leading" secondItem="utX-XS-8UE" secondAttribute="leadingMargin" constant="-4" id="pro-GD-1bK"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="PdC-oY-ugp" secondAttribute="bottom" constant="-6" id="px5-su-TzT"/>
-                                                <constraint firstItem="GmP-pa-sJI" firstAttribute="top" secondItem="utX-XS-8UE" secondAttribute="topMargin" constant="2" id="qAP-0p-u1j"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="vvS-ih-MOi" secondAttribute="trailing" constant="-5" id="s2h-zn-JPD"/>
-                                                <constraint firstItem="PdC-oY-ugp" firstAttribute="leading" secondItem="utX-XS-8UE" secondAttribute="leadingMargin" constant="-4" id="sDb-Cw-bkq"/>
-                                                <constraint firstItem="zeq-SF-WW3" firstAttribute="top" secondItem="3t4-9p-Z7G" secondAttribute="top" constant="2" id="zBV-O8-ouQ"/>
+                                                <constraint firstItem="vvS-ih-MOi" firstAttribute="leading" secondItem="zeq-SF-WW3" secondAttribute="trailing" constant="10" id="6IU-go-Opx"/>
+                                                <constraint firstItem="vvS-ih-MOi" firstAttribute="top" secondItem="GmP-pa-sJI" secondAttribute="bottom" constant="10" id="BT3-WL-ZUs"/>
+                                                <constraint firstItem="3t4-9p-Z7G" firstAttribute="leading" secondItem="GmP-pa-sJI" secondAttribute="trailing" constant="8" id="H0g-8A-BUh"/>
+                                                <constraint firstItem="GmP-pa-sJI" firstAttribute="leading" secondItem="zeq-SF-WW3" secondAttribute="trailing" constant="10" id="QM2-fZ-3dE"/>
+                                                <constraint firstAttribute="trailing" secondItem="3t4-9p-Z7G" secondAttribute="trailing" constant="10" id="QV3-sC-Zqv"/>
+                                                <constraint firstItem="zeq-SF-WW3" firstAttribute="top" secondItem="utX-XS-8UE" secondAttribute="top" constant="12" id="QV6-ju-aRq"/>
+                                                <constraint firstItem="PdC-oY-ugp" firstAttribute="top" secondItem="zeq-SF-WW3" secondAttribute="bottom" constant="5" id="US6-Vj-I28"/>
+                                                <constraint firstItem="PdC-oY-ugp" firstAttribute="leading" secondItem="utX-XS-8UE" secondAttribute="leading" constant="17" id="VoK-SA-WgA"/>
+                                                <constraint firstItem="zeq-SF-WW3" firstAttribute="leading" secondItem="utX-XS-8UE" secondAttribute="leading" constant="15" id="dwI-nz-P8e"/>
+                                                <constraint firstItem="GmP-pa-sJI" firstAttribute="top" secondItem="utX-XS-8UE" secondAttribute="topMargin" id="eIN-Hs-j8g"/>
+                                                <constraint firstItem="3t4-9p-Z7G" firstAttribute="top" secondItem="utX-XS-8UE" secondAttribute="top" constant="13" id="gr7-2w-ChF"/>
+                                                <constraint firstAttribute="trailing" secondItem="vvS-ih-MOi" secondAttribute="trailing" constant="10" id="sHd-On-Njc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -3864,10 +3860,10 @@
         <image name="worldwide_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GjD-RQ-lXZ"/>
-        <segue reference="1Gy-YL-dzE"/>
+        <segue reference="Dxf-mJ-YBy"/>
+        <segue reference="m5T-tJ-blf"/>
         <segue reference="k5o-ug-Gfi"/>
-        <segue reference="7hC-Tu-DGP"/>
-        <segue reference="9Vc-Rv-L3Q"/>
+        <segue reference="5dw-2g-ub0"/>
+        <segue reference="Rmb-LX-uGO"/>
     </inferredMetricsTieBreakers>
 </document>
