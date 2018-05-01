@@ -23,7 +23,6 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var locationEditButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var numHelpersText: UITextField!
-    
     @IBOutlet weak var eventDescriptionLabel: UILabel!
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventLocationLabel: UILabel!
@@ -41,8 +40,11 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Theme
         ThemeService.shared.addThemeable(themable: self)
         self.hideKeyboardWhenTappedAround()
+        
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
@@ -50,10 +52,10 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
             self.event.image = image
         })
         
+        // Set info
         eventPhoto.image = event.image
         editEventTitle.text = event.eventTitle
         numHelpersText.text = String(event.numHelpers)
-        
         eventDescription.text = event.eventDescription
         self.latLong = (event.latitude, event.longitude)
         
@@ -140,8 +142,8 @@ class EditEventViewController: UIViewController, UINavigationControllerDelegate,
         let datePicked = df.string(from: datePicker.date)
         let dateFromString = df.date(from: datePicked)
         df.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
-        event.eventDateString = df.string(from: dateFromString!)
         
+        event.eventDateString = df.string(from: dateFromString!)
         event.eventDescription = eventDescription.text
         
         if(self.latLong != nil) {
