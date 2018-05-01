@@ -1286,9 +1286,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Job" id="45s-uJ-nMd" userLabel="Job">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Up" id="PKe-Ms-SQq">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Up" id="057-sC-tgB">
                             <connections>
-                                <action selector="addUser:" destination="TTE-Re-l7J" id="woo-NZ-hBI"/>
+                                <action selector="addUser:" destination="TTE-Re-l7J" id="5dm-eB-ymF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1304,7 +1304,7 @@
                         <outlet property="jobPhoto" destination="3BY-ba-lgG" id="654-aq-tFn"/>
                         <outlet property="jobPrice" destination="JWc-VW-GAJ" id="wCA-cr-X9n"/>
                         <outlet property="jobTitle" destination="c0M-C2-ZWZ" id="WI0-ng-2VF"/>
-                        <outlet property="signUpButton" destination="PKe-Ms-SQq" id="PFW-Gg-9Be"/>
+                        <outlet property="signUpButton" destination="057-sC-tgB" id="s2n-Eu-lyn"/>
                         <outlet property="table" destination="KkH-lV-IDB" id="35F-My-ozP"/>
                         <segue destination="skE-v8-GxT" kind="push" identifier="showJobEditor" id="U7z-FX-yJ4"/>
                         <segue destination="8W0-FX-gIH" kind="modal" identifier="showInquiry" id="Dxf-mJ-YBy"/>
