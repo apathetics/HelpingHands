@@ -14,6 +14,7 @@ import FirebaseAuth
 import FirebaseStorageUI
 
 extension UIViewController {
+    
     func performSegueToReturnBack()  {
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
@@ -44,7 +45,10 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Theme
         ThemeService.shared.addThemeable(themable: self)
+        
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
@@ -52,12 +56,14 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
             self.user.userPhoto = image
         })
         
+        // Set user image from before.
         userPhoto.image = user.userPhoto
         editFirstName.text = user.userFirstName
         editLastName.text = user.userLastName
         editEmail.text = user.userEmail
         userDescription.text = user.userBio
         
+        // If description is blank, then add a filler.
         if(userDescription.text == "" || userDescription.text == nil) {
             userDescription.text = "Description..."
             userDescription.textColor = UIColor.lightGray
@@ -83,28 +89,6 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         }
     }
     
-    /*
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     return inquiries.count
-     }
-     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell:userTableViewCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! userTableViewCell
-     
-     let row = indexPath.row
-     let j:NSManagedObject = inquiries[row]
-     
-     cell.userTitleLbl.text = j.value(forKey: "userTitle") as? String
-     cell.userDescriptionLbl.text = j.value(forKey: "userDescription") as? String
-     cell.distanceLbl.text = String(j.value(forKey: "userDistance") as! Double) + " mi"
-     let ftmPayment = "$" + ((j.value(forKey: "userPayment") as! Double).truncatingRemainder(dividingBy: 1) == 0 ? String(j.value(forKey: "userPayment") as! Int64) : String(j.value(forKey: "userPayment") as! Double))
-     print("PAYMENT IS:", ftmPayment)
-     cell.paymentLbl.text = j.value(forKey: "userIsHourlyPaid") as! Bool == true ? ftmPayment + "/hr" : ftmPayment
-     cell.userImg.image = UIImage(data: j.value(forKey: "userImage") as! Data)
-     
-     return cell
-     }*/
-    
     @IBAction func chooseImgBtn(_ sender: Any) {
         let image = UIImagePickerController()
         image.delegate = self
@@ -125,11 +109,6 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         self.dismiss(animated: true, completion: nil)
     }
     
-//    @IBAction func onBackButtonClick(_ sender: Any) {
-//        self.navigationController?.popViewController(animated: true)
-//        dismiss(animated: true, completion: nil)
-//    }
-    
     @IBAction func onSaveButtonClick(_ sender: Any) {
         user.userPhoto = userPhoto.image
         user.userFirstName = editFirstName.text
@@ -141,17 +120,7 @@ class EditUserViewController: UIViewController, UINavigationControllerDelegate, 
         self.performSegueToReturnBack()
     }
     
-//    @IBAction func saveChanges(_ sender: Any) {
-//        user.userPhoto = userPhoto.image
-//        user.userFirstName = editFirstName.text
-//        user.userLastName = editLastName.text
-//        user.userEmail = editEmail.text
-//        user.userBio = userDescription.text
-//        masterView?.user = self.user
-//        updateJob(u: user)
-//        self.performSegueToReturnBack()
-//    }
-    
+    // On save, we want to update any changed information in the database but not replace it completely.
     func updateUser(u: User) {
         let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let jobRef = databaseRef.child("users").child(self.userId)

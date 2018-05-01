@@ -26,14 +26,12 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var bioLBL: UILabel!
     
     let manager = CLLocationManager()
-
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
     
     var imgChosen = false
     var user:User!
     var userIndexPath:Int?
-    
     var inquiryOrAttendee = false
     
     var postedJobs = [Job]()
@@ -41,11 +39,12 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     var completedJobs = [Job]()
     
     var chosen: Int?
-    
     var chosenPostedJob: Job!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // load theme
         ThemeService.shared.addThemeable(themable: self)
         
         table.delegate = self
@@ -56,7 +55,11 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // retrieve job statuses before loading
         retrieveJobStatuses()
+        
+        // retrieve user info before loading
         retrieveUser()
         
         // check for user permissions to edit
@@ -74,6 +77,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         self.userPhoto.sd_setImage(with: URL(string: self.user.userPhotoAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
         })
         
+        // set user data in labels
         userPhoto.layer.cornerRadius = userPhoto.frame.height/2
         userPhoto.contentMode = .scaleAspectFill
         userPhoto.clipsToBounds = true
@@ -81,11 +85,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         userName.text = (user.userFirstName)! + " " + (user?.userLastName)!
         userEmail.text = user.userEmail
         userDescription.text = user.userBio
-        
-        // Change the ones below
-//        userLocation.text = String(describing: user.userLocationRadius!)
-//        userDistance.text = String(describing: user.userDistance!)
-        //        userRating.text = String(user.userRating!)
         
         self.table.reloadData()
     }
@@ -96,6 +95,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // pass information for when we edit the user
         if(segue.identifier == "showEditUser")
         {
             let editorVC:EditUserViewController = segue.destination as! EditUserViewController
@@ -103,19 +104,15 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             print(user.userFirstName)
             editorVC.user = user
         }
-        if(segue.identifier == "showJob") {
-//            let j:Job = jobs[chosen!]
-//            let jobVC:JobViewController = segue.destination as! JobViewController
-//            jobVC.masterView = self
-//            jobVC.job = j
-//            jobVC.jobID = j.jobId
-        }
+
+        // pass information for when we go to the QR code page
         if(segue.identifier == "showConfirmationHirer") {
             let vc:QRViewController = segue.destination as! QRViewController
             vc.chosenJobId = self.chosenPostedJob.jobId
         }
     }
     
+    // reload table data on changing segment
     @IBAction func segmentControlActionChanged(_ sender: Any) {
         self.table.reloadData()
     }
@@ -125,6 +122,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         
         var selectedJobCount = 0
         
+        // switch to handle different type of job views in the table
         switch(self.jobBar.selectedSegmentIndex) {
         case 0:
             selectedJobCount = postedJobs.count
@@ -151,16 +149,20 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         let row = indexPath.row
         var j:Job?
         
+        // set various different views depending on the type of job (posted/pending are the same but completed is different)
         switch(jobBar.selectedSegmentIndex) {
         case 0:
+            
+            // grab the chosen job
             j = postedJobs[row]
             
+            // populate the cell with its data
             cell.jobTitleLbl.text = j!.jobTitle
             cell.jobDescriptionLbl.text = j!.jobDescription
             cell.distanceLbl.text = String(format: "%.2f", j!.distance) + " mi"
             let ftmPayment = "$" + ((j!.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j!.payment) : String(j!.payment))
             cell.paymentLbl.text = j!.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-//            cell.distanceLbl.isHidden = false
+            
             // Placeholder image
             let placeholderImage = UIImage(named: "meeting")
             // Load the image using SDWebImage
@@ -176,7 +178,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             cell.distanceLbl.text = String(format: "%.2f", j!.distance) + " mi"
             let ftmPayment = "$" + ((j!.payment).truncatingRemainder(dividingBy: 1) == 0 ? String(j!.payment) : String(j!.payment))
             cell.paymentLbl.text = j!.isHourlyPaid == true ? ftmPayment + "/hr" : ftmPayment
-//            cell.distanceLbl.isHidden = false
+
             // Placeholder image
             let placeholderImage = UIImage(named: "meeting")
             // Load the image using SDWebImage
@@ -187,10 +189,10 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         case 2:
             j = completedJobs[row]
             
+            // populate less info than its other two categories
             cell.jobTitleLbl.text = j!.jobTitle
             cell.jobDescriptionLbl.text = j!.jobReview
             cell.paymentLbl.text = String(Int(j!.jobRating)) + "/5"
-//            cell.distanceLbl.isHidden = true
             
             let placeholderImage = UIImage(named: "meeting")
             cell.jobImg.sd_setImage(with: URL(string: j!.imageAsString), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
@@ -213,14 +215,17 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
         
         let row = indexPath.row
         
+        // here we want to define how to segue into the QR/scanner screen for when we click an instance of a job we want to complete
         switch(jobBar.selectedSegmentIndex) {
         case 0:
+            // for the QR code, we want to update the QR flag
             chosenPostedJob = postedJobs[row]
             let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
             let jobRef = databaseRef.child("jobs").child(chosenPostedJob.jobId)
             jobRef.updateChildValues(["QRCodeFlag": true])
             self.performSegue(withIdentifier: "showConfirmationHirer", sender: self)
             break
+            
         case 1:
             self.performSegue(withIdentifier: "showConfirmationHired", sender: self)
             break
@@ -280,11 +285,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                 user.userBio = userObject["bio"] as! String
             }
             
-            //TODO: SETTINGS NOT IN DATABASE YET
-            user.userLocationRadius = 1
-            user.userDistance = 1
-            
-            //FIX: self.userId is current logged in user's id. This could be different from the userId of the profile we're visiting if that profile is a different person.
+            // set user ID to given id to prevent incorrect user instance view
             user.userID = self.userId
             
             self.user = user
@@ -292,6 +293,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     func retrieveJobStatuses() {
+        
+        // retrieve location
         let locationManager = self.manager
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
@@ -304,6 +307,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             currentUserRef = databaseRef.child("users").child(user.userID)
         }
         
+        // we want to keep track of the three different type of jobs to feed into the switch case
         var postedJobsId = [String]()
         var pendingJobsId = [String]()
         var completedJobsId = [String]()
@@ -322,7 +326,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                     let jobId = jobsPostedObject["jobId"] as! String
                     postedJobsId.append(jobId)
                 }
-                print("I AM POSTED JOBS IDS: ", postedJobsId)
                 
                 for jobId in postedJobsId {
                     let jobRef = databaseRef.child("jobs").child(jobId)
@@ -334,7 +337,8 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         }
                         // retrieve jobs and append to job list after creation
                         // TODO: Bug seems to be happening here? Not sure why, but I can't open up my user profile - Bryan
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        // Synchronization is hard. + 1 usually works but + 2 works for sure on slow internets.
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         let jobObject = snapshot.value as! [String: AnyObject]
                         let job = Job()
                         
@@ -351,7 +355,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         job.payment = jobObject["jobPayment"] as! Double
                         job.jobTitle = jobObject["jobTitle"] as! String
                         job.jobId = snapshot.ref.key
-                        
                             
                         let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
                         
@@ -375,7 +378,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                     let jobId = jobsPostedObject["jobId"] as! String
                     pendingJobsId.append(jobId)
                 }
-                print("I AM PENDING JOBS IDS: ", postedJobsId)
                 
                 for jobId in pendingJobsId {
                     let jobRef = databaseRef.child("jobs").child(jobId)
@@ -422,7 +424,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                     let jobId = jobsCompletedObject["jobId"] as! String
                     completedJobsId.append(jobId)
                 }
-                print("I AM COMPLETED JOBS IDS: ", completedJobsId)
                 
                 for jobId in completedJobsId {
                     let jobRef = databaseRef.child("completedJobs").child(jobId)
@@ -430,7 +431,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
                     jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
                         
                         // retrieve jobs and append to job list after creation
-                        // TODO: Bug seems to be happening here? Not sure why, but I can't open up my user profile - Bryan
                         let jobObject = snapshot.value as! [String: AnyObject]
                         let job = Job()
                         
@@ -448,8 +448,6 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             }
         })
         
-        
-        
     }
     
     func applyTheme(theme: Theme) {
@@ -457,6 +455,7 @@ class UserViewController: UIViewController, UINavigationControllerDelegate, UIIm
             // big fix: UserVC->navigationController is nil after clicking back button
             UINavigationController(rootViewController: self)
         }
+        
         theme.applyBackgroundColor(views: [view])
         theme.applyNavBarTintColor(navBar: self.navigationController!)
         theme.applyTintColor_Font(navBar: self.navigationController!)
