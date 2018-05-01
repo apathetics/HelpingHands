@@ -21,7 +21,11 @@ class ContactUsViewController: UITableViewController, MFMailComposeViewControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Hide keyboard
         self.hideKeyboardWhenTappedAround()
+        
+        // Theme
         ThemeService.shared.addThemeable(themable: self)
         // Do any additional setup after loading the view.
         msgTV.delegate = self
@@ -39,10 +43,12 @@ class ContactUsViewController: UITableViewController, MFMailComposeViewControlle
         // Dispose of any resources that can be recreated.
     }
     
+    // If cancel, then just dismiss.
     @IBAction func cancelPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Brings up built-in mail controller with previous input.
     @IBAction func sendPressed(_ sender: Any) {
         let mailVC = MFMailComposeViewController()
         if(!MFMailComposeViewController.canSendMail()) {
@@ -56,11 +62,8 @@ class ContactUsViewController: UITableViewController, MFMailComposeViewControlle
         let email = emailTF.text?.lowercased()
         let finalEmail = email?.trimmingCharacters(in: NSCharacterSet.whitespaces)
         
-//        let mailContent = "Name: \(nameTF.text!)\n\nSubject: \(subjectTF.text!)\n\nEmail: \(finalEmail)\n\nMessage: \(msgTV.text!)"
-        
         mailVC.setMessageBody(msgTV.text!, isHTML: false)
-        
-        mailVC.setToRecipients(["manasa.tipparam@gmail.com", "bryanbernal97@gmail.com", "kafleyozone@gmail.com"])
+        mailVC.setToRecipients(["manasa.tipparam@gmail.com", "bryanbernal97@gmail.com", "kafleyozone@gmail.com", "tracynguyen@utexas.edu"])
         
         self.present(mailVC, animated: true) {
             self.nameTF.text = ""
@@ -70,6 +73,7 @@ class ContactUsViewController: UITableViewController, MFMailComposeViewControlle
         }
     }
     
+    // Set cell based on super.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.backgroundColor = UIColor.clear

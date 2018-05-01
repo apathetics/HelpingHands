@@ -15,36 +15,31 @@ class SideMenuController: UIViewController, Themeable {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    
     @IBOutlet weak var userNumJobsCompleted: UILabel!
     @IBOutlet weak var userNumJobsPosted: UILabel!
     @IBOutlet weak var userMoneyEarned: UILabel!
     @IBOutlet weak var jobsCompletedLBL: UILabel!
     @IBOutlet weak var jobsPostedLBL: UILabel!
     @IBOutlet weak var moneyEarnedLBL: UILabel!
-    
-//    @IBOutlet weak var ConfirmHiredBTN: UIButton!
-//    @IBOutlet weak var ConfirmHireeBTN: UIButton!
-//    @IBOutlet weak var PaymentHiredBTN: UIButton!
-//    @IBOutlet weak var PaymentHireeBTN: UIButton!
     @IBOutlet weak var SettingsBTN: UIButton!
     @IBOutlet weak var ContactBTN: UIButton!
-    
     @IBOutlet weak var themeButton: UIButton!
+    
     var selectedThemeIcon: UIImage = UIImage(named: "nightModeIcon")!
     var otherThemeIcon: UIImage = UIImage(named: "dayModeIcon")!
     var selectedTheme: Theme = DarkTheme()
     var otherTheme: Theme = DefaultTheme()
-
     var user: User!
+    
     let userRef = FIRDatabase.database().reference().child("users")
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let currentUser = FIRAuth.auth()?.currentUser
-    
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Theme
         ThemeService.shared.addThemeable(themable: self)
     }
     
@@ -65,36 +60,26 @@ class SideMenuController: UIViewController, Themeable {
         profileImage.addGestureRecognizer(profileTap)
         profileImage.isUserInteractionEnabled = true
         
+        // Retrieve the user currently logged in.
         retrieveUser()
+        
+        // Update side menu with correct label info.
         populateSideMenu()
     }
     
-    // Dummy for connecting to PROFILE screen
+    // On tap of profile picture, we segue to profile.
     @objc func profileTapGesture() {
         print("Image Tapped")
         self.performSegue(withIdentifier: "showProfile", sender: self)
     }
     
+    // Send the user info to the profile segue.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showProfile") {
             let destVC: UINavigationController = segue.destination as! UINavigationController
             let userVC:UserViewController = destVC.topViewController as! UserViewController
             userVC.user = self.user
         }
-    }
-    
-    func grabProfile() -> User {
-        let user:User = User()
-        user.userFirstName = "FirstName"
-        user.userLastName = "LastName"
-        user.userEmail = "user@email.com"
-        user.userBio = "This is a user bio. Forgive the dummy! :)"
-        user.userJobsCompleted = 4
-        user.userLocationRadius = 0.0
-        user.userNumJobsPosted = 10
-        user.userPhoto = UIImage(named: "meeting")
-        // Change the ones below
-        return user
     }
     
     // FIREBASE RETRIEVAL
@@ -135,6 +120,7 @@ class SideMenuController: UIViewController, Themeable {
         
     }
     
+    // Change theme to color schemes
     @IBAction func themeButtonClicked(_ sender: Any) {
         UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
             self.themeButton.alpha = 0.0
@@ -154,6 +140,7 @@ class SideMenuController: UIViewController, Themeable {
         print("Clicked theme button")
     }
     
+    // How are we seguing to settings? Huh?
     @IBAction func settingsButtonClicked(_ sender: Any) {
         print("Clicked settings")
     }
@@ -175,11 +162,13 @@ class SideMenuController: UIViewController, Themeable {
                 let jobsDone = String(value?["jobsCompleted"] as! Int)
                 let jobsPosted = String(value?["jobsPosted"] as! Int)
                 let moneyEarned = String(value?["moneyEarned"] as! Double)
+                
                 // Placeholder image
                 let placeholderImage = UIImage(named: "profilePlaceholderImg.png")
                 // Load the image using SDWebImage
                 self.profileImage.sd_setImage(with: URL(string: value?["photoUrl"] as! String), placeholderImage: placeholderImage, options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
                 })
+                
                 // Populate sidebar
                 self.userNameLabel.text = "\(fName) \(lName)"
                 self.userNumJobsCompleted.text = jobsDone
@@ -192,18 +181,6 @@ class SideMenuController: UIViewController, Themeable {
             print("UserId is nil")
         }
     }
-    
-    // Blurring option works but there's a weird line at the top that doesn't fully conform.
-    //    override func viewWillAppear(_ animated: Bool) {
-    //
-    //        self.revealViewController().frontViewController.view.alpha = 0.5
-    //    }
-    //
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //
-    //        self.revealViewController().frontViewController.view.alpha = 1
-    //    }
-    
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
