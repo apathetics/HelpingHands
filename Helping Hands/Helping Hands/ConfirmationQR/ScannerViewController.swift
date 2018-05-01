@@ -27,18 +27,23 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     
+    // Button for debugging if scanning does not work.
     @IBAction func onPaymentClicked(_ sender: Any) {
         self.performSegue(withIdentifier: "showPaymentHired", sender: self)
     }
+    
+    // Button for debugging if scanning does not work.
     @IBAction func onBackClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     //  ** PREPARE SEGUES ** \\
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Updates job information after setting the flag (jobCreator is super important for QR code to know).
         if(segue.identifier == "showPaymentHired") {
-            let vc:HiredPaymentController = segue.destination as! HiredPaymentController
             
+            let vc:HiredPaymentController = segue.destination as! HiredPaymentController
             vc.chosenJobId = self.scannedId
             
             let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
@@ -47,25 +52,21 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
                 
                 let jobObject = snapshot.value as! [String: AnyObject]
-                
-                vc.moneyLabel.text = String(jobObject["jobPayment"] as! Double)
-                
                 let payerId = jobObject["jobCreator"] as! String
                 
+                vc.moneyLabel.text = String(jobObject["jobPayment"] as! Double)
                 vc.bossId = payerId
                 
                 databaseRef.child("users").child(payerId).observeSingleEvent(of: .value, with: {(snap) in
-                    let userObject = snap.value as! [String: AnyObject]
                     
+                    let userObject = snap.value as! [String: AnyObject]
                     let firstName = userObject["firstName"] as! String
                     let lastName = userObject["lastName"] as! String
                     
                     vc.payerLabel.text = "\(firstName) \(lastName)"
                 })
             })
-            
         }
-        
     }
     
     override func viewDidLoad() {
@@ -141,7 +142,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
+            // If the scaner finds a QR code object
             if metadataObj.stringValue != nil {
+                
+                // Save the QR job ID we found
                 let qrValue = metadataObj.stringValue
                 messageLabel.text = metadataObj.stringValue
                 self.scannedId = qrValue
@@ -152,23 +156,21 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
                     
                     let jobObject = snapshot.value as! [String: AnyObject]
-                    
                     let qrFlag = jobObject["QRCodeFlag"] as! Bool
                     
+                    // Because layer scan logic does multiple frames at a time, we only want it to pass through the segue once.
                     if (qrFlag && self.segueDone == false) {
                         
-                        print("GROUP ENTER")
+                        // Set scanner flag to communicate to QR code
                         jobRef.updateChildValues(["scannerFlag" : true])
                         jobRef.updateChildValues(["completedBy" : self.userId])
-                        print("GROUP LEAVE")
                         
+                        // Once through, set true so that it only segues once.
                         self.segueDone = true
                         self.performSegue(withIdentifier: "showPaymentHired", sender: self)
                     }
                 })
-                
             }
         }
     }
-
 }
