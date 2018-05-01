@@ -16,7 +16,6 @@ class EventTableViewCell: UITableViewCell, Themeable {
     @IBOutlet weak var helpersLbl: UILabel!
     @IBOutlet weak var eventDescriptionLbl: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

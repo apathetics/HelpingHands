@@ -21,7 +21,6 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var redLbl: UILabel!
     @IBOutlet weak var locImg: UIImageView!
     @IBOutlet weak var addEventView: UIView!
-    
     @IBOutlet weak var finishBTN: UIButton!
     @IBOutlet weak var chooseImgBTN: UIButton!
     @IBOutlet weak var eventTitleLBL: UILabel!
@@ -39,19 +38,25 @@ class AddEventViewController: UIViewController, UINavigationControllerDelegate, 
     var latLong:(Double, Double)?
     
     override func viewDidLoad() {
+        
+        //Theme
         ThemeService.shared.addThemeable(themable: self)
         self.hideKeyboardWhenTappedAround()
+        
         super.viewDidLoad()
         descriptionFld.delegate = self
         descriptionFld.text = DESCR_PLACEHOLDER
         // Do any additional setup after loading the view.
     }
     
+    // We want to initialize location and certain fields
     override func viewWillAppear(_ animated: Bool) {
         locImg.isHighlighted = true
+        
         if(address != nil) {
             addressLBL.text = address!
         }
+        
         imgView.clipsToBounds = true
         imgView.contentMode = .scaleAspectFill
 

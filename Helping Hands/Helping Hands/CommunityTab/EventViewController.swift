@@ -27,9 +27,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var imgGradientView: UIView!
     @IBOutlet weak var eventDescriptionLBL: UILabel!
     @IBOutlet weak var attendeesLBL: UILabel!
-    
-    //Shared Notification Center
-    let center = UNUserNotificationCenter.current()
 
     var eventID:String?
     var clearCore: Bool = false
@@ -41,9 +38,12 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     var e:Event!
     var locationManager = CLLocationManager()
     
+    //Shared Notification Center
+    let center = UNUserNotificationCenter.current()
     let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
     
+    // Permissions check for edit/sign-up
     override func viewDidAppear(_ animated: Bool) {
         let eventRef = databaseRef.child("events").child(eventID!)
         eventRef.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -58,6 +58,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Theme
         ThemeService.shared.addThemeable(themable: self)
 
         table.dataSource = self
@@ -67,6 +69,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         e = event
         
+        // Set image
         let url = URL(string: e.imageAsString)
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
@@ -86,6 +89,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let distance = (locationManager.location?.distance(from: CLLocation(latitude: e.latitude, longitude: e.longitude)) as! Double) * 0.00062137
         eventDistance.text = String(format: "%.2f", distance) + " mi"
         
+        // Set event labels
         eventTitle.text = e.eventTitle
         eventHelpers.text = String(e.numHelpers) + " Helpers"
         eventDate.text = e.eventDateString
@@ -145,6 +149,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
+    // Set gradient background based on image colors
     override func viewDidLayoutSubviews() {
         let colors = eventPhoto.image?.getColors()
         
@@ -174,8 +179,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let row = indexPath.row
         let u:User = attendees[row]
         
-//        cell.userImg.image = u.userPhoto
-        
         // Placeholder image
         let placeholderImage = UIImage(named: "meeting")
         // Load the image using SDWebImage
@@ -186,12 +189,12 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.userImg.contentMode = .scaleAspectFill
         cell.userName.text = u.userFirstName + " " + u.userLastName
         cell.backgroundColor = UIColor.clear
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosen = (indexPath.row)
-    
         self.performSegue(withIdentifier: "showAttendee", sender: self)
     }
     
@@ -229,6 +232,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         })
     }
     
+    // Sign users for event and update possible notifications.
     func signUserUpForEvent() {
         let eventRef = databaseRef.child("events").child(eventID!)
         let userRef = self.databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
@@ -413,7 +417,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // Auxiliary getDate function
     func getDateFromString(str: String) -> Date {
-        //print("input date: \(str)\n\n")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
         dateFormatter.timeZone = TimeZone(abbreviation: "CDT") //Current time zone
@@ -423,6 +426,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
 
+    // If notifications are on, then send reminder based on event date.
     func sendNotification() {
         let userSettingOn: Bool = UserDefaults.standard.bool(forKey: "event_reminders_notif")
         if !userSettingOn {
@@ -460,7 +464,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         }
     }
-
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view, imgGradientView])
