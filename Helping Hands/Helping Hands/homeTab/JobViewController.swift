@@ -29,6 +29,10 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var signUpButton: UIBarButtonItem!
     @IBOutlet weak var descriptionLBL: UILabel!
     @IBOutlet weak var inquiriesLBL: UILabel!
+    lazy var unSignUpBTN: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "Un Sign-Up", style: .plain, target: self, action: #selector(unSignUpUser))
+        return btn
+    }()
     
     var jobID:String?
     var clearCore: Bool = false
@@ -144,7 +148,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
             else {
                 if(self.userInquiryIdArray.contains(self.userId)) {
-                    self.navigationItem.rightBarButtonItem = nil
+                    self.navigationItem.rightBarButtonItem = self.unSignUpBTN
                 } else {
                     self.navigationItem.rightBarButtonItem?.title = "Sign-up"
                 }
@@ -172,7 +176,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     // ** STANDARD TABLE FUNCTIONS ** \\
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return inquiries.count
+        return self.inquiries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -261,6 +265,70 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         })
     }
     
+    func removeUserFromInquiries() {
+        let i = inquiries.index(where: {$0.userID == self.userId})
+        let j = userInquiryIdArray.index(where: {$0 == self.userId})
+        if (i != nil && j != nil) {
+            inquiries.remove(at: i!)
+            userInquiryIdArray.remove(at: j!)
+            self.table.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                // Code to run after 1 second
+                return
+            }
+        }
+        print("Couldn't remove user from local inquiries array!!\n")
+    }
+    
+    @objc func unSignUpUser() {
+        print("Un sign up user now\n\n")
+        let userInquiriesRef = databaseRef.child("users").child(userId).child("jobsInquiredArray")
+        let jobInquiriesRef = databaseRef.child("jobs").child((self.job?.jobId)!).child("usersInquiredArray")
+        // Remove job from user's list of inquiries
+        userInquiriesRef.observe(.value) { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                for objSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    let obj = objSnapshot.value as! [String: AnyObject]
+                    let inquiryId = obj["jobId"] as! String
+                    if inquiryId == self.job?.jobId {
+                        let inquiryRef = userInquiriesRef.child(objSnapshot.key)
+                        inquiryRef.removeValue(completionBlock: { (error, refer) in
+                            if error != nil {
+                                print("Some error occurred:\n\(error)")
+                            } else {
+                                print("Removed job from User's inquiries array!\n\(refer)")
+                                // Remove user from job's list of inquiries
+                                jobInquiriesRef.observe(.value) { (snapshot) in
+                                    if snapshot.childrenCount > 0 {
+                                        for usrSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                                            let usr = usrSnapshot.value as! [String: AnyObject]
+                                            let inquiryID = usr["userId"] as! String
+                                            if inquiryID == self.userId {
+                                                let usrInquiryRef = jobInquiriesRef.child(usrSnapshot.key)
+                                                usrInquiryRef.removeValue(completionBlock: { (err, ref) in
+                                                    if err != nil {
+                                                        print("Some error occurred:\n\(err)")
+                                                    } else {
+                                                        print("Removed user from Job's inquiries array!\n\(ref)")
+                                                        // Change bar button item back to sign up button
+                                                        self.removeUserFromInquiries()
+                                                        self.navigationItem.rightBarButtonItem = self.signUpButton
+                                                    }
+                                                })
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        })
+                    }
+                }
+            }
+        }
+        //self.navigationItem.rightBarButtonItem = signUpButton
+    }
+    
     // Sign the user up for the job and add to inquiry array
     // Possibly allow notification if on
     func signUserUpForJob() {
@@ -272,7 +340,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         let userInquiredChild = jobRef.child("usersInquiredArray").childByAutoId()
         userInquiredChild.updateChildValues(["userId": self.userId])
-        self.navigationItem.rightBarButtonItem = nil
+        self.navigationItem.rightBarButtonItem = unSignUpBTN
         self.table.reloadData()
         sendNotification()
     }
@@ -324,7 +392,7 @@ class JobViewController: UIViewController, UITableViewDataSource, UITableViewDel
             if(inquiryUserId == self.userId) {
                 // Don't add user again (duplicate)
                 print("User already signed up for this job!\n\n")
-                self.navigationItem.rightBarButtonItem = nil
+                self.navigationItem.rightBarButtonItem = unSignUpBTN
                 // exit logic
                 return true
             }
