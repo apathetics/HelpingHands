@@ -7,31 +7,48 @@
 //
 
 import UIKit
-import CoreData
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 let LOC_DEFAULT_TEXT = "Using your current location by default. You can use the toggle to the right to change this."
 let DESCR_PLACEHOLDER = "What will Helpers be doing at this job? Add as much or little detail as you'd like, but make sure to be clear. You'll be more likely to attract Helpers that way!"
 
-class AddJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
+class AddJobViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AddressDelegate, UITextViewDelegate, Themeable {
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleFld: UITextField!
     @IBOutlet weak var descriptionFld: UITextView!
     @IBOutlet weak var paymentFld: UITextField!
     @IBOutlet weak var paymentTypeSeg: UISegmentedControl!
-    @IBOutlet weak var addressFld: UITextView!
     @IBOutlet weak var helpersCountFld: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var redLbl: UILabel!
     @IBOutlet weak var locImg: UIImageView!
+    @IBOutlet weak var addJobView: UIView!
+    @IBOutlet weak var jobTitleLBL: UILabel!
+    @IBOutlet weak var jobDescLBL: UILabel!
+    @IBOutlet weak var paymentLBL: UILabel!
+    @IBOutlet weak var dollarSignLBL: UILabel!
+    @IBOutlet weak var jobLocationLBL: UILabel!
+    @IBOutlet weak var numHelpersLBL: UILabel!
+    @IBOutlet weak var jobDateLBL: UILabel!
+    @IBOutlet weak var addressLBL: UILabel!
+    @IBOutlet weak var helpersStepper: UIStepper!
+    @IBOutlet weak var finishBTN: UIButton!
+    @IBOutlet weak var chooseImgBTN: UIButton!
+    @IBOutlet weak var datePickerItem: UIDatePicker!
+    @IBOutlet weak var chooseLocationBTN: UIButton!
     
     var imgChosen = false
     var masterView:HomeTabViewController?
+    var address:String?
+    var latLong:(Double, Double)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        ThemeService.shared.addThemeable(themable: self)
         descriptionFld.delegate = self
         descriptionFld.text = DESCR_PLACEHOLDER
         // Do any additional setup after loading the view.
@@ -40,6 +57,11 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     override func viewWillAppear(_ animated: Bool) {
         locImg.isHighlighted = true
         // set the date picker's mininum value to now
+        if(address != nil) {
+            addressLBL.text = address!
+        }
+        imgView.clipsToBounds = true
+        imgView.contentMode = .scaleAspectFill
         datePicker.minimumDate = Date()
     }
 
@@ -67,25 +89,6 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
-    // if the location switch is enabled, the user's location will be used
-    // as the job location. If not, the user must enter a valid US address.
-    @IBAction func locationSwitch(_ sender: UISwitch) {
-        if (sender.isOn == false) {
-            addressFld.isEditable = true
-            addressFld.isSelectable = true
-            addressFld.text = ""
-            addressFld.textColor = .black
-            addressFld.becomeFirstResponder()
-            locImg.isHighlighted = false
-        } else {
-            addressFld.text = LOC_DEFAULT_TEXT
-            addressFld.textColor = .lightGray
-            addressFld.isEditable = false
-            addressFld.isSelectable = false
-            locImg.isHighlighted = true
-        }
-    }
-    
     @IBAction func helperStep(_ sender: UIStepper) {
         let val:Int = Int(sender.value)
         helpersCountFld.text = String(val)
@@ -103,7 +106,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imgView.image = image
+            imgView.image = image.fixOrientation()
             self.imgChosen = true
         } else {
             //error
@@ -146,7 +149,7 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             df.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let datePicked = df.string(from: datePicker.date)
             let dateFromString = df.date(from: datePicked)
-            df.dateFormat = "dd-MMM-yyyy"
+            df.dateFormat = "MMM dd, yyyy 'at' K:mm aaa"
             let jobDateAsString = df.string(from: dateFromString!)
             
             let job:Job = Job()
@@ -158,10 +161,10 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
             job.distance = 0.0 // TODO
             job.payment = Double(paymentFld.text!)!
             job.numHelpers = Int(helpersCountFld.text!)!
-            job.address = addressFld.text // TODO
+            //job.address = addressFld.text // TODO
             
             // TODO: Give actual address and current location!
-            job.address = "address"
+            job.address = self.address
             job.currentLocation = true
             
             job.image = imgView.image
@@ -177,23 +180,38 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     
     // Database
     func storeJob(j: Job) {
-        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+        let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
         let postRef = databaseRef.child("jobs")
         let newPost = postRef.childByAutoId()
         if let imgUpload = UIImagePNGRepresentation(j.image!) {
             let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
-            let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+            let storageRef = FIRStorage.storage().reference().child("job_photos/\(newPost.key).png")
             storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error)
                     return
                 }
                 if let jobImgUrl = metadata?.downloadURL()?.absoluteString {
-                    let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid] as [String : Any]
+                    
+                    let values = ["jobTitle": j.jobTitle, "jobImageUrl": jobImgUrl, "jobDistance": j.distance, "jobDescription": j.jobDescription, "jobDate": j.jobDateString, "jobCurrentLocation": j.currentLocation, "jobAddress": j.address, "jobNumHelpers": j.numHelpers, "jobPayment": j.payment, "jobIsHourlyPaid": j.isHourlyPaid, "jobCreator":(FIRAuth.auth()?.currentUser?.uid)!] as [String : Any]
                     newPost.setValue(values)
+                    newPost.updateChildValues(["latitude": self.latLong!.0, "longitude": self.latLong!.1])
+                    print("job added successfully")
+                    // Increment jobs posted in users by 1
+                    let userRef = databaseRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
+                    userRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                        let userObject = snapshot.value as! [String: Any]
+                        let jobsPosted = userObject["jobsPosted"] as! Int
+                        userRef.updateChildValues(["jobsPosted": jobsPosted + 1])
+                    })
                 }
             })
         }
+        
+        // Add job ID to user's jobsPosted
+        let userId:String = (FIRAuth.auth()?.currentUser?.uid)!
+        let jobPostedChild = databaseRef.child("users").child(userId).child("jobsPostedArray").childByAutoId()
+        jobPostedChild.setValue(["jobId": newPost.key])
     }
     
     //----------------------------------------------------------------//
@@ -215,5 +233,29 @@ class AddJobViewController: UIViewController, UINavigationControllerDelegate, UI
     //
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [view, addJobView])
+        theme.applyHeadlineStyle(labels: [paymentLBL, jobDateLBL, jobDescLBL, jobTitleLBL, numHelpersLBL, dollarSignLBL, jobLocationLBL, addressLBL])
+        theme.applyStepperStyle(steppers: [helpersStepper])
+        theme.applySegmentedControlStyle(controls: [paymentTypeSeg])
+        theme.applyFilledButtonStyle(buttons: [finishBTN, chooseImgBTN, chooseLocationBTN])
+        theme.applyTextViewStyle(textViews: [descriptionFld])
+        theme.applyTextFieldTextStyle(textFields: [titleFld, paymentFld, helpersCountFld])
+        theme.applyTextFieldStyle(color: UIColor(hex: "fdfdfd"), textFields: [titleFld, paymentFld, helpersCountFld])
+        theme.applyDatePickerStyle(pickers: [datePickerItem])
+    }
+    
+    func sendAddress(address:String, latLong:(Double, Double)) {
+        self.address = address
+        self.latLong = latLong
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAddJobLocation" {
+            let goNext:LocationViewController = segue.destination as! LocationViewController
+            goNext.delegate = self
+        }
     }
 }

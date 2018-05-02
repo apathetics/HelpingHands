@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import AVFoundation
+import FirebaseDatabase
+import FirebaseAuth
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -20,10 +22,56 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession:AVCaptureSession? = AVCaptureSession()
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var scannedId: String!
+    var segueDone = false
+    
+    let userId: String = (FIRAuth.auth()?.currentUser?.uid)!
+    
+    // Button for debugging if scanning does not work.
+    @IBAction func onPaymentClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "showPaymentHired", sender: self)
+    }
+    
+    // Button for debugging if scanning does not work.
+    @IBAction func onBackClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //  ** PREPARE SEGUES ** \\
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Updates job information after setting the flag (jobCreator is super important for QR code to know).
+        if(segue.identifier == "showPaymentHired") {
+            
+            let vc:HiredPaymentController = segue.destination as! HiredPaymentController
+            vc.chosenJobId = self.scannedId
+            
+            let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+            let jobRef = databaseRef.child("jobs").child(scannedId)
+            
+            jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                
+                let jobObject = snapshot.value as! [String: AnyObject]
+                let payerId = jobObject["jobCreator"] as! String
+                
+                vc.moneyLabel.text = String(jobObject["jobPayment"] as! Double)
+                vc.bossId = payerId
+                
+                databaseRef.child("users").child(payerId).observeSingleEvent(of: .value, with: {(snap) in
+                    
+                    let userObject = snap.value as! [String: AnyObject]
+                    let firstName = userObject["firstName"] as! String
+                    let lastName = userObject["lastName"] as! String
+                    
+                    vc.payerLabel.text = "\(firstName) \(lastName)"
+                })
+            })
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         // Get the BACK-facing camera for capturing videos by using discovery
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.back)
         
@@ -73,10 +121,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Move the message label and top bar to the front
         view.bringSubview(toFront: messageLabel)
         view.bringSubview(toFront: topbar)
+        
     }
     
     // QR Code Detection Protocol
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
@@ -92,10 +142,35 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
+            // If the scaner finds a QR code object
             if metadataObj.stringValue != nil {
+                
+                // Save the QR job ID we found
+                let qrValue = metadataObj.stringValue
                 messageLabel.text = metadataObj.stringValue
+                self.scannedId = qrValue
+                
+                let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+                let jobRef = databaseRef.child("jobs").child(qrValue!)
+                
+                jobRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                    
+                    let jobObject = snapshot.value as! [String: AnyObject]
+                    let qrFlag = jobObject["QRCodeFlag"] as! Bool
+                    
+                    // Because layer scan logic does multiple frames at a time, we only want it to pass through the segue once.
+                    if (qrFlag && self.segueDone == false) {
+                        
+                        // Set scanner flag to communicate to QR code
+                        jobRef.updateChildValues(["scannerFlag" : true])
+                        jobRef.updateChildValues(["completedBy" : self.userId])
+                        
+                        // Once through, set true so that it only segues once.
+                        self.segueDone = true
+                        self.performSegue(withIdentifier: "showPaymentHired", sender: self)
+                    }
+                })
             }
         }
     }
-
 }

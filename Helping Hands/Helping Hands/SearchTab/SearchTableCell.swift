@@ -8,21 +8,31 @@
 
 import UIKit
 
-class SearchTableCell: UITableViewCell {
+class SearchTableCell: UITableViewCell, Themeable {
     
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var jobTitleLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    var typeResult:String?
+    var indexFiltered:Int?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        ThemeService.shared.addThemeable(themable: self)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBodyTextStyle(labels: [distanceLabel, descriptionLabel])
+        theme.applyBackgroundColor(views: [picture])
+        theme.applyHeadlineStyle(labels: [jobTitleLabel])
     }
 }

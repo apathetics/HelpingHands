@@ -2,16 +2,40 @@
 //  ContactUsViewController.swift
 //  Helping Hands
 //
-//  Created by Bryan Bernal on 3/21/18.
+//  Created by Ozone Kafley on 3/30/18.
 //  Copyright © 2018 Tracy Nguyen. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import MessageUI
+import FirebaseAuth
 
-class ContactUsViewController: UIViewController {
+class ContactUsViewController: UITableViewController, MFMailComposeViewControllerDelegate, UITextViewDelegate, UITextFieldDelegate, Themeable {
+
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var emailTF: UITextField!
+    @IBOutlet weak var subjectTF: UITextField!
+    @IBOutlet weak var msgTV: UITextView!
+    
+    var user = FIRAuth.auth()?.currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Hide keyboard
+        self.hideKeyboardWhenTappedAround()
+        
+        // Theme
+        ThemeService.shared.addThemeable(themable: self)
+        // Do any additional setup after loading the view.
+        msgTV.delegate = self
+        nameTF.delegate = self
+        emailTF.delegate = self
+        subjectTF.delegate = self
+        
+        //Display user name and email based on account
+        nameTF.text = user?.displayName
+        emailTF.text = user?.email
     }
     
     override func didReceiveMemoryWarning() {
@@ -19,4 +43,66 @@ class ContactUsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // If cancel, then just dismiss.
+    @IBAction func cancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // Brings up built-in mail controller with previous input.
+    @IBAction func sendPressed(_ sender: Any) {
+        let mailVC = MFMailComposeViewController()
+        if(!MFMailComposeViewController.canSendMail()) {
+            print("can't send any mail!!!!!")
+            return
+        }
+
+        mailVC.mailComposeDelegate = self
+        mailVC.setSubject(subjectTF.text!)
+        
+        let email = emailTF.text?.lowercased()
+        let finalEmail = email?.trimmingCharacters(in: NSCharacterSet.whitespaces)
+        
+        mailVC.setMessageBody(msgTV.text!, isHTML: false)
+        mailVC.setToRecipients(["manasa.tipparam@gmail.com", "bryanbernal97@gmail.com", "kafleyozone@gmail.com", "tracynguyen@utexas.edu"])
+        
+        self.present(mailVC, animated: true) {
+            self.nameTF.text = ""
+            self.emailTF.text = ""
+            self.subjectTF.text = ""
+            self.msgTV.text = ""
+        }
+    }
+    
+    // Set cell based on super.
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell.backgroundColor = UIColor.clear
+        return cell
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTF.resignFirstResponder()
+        emailTF.resignFirstResponder()
+        subjectTF.resignFirstResponder()
+    
+        return true
+    }
+    
+    func applyTheme(theme: Theme) {
+        theme.applyBackgroundColor(views: [self.view])
+        theme.applyNavBarTintColor(navBar: self.navigationController!)
+        theme.applyTintColor_Font(navBar: self.navigationController!)
+        theme.applyTextFieldTextStyle(textFields: [nameTF, emailTF, subjectTF])
+        if(self.view.backgroundColor == UIColor.white) {
+            theme.applyTextFieldStyle(color: UIColor.white, textFields: [nameTF, emailTF, subjectTF])
+        } else {
+            theme.applyTextFieldStyle(color: UIColor(hex:"1B212C"), textFields: [nameTF, emailTF, subjectTF])
+        }
+        theme.applyTextViewStyle(textViews: [msgTV])
+    }
+
 }

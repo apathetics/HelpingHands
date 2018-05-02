@@ -13,9 +13,9 @@ import FirebaseAuth
 
 class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helping-hands-8f10c.firebaseio.com/")
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
     
-    // outlets
+    // components
     
     @IBOutlet weak var termsAgreementsCB: BEMCheckBox!
     @IBOutlet weak var over18CB: BEMCheckBox!
@@ -26,8 +26,24 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var confirmPasswordTF: UITextField!
     
-    // actions
+    // methods
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        // Display image as circle
+        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+        profileImage.contentMode = .scaleAspectFill
+        profileImage.clipsToBounds = true
+        
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     @IBAction func UploadImagePressed(_ sender: Any) {
         
         let imagePickerController = UIImagePickerController()
@@ -36,10 +52,12 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title:"Camera", style: .default, handler: { (action: UIAlertAction) in
+            // Check that camera is available
             if UIImagePickerController.isSourceTypeAvailable(.camera){
                 imagePickerController.sourceType = .camera
                 self.present(imagePickerController, animated: true, completion: nil)
             } else {
+                // camera not available
                 print("Camera Not Available")
             }
         }))
@@ -79,6 +97,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         if let email = emailTF.text, let pass = passwordTF.text {
+            // Create user with given email and password
             FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { user, error in
                 if error != nil {
                     // error handler
@@ -113,17 +132,22 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                         return
                     }
                     print("Registration Success!")
+                    user?.profileChangeRequest().displayName = "\(self.firstNameTF.text!) \(self.lastNameTF.text!)"
+                    UserDefaults.standard.setValue("\(self.firstNameTF.text!) \(self.lastNameTF.text!)", forKey: "user_name")
                     if let imgUpload = UIImagePNGRepresentation(self.profileImage.image!) {
-                        let imgName = NSUUID().uuidString // Unique name for each image to be stored in Firebase Storage
-                        let storageRef = FIRStorage.storage().reference().child("\(imgName).png")
+                        // save image to storage
+                        let storageRef = FIRStorage.storage().reference().child("profile_photos/\(user?.uid).png")
                         storageRef.put(imgUpload, metadata: nil, completion: { (metadata, error) in
                             if error != nil {
                                 print(error)
                                 return
                             }
-                            if let profileImgUrl = metadata?.downloadURL()?.absoluteString {
-                                let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrl, "jobsCompleted": 0, "jobsPosted": 0, "moneyEarned": 0] as [String : Any]
+                            if let profileImgUrl = metadata?.downloadURL() {
+                                // save user data into database
+                                let profileImgUrlString = profileImgUrl.absoluteString
+                                let values = ["firstName": self.firstNameTF.text!, "lastName": self.lastNameTF.text!, "email": self.emailTF.text!, "photoUrl": profileImgUrlString, "jobsCompleted": 0, "jobsPosted": 0, "moneyEarned": 0] as [String : Any]
                                 self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
+                                user?.profileChangeRequest().photoURL = profileImgUrl
                             }
                         })
                     }
@@ -133,8 +157,7 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    // methods
-    
+    // Function to register user data into database
     func registerUserIntoDatabaseWithUID(uid: String, values: [String: Any]){
         let userReference = self.databaseRef.child("users").child(uid)
         userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
@@ -147,23 +170,11 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
-        profileImage.clipsToBounds = true
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // ImagePickerController Delegate Methods
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        profileImage.image = image
+        profileImage.image = image.fixOrientation()
         picker.dismiss(animated: true, completion: nil)
     }
     

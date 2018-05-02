@@ -24,4 +24,10 @@ class Job {
     var currentLocation:Bool!
     var numHelpers:Int!
     var jobDateString: String!
+    var jobId: String!
+    var latitude: Double!
+    var longitude: Double!
+    var jobCreator: String!
+    var jobRating: Double!
+    var jobReview: String!
 }

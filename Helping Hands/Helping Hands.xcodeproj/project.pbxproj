@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04780DCF206F48F7003029CE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04780DCE206F48F7003029CE /* MessageUI.framework */; };
 		0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */; };
+		19159EAF2075CA2900A904E9 /* DismissKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19159EAE2075CA2900A904E9 /* DismissKeyboardExtension.swift */; };
+		192776A020755820006451CD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1927769F20755820006451CD /* Settings.bundle */; };
+		192776A52075594C006451CD /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192776A42075594C006451CD /* SettingsVC.swift */; };
+		192776A920755D95006451CD /* MaxDistanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */; };
 		1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DA205F3FFA00628A1C /* AppDelegate.swift */; };
 		1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1927A5DB205F3FFA00628A1C /* globalCoreData.xcdatamodeld */; };
 		1927A5E0205F404600628A1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1927A5DF205F404600628A1C /* Assets.xcassets */; };
@@ -32,12 +37,22 @@
 		1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A614205F41C900628A1C /* HiredPaymentController.swift */; };
 		1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A619205F41F000628A1C /* ScannerViewController.swift */; };
 		1927A61C205F41F100628A1C /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927A61A205F41F000628A1C /* QRViewController.swift */; };
-		1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61E205F430C00628A1C /* GoogleService-Info.plist */; };
 		1927A621205F430C00628A1C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1927A61F205F430C00628A1C /* Info.plist */; };
 		1927A626205F439000628A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A622205F439000628A1C /* Main.storyboard */; };
 		1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927A624205F439000628A1C /* LaunchScreen.storyboard */; };
-		192D63B020630578006189CA /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192D63AF20630578006189CA /* ThemeVC.swift */; };
+		193C22E9209480E900311893 /* ImageRotationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C22E8209480E900311893 /* ImageRotationExtension.swift */; };
+		193F5A3F2098294E00CDBD70 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193F5A3E2098294E00CDBD70 /* NotificationDelegate.swift */; };
 		194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194FC6A3206419B800D6E439 /* Gidole-Regular.otf */; };
+		194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */; };
+		19826A2A2095EC7D0027FDE0 /* EditName_SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */; };
+		198AC0292072CCE10017C84F /* ThemeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC0282072CCE10017C84F /* ThemeExtension.swift */; };
+		198AC02B2072CDBD0017C84F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC02A2072CDBD0017C84F /* UIColorExtension.swift */; };
+		198AC02D2072D0080017C84F /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198AC02C2072D0080017C84F /* ThemeService.swift */; };
+		19CEC47720964E3F00867280 /* EditEmail_SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CEC47620964E3F00867280 /* EditEmail_SettingsVC.swift */; };
+		19CEC4792096660900867280 /* ReauthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CEC4782096660900867280 /* ReauthenticationVC.swift */; };
+		19EBB0E72096D30C00A026E6 /* EditPassword_SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EBB0E62096D30B00A026E6 /* EditPassword_SettingsVC.swift */; };
+		19EBB0E92096E17600A026E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19EBB0E82096E17600A026E6 /* GoogleService-Info.plist */; };
+		3969FBD42096B7BD00F11470 /* EnableLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3969FBD32096B7BD00F11470 /* EnableLocationViewController.swift */; };
 		3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB0205F350700DBFA64 /* UserViewController.swift */; };
 		3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB2205F3CA300DBFA64 /* EventViewController.swift */; };
 		3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3970FEB4205F3CB500DBFA64 /* JobViewController.swift */; };
@@ -46,7 +61,9 @@
 		398732872062A83300A29D39 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732862062A83300A29D39 /* EditUserViewController.swift */; };
 		398732892062B43200A29D39 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398732882062B43200A29D39 /* EditEventViewController.swift */; };
 		3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328A2062C8DB00A29D39 /* EditJobViewController.swift */; };
-		3987328D206349C100A29D39 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987328C206349C100A29D39 /* ContactUsViewController.swift */; };
+		39D84B27209740D200BFCC08 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D84B26209740D200BFCC08 /* SearchResult.swift */; };
+		39ED45BC206F357300084F9E /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED45BB206F357300084F9E /* LocationViewController.swift */; };
+		39ED45C0206F3EFD00084F9E /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED45BF206F3EFD00084F9E /* LocationSearchTable.swift */; };
 		AB5F4B88205DDEA30085A11D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB7743012047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		AB7743032047853A00799F84 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -54,9 +71,15 @@
 		ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */; };
 		ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */; };
 		ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A2E52060E4B700E26814 /* SideMenuController.swift */; };
+		ABAFCAED207C39DA0053EDD8 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFCAEC207C39DA0053EDD8 /* ContactUsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04780DCE206F48F7003029CE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		19159EAE2075CA2900A904E9 /* DismissKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardExtension.swift; sourceTree = "<group>"; };
+		1927769F20755820006451CD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		192776A42075594C006451CD /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaxDistanceTableViewCell.swift; sourceTree = "<group>"; };
 		1927A5DA205F3FFA00628A1C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1927A5DC205F3FFA00628A1C /* globalCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = globalCoreData.xcdatamodel; sourceTree = "<group>"; };
 		1927A5DF205F404600628A1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,12 +109,22 @@
 		1927A619205F41F000628A1C /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		1927A61A205F41F000628A1C /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		1927A61D205F430400628A1C /* CheckBoxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBoxHeader.h; sourceTree = "<group>"; };
-		1927A61E205F430C00628A1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1927A61F205F430C00628A1C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1927A623205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1927A625205F439000628A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		192D63AF20630578006189CA /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
+		193C22E8209480E900311893 /* ImageRotationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRotationExtension.swift; sourceTree = "<group>"; };
+		193F5A3E2098294E00CDBD70 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		194FC6A3206419B800D6E439 /* Gidole-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gidole-Regular.otf"; path = "gidole/Gidole-Regular.otf"; sourceTree = "<group>"; };
+		194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGradientExtension.swift; sourceTree = "<group>"; };
+		19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName_SettingsVC.swift; sourceTree = "<group>"; };
+		198AC0282072CCE10017C84F /* ThemeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeExtension.swift; sourceTree = "<group>"; };
+		198AC02A2072CDBD0017C84F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		198AC02C2072D0080017C84F /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
+		19CEC47620964E3F00867280 /* EditEmail_SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEmail_SettingsVC.swift; sourceTree = "<group>"; };
+		19CEC4782096660900867280 /* ReauthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReauthenticationVC.swift; sourceTree = "<group>"; };
+		19EBB0E62096D30B00A026E6 /* EditPassword_SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPassword_SettingsVC.swift; sourceTree = "<group>"; };
+		19EBB0E82096E17600A026E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3969FBD32096B7BD00F11470 /* EnableLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableLocationViewController.swift; sourceTree = "<group>"; };
 		3970FEB0205F350700DBFA64 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		3970FEB2205F3CA300DBFA64 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		3970FEB4205F3CB500DBFA64 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +133,9 @@
 		398732862062A83300A29D39 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
 		398732882062B43200A29D39 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		3987328A2062C8DB00A29D39 /* EditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJobViewController.swift; sourceTree = "<group>"; };
-		3987328C206349C100A29D39 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		39D84B26209740D200BFCC08 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		39ED45BB206F357300084F9E /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		39ED45BF206F3EFD00084F9E /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Helping_Hands.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DA541C8D5528AADB7ABC0D /* Pods-Helping Hands.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.release.xcconfig"; sourceTree = "<group>"; };
 		A4708743F780C84081D9C4BE /* Pods-Helping Hands.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helping Hands.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +145,7 @@
 		ABA3A2E0206067CF00E26814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		ABA3A2E52060E4B700E26814 /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		ABAFCAEC207C39DA0053EDD8 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04780DCF206F48F7003029CE /* MessageUI.framework in Frameworks */,
 				0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,9 +161,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04780DD1206F557C003029CE /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		192776A120755886006451CD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				19EBB0E62096D30B00A026E6 /* EditPassword_SettingsVC.swift */,
+				192776A820755D94006451CD /* MaxDistanceTableViewCell.swift */,
+				192776A42075594C006451CD /* SettingsVC.swift */,
+				19826A292095EC7D0027FDE0 /* EditName_SettingsVC.swift */,
+				3969FBD32096B7BD00F11470 /* EnableLocationViewController.swift */,
+				19CEC47620964E3F00867280 /* EditEmail_SettingsVC.swift */,
+				19CEC4782096660900867280 /* ReauthenticationVC.swift */,
+				193F5A3E2098294E00CDBD70 /* NotificationDelegate.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		1927A5D9205F3FD500628A1C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				19EBB0E82096E17600A026E6 /* GoogleService-Info.plist */,
+				1927A61F205F430C00628A1C /* Info.plist */,
 				1927A624205F439000628A1C /* LaunchScreen.storyboard */,
 				1927A622205F439000628A1C /* Main.storyboard */,
 				1927A5DF205F404600628A1C /* Assets.xcassets */,
@@ -163,10 +224,12 @@
 		1927A5F7205F411C00628A1C /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
+				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
+				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
 				1927A5F8205F413300628A1C /* AddJobViewController.swift */,
 				1927A5F9205F413300628A1C /* HomeTabViewController.swift */,
-				1927A5FA205F413300628A1C /* Job.swift */,
 				1927A5FB205F413300628A1C /* JobTableViewCell.swift */,
+				1927A5FA205F413300628A1C /* Job.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -175,6 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				1927A601205F415C00628A1C /* ExploreTabViewController.swift */,
+				39ED45BB206F357300084F9E /* LocationViewController.swift */,
+				39ED45BF206F3EFD00084F9E /* LocationSearchTable.swift */,
 			);
 			path = ExploreTab;
 			sourceTree = "<group>";
@@ -182,6 +247,8 @@
 		1927A603205F416900628A1C /* CommunityTab */ = {
 			isa = PBXGroup;
 			children = (
+				3970FEB2205F3CA300DBFA64 /* EventViewController.swift */,
+				398732882062B43200A29D39 /* EditEventViewController.swift */,
 				1927A606205F418100628A1C /* AddEventViewController.swift */,
 				1927A604205F418000628A1C /* CommunityTabViewController.swift */,
 				1927A607205F418100628A1C /* EventTableViewCell.swift */,
@@ -195,6 +262,7 @@
 			children = (
 				1927A60E205F419F00628A1C /* SearchTableCell.swift */,
 				1927A60D205F419F00628A1C /* SearchTabViewController.swift */,
+				39D84B26209740D200BFCC08 /* SearchResult.swift */,
 			);
 			path = SearchTab;
 			sourceTree = "<group>";
@@ -226,27 +294,26 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		194FC6A5206429E900D6E439 /* UI Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				194FC6A620642A0500D6E439 /* ImageGradientExtension.swift */,
+				04780DCE206F48F7003029CE /* MessageUI.framework */,
+				198AC0282072CCE10017C84F /* ThemeExtension.swift */,
+				198AC02A2072CDBD0017C84F /* UIColorExtension.swift */,
+				198AC02C2072D0080017C84F /* ThemeService.swift */,
+				19159EAE2075CA2900A904E9 /* DismissKeyboardExtension.swift */,
+				193C22E8209480E900311893 /* ImageRotationExtension.swift */,
+			);
+			path = "UI Stuff";
+			sourceTree = "<group>";
+		};
 		3708DC6BA8FE859D671CF9A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3970FEAF205F34A900DBFA64 /* models */ = {
-			isa = PBXGroup;
-			children = (
-				3970FEB0205F350700DBFA64 /* UserViewController.swift */,
-				398732862062A83300A29D39 /* EditUserViewController.swift */,
-				3970FEB4205F3CB500DBFA64 /* JobViewController.swift */,
-				3987328A2062C8DB00A29D39 /* EditJobViewController.swift */,
-				3970FEB2205F3CA300DBFA64 /* EventViewController.swift */,
-				398732882062B43200A29D39 /* EditEventViewController.swift */,
-				3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */,
-				39873255205FC55F00A29D39 /* User.swift */,
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 		AB7742F42047853A00799F84 = {
@@ -256,6 +323,7 @@
 				AB7742FE2047853A00799F84 /* Products */,
 				ED57142D81884C4109A7DE21 /* Pods */,
 				3708DC6BA8FE859D671CF9A5 /* Frameworks */,
+				04780DD1206F557C003029CE /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -270,22 +338,22 @@
 		AB7742FF2047853A00799F84 /* Helping Hands */ = {
 			isa = PBXGroup;
 			children = (
+				192776A120755886006451CD /* Settings */,
+				ABA4F0FE206DEDE600BACA54 /* UserProfile */,
+				194FC6A5206429E900D6E439 /* UI Stuff */,
 				194FC6A22064194E00D6E439 /* Fonts */,
 				ABA3A2DD2060678300E26814 /* SideBarMenu */,
-				1927A61E205F430C00628A1C /* GoogleService-Info.plist */,
-				1927A61F205F430C00628A1C /* Info.plist */,
 				1927A61D205F430400628A1C /* CheckBoxHeader.h */,
 				1927A618205F41D200628A1C /* ConfirmationQR */,
 				1927A611205F41B100628A1C /* PaymentReview */,
-				1927A60C205F418E00628A1C /* SearchTab */,
-				1927A603205F416900628A1C /* CommunityTab */,
-				1927A600205F414300628A1C /* ExploreTab */,
 				1927A5F7205F411C00628A1C /* HomeTab */,
+				1927A603205F416900628A1C /* CommunityTab */,
+				1927A60C205F418E00628A1C /* SearchTab */,
+				1927A600205F414300628A1C /* ExploreTab */,
 				1927A5EA205F40DA00628A1C /* CheckBox */,
 				1927A5E3205F406B00628A1C /* Authentication */,
 				1927A5D9205F3FD500628A1C /* Main */,
-				192D63AF20630578006189CA /* ThemeVC.swift */,
-				3970FEAF205F34A900DBFA64 /* models */,
+				1927769F20755820006451CD /* Settings.bundle */,
 			);
 			path = "Helping Hands";
 			sourceTree = "<group>";
@@ -296,7 +364,7 @@
 				ABA3A2DF206067CF00E26814 /* SWRevealViewController */,
 				ABA3A2DE206067CF00E26814 /* SWRevealViewController.podspec */,
 				ABA3A2E52060E4B700E26814 /* SideMenuController.swift */,
-				3987328C206349C100A29D39 /* ContactUsViewController.swift */,
+				ABAFCAEC207C39DA0053EDD8 /* ContactUsViewController.swift */,
 			);
 			path = SideBarMenu;
 			sourceTree = "<group>";
@@ -308,6 +376,17 @@
 				ABA3A2E1206067CF00E26814 /* SWRevealViewController.m */,
 			);
 			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		ABA4F0FE206DEDE600BACA54 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				39873255205FC55F00A29D39 /* User.swift */,
+				3970FEBA205F50B900DBFA64 /* UserTableViewCell.swift */,
+				3970FEB0205F350700DBFA64 /* UserViewController.swift */,
+				398732862062A83300A29D39 /* EditUserViewController.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		ED57142D81884C4109A7DE21 /* Pods */ = {
@@ -382,11 +461,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192776A020755820006451CD /* Settings.bundle in Resources */,
+				19EBB0E92096E17600A026E6 /* GoogleService-Info.plist in Resources */,
 				ABA3A2E2206067CF00E26814 /* SWRevealViewController.podspec in Resources */,
 				194FC6A4206419B900D6E439 /* Gidole-Regular.otf in Resources */,
 				1927A621205F430C00628A1C /* Info.plist in Resources */,
 				1927A5E0205F404600628A1C /* Assets.xcassets in Resources */,
-				1927A620205F430C00628A1C /* GoogleService-Info.plist in Resources */,
 				1927A627205F439000628A1C /* LaunchScreen.storyboard in Resources */,
 				1927A626205F439000628A1C /* Main.storyboard in Resources */,
 			);
@@ -435,11 +515,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Helping Hands/Pods-Helping Hands-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageColors/UIImageColors.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageColors.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -458,40 +542,56 @@
 				1927A60A205F418100628A1C /* AddEventViewController.swift in Sources */,
 				ABA3A2E62060E4B700E26814 /* SideMenuController.swift in Sources */,
 				1927A5DD205F3FFA00628A1C /* AppDelegate.swift in Sources */,
+				193F5A3F2098294E00CDBD70 /* NotificationDelegate.swift in Sources */,
+				194FC6A720642A0500D6E439 /* ImageGradientExtension.swift in Sources */,
 				1927A5FC205F413300628A1C /* AddJobViewController.swift in Sources */,
+				193C22E9209480E900311893 /* ImageRotationExtension.swift in Sources */,
 				AB9E1651206318A60063A232 /* Event.swift in Sources */,
 				1927A610205F41A000628A1C /* SearchTableCell.swift in Sources */,
+				39D84B27209740D200BFCC08 /* SearchResult.swift in Sources */,
 				1927A5F5205F40F300628A1C /* BEMCheckBox.m in Sources */,
 				1927A615205F41C900628A1C /* HiringPaymentController.swift in Sources */,
 				1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */,
 				1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */,
-				192D63B020630578006189CA /* ThemeVC.swift in Sources */,
 				1927A61C205F41F100628A1C /* QRViewController.swift in Sources */,
 				ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */,
 				1927A5F4205F40F300628A1C /* BEMPathManager.m in Sources */,
 				1927A5F3205F40F300628A1C /* BEMAnimationManager.m in Sources */,
+				192776A920755D95006451CD /* MaxDistanceTableViewCell.swift in Sources */,
 				1927A5DE205F3FFA00628A1C /* globalCoreData.xcdatamodeld in Sources */,
+				198AC02B2072CDBD0017C84F /* UIColorExtension.swift in Sources */,
+				198AC02D2072D0080017C84F /* ThemeService.swift in Sources */,
 				1927A60B205F418100628A1C /* EventTableViewCell.swift in Sources */,
 				1927A617205F41C900628A1C /* HiredPaymentController.swift in Sources */,
-				3987328D206349C100A29D39 /* ContactUsViewController.swift in Sources */,
+				19CEC4792096660900867280 /* ReauthenticationVC.swift in Sources */,
+				39ED45C0206F3EFD00084F9E /* LocationSearchTable.swift in Sources */,
 				1927A61B205F41F100628A1C /* ScannerViewController.swift in Sources */,
+				3969FBD42096B7BD00F11470 /* EnableLocationViewController.swift in Sources */,
 				1927A5F6205F40F300628A1C /* BEMCheckBoxGroup.m in Sources */,
 				1927A5FE205F413300628A1C /* Job.swift in Sources */,
+				19EBB0E72096D30C00A026E6 /* EditPassword_SettingsVC.swift in Sources */,
+				19CEC47720964E3F00867280 /* EditEmail_SettingsVC.swift in Sources */,
 				1927A5E6205F40A200628A1C /* LoginVC.swift in Sources */,
 				1927A5E7205F40A200628A1C /* RegistrationVC.swift in Sources */,
+				19159EAF2075CA2900A904E9 /* DismissKeyboardExtension.swift in Sources */,
 				1927A60F205F41A000628A1C /* SearchTabViewController.swift in Sources */,
 				1927A5FD205F413300628A1C /* HomeTabViewController.swift in Sources */,
+				ABAFCAED207C39DA0053EDD8 /* ContactUsViewController.swift in Sources */,
 				3970FEBB205F50B900DBFA64 /* UserTableViewCell.swift in Sources */,
 				398732872062A83300A29D39 /* EditUserViewController.swift in Sources */,
 				AB5F4B88205DDEA30085A11D /* (null) in Sources */,
+				39ED45BC206F357300084F9E /* LocationViewController.swift in Sources */,
 				3970FEB5205F3CB500DBFA64 /* JobViewController.swift in Sources */,
 				3970FEB3205F3CA300DBFA64 /* EventViewController.swift in Sources */,
+				19826A2A2095EC7D0027FDE0 /* EditName_SettingsVC.swift in Sources */,
 				3987328B2062C8DB00A29D39 /* EditJobViewController.swift in Sources */,
 				AB7743012047853A00799F84 /* (null) in Sources */,
+				198AC0292072CCE10017C84F /* ThemeExtension.swift in Sources */,
 				398732892062B43200A29D39 /* EditEventViewController.swift in Sources */,
 				AB7743032047853A00799F84 /* (null) in Sources */,
 				3970FEB1205F350700DBFA64 /* UserViewController.swift in Sources */,
 				39873256205FC55F00A29D39 /* User.swift in Sources */,
+				192776A52075594C006451CD /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,13 +730,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BJLQZPP9P3;
-				INFOPLIST_FILE = "Helping Hands/Info.plist";
+				DEVELOPMENT_TEAM = 7K6545L544;
+				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
+				PRODUCT_BUNDLE_IDENTIFIER = helpinghands123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -650,13 +752,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BJLQZPP9P3;
-				INFOPLIST_FILE = "Helping Hands/Info.plist";
+				DEVELOPMENT_TEAM = 7K6545L544;
+				INFOPLIST_FILE = "$(SRCROOT)/Helping Hands/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "DreamTeamMemeTeam.Helping-Hands";
+				PRODUCT_BUNDLE_IDENTIFIER = helpinghands123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Helping Hands/CheckBoxHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
