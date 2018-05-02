@@ -167,6 +167,122 @@
             </objects>
             <point key="canvasLocation" x="-941" y="-1194"/>
         </scene>
+        <!--Terms and Agreements-->
+        <scene sceneID="FTS-ju-VLw">
+            <objects>
+                <viewController id="NGL-oZ-0cp" customClass="TermsAndAgreementsVC" customModule="Helping_Hands" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R2a-Kd-k6D"/>
+                        <viewControllerLayoutGuide type="bottom" id="MdK-6D-XRN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GNr-ra-ht5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="830"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXX-on-X0f">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="830"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4q4-92-z4Z">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="830"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1. Accepting the Agreement" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Juf-rZ-4Bz">
+                                                <rect key="frame" x="18" y="193" width="232" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vH-AW-Fdc">
+                                                <rect key="frame" x="18" y="19" width="338" height="136"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">PLEASE READ THE FOLLOWING HELPING HANDS TERMS AND CONDITIONS CAREFULLY BEFORE DOWNLOADING OR USING THE HELPING HANDS SOFTWARE OR HELPING HANDS  SERVICES. THESE TERMS AND CONDITIONS CONSTITUTE A
+LEGAL AGREEMENT BETWEEN YOU AND HELPING HANDS.</string>
+                                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKB-T1-NxX">
+                                                <rect key="frame" x="16" y="222" width="343" height="136"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">In order to use the Helping Hands Software and Services, You must first accept this Agreement. If You do not or cannot accept this Agreement, You are not permitted to use the Helping Hands Software or Services. Do not download or use the Helping Hands Software or Services in that case. </string>
+                                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2. Your Obligations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9b-a0-4CM">
+                                                <rect key="frame" x="17" y="392" width="159" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You certify to Helping Hands and agree that: " textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqf-34-sQd">
+                                                <rect key="frame" x="17" y="424" width="343" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfz-dp-lMu">
+                                                <rect key="frame" x="16" y="455" width="341" height="97"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">(a) You are of the legal age of majority in the jurisdiction in which You reside (at least 18 years of age in many countries) and have the right and authority to enter into this Agreement on Your own
+behalf.</string>
+                                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaQ-8K-kMf">
+                                                <rect key="frame" x="17" y="560" width="341" height="116"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">(b) All information provided by You to Helping Hands will be current, true, accurate, supportable and complete and, with regard to information You provide to Helping Hands, You will promptly notify Helping Hands of any changes to such
+information.</string>
+                                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(c) You will be solely responsible for all costs, expenses, losses and liabilities incurred." lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWH-iZ-fzM">
+                                                <rect key="frame" x="19" y="686" width="341" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4q4-92-z4Z" firstAttribute="top" secondItem="LXX-on-X0f" secondAttribute="top" id="Xcr-X4-liU"/>
+                                    <constraint firstAttribute="trailing" secondItem="4q4-92-z4Z" secondAttribute="trailing" id="ZSM-T7-Yad"/>
+                                    <constraint firstAttribute="bottom" secondItem="4q4-92-z4Z" secondAttribute="bottom" id="adL-Ca-jdj"/>
+                                    <constraint firstItem="4q4-92-z4Z" firstAttribute="leading" secondItem="LXX-on-X0f" secondAttribute="leading" id="wjf-6g-Mt8"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LXX-on-X0f" firstAttribute="top" secondItem="GNr-ra-ht5" secondAttribute="top" id="E1j-6l-Xng"/>
+                            <constraint firstItem="4q4-92-z4Z" firstAttribute="width" secondItem="GNr-ra-ht5" secondAttribute="width" id="TBs-d6-xLr"/>
+                            <constraint firstItem="LXX-on-X0f" firstAttribute="leading" secondItem="GNr-ra-ht5" secondAttribute="leading" id="YuA-Gr-OYe"/>
+                            <constraint firstAttribute="trailing" secondItem="LXX-on-X0f" secondAttribute="trailing" id="aVV-Ky-kjr"/>
+                            <constraint firstItem="4q4-92-z4Z" firstAttribute="height" secondItem="GNr-ra-ht5" secondAttribute="height" priority="250" id="phA-B1-Sa4"/>
+                            <constraint firstItem="MdK-6D-XRN" firstAttribute="top" secondItem="LXX-on-X0f" secondAttribute="bottom" id="xDr-Ad-SpL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Terms and Agreements" id="fZf-AK-i6A">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Ohr-X7-cb0">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="NGL-oZ-0cp" id="Zwa-dI-c6g"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <size key="freeformSize" width="375" height="830"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bU7-nq-Fxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="149" y="-1952"/>
+        </scene>
         <!--RegistrationVC-->
         <scene sceneID="eut-NI-dXt">
             <objects>
@@ -264,12 +380,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPt-nU-oUd">
-                                <rect key="frame" x="112" y="436" width="187" height="23"/>
-                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="21"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 and over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVF-ou-DTD">
                                 <rect key="frame" x="114.5" y="491" width="93.5" height="23"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="21"/>
@@ -290,22 +400,32 @@
                                     <action selector="signUpPressed:" destination="Ozn-sJ-mYE" eventType="touchUpInside" id="UR5-v3-2Ln"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsd-Bu-EhQ">
+                                <rect key="frame" x="114" y="431" width="187" height="35"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="21"/>
+                                <state key="normal" title="Terms and Agreements">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="X37-fq-oel" kind="modal" id="Kww-V0-gpf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.10588235294117647" green="0.12941176470588234" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="fVF-ou-DTD" firstAttribute="top" secondItem="DPt-nU-oUd" secondAttribute="bottom" constant="32" id="17N-gD-Qr1"/>
                             <constraint firstItem="GRy-SI-WAV" firstAttribute="top" secondItem="QXH-gA-CoO" secondAttribute="bottom" constant="25" id="1eV-Cn-6uQ"/>
                             <constraint firstItem="isl-yM-R3U" firstAttribute="trailing" secondItem="Sny-hn-JMA" secondAttribute="trailing" constant="52" id="8Md-Gk-epo"/>
+                            <constraint firstItem="qsd-Bu-EhQ" firstAttribute="leading" secondItem="bT7-U8-gBR" secondAttribute="trailing" constant="16" id="AQc-qm-ZFV"/>
                             <constraint firstItem="bUM-Iu-Yki" firstAttribute="leading" secondItem="isl-yM-R3U" secondAttribute="leading" constant="137" id="BWp-cj-600"/>
                             <constraint firstItem="QXH-gA-CoO" firstAttribute="top" secondItem="IWU-u1-P7p" secondAttribute="bottom" constant="46" id="DJD-JL-SWI"/>
                             <constraint firstItem="bT7-U8-gBR" firstAttribute="leading" secondItem="isl-yM-R3U" secondAttribute="leading" constant="52" id="Fnu-hb-gIn"/>
                             <constraint firstItem="D3N-wP-TIY" firstAttribute="leading" secondItem="isl-yM-R3U" secondAttribute="leading" constant="52" id="HCm-jG-cIG"/>
-                            <constraint firstItem="DPt-nU-oUd" firstAttribute="top" secondItem="Sny-hn-JMA" secondAttribute="bottom" constant="28" id="Hvb-Ee-5Dg"/>
                             <constraint firstItem="fVF-ou-DTD" firstAttribute="leading" secondItem="7Co-Kj-N8v" secondAttribute="trailing" constant="14" id="I3N-Nj-v0S"/>
                             <constraint firstItem="Sny-hn-JMA" firstAttribute="leading" secondItem="isl-yM-R3U" secondAttribute="leading" constant="52" id="IF5-PW-wUX"/>
+                            <constraint firstItem="qsd-Bu-EhQ" firstAttribute="top" secondItem="Sny-hn-JMA" secondAttribute="bottom" constant="23" id="Kzb-TC-rzm"/>
                             <constraint firstItem="isl-yM-R3U" firstAttribute="trailing" secondItem="QXH-gA-CoO" secondAttribute="trailing" constant="52" id="L0q-Q5-Zym"/>
                             <constraint firstItem="isl-yM-R3U" firstAttribute="trailing" secondItem="bUM-Iu-Yki" secondAttribute="trailing" constant="137" id="MNj-ek-WXE"/>
-                            <constraint firstItem="DPt-nU-oUd" firstAttribute="leading" secondItem="bT7-U8-gBR" secondAttribute="trailing" constant="14" id="Nab-9D-k0l"/>
+                            <constraint firstItem="fVF-ou-DTD" firstAttribute="top" secondItem="qsd-Bu-EhQ" secondAttribute="bottom" constant="25" id="OTq-00-kfN"/>
                             <constraint firstItem="bT7-U8-gBR" firstAttribute="top" secondItem="Sny-hn-JMA" secondAttribute="bottom" constant="25" id="Ov7-qU-1dE"/>
                             <constraint firstItem="IWU-u1-P7p" firstAttribute="top" secondItem="isl-yM-R3U" secondAttribute="top" constant="51" id="SAq-wq-MRU"/>
                             <constraint firstItem="D3N-wP-TIY" firstAttribute="top" secondItem="dv0-au-N6j" secondAttribute="bottom" constant="18" id="Wp1-wy-0S9"/>
@@ -1915,7 +2035,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="275.625" y="-1862.0416666666665"/>
+            <point key="canvasLocation" x="862.5" y="-1862.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="NIz-8W-nkk">
@@ -2983,7 +3103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzx-M5-1hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3756.5" y="-2885"/>
+            <point key="canvasLocation" x="4343.5" y="-2885"/>
         </scene>
         <!--Edit User-->
         <scene sceneID="JDR-jz-QEe">
@@ -3117,7 +3237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfW-jo-Mvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425.625" y="-1816.4633333333331"/>
+            <point key="canvasLocation" x="2012.5" y="-1816.5"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="RLO-Ll-tMI">
@@ -3161,7 +3281,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jxw-m3-M0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2035.625" y="-1816.4633333333331"/>
+            <point key="canvasLocation" x="2622.5" y="-1816.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gQX-Mq-aUz">
@@ -3885,6 +4005,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aF9-Nc-lAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3169.5" y="-2884.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kTZ-bS-CJP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X37-fq-oel" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="1wb-h6-Ris"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pga-MR-Wys">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NGL-oZ-0cp" kind="relationship" relationship="rootViewController" id="znq-63-RjO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b9a-9W-NsY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-349" y="-1951"/>
         </scene>
     </scenes>
     <resources>

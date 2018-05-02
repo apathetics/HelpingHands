@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04780DCF206F48F7003029CE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04780DCE206F48F7003029CE /* MessageUI.framework */; };
 		0AEF85047AC357841635987E /* Pods_Helping_Hands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D33667ECA4554EB423EE282 /* Pods_Helping_Hands.framework */; };
+		190E1678209A53750047AAF2 /* TermsAndAgreementsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E1677209A53750047AAF2 /* TermsAndAgreementsVC.swift */; };
 		19159EAF2075CA2900A904E9 /* DismissKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19159EAE2075CA2900A904E9 /* DismissKeyboardExtension.swift */; };
 		192776A020755820006451CD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1927769F20755820006451CD /* Settings.bundle */; };
 		192776A52075594C006451CD /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192776A42075594C006451CD /* SettingsVC.swift */; };
@@ -76,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		04780DCE206F48F7003029CE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		190E1677209A53750047AAF2 /* TermsAndAgreementsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndAgreementsVC.swift; sourceTree = "<group>"; };
 		19159EAE2075CA2900A904E9 /* DismissKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardExtension.swift; sourceTree = "<group>"; };
 		1927769F20755820006451CD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		192776A42075594C006451CD /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			children = (
 				1927A5E4205F40A200628A1C /* LoginVC.swift */,
 				1927A5E5205F40A200628A1C /* RegistrationVC.swift */,
+				190E1677209A53750047AAF2 /* TermsAndAgreementsVC.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				1927A5F5205F40F300628A1C /* BEMCheckBox.m in Sources */,
 				1927A615205F41C900628A1C /* HiringPaymentController.swift in Sources */,
 				1927A5FF205F413300628A1C /* JobTableViewCell.swift in Sources */,
+				190E1678209A53750047AAF2 /* TermsAndAgreementsVC.swift in Sources */,
 				1927A602205F415C00628A1C /* ExploreTabViewController.swift in Sources */,
 				1927A61C205F41F100628A1C /* QRViewController.swift in Sources */,
 				ABA3A2E3206067CF00E26814 /* SWRevealViewController.m in Sources */,
