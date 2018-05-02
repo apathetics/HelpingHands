@@ -19,6 +19,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     
+    var currentLocation: CLLocation?
     var jobs = [Job]()
     var chosen: Int?
     var loadingView: UIView!
@@ -100,6 +101,12 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    // Location delegate callback to make sure there IS an actual location or else it's nil.
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = locations[locations.count-1]
+        self.retrieveJobs()
+    }
+    
     // asynchronously determines whether or not changes to location settings have been made and responds
     // by asking user to turn them back on for the app.
     func enableBasicLocationServices() {
@@ -108,7 +115,8 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             // Request when-in-use authorization initially
-            manager.requestWhenInUseAuthorization()
+            disableMyLocationBasedFeatures()
+            manager.requestAlwaysAuthorization()
             break
             
         case .restricted, .denied:
@@ -134,28 +142,9 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     func enableMyWhenInUseFeatures() {
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
         manager.startUpdatingLocation()
-        retrieveJobs()
-    }
-    
-    // asynchronously determines whether or not changes to location settings have been made and responds
-    // by asking user to turn them back on for the app.
-    public func locationManager(_ manager: CLLocationManager,
-                                didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-            
-        // Display page asking to turn back on settings to use the app.
-        case .restricted, .denied:
-            disableMyLocationBasedFeatures()
-            break
-            
-        // If authorized, load in jobs
-        case .authorizedWhenInUse, .authorizedAlways:
-            enableMyWhenInUseFeatures()
-            break
-            
-        // Not happening
-        case .notDetermined:
-            break
+        
+        if(self.currentLocation != nil) {
+            self.retrieveJobs()
         }
     }
     
@@ -257,10 +246,12 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                         }
                         
                         let locationManager = self.manager
+                        locationManager.delegate = self
                         locationManager.desiredAccuracy = kCLLocationAccuracyBest
                         locationManager.requestAlwaysAuthorization()
                         locationManager.startUpdatingLocation()
-                        let distance = (locationManager.location?.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) as! Double) * 0.00062137
+                        
+                        let distance = locationManager.location!.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) * 0.00062137
                         job.distance = distance
                         
                         if (job.distance <= UserDefaults.standard.value(forKey:"max_radius") as! Double)

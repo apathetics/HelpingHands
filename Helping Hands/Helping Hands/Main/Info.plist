@@ -26,6 +26,8 @@
 	<string>Helping Hands would like to access your location to provide you information about jobs in your area!</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Helping Hands would like to access your location to provide you information about jobs in your area!</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Helping Hands would like to access your location to provide you information about jobs in your area!</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Helping Hands will only upload and share the photos you choose.</string>
 	<key>UIAppFonts</key>
