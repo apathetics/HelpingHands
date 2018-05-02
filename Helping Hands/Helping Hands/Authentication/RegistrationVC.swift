@@ -95,6 +95,25 @@ class RegistrationVC: UIViewController, UIImagePickerControllerDelegate, UINavig
             return
         }
         
+        // Make sure user agrees to terms and agreements
+        if !termsAgreementsCB.on {
+            let alert = UIAlertController(title: "Terms and Agreements Not Checked",
+                                          message: "You must agree to the terms and agreements in order to proceed.",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        // Make sure user is at least 18 years
+        if !over18CB.on {
+            let alert = UIAlertController(title: "Age Verification Not Checked",
+                                          message: "You must be 18 years or older to proceed.",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
         
         if let email = emailTF.text, let pass = passwordTF.text {
             // Create user with given email and password
