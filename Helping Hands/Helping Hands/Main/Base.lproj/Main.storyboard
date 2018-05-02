@@ -1139,7 +1139,7 @@
                                 <rect key="frame" x="0.0" y="64" width="407" height="887"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f61-1d-bB5">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="879"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="878"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKS-LN-xAF">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="195"/>
@@ -1147,7 +1147,7 @@
                                                 <color key="backgroundColor" red="0.86584617990581514" green="1" blue="0.94066870108088463" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiries" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5c-Yg-CZK">
-                                                <rect key="frame" x="16" y="503" width="343" height="24"/>
+                                                <rect key="frame" x="16" y="502" width="343" height="24"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1159,7 +1159,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOl-xd-HYw">
-                                                <rect key="frame" x="16" y="369" width="343" height="116"/>
+                                                <rect key="frame" x="16" y="368" width="343" height="116"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="250" constant="100" id="8KE-AH-h0E"/>
                                                 </constraints>
@@ -1169,31 +1169,31 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29 March  2018" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKL-HY-bMB" userLabel="jobDate">
-                                                <rect key="frame" x="16" y="291" width="108" height="20"/>
+                                                <rect key="frame" x="16" y="290.5" width="108" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Austin, TX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xP7-fT-jSM" userLabel="jobLocation">
-                                                <rect key="frame" x="16" y="255" width="71.5" height="20"/>
+                                                <rect key="frame" x="16" y="255" width="71.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.1 m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTu-QE-bOH" userLabel="jobDistance">
-                                                <rect key="frame" x="322" y="255" width="37" height="20"/>
+                                                <rect key="frame" x="322" y="255" width="37" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$25.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWc-VW-GAJ" userLabel="jobPrice">
-                                                <rect key="frame" x="309" y="291" width="50" height="20"/>
+                                                <rect key="frame" x="309" y="290.5" width="50" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                                 <color key="textColor" red="0.35622584819793701" green="0.62525486946105957" blue="0.11641929298639297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7I-b6-eLz">
-                                                <rect key="frame" x="16" y="329" width="343" height="24"/>
+                                                <rect key="frame" x="16" y="328" width="343" height="24"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1205,7 +1205,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="42" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="KkH-lV-IDB" userLabel="table">
-                                                <rect key="frame" x="0.0" y="541" width="375" height="338"/>
+                                                <rect key="frame" x="0.0" y="540" width="375" height="338"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="KkH-lV-IDB" secondAttribute="height" multiplier="111:100" id="qp1-1f-asT"/>
@@ -1358,13 +1358,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gardening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6p-Ui-C0J">
-                                                    <rect key="frame" x="105" y="11" width="191" height="21"/>
+                                                    <rect key="frame" x="105" y="11" width="191" height="21.5"/>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14.99 mi." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsT-Mf-VqD">
-                                                    <rect key="frame" x="304" y="12" width="61" height="19"/>
+                                                    <rect key="frame" x="304" y="12" width="61" height="18.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="61" id="i5s-fF-f0b"/>
                                                     </constraints>
@@ -1373,7 +1373,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnh-Vf-Nu5">
-                                                    <rect key="frame" x="105" y="40" width="255" height="55"/>
+                                                    <rect key="frame" x="105" y="40.5" width="255" height="55"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit la.Lorem ipsum dolor sit er elit la.Lorem ipsum dolor sit er elit la.Lorem ipsum dolor sit er elit la.Lorem ipsum dolor sit er elit la.</string>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1828,14 +1828,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvS-ih-MOi">
-                                                    <rect key="frame" x="103" y="42" width="262" height="55"/>
+                                                    <rect key="frame" x="103" y="42.5" width="262" height="55"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Park Cleanup!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmP-pa-sJI">
-                                                    <rect key="frame" x="103" y="11" width="192" height="21"/>
+                                                    <rect key="frame" x="103" y="11" width="192" height="21.5"/>
                                                     <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2243,110 +2243,165 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are paying:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytn-Uh-RVs">
-                                <rect key="frame" x="38" y="73" width="117" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are paying:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytn-Uh-RVs">
+                                <rect key="frame" x="16" y="143" width="166" height="22"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MONEY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLO-1k-h8t">
-                                <rect key="frame" x="240" y="73" width="60" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONEY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLO-1k-h8t">
+                                <rect key="frame" x="205" y="143" width="153" height="22"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rate: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXo-a7-BL8">
-                                <rect key="frame" x="38" y="388" width="44" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXo-a7-BL8">
+                                <rect key="frame" x="16" y="365" width="67" height="44"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Review:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWw-fY-JO4">
-                                <rect key="frame" x="38" y="451" width="59" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CkX-xe-Rrd">
-                                <rect key="frame" x="105" y="451" width="254" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNd-NY-dVG">
-                                <rect key="frame" x="160" y="602" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Confirm"/>
-                                <connections>
-                                    <action selector="onConfirm:" destination="mRZ-y7-YNq" eventType="touchUpInside" id="f5G-qW-HOE"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cr7-ZT-Lia" customClass="RatingControl" customModule="Helping_Hands" customModuleProvider="target">
-                                <rect key="frame" x="106" y="380" width="253" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cr7-ZT-Lia" customClass="RatingControl" customModule="Helping_Hands" customModuleProvider="target">
+                                <rect key="frame" x="105" y="365" width="253" height="44"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="starCount">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwK-3Y-Giw">
-                                <rect key="frame" x="38" y="123" width="24" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwK-3Y-Giw">
+                                <rect key="frame" x="16" y="194" width="166" height="22"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RECIPIENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bZ-4Z-hF8">
-                                <rect key="frame" x="240" y="123" width="84" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECIPIENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bZ-4Z-hF8">
+                                <rect key="frame" x="205" y="194" width="152" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="152" id="JCH-6j-SZ9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Credit Card:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-sI-w3E">
-                                <rect key="frame" x="38" y="185" width="93" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-sI-w3E">
+                                <rect key="frame" x="27" y="242" width="154" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="154" id="MbV-Er-Bvo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VX0-tU-V5n">
-                                <rect key="frame" x="38" y="289" width="29" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VX0-tU-V5n">
+                                <rect key="frame" x="17" y="300" width="66" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="sba-4L-IxJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c4e-lb-OVt">
-                                <rect key="frame" x="94" y="285" width="230" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c4e-lb-OVt">
+                                <rect key="frame" x="105" y="300" width="253" height="29"/>
                                 <segments>
                                     <segment title="10%"/>
                                     <segment title="15%"/>
                                     <segment title="20%"/>
                                 </segments>
+                                <connections>
+                                    <action selector="tipStepper:" destination="EOb-US-b51" eventType="valueChanged" id="KLq-dF-Gob"/>
+                                </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWw-fY-JO4">
+                                <rect key="frame" x="17" y="443" width="66" height="30"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CkX-xe-Rrd">
+                                <rect key="frame" x="16" y="481" width="342" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HbQ-Oo-29T"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNd-NY-dVG">
+                                <rect key="frame" x="158" y="565" width="61" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="EZH-Gz-fSh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
+                                <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="confirmButton:" destination="EOb-US-b51" eventType="touchUpInside" id="1bu-y9-hbO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uWw-fY-JO4" firstAttribute="top" secondItem="WXo-a7-BL8" secondAttribute="bottom" constant="34" id="27u-ch-pMr"/>
+                            <constraint firstItem="jwK-3Y-Giw" firstAttribute="firstBaseline" secondItem="6bZ-4Z-hF8" secondAttribute="firstBaseline" id="59a-r5-yYw"/>
+                            <constraint firstItem="WXo-a7-BL8" firstAttribute="leading" secondItem="CkX-xe-Rrd" secondAttribute="leading" id="5qC-cx-R3w"/>
+                            <constraint firstItem="Ytn-Uh-RVs" firstAttribute="trailing" secondItem="jwK-3Y-Giw" secondAttribute="trailing" id="67p-Yl-hXP"/>
+                            <constraint firstItem="jwK-3Y-Giw" firstAttribute="baseline" secondItem="6bZ-4Z-hF8" secondAttribute="baseline" id="6YX-Xg-len"/>
+                            <constraint firstItem="Ytn-Uh-RVs" firstAttribute="baseline" secondItem="RLO-1k-h8t" secondAttribute="baseline" id="7zb-RL-9CW"/>
+                            <constraint firstItem="VX0-tU-V5n" firstAttribute="leading" secondItem="uWw-fY-JO4" secondAttribute="leading" id="8l4-bk-W8O"/>
+                            <constraint firstItem="Ytn-Uh-RVs" firstAttribute="top" secondItem="Aho-up-V0n" secondAttribute="bottom" constant="79" id="9ln-Ra-wUA"/>
+                            <constraint firstItem="SAm-Pa-mbY" firstAttribute="top" secondItem="iNd-NY-dVG" secondAttribute="bottom" constant="70" id="B2C-HP-H7T"/>
+                            <constraint firstItem="yhd-sI-w3E" firstAttribute="top" secondItem="jwK-3Y-Giw" secondAttribute="bottom" constant="26" id="EAm-ta-oex"/>
+                            <constraint firstItem="iNd-NY-dVG" firstAttribute="top" secondItem="CkX-xe-Rrd" secondAttribute="bottom" constant="54" id="EBQ-Iu-e6U"/>
+                            <constraint firstItem="RLO-1k-h8t" firstAttribute="leading" secondItem="6bZ-4Z-hF8" secondAttribute="leading" id="GPs-dq-Gdk"/>
+                            <constraint firstItem="c4e-lb-OVt" firstAttribute="leading" secondItem="VX0-tU-V5n" secondAttribute="trailing" constant="22" id="HhV-me-V6F"/>
+                            <constraint firstItem="jwK-3Y-Giw" firstAttribute="leading" secondItem="WXo-a7-BL8" secondAttribute="leading" id="Htb-M4-AjL"/>
+                            <constraint firstItem="Ytn-Uh-RVs" firstAttribute="leading" secondItem="mpi-xG-9Iu" secondAttribute="leadingMargin" id="K6j-mQ-yTM"/>
+                            <constraint firstItem="CkX-xe-Rrd" firstAttribute="top" secondItem="cr7-ZT-Lia" secondAttribute="bottom" constant="72" id="Qsn-kK-xqu"/>
+                            <constraint firstItem="VX0-tU-V5n" firstAttribute="bottom" secondItem="c4e-lb-OVt" secondAttribute="bottom" id="VbP-My-6jP"/>
+                            <constraint firstItem="WXo-a7-BL8" firstAttribute="top" secondItem="VX0-tU-V5n" secondAttribute="bottom" constant="37" id="Wte-Xd-cB3"/>
+                            <constraint firstItem="c4e-lb-OVt" firstAttribute="trailing" secondItem="cr7-ZT-Lia" secondAttribute="trailing" id="ZGU-kP-aIt"/>
+                            <constraint firstItem="WXo-a7-BL8" firstAttribute="trailing" secondItem="uWw-fY-JO4" secondAttribute="trailing" id="cHV-fP-l5d"/>
+                            <constraint firstItem="CkX-xe-Rrd" firstAttribute="centerX" secondItem="mpi-xG-9Iu" secondAttribute="centerX" id="dGB-DU-qTX"/>
+                            <constraint firstItem="c4e-lb-OVt" firstAttribute="top" secondItem="6bZ-4Z-hF8" secondAttribute="bottom" constant="84" id="e2w-Ha-15u"/>
+                            <constraint firstItem="Ytn-Uh-RVs" firstAttribute="leading" secondItem="jwK-3Y-Giw" secondAttribute="leading" id="eta-cW-JoU"/>
+                            <constraint firstItem="CkX-xe-Rrd" firstAttribute="top" secondItem="uWw-fY-JO4" secondAttribute="bottom" constant="8" symbolic="YES" id="huJ-a2-9gg"/>
+                            <constraint firstItem="RLO-1k-h8t" firstAttribute="leading" secondItem="Ytn-Uh-RVs" secondAttribute="trailing" constant="23" id="jqH-hQ-yin"/>
+                            <constraint firstItem="WXo-a7-BL8" firstAttribute="top" secondItem="cr7-ZT-Lia" secondAttribute="top" id="kom-0s-AtE"/>
+                            <constraint firstItem="WXo-a7-BL8" firstAttribute="centerX" secondItem="uWw-fY-JO4" secondAttribute="centerX" id="lew-K1-Mke"/>
+                            <constraint firstItem="WXo-a7-BL8" firstAttribute="bottom" secondItem="cr7-ZT-Lia" secondAttribute="bottom" id="mEB-3N-opy"/>
+                            <constraint firstItem="iNd-NY-dVG" firstAttribute="leading" secondItem="mpi-xG-9Iu" secondAttribute="leading" constant="158" id="mTR-zv-r3Y"/>
+                            <constraint firstItem="RLO-1k-h8t" firstAttribute="trailing" secondItem="c4e-lb-OVt" secondAttribute="trailing" id="mVN-ZL-muE"/>
+                            <constraint firstItem="Ytn-Uh-RVs" firstAttribute="firstBaseline" secondItem="RLO-1k-h8t" secondAttribute="firstBaseline" id="nyJ-fj-qcf"/>
+                            <constraint firstItem="VX0-tU-V5n" firstAttribute="top" secondItem="c4e-lb-OVt" secondAttribute="top" id="oan-Xq-luZ"/>
+                            <constraint firstItem="c4e-lb-OVt" firstAttribute="leading" secondItem="cr7-ZT-Lia" secondAttribute="leading" id="pAQ-7f-Kp2"/>
+                            <constraint firstItem="jwK-3Y-Giw" firstAttribute="top" secondItem="Ytn-Uh-RVs" secondAttribute="bottom" constant="29" id="pOu-93-WaC"/>
+                            <constraint firstItem="RLO-1k-h8t" firstAttribute="centerX" secondItem="6bZ-4Z-hF8" secondAttribute="centerX" id="qQQ-Y9-wqh"/>
+                            <constraint firstItem="VX0-tU-V5n" firstAttribute="trailing" secondItem="WXo-a7-BL8" secondAttribute="trailing" id="qz5-Fz-whi"/>
+                            <constraint firstItem="cr7-ZT-Lia" firstAttribute="trailing" secondItem="CkX-xe-Rrd" secondAttribute="trailing" id="v8t-yy-9sG"/>
+                            <constraint firstItem="yhd-sI-w3E" firstAttribute="leading" secondItem="mpi-xG-9Iu" secondAttribute="leadingMargin" constant="11" id="xgQ-Mu-4Oz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4vl-G1-16k"/>
                     <connections>
+                        <outlet property="ccLabel" destination="yhd-sI-w3E" id="sjf-g9-Ew4"/>
+                        <outlet property="confirmButton" destination="iNd-NY-dVG" id="k7M-Vf-vxd"/>
                         <outlet property="moneyLabel" destination="RLO-1k-h8t" id="BdV-il-pxv"/>
+                        <outlet property="rateLabel" destination="WXo-a7-BL8" id="zpt-YK-4Js"/>
                         <outlet property="ratingStars" destination="cr7-ZT-Lia" id="U8d-5U-ZfA"/>
                         <outlet property="recipientLabel" destination="6bZ-4Z-hF8" id="3Yo-G1-VGv"/>
+                        <outlet property="reviewLabel" destination="uWw-fY-JO4" id="Tn1-Og-e0e"/>
                         <outlet property="reviewTextField" destination="CkX-xe-Rrd" id="LP3-aV-mVQ"/>
-                        <outlet property="tipSwich" destination="c4e-lb-OVt" id="33v-cQ-tqA"/>
+                        <outlet property="tipLabel" destination="VX0-tU-V5n" id="5WU-aC-jyW"/>
+                        <outlet property="tipSwich" destination="c4e-lb-OVt" id="ig8-IA-ocC"/>
+                        <outlet property="toLabel" destination="jwK-3Y-Giw" id="Dm8-6V-Y3O"/>
+                        <outlet property="youAreLabel" destination="Ytn-Uh-RVs" id="ntd-jf-oPq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVQ-Rx-Gvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="EOb-US-b51" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3527.5" y="-5369.3499999999995"/>
+            <point key="canvasLocation" x="3527.5" y="-5369.5"/>
         </scene>
         <!--Search-->
         <scene sceneID="Nbt-p2-odx">
@@ -3457,7 +3512,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="887"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAy-1a-vfh">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="882"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="881"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1yC-SN-L9f">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="195"/>
@@ -3465,7 +3520,7 @@
                                                 <color key="backgroundColor" red="0.86584617990000001" green="1" blue="0.9406687011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fla-tV-Xdp">
-                                                <rect key="frame" x="16" y="487" width="343" height="24"/>
+                                                <rect key="frame" x="16" y="486" width="343" height="24"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3477,7 +3532,7 @@
                                                 </constraints>
                                             </imageView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="42" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="sgD-Mi-hDn" userLabel="table">
-                                                <rect key="frame" x="0.0" y="525" width="375" height="357"/>
+                                                <rect key="frame" x="0.0" y="524" width="375" height="357"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="sgD-Mi-hDn" secondAttribute="height" multiplier="105:100" id="A2A-T2-xNi"/>
@@ -3511,7 +3566,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbf-pF-ytu">
-                                                <rect key="frame" x="16" y="369" width="343" height="100"/>
+                                                <rect key="frame" x="16" y="368" width="343" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="aUq-PO-mHW"/>
                                                 </constraints>
@@ -3521,25 +3576,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29 March  2018" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1O-cs-8UF" userLabel="eventDate">
-                                                <rect key="frame" x="16" y="291" width="108" height="20"/>
+                                                <rect key="frame" x="16" y="290.5" width="108" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Austin, TX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSI-OH-4Bi" userLabel="eventLocation">
-                                                <rect key="frame" x="16" y="255" width="71.5" height="20"/>
+                                                <rect key="frame" x="16" y="255" width="71.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.1 m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qea-4t-c9K" userLabel="eventDistance">
-                                                <rect key="frame" x="322" y="255" width="37" height="20"/>
+                                                <rect key="frame" x="322" y="255" width="37" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Helpers" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrQ-9a-Zw0" userLabel="eventPrice">
-                                                <rect key="frame" x="292.5" y="291" width="66.5" height="20"/>
+                                                <rect key="frame" x="292.5" y="290.5" width="66.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="18"/>
                                                 <color key="textColor" red="0.35622584819999997" green="0.62525486949999998" blue="0.11641929299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -3551,7 +3606,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub5-AO-Wqb">
-                                                <rect key="frame" x="16" y="329" width="343" height="24"/>
+                                                <rect key="frame" x="16" y="328" width="343" height="24"/>
                                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

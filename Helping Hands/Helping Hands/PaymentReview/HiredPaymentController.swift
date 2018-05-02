@@ -11,7 +11,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorageUI
 
-class HiredPaymentController: UIViewController {
+class HiredPaymentController: UIViewController{
     
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var payerLabel: UILabel!
