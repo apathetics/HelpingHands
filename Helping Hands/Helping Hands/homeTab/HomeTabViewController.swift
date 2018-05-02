@@ -43,13 +43,16 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        // If not populated, then loading animation.
-        if(table.visibleCells.count > 0) {
-            activityIndicatorView.stopAnimating()
-            loadingView.isHidden = true
-        } else {
-            loadingView.isHidden = false
-        }
+        // This check is not working for some reason.
+        
+//        // If not populated, then loading animation.
+//        if(table.visibleCells.count > 0) {
+//            activityIndicatorView.stopAnimating()
+//            loadingView.isHidden = true
+//        } else {
+//            loadingView.isHidden = false
+//        }
+        
         print("JOB COUNT: \(jobs.count)\n\n")
     }
     
@@ -71,39 +74,11 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         loadingView.addSubview(activityIndicatorView)
         activityIndicatorView.startAnimating()
         
+        self.activityIndicatorView.stopAnimating()
+        self.loadingView.isHidden = true
+        
         // enableBasicLocationServices
         enableBasicLocationServices()
-
-        // Check if there are jobs and if not, show loading screen.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if (self.jobs.count == 0) {
-                self.activityIndicatorView.stopAnimating()
-                self.loadingView.isHidden = false
-                var frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
-                let errorView = UIView(frame: frame)
-                let size = CGSize(width: 180, height: 350)
-                let errorGraphic = UIImageView(image: UIImage(named: "nojobs")?.scaleImageToSize(newSize: size))
-                errorView.addSubview(errorGraphic)
-                frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 + 180, width: 180, height: 50)
-                self.errorLBL = UILabel(frame: frame)
-                self.errorLBL.lineBreakMode = .byWordWrapping
-                self.errorLBL.numberOfLines = 0
-                self.errorLBL.textAlignment = .center
-                self.errorLBL.text = "There are currently no jobs in this area :("
-                self.errorLBL.font = UIFont(name: "Gidole-Regular", size: 20)
-                self.errorLBL.textColor = UIColor(hex:"2b3445")
-                self.loadingView.addSubview(errorView)
-                self.loadingView.addSubview(self.errorLBL)
-            }
-        }
-        
-        // If there are jobs, then hide loading animation.
-        if(table.visibleCells.count > 0) {
-            activityIndicatorView.stopAnimating()
-            loadingView.isHidden = true
-        } else {
-            loadingView.isHidden = false
-        }
     }
     
     // Location delegate callback to make sure there IS an actual location or else it's nil.
@@ -268,15 +243,44 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                             self.loadingView.isHidden = true
 
                         }
+
                         
-                        if(self.jobs.count > 0 && !self.loadingView.isHidden) {
-                            self.loadingView.isHidden = true
+                        
+                        // Check if there are jobs and if not, show loading screen.
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            if (self.jobs.count == 0) {
+                                self.activityIndicatorView.stopAnimating()
+                                self.loadingView.isHidden = false
+                                var frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
+                                let errorView = UIView(frame: frame)
+                                let size = CGSize(width: 180, height: 350)
+                                let errorGraphic = UIImageView(image: UIImage(named: "nojobs")?.scaleImageToSize(newSize: size))
+                                errorView.addSubview(errorGraphic)
+                                frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 + 180, width: 180, height: 50)
+                                self.errorLBL = UILabel(frame: frame)
+                                self.errorLBL.lineBreakMode = .byWordWrapping
+                                self.errorLBL.numberOfLines = 0
+                                self.errorLBL.textAlignment = .center
+                                self.errorLBL.text = "There are currently no jobs in this area :("
+                                self.errorLBL.font = UIFont(name: "Gidole-Regular", size: 20)
+                                self.errorLBL.textColor = UIColor(hex:"2b3445")
+                                self.loadingView.addSubview(errorView)
+                                self.loadingView.addSubview(self.errorLBL)
+                            }
+
+//                            if(self.jobs.count > 0) {
+//                                self.activityIndicatorView.stopAnimating()
+//                                self.loadingView.isHidden = true
+//                            }
+
                         }
+                        
                         
                         self.table.reloadData()
                     }
                 }
             }
+            
         })
     }
     
