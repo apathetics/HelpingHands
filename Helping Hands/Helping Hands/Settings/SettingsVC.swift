@@ -12,6 +12,11 @@ import FirebaseAuth
 import FirebaseDatabase
 import UserNotifications
 
+protocol radiusDelegate
+{
+    func sendRadius(radius: Int)
+}
+
 class SettingsVC: UITableViewController, Themeable {
     
     let databaseRef = FIRDatabase.database().reference().child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
@@ -34,6 +39,7 @@ class SettingsVC: UITableViewController, Themeable {
     //Shared Notification Center
     let center = UNUserNotificationCenter.current()
     var allowNotifs: Bool!
+    var delegate: radiusDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +83,7 @@ class SettingsVC: UITableViewController, Themeable {
         distLBL.text = "\(Int(sender.value))mi."
         let userDefaults = UserDefaults.standard
         userDefaults.setValue(Int(sender.value), forKey: "max_radius")
+        self.delegate?.sendRadius(radius:(Int(sender.value)))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

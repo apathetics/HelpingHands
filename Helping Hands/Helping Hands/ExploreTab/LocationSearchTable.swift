@@ -15,6 +15,7 @@ class LocationSearchTable : UITableViewController, UISearchResultsUpdating {
     var mapView: MKMapView? = nil
     var handleMapSearchDelegate:HandleMapSearch? = nil
     
+    // Used to actually get search results, using MK
     func updateSearchResults(for searchController: UISearchController) {
         guard let mapView = mapView,
             let searchBarText = searchController.searchBar.text else { return }

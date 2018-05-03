@@ -13,7 +13,7 @@ import FirebaseDatabase
 import FirebaseStorageUI
 import NVActivityIndicatorView
 
-class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
+class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, radiusDelegate, Themeable {
     
     let manager = CLLocationManager()
     
@@ -25,6 +25,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     var loadingView: UIView!
     var activityIndicatorView: NVActivityIndicatorView!
     var errorLBL: UILabel!
+    var radius = 0
     
     var events = [Event]()
     
@@ -59,6 +60,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        radius = UserDefaults.standard.value(forKey:"max_radius") as! Int
         table.isHidden = true
         let screenWidth = UIScreen.main.bounds.size.width
         let screenHeight = UIScreen.main.bounds.size.height
@@ -215,7 +217,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     
     // DATABASE RETRIEVAL
     func retrieveEvents() {
-        
+        events.removeAll()
         let eventsRef = databaseRef.child("events")
         
         eventsRef.observe(FIRDataEventType.value, with: {(snapshot) in
@@ -258,7 +260,7 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                         let distance = (locationManager.location?.distance(from: CLLocation(latitude: event.latitude, longitude: event.longitude)) as! Double) * 0.00062137
                         event.distance = distance
                         
-                        if (event.distance <= UserDefaults.standard.value(forKey:"max_radius") as! Double)
+                        if (event.distance <= Double(self.radius))
                         {
                             self.events.append(event)
                             self.events = self.events.sorted(by: { $0.distance < $1.distance })
@@ -292,5 +294,12 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
             theme.applyBodyTextStyle(labels: [(cell as! EventTableViewCell).eventDescriptionLbl!])
             theme.applyHeadlineStyle(labels: [(cell as! EventTableViewCell).eventTitleLbl!])
         }
+    }
+    
+    // Used to update list when user changes radius settings
+    func sendRadius(radius: Int) {
+        print("will refresh")
+        self.radius = radius
+        retrieveEvents()
     }
 }

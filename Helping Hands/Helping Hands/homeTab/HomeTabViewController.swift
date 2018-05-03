@@ -14,7 +14,7 @@ import FirebaseDatabase
 import FirebaseStorageUI
 import NVActivityIndicatorView
 
-class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, Themeable {
+class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, radiusDelegate, Themeable {
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
@@ -26,9 +26,12 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     var loadingView: UIView = UIView()
     var activityIndicatorView: NVActivityIndicatorView!
     var errorLBL: UILabel!
+    var errorView:UIView?
     
     let manager = CLLocationManager()
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+    
+    var radius = 0
 
     
     override func viewDidLoad() {
@@ -62,6 +65,8 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        radius = UserDefaults.standard.value(forKey:"max_radius") as! Int
+        
         table.isHidden = true
         let screenWidth = UIScreen.main.bounds.size.width
         let screenHeight = UIScreen.main.bounds.size.height
@@ -76,6 +81,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.activityIndicatorView.stopAnimating()
         self.loadingView.isHidden = true
+        self.errorView?.isHidden = true
         
         // enableBasicLocationServices
         enableBasicLocationServices()
@@ -188,6 +194,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // FIREBASE RETRIEVAL
     @objc func retrieveJobs() {
+        jobs.removeAll()
         let jobsRef = databaseRef.child("jobs")
         
         jobsRef.observe(FIRDataEventType.value, with: {(snapshot) in
@@ -235,16 +242,17 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                         let distance = locationManager.location!.distance(from: CLLocation(latitude: job.latitude, longitude: job.longitude)) * 0.00062137
                         job.distance = distance
                         
-                        if (job.distance <= UserDefaults.standard.value(forKey:"max_radius") as! Double)
+                        if (job.distance <= Double(self.radius))
                         {
                             self.jobs.append(job)
                             self.jobs = self.jobs.sorted(by: { $0.distance < $1.distance })
                             self.activityIndicatorView.stopAnimating()
                             self.loadingView.isHidden = true
-
+                            for view in self.loadingView.subviews {
+                                view.removeFromSuperview()
+                            }
+                            self.errorView?.isHidden = true
                         }
-
-                        
                         
                         // Check if there are jobs and if not, show loading screen.
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -252,10 +260,10 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                                 self.activityIndicatorView.stopAnimating()
                                 self.loadingView.isHidden = false
                                 var frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
-                                let errorView = UIView(frame: frame)
+                                self.errorView = UIView(frame: frame)
                                 let size = CGSize(width: 180, height: 350)
                                 let errorGraphic = UIImageView(image: UIImage(named: "nojobs")?.scaleImageToSize(newSize: size))
-                                errorView.addSubview(errorGraphic)
+                                self.errorView!.addSubview(errorGraphic)
                                 frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 + 180, width: 180, height: 50)
                                 self.errorLBL = UILabel(frame: frame)
                                 self.errorLBL.lineBreakMode = .byWordWrapping
@@ -264,7 +272,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                                 self.errorLBL.text = "There are currently no jobs in this area :("
                                 self.errorLBL.font = UIFont(name: "Gidole-Regular", size: 20)
                                 self.errorLBL.textColor = UIColor(hex:"2b3445")
-                                self.loadingView.addSubview(errorView)
+                                self.loadingView.addSubview(self.errorView!)
                                 self.loadingView.addSubview(self.errorLBL)
                             }
 
@@ -303,6 +311,13 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
             theme.applyBodyTextStyle(labels: [ ((cell as! JobTableViewCell).jobDescriptionLbl!) ])
             theme.applyHeadlineStyle(labels: [ ((cell as! JobTableViewCell).jobTitleLbl!) ])
         }
+    }
+    
+    // Used to update list when user changes radius settings
+    func sendRadius(radius: Int) {
+        print("will refresh")
+        self.radius = radius
+        retrieveJobs()
     }
 
 }
