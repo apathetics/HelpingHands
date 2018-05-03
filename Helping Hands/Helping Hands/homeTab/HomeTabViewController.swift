@@ -13,6 +13,7 @@ import CoreLocation
 import FirebaseDatabase
 import FirebaseStorageUI
 import NVActivityIndicatorView
+import UserNotifications
 
 class HomeTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, radiusDelegate, Themeable {
     
@@ -30,12 +31,18 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let manager = CLLocationManager()
     let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
-    
-    var radius = 0
 
+    var radius = 0
     
+    let notificationDelegate = NotificationDelegate()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (didAllow, error) in
+        }
+        let center = UNUserNotificationCenter.current()
+        center.delegate = notificationDelegate
+
         // Do any additional setup after loading the view, typically from a nib.
         ThemeService.shared.addThemeable(themable: self)
         

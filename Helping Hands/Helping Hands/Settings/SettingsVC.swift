@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import UserNotifications
 
+// Used to update Home and Community Tab view controllers with appropriate radius settings
 protocol radiusDelegate
 {
     func sendRadius(radius: Int)
