@@ -201,6 +201,7 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // FIREBASE RETRIEVAL
     @objc func retrieveJobs() {
+        //jobs.removeAll()
         let jobsRef = databaseRef.child("jobs")
         
         jobsRef.observe(FIRDataEventType.value, with: {(snapshot) in
@@ -269,21 +270,21 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                             if (self.jobs.count == 0) {
                                 self.activityIndicatorView.stopAnimating()
                                 self.loadingView.isHidden = false
-                                var frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
-                                self.errorView = UIView(frame: frame)
-                                let size = CGSize(width: 180, height: 350)
-                                let errorGraphic = UIImageView(image: UIImage(named: "nojobs")?.scaleImageToSize(newSize: size))
-                                self.errorView!.addSubview(errorGraphic)
-                                frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 + 180, width: 180, height: 50)
-                                self.errorLBL = UILabel(frame: frame)
-                                self.errorLBL.lineBreakMode = .byWordWrapping
-                                self.errorLBL.numberOfLines = 0
-                                self.errorLBL.textAlignment = .center
-                                self.errorLBL.text = "There are currently no jobs in this area :("
-                                self.errorLBL.font = UIFont(name: "Gidole-Regular", size: 20)
-                                self.errorLBL.textColor = UIColor(hex:"2b3445")
-                                self.loadingView.addSubview(self.errorView!)
-                                self.loadingView.addSubview(self.errorLBL)
+//                                var frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 - 175, width: 180, height: 350)
+//                                self.errorView = UIView(frame: frame)
+//                                let size = CGSize(width: 180, height: 350)
+//                                let errorGraphic = UIImageView(image: UIImage(named: "nojobs")?.scaleImageToSize(newSize: size))
+//                                self.errorView!.addSubview(errorGraphic)
+//                                frame = CGRect(x: self.loadingView.bounds.size.width*0.5 - 90, y: self.loadingView.bounds.size.height*0.5 + 180, width: 180, height: 50)
+//                                self.errorLBL = UILabel(frame: frame)
+//                                self.errorLBL.lineBreakMode = .byWordWrapping
+//                                self.errorLBL.numberOfLines = 0
+//                                self.errorLBL.textAlignment = .center
+//                                self.errorLBL.text = "There are currently no jobs in this area :("
+//                                self.errorLBL.font = UIFont(name: "Gidole-Regular", size: 20)
+//                                self.errorLBL.textColor = UIColor(hex:"2b3445")
+//                                self.loadingView.addSubview(self.errorView!)
+//                                self.loadingView.addSubview(self.errorLBL)
                             }
 
 //                            if(self.jobs.count > 0) {
