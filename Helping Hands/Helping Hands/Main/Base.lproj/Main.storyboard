@@ -1261,10 +1261,12 @@ information.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f61-1d-bB5">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="878"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKS-LN-xAF">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vKS-LN-xAF">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="195"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.86584617990581514" green="1" blue="0.94066870108088463" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="vKS-LN-xAF" secondAttribute="height" multiplier="25:13" id="FDt-9p-rpq"/>
+                                                </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiries" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5c-Yg-CZK">
                                                 <rect key="frame" x="16" y="502" width="343" height="24"/>
@@ -1367,6 +1369,7 @@ information.</string>
                                             <constraint firstAttribute="trailing" secondItem="xOl-xd-HYw" secondAttribute="trailing" constant="16" id="8FF-QU-Tzs"/>
                                             <constraint firstItem="KkH-lV-IDB" firstAttribute="top" secondItem="d5c-Yg-CZK" secondAttribute="bottom" constant="14" id="8iD-NG-sUn"/>
                                             <constraint firstItem="u7I-b6-eLz" firstAttribute="top" secondItem="sKL-HY-bMB" secondAttribute="bottom" constant="18" id="9C1-OO-b3O"/>
+                                            <constraint firstItem="vKS-LN-xAF" firstAttribute="leading" secondItem="f61-1d-bB5" secondAttribute="leading" id="9Zm-8W-F29"/>
                                             <constraint firstItem="xOl-xd-HYw" firstAttribute="top" secondItem="u7I-b6-eLz" secondAttribute="bottom" constant="16" id="B3o-nw-hjo"/>
                                             <constraint firstItem="kTu-QE-bOH" firstAttribute="top" secondItem="c0M-C2-ZWZ" secondAttribute="bottom" constant="16" id="F5v-Wv-aL2"/>
                                             <constraint firstAttribute="trailing" secondItem="d5c-Yg-CZK" secondAttribute="trailing" constant="16" id="FMS-Qy-49y"/>
@@ -1386,6 +1389,8 @@ information.</string>
                                             <constraint firstItem="c0M-C2-ZWZ" firstAttribute="leading" secondItem="f61-1d-bB5" secondAttribute="leading" constant="16" id="ks0-ZS-X6W"/>
                                             <constraint firstItem="c0M-C2-ZWZ" firstAttribute="top" secondItem="3BY-ba-lgG" secondAttribute="bottom" constant="18" id="ncl-T2-cN8"/>
                                             <constraint firstItem="xP7-fT-jSM" firstAttribute="top" secondItem="c0M-C2-ZWZ" secondAttribute="bottom" constant="16" id="oHw-fe-LtD"/>
+                                            <constraint firstItem="vKS-LN-xAF" firstAttribute="top" secondItem="f61-1d-bB5" secondAttribute="top" id="oI7-iv-EqK"/>
+                                            <constraint firstAttribute="trailing" secondItem="vKS-LN-xAF" secondAttribute="trailing" id="r8q-yL-VXz"/>
                                             <constraint firstItem="sKL-HY-bMB" firstAttribute="top" secondItem="xP7-fT-jSM" secondAttribute="bottom" constant="16" id="s33-yq-Pr0"/>
                                             <constraint firstItem="d5c-Yg-CZK" firstAttribute="leading" secondItem="f61-1d-bB5" secondAttribute="leading" constant="16" id="tBJ-hI-Xoi"/>
                                             <constraint firstItem="3BY-ba-lgG" firstAttribute="top" secondItem="f61-1d-bB5" secondAttribute="top" id="zGb-qW-HW0"/>
@@ -3634,10 +3639,12 @@ information.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAy-1a-vfh">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="881"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1yC-SN-L9f">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yC-SN-L9f">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="195"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.86584617990000001" green="1" blue="0.9406687011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="1yC-SN-L9f" secondAttribute="height" multiplier="25:13" id="wxo-GR-Nno"/>
+                                                </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fla-tV-Xdp">
                                                 <rect key="frame" x="16" y="486" width="343" height="24"/>
@@ -3747,6 +3754,7 @@ information.</string>
                                             <constraint firstAttribute="trailing" secondItem="sgD-Mi-hDn" secondAttribute="trailing" id="FN7-Jw-dUu"/>
                                             <constraint firstItem="CXl-pc-rSi" firstAttribute="top" secondItem="Lmo-TI-zOo" secondAttribute="bottom" constant="18" id="Fix-qW-vnz"/>
                                             <constraint firstAttribute="trailing" secondItem="CXl-pc-rSi" secondAttribute="trailing" constant="16" id="GfK-KH-dgk"/>
+                                            <constraint firstAttribute="trailing" secondItem="1yC-SN-L9f" secondAttribute="trailing" id="GkB-M5-lIb"/>
                                             <constraint firstAttribute="trailing" secondItem="Ub5-AO-Wqb" secondAttribute="trailing" constant="16" id="Ixk-0f-eP4"/>
                                             <constraint firstAttribute="trailing" secondItem="hrQ-9a-Zw0" secondAttribute="trailing" constant="16" id="L8b-Yc-h6h"/>
                                             <constraint firstAttribute="trailing" secondItem="Fla-tV-Xdp" secondAttribute="trailing" constant="16" id="OGC-tu-Xif"/>
@@ -3754,6 +3762,8 @@ information.</string>
                                             <constraint firstItem="sgD-Mi-hDn" firstAttribute="leading" secondItem="oAy-1a-vfh" secondAttribute="leading" id="OyR-wE-0t9"/>
                                             <constraint firstItem="Ub5-AO-Wqb" firstAttribute="top" secondItem="z1O-cs-8UF" secondAttribute="bottom" constant="18" id="PoR-n7-yhN"/>
                                             <constraint firstItem="Lmo-TI-zOo" firstAttribute="leading" secondItem="oAy-1a-vfh" secondAttribute="leading" id="VZH-O0-YOc"/>
+                                            <constraint firstItem="1yC-SN-L9f" firstAttribute="leading" secondItem="oAy-1a-vfh" secondAttribute="leading" id="XQj-KR-Z7G"/>
+                                            <constraint firstItem="1yC-SN-L9f" firstAttribute="top" secondItem="oAy-1a-vfh" secondAttribute="top" id="aL8-Yz-Ta3"/>
                                             <constraint firstItem="Xbf-pF-ytu" firstAttribute="leading" secondItem="oAy-1a-vfh" secondAttribute="leading" constant="16" id="dLw-gv-c3R"/>
                                             <constraint firstItem="CXl-pc-rSi" firstAttribute="leading" secondItem="oAy-1a-vfh" secondAttribute="leading" constant="16" id="eai-qi-C9d"/>
                                             <constraint firstItem="Ub5-AO-Wqb" firstAttribute="top" secondItem="hrQ-9a-Zw0" secondAttribute="bottom" constant="18" id="glH-h2-KUc"/>
