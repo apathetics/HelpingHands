@@ -21,7 +21,6 @@ class HiringPaymentController: UIViewController, Themeable {
     @IBOutlet weak var ratingStars: RatingControl!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var toLabel: UILabel!
-    @IBOutlet weak var ccLabel: UILabel!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var reviewLabel: UILabel!
@@ -118,7 +117,7 @@ class HiringPaymentController: UIViewController, Themeable {
     
     func applyTheme(theme: Theme) {
         theme.applyBackgroundColor(views: [view])
-        theme.applyHeadlineStyle(labels: [recipientLabel, moneyLabel, toLabel, ccLabel, rateLabel, youAreLabel, tipLabel])
+        theme.applyHeadlineStyle(labels: [recipientLabel, moneyLabel, toLabel, rateLabel, youAreLabel, tipLabel])
         theme.applySegmentedControlStyle(controls: [tipSwich])
         theme.applyFilledButtonStyle(buttons: [confirmButton])
         theme.applyTextFieldTextStyle(textFields: [reviewTextField])
