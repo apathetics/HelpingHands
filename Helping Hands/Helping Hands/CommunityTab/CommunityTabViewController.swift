@@ -217,7 +217,6 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     
     // DATABASE RETRIEVAL
     func retrieveEvents() {
-        events.removeAll()
         let eventsRef = databaseRef.child("events")
         
         eventsRef.observe(FIRDataEventType.value, with: {(snapshot) in
@@ -266,6 +265,10 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
                             self.events = self.events.sorted(by: { $0.distance < $1.distance })
                             self.activityIndicatorView.stopAnimating()
                             self.loadingView.isHidden = true
+                        }
+                        
+                        self.events = self.events.filter {
+                            result in return (result.distance <= Double(self.radius))
                         }
                         
                         self.table.reloadData()

@@ -201,7 +201,6 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // FIREBASE RETRIEVAL
     @objc func retrieveJobs() {
-        jobs.removeAll()
         let jobsRef = databaseRef.child("jobs")
         
         jobsRef.observe(FIRDataEventType.value, with: {(snapshot) in
@@ -259,6 +258,10 @@ class HomeTabViewController: UIViewController, UITableViewDataSource, UITableVie
                                 view.removeFromSuperview()
                             }
                             self.errorView?.isHidden = true
+                        }
+                        
+                        self.jobs = self.jobs.filter {
+                            result in return (result.distance <= Double(self.radius))
                         }
                         
                         // Check if there are jobs and if not, show loading screen.
