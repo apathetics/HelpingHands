@@ -2365,13 +2365,13 @@ information.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are paying:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytn-Uh-RVs">
-                                <rect key="frame" x="16" y="143" width="115.5" height="22"/>
+                                <rect key="frame" x="16" y="143" width="115.5" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONEY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLO-1k-h8t">
-                                <rect key="frame" x="154.5" y="143" width="153" height="22"/>
+                                <rect key="frame" x="154.5" y="143" width="153" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2391,13 +2391,13 @@ information.</string>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwK-3Y-Giw">
-                                <rect key="frame" x="16" y="194" width="115.5" height="22"/>
+                                <rect key="frame" x="16" y="193.5" width="115.5" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Gidole-Regular" family="Gidole" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECIPIENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bZ-4Z-hF8">
-                                <rect key="frame" x="154.5" y="194" width="152" height="22"/>
+                                <rect key="frame" x="154.5" y="193.5" width="152" height="21.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="152" id="JCH-6j-SZ9"/>
                                 </constraints>
@@ -2406,7 +2406,7 @@ information.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-sI-w3E">
-                                <rect key="frame" x="27" y="242" width="154" height="0.0"/>
+                                <rect key="frame" x="27" y="241" width="154" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="154" id="MbV-Er-Bvo"/>
                                 </constraints>

@@ -15,12 +15,10 @@ import NVActivityIndicatorView
 
 class CommunityTabViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, radiusDelegate, Themeable {
     
-    let manager = CLLocationManager()
-    
-    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
-
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
+    
+    // components
     
     var loadingView: UIView!
     var activityIndicatorView: NVActivityIndicatorView!
@@ -28,6 +26,11 @@ class CommunityTabViewController: UIViewController, UITableViewDataSource, UITab
     var radius = 0
     
     var events = [Event]()
+    
+    let manager = CLLocationManager()
+    
+    let databaseRef = FIRDatabase.database().reference(fromURL: "https://helpinghands-presentation.firebaseio.com/")
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
