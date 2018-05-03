@@ -29,6 +29,9 @@ class SideMenuController: UIViewController, Themeable {
     var otherThemeIcon: UIImage = UIImage(named: "dayModeIcon")!
     var selectedTheme: Theme = DarkTheme()
     var otherTheme: Theme = DefaultTheme()
+    var selectedStatusBarColor: UIStatusBarStyle = UIStatusBarStyle.lightContent
+    var otherStatusBarColor: UIStatusBarStyle = UIStatusBarStyle.default
+
     var user: User!
     
     let userRef = FIRDatabase.database().reference().child("users")
@@ -128,12 +131,14 @@ class SideMenuController: UIViewController, Themeable {
             // change image to image B
             self.themeButton.setImage(self.otherThemeIcon, for: .normal)
             ThemeService.shared.theme = self.selectedTheme
+            UIApplication.shared.statusBarStyle = self.selectedStatusBarColor
             UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseIn, animations: {
                 self.themeButton.alpha = 1.0
             }, completion: { (b) in
                 // Swap image A and image B
                 swap(&self.selectedThemeIcon, &self.otherThemeIcon)
                 swap(&self.selectedTheme, &self.otherTheme)
+                swap(&self.selectedStatusBarColor, &self.otherStatusBarColor)
             })
         })
         
